@@ -1,0 +1,18 @@
+@import '../lib/mixins';
+@import '../lib/var';
+
+.page-btn {
+  width: 204px;
+  height: 50px;
+ // background: linear-gradient(250.68deg, #D04F56 6.6%, #AB3034 96.33%);
+  background: url("assets/img/page-btn.png") no-repeat;
+  background-size: 100% 100%;
+  border-radius: 47px;
+  @include align-justify-center;
+  border: none;
+
+  font-family: $base-font;
+  font-size: 19px;
+  line-height: 150%;
+  color: #FFFFFF;
+}
