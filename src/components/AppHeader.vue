@@ -23,7 +23,7 @@
     </nav>
 
     <div class="header__logo">
-      <img src="@/assets/img/svg/logo.svg" alt="">
+      <img src="@/assets/img/logo.png" alt="">
     </div>
 
     <nav class="header-nav">
