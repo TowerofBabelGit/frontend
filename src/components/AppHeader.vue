@@ -37,17 +37,47 @@
         </li>
       </ul>
     </nav>
+
+
     </div>
 
     <button class="page-btn" type="button">
       Connect wallet
     </button>
+
+    <button class="burger-btn" type="button" :class="{active: isOpenMenu}" @click="isOpenMenu = !isOpenMenu"></button>
+
+    <nav class="mobile-nav" v-show="isOpenMenu">
+      <ul class="mobile-nav__list">
+        <li class="mobile-nav__item">
+          <a href="#">Lorem ipsum</a>
+        </li>
+        <li class="mobile-nav__item">
+          <a href="#">Dolor sit</a>
+        </li>
+        <li class="mobile-nav__item">
+          <a href="#">Consectetur</a>
+        </li>
+        <li class="mobile-nav__item">
+          <a href="#">Adipiscing elit</a>
+        </li>
+      </ul>
+
+      <button class="page-btn" type="button">
+        Connect wallet
+      </button>
+    </nav>
   </header>
 </template>
 
 <script>
 export default {
-  name: "AppHeader"
+  name: "AppHeader",
+  data() {
+    return {
+      isOpenMenu: false
+    }
+  }
 }
 </script>
 

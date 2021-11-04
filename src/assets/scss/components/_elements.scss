@@ -16,3 +16,19 @@
   line-height: 150%;
   color: #FFFFFF;
 }
+
+.burger-btn {
+  background: url("assets/img/svg/menu.svg") no-repeat;
+  border: none;
+  width: 18px;
+  height: 16px;
+  display: none;
+
+  @include max-screen(lg) {
+    display: block;
+  }
+
+  &.active {
+    background: url("assets/img/svg/close.svg") no-repeat;
+  }
+}

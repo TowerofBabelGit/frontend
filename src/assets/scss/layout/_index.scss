@@ -68,8 +68,11 @@ img {
   @include max-screen(xxl) {
  //   padding-left: 270px;
   }
-  @include max-screen(xl) {
-
+  @include max-screen(lg) {
+    height: 70px;
+  }
+  @include max-screen(sm) {
+    height: 50px;
   }
 
   &__img {
@@ -78,6 +81,7 @@ img {
     height: 340px;
     left: 0;
     top: 0;
+    z-index: 9;
 
     @include max-screen(xxl) {
       width: 250px;
@@ -86,6 +90,14 @@ img {
     @include max-screen(xl) {
       width: 210px;
       height: 210px;
+    }
+    @include max-screen(sm) {
+      width: 115px;
+      height: 115px;
+    }
+    @include max-screen(xs) {
+      width: 100px;
+      height: 100px;
     }
   }
 
@@ -109,6 +121,7 @@ img {
 
   &__logo {
     margin: 100px 100px 0;
+    z-index: 9;
 
     @include max-screen(xxl) {
       margin: 50px 31px 0;
@@ -117,6 +130,14 @@ img {
     @include max-screen(xl) {
       margin: 32px 25px 0;
       width: 190px;
+    }
+    @include max-screen(sm) {
+      width: 120px;
+      margin: 40px 31px 0;
+    }
+    @include max-screen(xs) {
+      width: 110px;
+      margin: 32px 31px 0;
     }
 
   }
@@ -138,6 +159,16 @@ img {
       width: 160px;
       font-size: 16px;
     }
+    @include max-screen(lg) {
+    display: none;
+    }
+  }
+
+  .burger-btn {
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 
@@ -147,6 +178,11 @@ img {
 }
 
 .header-nav {
+
+  @include max-screen(lg) {
+    display: none;
+  }
+
   &__list {
     @include align-center;
   }
@@ -201,6 +237,53 @@ img {
 }
 
 
+.mobile-nav {
+  position: absolute;
+  display: none;
+  background: #FFFFFF;
+  width: 430px;
+  height: 800px;
+  right: 0;
+  top: 70px;
+  z-index: 8;
+  padding: 50px;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @include max-screen(lg) {
+    display: flex;
+  }
+  @include max-screen(sm) {
+    top: 50px;
+  }
+  @include max-screen(xs) {
+    width: 100%;
+  }
+
+
+  &__item {
+    border-bottom: 1px solid #F4F4F4;
+
+    * {
+      display: block;
+      height: 70px;
+      font-size: 30px;
+      line-height: 150%;
+      color: #503614;
+      @include align-center;
+    }
+  }
+
+  .page-btn {
+    display: block;
+    position: static;
+    width: 100%;
+    height: 80px;
+    font-size: 30px;
+    transform: translateY(0);
+  }
+}
+
 .home-page {
   background:url("assets/img/background-bottom.png") no-repeat, url("assets/img/background.png") no-repeat ;
   min-height: 100vh;
@@ -232,6 +315,18 @@ img {
       max-width: 955px;
       height: 165px;
     }
+    @include max-screen(md) {
+      margin-top: -55px;
+    }
+    @include max-screen(sm) {
+     max-width: 100%;
+      padding-bottom: 30px;
+      height: 200px;
+    }
+    @include max-screen(xs) {
+    background-size: cover;
+      background-position: center;
+    }
   }
 }
 
@@ -246,6 +341,11 @@ img {
 
   @include align-justify-center;
 
+  @include max-screen(xs) {
+    width: 235px;
+    height: 220px;
+  }
+
   &__text {
     font-size: 14px;
     line-height: 1.3;
@@ -255,12 +355,19 @@ img {
     margin-bottom: 20px;
     margin-left: 15px;
 
+    @include max-screen(xs) {
+      font-size: 13px;
+    }
+
     span {
       display: block;
       font-size: 36px;
 
       @include max-screen(xl) {
         font-size: 30px;
+      }
+      @include max-screen(lg) {
+        font-size: 25px;
       }
     }
   }
@@ -270,7 +377,7 @@ img {
   position: absolute;
   bottom: 300px;
   left: 21%;
-  z-index: 3;
+  z-index: 4;
 
   @include max-screen(xxl) {
     bottom: 215px;
@@ -278,6 +385,20 @@ img {
   }
   @include max-screen(xl) {
     left: 14%;
+  }
+  @include max-screen(lg) {
+   bottom: 105px;
+  }
+  @include max-screen(md) {
+   bottom: 74px;
+    left: 6%;
+  }
+  @include max-screen(sm) {
+    left: 2%;
+    bottom: -27px;
+  }
+  @include max-screen(xs) {
+    bottom: -23px;
   }
 
   &__img {
@@ -287,6 +408,15 @@ img {
       }
       @include max-screen(xl) {
         width: 200px;
+      }
+      @include max-screen(lg) {
+        width: 170px;
+      }
+      @include max-screen(sm) {
+        width: 100px;
+      }
+      @include max-screen(xs) {
+        width: 67px;
       }
     }
   }
@@ -305,6 +435,20 @@ img {
       height: 269px;
       background-size: 100% 100%;
     }
+    @include max-screen(lg) {
+      width: 250px;
+      height: 250px;
+    }
+    @include max-screen(md) {
+      transform: translate(-34%, 35%);
+    }
+    @include max-screen(sm) {
+      transform: translate(-22%, 21%);
+    }
+    @include max-screen(xs) {
+      transform: translate(-21%, 8%);
+    }
+
 
     &__text {
       transform: rotate(-23.49deg);
@@ -318,9 +462,20 @@ img {
   position: absolute;
   bottom: 255px;
   right: 15%;
+  z-index: 7;
 
   @include max-screen(xl) {
     right: 13%;
+  }
+  @include max-screen(lg) {
+    right: 5%;
+  }
+  @include max-screen(sm) {
+    right: 0;
+    bottom: 170px;
+  }
+  @include max-screen(xs) {
+    bottom: 142px;
   }
 
   .buy-wrap {
@@ -335,6 +490,18 @@ img {
       width: 258px;
       height: 250px;
     }
+    @include max-screen(lg) {
+      transform: translate(70%, 60%);
+    }
+    @include max-screen(md) {
+      transform: translate(28%, 85%);
+    }
+    @include max-screen(sm) {
+      transform: translate(17%, 93%);
+    }
+    @include max-screen(xs) {
+      transform: translate(21%, 80%);
+    }
   }
 
   &__img {
@@ -342,6 +509,18 @@ img {
 
     @include max-screen(xl) {
       width: 150px;
+    }
+    @include max-screen(lg) {
+      width: 135px;
+    }
+    @include max-screen(md) {
+      width: 110px;
+    }
+    @include max-screen(sm) {
+      width: 77px;
+    }
+    @include max-screen(xs) {
+      width: 57px;
     }
   }
 }
@@ -353,6 +532,11 @@ img {
   width: 280px;
   height: 98px;
   position: relative;
+
+  @include max-screen(sm) {
+    flex-direction: column;
+    text-align: center;
+  }
 
   + .bottom-wrap {
     border-left: 1px dashed rgba(0, 0, 0, 0.3);
@@ -370,15 +554,37 @@ img {
 
   svg {
     margin-right: 15px;
+
+    @include max-screen(md) {
+      width: 33px;
+    }
+    @include max-screen(sm) {
+     margin-right: 0;
+      height: 57px;
+    }
   }
 
   &__text {
     font-size: 18px;
     line-height: 1.3;
 
+    @include max-screen(sm) {
+      font-size: 14px;
+    }
+    @include max-screen(xs) {
+      font-size: 12px;
+    }
+
     span {
       display: block;
       font-size: 24px;
+
+      @include max-screen(sm) {
+        font-size: 18px;
+      }
+      @include max-screen(xs) {
+        font-size: 16px;
+      }
     }
   }
 }
@@ -397,6 +603,12 @@ img {
   @include max-screen(xl) {
     max-width: 610px;
   }
+  @include max-screen(lg) {
+    max-width: 500px;
+  }
+  @include max-screen(md) {
+    max-width: 460px;
+  }
 
   &__guys {
     margin-top: 190px;
@@ -405,6 +617,26 @@ img {
     justify-content: space-between;
     z-index: -1;
 
+    @include max-screen(sm) {
+      margin-top: 200px;
+      margin-bottom: -23px;
+    }
+    @include max-screen(xs) {
+      margin-bottom: -15px;
+    }
+
+    img {
+      @include max-screen(lg) {
+        width: 70px;
+      }
+      @include max-screen(md) {
+        width: 65px;
+      }
+      @include max-screen(xs) {
+        width: 40px;
+      }
+    }
+
     &--left, .tower-wrap__guys--right {
       @include align-center;
     }
@@ -412,9 +644,18 @@ img {
     &--left {
       img {
         margin-right: -40px;
+
+        @include max-screen(xs) {
+          margin-right: -25px;
+        }
+
         &:first-child {
           transform: rotate(-24.67deg);
           margin-left: 20px;
+
+          @include max-screen(xs)  {
+            margin-left: 55px;
+          }
         }
 
         &:nth-child(3) {
@@ -429,12 +670,25 @@ img {
     }
 
     &--right {
+
+      @include max-screen(xs) {
+        padding-right: 25px;
+      }
+
       img {
 
         margin-left: -45px;
+
+        @include max-screen(xs) {
+          margin-left: -60px;
+        }
         &:first-child {
           transform: matrix(-0.92, 0.39, 0.39, 0.92, 0, 0);
           margin-right: 10px;
+
+          @include max-screen(xs) {
+            margin-right: -7px
+          }
         }
 
         &:nth-child(2) {
@@ -473,6 +727,15 @@ img {
       }
       @include max-screen(xl) {
         width: 550px;
+      }
+      @include max-screen(lg) {
+        width: 440px;
+      }
+      @include max-screen(md) {
+        width: 400px;
+      }
+      @include max-screen(xs) {
+        width: 70%;
       }
     }
 
