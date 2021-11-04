@@ -9,5 +9,9 @@
 }
 
 @include font-face('CherryCreamSoda-Regular','assets/fonts/CherryCreamSoda-Regular');
-
+@include font-face('Poppins-bold', 'assets/fonts/Poppins-bold');
+@include font-face('Poppins-medium', 'assets/fonts/Poppins-medium');
+@include font-face('Poppins-semibold', 'assets/fonts/Poppins-semibold');
+@include font-face('Poppins-Regular', 'assets/fonts/Poppins-Regular');
+@include font-face('Poppins-light', 'assets/fonts/Poppins-light');
 

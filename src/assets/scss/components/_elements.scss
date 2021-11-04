@@ -15,6 +15,10 @@
   font-size: 19px;
   line-height: 150%;
   color: #FFFFFF;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .burger-btn {

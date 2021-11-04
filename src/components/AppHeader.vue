@@ -41,7 +41,7 @@
 
     </div>
 
-    <button class="page-btn" type="button">
+    <button class="page-btn" type="button" @click="isOpenConnect = true">
       Connect wallet
     </button>
 
@@ -63,19 +63,26 @@
         </li>
       </ul>
 
-      <button class="page-btn" type="button">
+      <button class="page-btn" type="button" @click="isOpenConnect = true">
         Connect wallet
       </button>
     </nav>
+    <ConnectWallet v-if="isOpenConnect" @close="isOpenConnect = false"/>
   </header>
 </template>
 
 <script>
+import ConnectWallet from "./Modals/ConnectWallet";
+
 export default {
   name: "AppHeader",
+  components:{
+    ConnectWallet
+  },
   data() {
     return {
-      isOpenMenu: false
+      isOpenMenu: false,
+      isOpenConnect: false
     }
   }
 }

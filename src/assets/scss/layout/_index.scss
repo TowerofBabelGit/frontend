@@ -346,6 +346,11 @@ img {
     height: 220px;
   }
 
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+
   &__text {
     font-size: 14px;
     line-height: 1.3;
