@@ -11,7 +11,8 @@
       </svg>
     </div>
 
-    <nav class="header-nav">
+    <div class="header-wrap">
+     <nav class="header-nav">
       <ul class="header-nav__list">
         <li class="header-nav__item">
           <a href="#">Lorem ipsum</a>
@@ -22,11 +23,11 @@
       </ul>
     </nav>
 
-    <div class="header__logo">
+     <div class="header__logo">
       <img src="@/assets/img/logo.png" alt="">
     </div>
 
-    <nav class="header-nav">
+      <nav class="header-nav header-nav--right">
       <ul class="header-nav__list">
         <li class="header-nav__item">
           <a href="#">Consectetur</a>
@@ -36,6 +37,7 @@
         </li>
       </ul>
     </nav>
+    </div>
 
     <button class="page-btn" type="button">
       Connect wallet

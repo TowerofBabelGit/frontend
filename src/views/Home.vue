@@ -341,7 +341,7 @@
       <img src="@/assets/img/tower-bottom.png" alt="" class="tower-bottom">
     </div>
       </div>
-      <div class="baloon-wrap">
+      <div class="balloon-wrap">
 
         <div class="balloon-wrap__img">
           <img src="@/assets/img/baloon.png" alt="">

@@ -61,8 +61,16 @@ img {
   background: #FFFFFF;
   @include align-center;
   position: relative;
-  padding-left: 390px;
-  height: 110px;
+ //padding-left: 390px;
+   height: 110px;
+ // justify-content: center;
+
+  @include max-screen(xxl) {
+ //   padding-left: 270px;
+  }
+  @include max-screen(xl) {
+
+  }
 
   &__img {
     position: absolute;
@@ -71,6 +79,14 @@ img {
     left: 0;
     top: 0;
 
+    @include max-screen(xxl) {
+      width: 250px;
+      height: 250px;
+    }
+    @include max-screen(xl) {
+      width: 210px;
+      height: 210px;
+    }
   }
 
   &__img-text {
@@ -94,12 +110,40 @@ img {
   &__logo {
     margin: 100px 100px 0;
 
+    @include max-screen(xxl) {
+      margin: 50px 31px 0;
+      width: 215px;
+    }
+    @include max-screen(xl) {
+      margin: 32px 25px 0;
+      width: 190px;
+    }
+
   }
 
   .page-btn {
-    margin-left: auto;
-    margin-right: 50px;
+  //  margin-left: auto;
+ //   margin-right: 50px;
+    justify-self: flex-end;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include max-screen(xxl) {
+    //  margin-right: 30px;
+      right: 30px;
+    }
+    @include max-screen(xl) {
+      width: 160px;
+      font-size: 16px;
+    }
   }
+}
+
+.header-wrap {
+  @include align-center;
+  margin: 0 auto;
 }
 
 .header-nav {
@@ -109,13 +153,27 @@ img {
 
   &__item {
     margin-left: 30px;
+
+    @include max-screen(xl) {
+      margin-left: 20px;
+    }
+
     a {
       color: #000000;
+      white-space: nowrap;
+
+      @include max-screen(xl) {
+        font-size: 16px;
+      }
     }
 
     +.header-nav__item {
       padding-left: 36px;
       position: relative;
+
+      @include max-screen(xl) {
+        padding-left: 25px;
+      }
 
       &:before {
         content: "";
@@ -130,6 +188,16 @@ img {
       }
     }
   }
+
+  &--right {
+    .header-nav__item {
+      &:first-child {
+        @include max-screen(xxl) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
 }
 
 
@@ -137,6 +205,12 @@ img {
   background:url("assets/img/background-bottom.png") no-repeat, url("assets/img/background.png") no-repeat ;
   min-height: 100vh;
   background-position:  bottom, top;
+  overflow-x: hidden;
+  background-size: 100%;
+
+  @include max-screen(xxl) {
+    background-size: contain, cover;
+  }
 
   &__bottom {
     @include align-center;
@@ -149,6 +223,15 @@ img {
     position: relative;
     padding-top: 25px;
     z-index: 3;
+
+    @include max-screen(xxl) {
+      max-width: 1040px;
+      height: 185px;
+    }
+    @include max-screen(xl) {
+      max-width: 955px;
+      height: 165px;
+    }
   }
 }
 
@@ -176,6 +259,9 @@ img {
       display: block;
       font-size: 36px;
 
+      @include max-screen(xl) {
+        font-size: 30px;
+      }
     }
   }
 }
@@ -184,6 +270,26 @@ img {
   position: absolute;
   bottom: 300px;
   left: 21%;
+  z-index: 3;
+
+  @include max-screen(xxl) {
+    bottom: 215px;
+    left: 16%;
+  }
+  @include max-screen(xl) {
+    left: 14%;
+  }
+
+  &__img {
+    svg {
+      @include max-screen(xxl) {
+        width: 230px;
+      }
+      @include max-screen(xl) {
+        width: 200px;
+      }
+    }
+  }
 
   .buy-wrap {
     width: 248px;
@@ -194,6 +300,12 @@ img {
     bottom: 0px;
     transform: translate(-49%, 35%);
 
+    @include max-screen(xl) {
+      width: 288px;
+      height: 269px;
+      background-size: 100% 100%;
+    }
+
     &__text {
       transform: rotate(-23.49deg);
       margin-bottom: 11px;
@@ -202,10 +314,14 @@ img {
   }
 }
 
-.baloon-wrap {
+.balloon-wrap {
   position: absolute;
   bottom: 255px;
   right: 15%;
+
+  @include max-screen(xl) {
+    right: 13%;
+  }
 
   .buy-wrap {
     background: url("assets/img/buy-block-right.png") no-repeat;
@@ -213,6 +329,20 @@ img {
     right: 0px;
     bottom: 0px;
     transform: translate(80%, 30%);
+
+    @include max-screen(xl) {
+      background-size: 100% 100%;
+      width: 258px;
+      height: 250px;
+    }
+  }
+
+  &__img {
+    width: 170px;
+
+    @include max-screen(xl) {
+      width: 150px;
+    }
   }
 }
 
@@ -255,8 +385,18 @@ img {
 
 .tower-wrap {
   position: relative;
-  max-width: 750px;
+  max-width: 1030px;
   margin: auto;
+
+  @include max-screen(xxxl) {
+    max-width: 750px;
+  }
+  @include max-screen(xxl) {
+    max-width: 630px;
+  }
+  @include max-screen(xl) {
+    max-width: 610px;
+  }
 
   &__guys {
     margin-top: 190px;
@@ -315,15 +455,25 @@ img {
 
   &__img {
     margin: auto;
-    max-width: 750px;
+    max-width: 100%;
     z-index: 2;
     position: relative;
 
     @include align-column-center;
 
     .tower {
-      width: 695px;
+      width: 1030px;
       margin: auto;
+
+      @include max-screen(xxxl) {
+        width: 695px;
+      }
+      @include max-screen(xxl) {
+        width: 600px;
+      }
+      @include max-screen(xl) {
+        width: 550px;
+      }
     }
 
     .tower-bottom {
