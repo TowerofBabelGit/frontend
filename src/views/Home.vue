@@ -4,7 +4,10 @@
 
     <div class="home-page-content">
 
-      <div class="crane-wrap">
+
+
+      <div class="tower-wrap">
+        <div class="crane-wrap">
           <div class="crane-wrap__img">
             <svg width="261" height="425" viewBox="0 0 261 425" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
               <rect x="217.459" y="126.981" width="30" height="30" rx="5" transform="rotate(-60 217.459 126.981)" fill="#4D4D4D"/>
@@ -310,15 +313,13 @@
 
           </div>
 
-        <div class="buy-wrap">
+          <div class="buy-wrap">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
         </span>
+          </div>
         </div>
-      </div>
-
-      <div class="tower-wrap">
         
         <div class="tower-wrap__guys">
           <div class="tower-wrap__guys--left">
@@ -337,14 +338,85 @@
         </div>
       
     <div class="tower-wrap__img">
-      <img src="@/assets/img/tower.png" alt="" class="tower">
-      <img src="@/assets/img/tower-bottom.png" alt="" class="tower-bottom">
+<!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
+      <div class="tower">
+        <div class="tower__row tower__row--xl">
+          <div class="tower__col tower__col--big">
+            <img src="@/assets/img/block-1.png" alt="">
+            <div class="tower__block-cover">
+              <img src="@/assets/img/cover-1.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="tower__row tower__row--xl">
+          <div class="tower__col tower__col--big">
+            <img src="@/assets/img/block-2.png" alt="">
+            <div class="tower__block-cover">
+              <img src="@/assets/img/cover-2.png" alt="">
+            </div>
+          </div>
+          <div class="tower__col tower__col--big">
+            <img src="@/assets/img/block-3.png" alt="">
+            <div class="tower__block-cover" style="height: 103%">
+              <img src="@/assets/img/cover-3.png" alt="">
+            </div>
+          </div>
+
+        </div>
+        <div class="tower__row tower__row--lg">
+
+          <div class="tower__col"
+               v-for="(block, index) in towerBlocksLg"
+               :key="block.id"
+               :data-index="index"
+          >
+            <img :src="block.img" alt="">
+            <div class="tower__block-cover">
+              <img :src="block.cover" alt="">
+            </div>
+
+          </div>
+
+        </div>
+        <div class="tower__row tower__row--md">
+          <div class="tower__col"
+               v-for="(block, index) in towerBlocksMd"
+               :key="block.id"
+               :data-index="index"
+          >
+            <img :src="block.img" alt="">
+            <div class="tower__block-cover">
+              <img :src="block.cover" alt="">
+            </div>
+
+          </div>
+        </div>
+        <div class="tower__row tower__row--sm">
+          <div class="tower__col" v-for="n in 16" :key="n">
+            <img src="@/assets/img/block-2.png" alt="">
+            <div class="tower__block-cover">
+              <img src="@/assets/img/cover-2.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="tower__row tower__row--xs">
+          <div class="tower__col" v-for="n in 24" :key="n">
+            <img src="@/assets/img/block-2.png" alt="">
+            <div class="tower__block-cover">
+              <img src="@/assets/img/cover-2.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
       </div>
+
       <div class="balloon-wrap">
 
         <div class="balloon-wrap__img">
-          <img src="@/assets/img/baloon.png" alt="">
+          <img src="@/assets/img/balloon-ball.png" alt="" class="balloon-wrap__img--top">
+          <img src="@/assets/img/balloon-blocks.png" alt="" class="balloon-wrap__img--bottom">
+
         </div>
 
       <div class="buy-wrap">
@@ -451,6 +523,76 @@ export default {
   name: 'Home',
   components: {
     AppHeader
+  },
+  data() {
+    return {
+      towerBlocksLg: [
+            {
+              id:4,
+              img: '/img/block-4.png',
+              cover: '/img/cover-4.png',
+            },
+            {
+              id:5,
+              img: '/img/block-5.png',
+              cover: '/img/cover-5.png',
+            },
+            {
+              id:6,
+              img: '/img/block-6.png',
+              cover: '/img/cover-6.png',
+            },
+            {
+              id:7,
+              img: '/img/block-7.png',
+              cover: '/img/cover-7.png',
+            },
+
+      ],
+      towerBlocksMd: [
+        {
+          id:8,
+          img: '/img/block-2.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:9,
+          img: '/img/block-8.png',
+          cover: '/img/cover-5.png',
+        },
+        {
+          id:10,
+          img: '/img/block-7.png',
+          cover: '/img/cover-10.png',
+        },
+        {
+          id:11,
+          img: '/img/block-4.png',
+          cover: '/img/cover-4.png',
+        },
+        {
+          id:12,
+          img: '/img/block-5.png',
+          cover: '/img/cover-2.png',
+        },
+        {
+          id:13,
+          img: '/img/block-3.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:14,
+          img: '/img/block-7.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:15,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
+
+      ],
+    }
   }
 }
 </script>

@@ -253,11 +253,17 @@ img {
   @include max-screen(lg) {
     display: flex;
   }
+  @include max-screen(md) {
+   height: 600px;
+  }
   @include max-screen(sm) {
     top: 50px;
+    min-height: 450px;
+    height: 90vh;
   }
   @include max-screen(xs) {
     width: 100%;
+    padding: 50px 30px;
   }
 
 
@@ -281,6 +287,10 @@ img {
     height: 80px;
     font-size: 30px;
     transform: translateY(0);
+
+    @include max-screen(xs) {
+      font-size: 26px;
+    }
   }
 }
 
@@ -314,6 +324,7 @@ img {
     @include max-screen(xl) {
       max-width: 955px;
       height: 165px;
+      margin-top: -55px;
     }
     @include max-screen(md) {
       margin-top: -55px;
@@ -326,6 +337,7 @@ img {
     @include max-screen(xs) {
     background-size: cover;
       background-position: center;
+      margin-top: -40px;
     }
   }
 }
@@ -381,29 +393,35 @@ img {
 .crane-wrap {
   position: absolute;
   bottom: 300px;
-  left: 21%;
+  left: 0;
+  transform: translateX(-75%);
   z-index: 4;
 
   @include max-screen(xxl) {
     bottom: 215px;
-    left: 18%;
+    transform: translateX(-79%);
+  //  left: 18%;
   }
   @include max-screen(xl) {
-    left: 14%;
+    transform: translateX(-78%);
   }
   @include max-screen(lg) {
    bottom: 105px;
+    transform: translateX(-79%);
   }
   @include max-screen(md) {
    bottom: 74px;
-    left: 6%;
+
+ //   left: 6%;
   }
   @include max-screen(sm) {
-    left: 2%;
+ //   left: 2%;
+    transform: translateX(-72%);
     bottom: -27px;
   }
   @include max-screen(xs) {
     bottom: -23px;
+    transform: translateX(-70%);
   }
 
   &__img {
@@ -473,7 +491,7 @@ img {
     right: 13%;
   }
   @include max-screen(lg) {
-    right: 5%;
+    right: 14%;
   }
   @include max-screen(sm) {
     right: 0;
@@ -510,7 +528,9 @@ img {
   }
 
   &__img {
-    width: 170px;
+    width: 240px;
+    animation: balloonmove 15s linear infinite;
+    @include align-column-center;
 
     @include max-screen(xl) {
       width: 150px;
@@ -522,15 +542,55 @@ img {
       width: 110px;
     }
     @include max-screen(sm) {
+      animation: none;
       width: 77px;
     }
     @include max-screen(xs) {
       width: 57px;
     }
+
+    &--top {
+
+    }
+
+    &--bottom {
+      margin-top: -5px;
+      width: 150px;
+      animation: balance 10s linear infinite;
+
+      @include max-screen(xl) {
+        width: 100px;
+      }
+      @include max-screen(lg) {
+        width: 65%;
+      }
+      @include max-screen(sm) {
+        animation: none;
+      }
+    }
+  }
+
+}
+
+@keyframes balloonmove{
+  0%{
+    transform: rotate(0deg) translateX(5%) rotate(0deg);
+
+  }
+
+  100% {
+    transform: rotate(360deg) translateX(5%) rotate(-360deg);
   }
 }
 
-
+@keyframes balance {
+  0%, 100% {
+    transform: rotate(1deg);
+  }
+  50% {
+    transform: rotate(-1deg);
+  }
+}
 
 .bottom-wrap {
   @include align-justify-center;
@@ -614,6 +674,9 @@ img {
   @include max-screen(md) {
     max-width: 460px;
   }
+  @include max-screen(xs) {
+    max-width: 70%;
+  }
 
   &__guys {
     margin-top: 190px;
@@ -627,6 +690,9 @@ img {
       margin-bottom: -23px;
     }
     @include max-screen(xs) {
+      width: 90%;
+      margin-right: auto;
+      margin-left: auto;
       margin-bottom: -15px;
     }
 
@@ -659,7 +725,7 @@ img {
           margin-left: 20px;
 
           @include max-screen(xs)  {
-            margin-left: 55px;
+            margin-left: 0;
           }
         }
 
@@ -677,7 +743,7 @@ img {
     &--right {
 
       @include max-screen(xs) {
-        padding-right: 25px;
+        margin-right: -25px;
       }
 
       img {
@@ -717,36 +783,153 @@ img {
     max-width: 100%;
     z-index: 2;
     position: relative;
+    background: url("assets/img/tower-bg.png") no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
 
     @include align-column-center;
 
     .tower {
       width: 1030px;
       margin: auto;
+      height: 1350px;
+      padding: 40px 0 250px 20px;
 
       @include max-screen(xxxl) {
         width: 695px;
       }
       @include max-screen(xxl) {
         width: 600px;
+        height: 1146px;
+        padding: 32px 10px 209px 24px;
       }
       @include max-screen(xl) {
-        width: 550px;
+        width: 558px;
+        padding: 32px 0px 209px 11px;
       }
       @include max-screen(lg) {
-        width: 440px;
+        width: 460px;
+        padding: 25px 0 155px 11px;
+        height: 820px;
       }
       @include max-screen(md) {
-        width: 400px;
+        width: 425px;
       }
       @include max-screen(xs) {
-        width: 70%;
+        width: 100%;
+        height: 500px;
+        padding: 16px 10px 113px 16px;
+      }
+
+      &__row {
+        width: 100%;
+        display: flex;
+        margin: 2px 0;
+
+        &--xl {
+          height: 30%;
+
+          @include max-screen(xs) {
+            height: 32%;
+          }
+        }
+
+        &--lg {
+          height: 16%;
+
+          .tower__col {
+            @include max-screen(xxl) {
+              border-radius: 30px;
+            }
+            @include max-screen(lg) {
+              border-radius: 25px;
+            }
+            @include max-screen(xs) {
+              border-radius: 11px;
+            }
+          }
+        }
+
+        &--md {
+          height: 9%;
+
+          @include max-screen(xs) {
+            height: 8%;
+          }
+
+          .tower__col {
+            border-radius: 15px;
+
+            @include max-screen(xs) {
+              border-radius: 7px;
+            }
+          }
+        }
+
+        &--sm {
+          height: 4%;
+
+          .tower__col {
+            border-radius: 10px;
+
+            @include max-screen(xs) {
+              border-radius: 3px;
+            }
+          }
+        }
+
+        &--xs {
+          height: 3%;
+
+          .tower__col {
+            border-radius: 5px;
+            @include max-screen(xs) {
+              border-radius: 3px;
+            }
+          }
+        }
+      }
+
+      &__col {
+        height: 100%;
+        border-radius: 45px;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        @include align-justify-center;
+
+        @include max-screen(xs) {
+          border-radius: 18px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: fill;
+        }
+
+
+
+        &--big {
+          width: 100%;
+        }
+      }
+
+      &__block-cover {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 2;
       }
     }
 
-    .tower-bottom {
+  /*  .tower-bottom {
       margin-top: -50px;
       margin-left: 25px;
-    }
+    }*/
   }
 }
