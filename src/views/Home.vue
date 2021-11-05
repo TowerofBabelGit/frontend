@@ -392,19 +392,29 @@
           </div>
         </div>
         <div class="tower__row tower__row--sm">
-          <div class="tower__col" v-for="n in 16" :key="n">
-            <img src="@/assets/img/block-2.png" alt="">
+          <div class="tower__col"
+               v-for="(block, index) in towerBlocksSm"
+               :key="block.id"
+               :data-index="index"
+          >
+            <img :src="block.img" alt="">
             <div class="tower__block-cover">
-              <img src="@/assets/img/cover-2.png" alt="">
+              <img :src="block.cover" alt="">
             </div>
+
           </div>
         </div>
         <div class="tower__row tower__row--xs">
-          <div class="tower__col" v-for="n in 24" :key="n">
-            <img src="@/assets/img/block-2.png" alt="">
+          <div class="tower__col"
+               v-for="(block, index) in towerBlocksXs"
+               :key="block.id"
+               :data-index="index"
+          >
+            <img :src="block.img" alt="">
             <div class="tower__block-cover">
-              <img src="@/assets/img/cover-2.png" alt="">
+              <img :src="block.cover" alt="">
             </div>
+
           </div>
         </div>
       </div>
@@ -591,6 +601,210 @@ export default {
           cover: '/img/cover-9.png',
         },
 
+      ],
+      towerBlocksSm: [
+        {
+          id:16,
+          img: '/img/block-2.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:17,
+          img: '/img/block-8.png',
+          cover: '/img/cover-5.png',
+        },
+        {
+          id:18,
+          img: '/img/block-7.png',
+          cover: '/img/cover-10.png',
+        },
+        {
+          id:19,
+          img: '/img/block-4.png',
+          cover: '/img/cover-4.png',
+        },
+        {
+          id:20,
+          img: '/img/block-5.png',
+          cover: '/img/cover-2.png',
+        },
+        {
+          id:21,
+          img: '/img/block-3.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:22,
+          img: '/img/block-7.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:23,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
+        {
+          id:24,
+          img: '/img/block-2.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:25,
+          img: '/img/block-8.png',
+          cover: '/img/cover-5.png',
+        },
+        {
+          id:26,
+          img: '/img/block-7.png',
+          cover: '/img/cover-10.png',
+        },
+        {
+          id:27,
+          img: '/img/block-4.png',
+          cover: '/img/cover-4.png',
+        },
+        {
+          id:28,
+          img: '/img/block-5.png',
+          cover: '/img/cover-2.png',
+        },
+        {
+          id:29,
+          img: '/img/block-3.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:30,
+          img: '/img/block-7.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:31,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
+      ],
+      towerBlocksXs: [
+        {
+          id:32,
+          img: '/img/block-2.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:33,
+          img: '/img/block-8.png',
+          cover: '/img/cover-5.png',
+        },
+        {
+          id:34,
+          img: '/img/block-7.png',
+          cover: '/img/cover-10.png',
+        },
+        {
+          id:35,
+          img: '/img/block-4.png',
+          cover: '/img/cover-4.png',
+        },
+        {
+          id:36,
+          img: '/img/block-5.png',
+          cover: '/img/cover-2.png',
+        },
+        {
+          id:37,
+          img: '/img/block-3.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:38,
+          img: '/img/block-7.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:39,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
+        {
+          id:40,
+          img: '/img/block-2.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:41,
+          img: '/img/block-8.png',
+          cover: '/img/cover-5.png',
+        },
+        {
+          id:42,
+          img: '/img/block-7.png',
+          cover: '/img/cover-10.png',
+        },
+        {
+          id:43,
+          img: '/img/block-4.png',
+          cover: '/img/cover-4.png',
+        },
+        {
+          id:44,
+          img: '/img/block-5.png',
+          cover: '/img/cover-2.png',
+        },
+        {
+          id:45,
+          img: '/img/block-3.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:46,
+          img: '/img/block-7.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:47,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
+        {
+          id:48,
+          img: '/img/block-2.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:49,
+          img: '/img/block-8.png',
+          cover: '/img/cover-5.png',
+        },
+        {
+          id:50,
+          img: '/img/block-7.png',
+          cover: '/img/cover-10.png',
+        },
+        {
+          id:51,
+          img: '/img/block-4.png',
+          cover: '/img/cover-4.png',
+        },
+        {
+          id:52,
+          img: '/img/block-5.png',
+          cover: '/img/cover-2.png',
+        },
+        {
+          id:53,
+          img: '/img/block-3.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:54,
+          img: '/img/block-7.png',
+          cover: '/img/cover-8.png',
+        },
+        {
+          id:55,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
       ],
     }
   }
