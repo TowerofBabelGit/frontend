@@ -17,7 +17,7 @@
             </a>
           </div>
 
-          <button class="connect-wallet__btn metamask">
+          <button class="connect-wallet__btn metamask" @click="tryConnect('metamask')">
             <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M39.851 4.86487L25.1782 15.8868L27.9067 9.39122L39.851 4.86487Z" fill="#E17726" stroke="#E17726" stroke-width="0.608108" stroke-linecap="round" stroke-linejoin="round"/>
               <path d="M6.00635 4.86487L20.5485 15.9897L17.9506 9.39122L6.00635 4.86487Z" fill="#E27625" stroke="#E27625" stroke-width="0.608108" stroke-linecap="round" stroke-linejoin="round"/>
@@ -53,7 +53,7 @@
             Metamask
           </button>
 
-          <button class="connect-wallet__btn walletConnect">
+          <button class="connect-wallet__btn walletConnect" @click="tryConnect('walletConnect')">
             <svg width="45" height="29" viewBox="0 0 45 29" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.21573 5.6835C16.5524 -1.82329 28.4475 -1.82329 35.7842 5.6835L36.6672 6.58696C37.034 6.9623 37.034 7.57084 36.6672 7.94618L33.6467 11.0367C33.4633 11.2244 33.1659 11.2244 32.9825 11.0367L31.7674 9.79346C26.6491 4.55653 18.3508 4.55653 13.2325 9.79346L11.9313 11.1249C11.7479 11.3126 11.4505 11.3126 11.2671 11.1249L8.24658 8.03435C7.87974 7.65901 7.87974 7.05046 8.24658 6.67513L9.21573 5.6835ZM42.0309 12.0751L44.7192 14.8257C45.086 15.201 45.086 15.8095 44.7192 16.1849L32.5976 28.5877C32.2308 28.963 31.636 28.963 31.2692 28.5877C31.2692 28.5877 31.2692 28.5877 31.2692 28.5877L22.6661 19.785C22.5744 19.6912 22.4257 19.6912 22.334 19.785C22.334 19.785 22.334 19.785 22.334 19.785L13.731 28.5877C13.3642 28.963 12.7694 28.963 12.4026 28.5877C12.4026 28.5877 12.4026 28.5877 12.4026 28.5877L0.280741 16.1847C-0.0860933 15.8094 -0.0860933 15.2008 0.280741 14.8255L2.969 12.0749C3.33583 11.6996 3.93059 11.6996 4.29742 12.0749L12.9007 20.8776C12.9924 20.9715 13.1411 20.9715 13.2328 20.8776C13.2328 20.8776 13.2328 20.8776 13.2328 20.8776L21.8356 12.0749C22.2024 11.6996 22.7972 11.6995 23.164 12.0749C23.164 12.0749 23.164 12.0749 23.164 12.0749L31.7673 20.8776C31.859 20.9715 32.0077 20.9715 32.0994 20.8776L40.7025 12.0751C41.0693 11.6997 41.6641 11.6997 42.0309 12.0751Z" fill="white"/>
             </svg>
@@ -71,16 +71,31 @@
 </template>
 
 <script>
+import {mapActions} from "vuex";
+
 export default {
   name: "ConnectWallet",
+  data: () => ({
+    loading: false
+  }),
   methods: {
+    ...mapActions({
+      connectWallet: 'wallet/connectWallet'
+    }),
+    tryConnect(wallet) {
+      this.loading = true;
+      this.connectWallet(wallet)
+        .then(() => {
+          this.closeWindow();
+        })
+        .catch(err => {
+          this.$emit('error', err.message);
+        })
+        .finally(() => this.loading = false)
+    },
     closeWindow() {
       this.$emit("close");
     },
   }
 }
 </script>
-
-<style scoped>
-
-</style>
