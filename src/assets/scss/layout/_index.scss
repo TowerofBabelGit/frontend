@@ -1,5 +1,6 @@
 @import "../lib/mixins";
 @import "../lib/var";
+@import "../lib/animation";
 
 * {
   outline: none !important;
@@ -424,8 +425,29 @@ img {
     transform: translateX(-70%);
   }
 
+  &__mobile {
+    display: none;
+
+    @include max-screen(lg) {
+      display: block;
+      width: 170px;
+    }
+    @include max-screen(sm) {
+      width: 100px;
+    }
+    @include max-screen(xs) {
+      width: 67px;
+    }
+  }
+
   &__img {
-    svg {
+    position: relative;
+
+    @include max-screen(lg){
+      display: none;
+    }
+
+    .crane-bottom, .crane-top {
       @include max-screen(xxl) {
         width: 230px;
       }
@@ -440,6 +462,33 @@ img {
       }
       @include max-screen(xs) {
         width: 67px;
+      }
+    }
+
+    .crane-top {
+      position: absolute;
+      top: -10px;
+      right: 0;
+      z-index: -1;
+
+      @include max-screen(xl) {
+        top: -30px;
+      }
+    }
+
+    .crane-block-wrap {
+      position: absolute;
+      z-index: -2;
+      left: -30px;
+      top: 2px;
+
+      @include max-screen(xxl) {
+        left: -6px;
+        top: 22px;
+      }
+      @include max-screen(xl) {
+        left: -10px;
+        top: 16px;
       }
     }
   }
@@ -478,6 +527,78 @@ img {
       margin-bottom: 11px;
       margin-left: -14px;
     }
+  }
+}
+
+.crane-block {
+  animation: balanceBlock 5s linear infinite;
+}
+
+.crane-block-fly {
+  position: absolute;
+  left: -30px;
+  top: -70%;
+  transform: rotate(40deg);
+  opacity: 0;
+}
+
+.moveUp {
+  animation: moveUp 15s linear infinite;
+
+  .crane-wheel-up {
+    -webkit-animation: clockwise 5s linear infinite;
+    transform-origin: center;
+  }
+}
+
+
+
+.active {
+  .crane-wheel-back {
+   animation: clockwise 5s linear;
+    animation-duration: 1.8s;
+  }
+
+  .crane-wheel {
+  animation: anticlockwise 5s linear;
+    animation-duration: 1.8s;
+    transform-origin: center;
+  }
+
+  .craneThrower {
+    animation-name: moveThrower, moveThrowerBack;
+
+    animation-duration: 1.5s, 1s;
+
+    animation-timing-function: ease-in;
+    animation-delay: 0s, 1.9s;
+    animation-fill-mode: forwards;
+    transform-origin: 76% 35%;
+  }
+
+  .craneThrow {
+    animation-name: moveThrow, moveThrowNext, moveThrowBack;
+    animation-duration: 1.5s, .8s, 1s;
+    animation-timing-function: ease-in, linear;
+    animation-delay: 0s, 1.5s, 1.9s;
+    animation-fill-mode: forwards;
+    transform-origin: 176% 11%;
+
+    @include max-screen(xl) {
+      transform-origin: 160% 9%;
+    }
+  }
+
+  .craneFly {
+    animation-name: flyingBlockSpin;
+    animation-duration: .8s;
+    animation-delay: 1.9s;
+    animation-timing-function: linear;
+  }
+
+  .crane-block-wrap__hands {
+    animation: disappear 0.1s linear forwards;
+    animation-delay: 1.9s;
   }
 }
 
@@ -572,25 +693,7 @@ img {
 
 }
 
-@keyframes balloonmove{
-  0%{
-    transform: rotate(0deg) translateX(5%) rotate(0deg);
 
-  }
-
-  100% {
-    transform: rotate(360deg) translateX(5%) rotate(-360deg);
-  }
-}
-
-@keyframes balance {
-  0%, 100% {
-    transform: rotate(1deg);
-  }
-  50% {
-    transform: rotate(-1deg);
-  }
-}
 
 .bottom-wrap {
   @include align-justify-center;
@@ -801,7 +904,7 @@ img {
       @include max-screen(xxl) {
         width: 600px;
         height: 1146px;
-        padding: 32px 10px 209px 24px;
+        padding: 34px 10px 209px 24px;
       }
       @include max-screen(xl) {
         width: 558px;
@@ -837,7 +940,7 @@ img {
         &--lg {
           height: 16%;
 
-          .tower__col {
+          .tower__col img {
             @include max-screen(xxl) {
               border-radius: 30px;
             }
@@ -857,11 +960,22 @@ img {
             height: 8%;
           }
 
-          .tower__col {
+          .tower__col img{
             border-radius: 15px;
 
             @include max-screen(xs) {
               border-radius: 7px;
+            }
+          }
+
+          .tower-block__point {
+            width: 37px;
+            height: 37px;
+
+            span {
+              width: 29px;
+              height: 29px;
+              border-width: 4px;
             }
           }
         }
@@ -869,11 +983,22 @@ img {
         &--sm {
           height: 4%;
 
-          .tower__col {
+          .tower__col img {
             border-radius: 10px;
 
             @include max-screen(xs) {
               border-radius: 3px;
+            }
+          }
+
+          .tower-block__point {
+            width: 17px;
+            height: 17px;
+
+            span {
+              width: 11px;
+              height: 11px;
+              border-width: 2px;
             }
           }
         }
@@ -881,10 +1006,21 @@ img {
         &--xs {
           height: 3%;
 
-          .tower__col {
+          .tower__col img{
             border-radius: 5px;
             @include max-screen(xs) {
               border-radius: 3px;
+            }
+          }
+
+          .tower-block__point {
+            width: 17px;
+            height: 17px;
+
+            span {
+              width: 11px;
+              height: 11px;
+              border-width: 2px;
             }
           }
         }
@@ -892,20 +1028,31 @@ img {
 
       &__col {
         height: 100%;
-        border-radius: 45px;
+
         position: relative;
-        overflow: hidden;
+     //   overflow: hidden;
         width: 100%;
         @include align-justify-center;
+        cursor: pointer;
 
-        @include max-screen(xs) {
-          border-radius: 18px;
-        }
+
 
         img {
           width: 100%;
           height: 100%;
           object-fit: fill;
+          border-radius: 45px;
+
+          @include max-screen(xs) {
+            border-radius: 18px;
+          }
+        }
+
+        &:hover {
+          .tower-block {
+            display: block !important;
+            animation: fadein 0.5s;
+          }
         }
 
 
@@ -933,3 +1080,84 @@ img {
     }*/
   }
 }
+
+.tower-block {
+  position: absolute;
+  background: url("assets/img/tower-opened-bg.png") no-repeat;
+  background-size: 100% 100%;
+  z-index: 10;
+  width: 280px;
+  padding: 30px 40px;
+  bottom: 50%;
+  left: 50%;
+  display: none;
+
+  @include max-screen(xs) {
+    width: 200px;
+    padding: 15px 20px;
+  }
+
+
+  &__img {
+    width: 200px;
+    height: 200px;
+    border-radius: 30px !important;
+    overflow: hidden;
+    margin-bottom: 15px;
+
+    @include max-screen(xs) {
+      width: 100%;
+      height: 150px;
+    }
+
+    img {
+      object-fit: cover !important;
+    }
+  }
+
+  &__title {
+    font-size: 14px;
+    line-height: 18px;
+    color: #9B8360;
+  }
+
+  &__text {
+    line-height: 23px;
+    color: #503614;
+    margin-bottom: 8px;
+  }
+
+  &__point {
+    width: 57px;
+    height: 57px;
+    background: linear-gradient(250.68deg, #D04F56 6.6%, #AB3034 96.33%);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+    @include align-justify-center;
+
+    @include max-screen(xs) {
+      width: 47px;
+      height: 47px;
+    }
+
+    span {
+      background: linear-gradient(250.68deg, #D04F56 6.6%, #AB3034 96.33%);
+      border: 5px solid #FFFFFF;
+      width: 49px;
+      height: 49px;
+      display: block;
+      border-radius: 50%;
+
+      @include max-screen(xs) {
+        width: 39px;
+        height: 39px;
+      }
+    }
+  }
+}
+
+
+
