@@ -1031,6 +1031,11 @@ export default {
           img: '/img/block-6.png',
           cover: '/img/cover-9.png',
         },
+        {
+          id:56,
+          img: '/img/block-6.png',
+          cover: '/img/cover-9.png',
+        },
       ],
     }
   }

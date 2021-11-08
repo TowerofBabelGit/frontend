@@ -582,8 +582,11 @@ img {
     animation-timing-function: ease-in, linear;
     animation-delay: 0s, 1.5s, 1.9s;
     animation-fill-mode: forwards;
-    transform-origin: 176% 11%;
+    transform-origin: 185% 15%;
 
+    @include max-screen(xxl) {
+      transform-origin: 176% 11%;
+    }
     @include max-screen(xl) {
       transform-origin: 160% 9%;
     }
@@ -896,7 +899,7 @@ img {
       width: 1030px;
       margin: auto;
       height: 1350px;
-      padding: 40px 0 250px 20px;
+      padding: 40px 0 235px 20px;
 
       @include max-screen(xxxl) {
         width: 695px;
@@ -904,7 +907,7 @@ img {
       @include max-screen(xxl) {
         width: 600px;
         height: 1146px;
-        padding: 34px 10px 209px 24px;
+        padding: 34px 10px 201px 24px;
       }
       @include max-screen(xl) {
         width: 558px;
@@ -1004,7 +1007,7 @@ img {
         }
 
         &--xs {
-          height: 3%;
+          height: 2%;
 
           .tower__col img{
             border-radius: 5px;
