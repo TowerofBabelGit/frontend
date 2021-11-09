@@ -428,22 +428,26 @@ img {
   &__mobile {
     display: none;
 
-    @include max-screen(lg) {
+    @include max-screen(md) {
       display: block;
       width: 170px;
+      margin-bottom: 100px;
     }
     @include max-screen(sm) {
-      width: 100px;
+      width: 95px;
+      margin-bottom: 200px;
+      margin-left: 15px;
     }
     @include max-screen(xs) {
       width: 67px;
+      margin-left: 0;
     }
   }
 
   &__img {
     position: relative;
 
-    @include max-screen(lg){
+    @include max-screen(md){
       display: none;
     }
 
@@ -474,6 +478,9 @@ img {
       @include max-screen(xl) {
         top: -30px;
       }
+      @include max-screen(lg) {
+        top: -50px;
+      }
     }
 
     .crane-block-wrap {
@@ -487,8 +494,14 @@ img {
         top: 22px;
       }
       @include max-screen(xl) {
-        left: -10px;
-        top: 16px;
+        left: -8px;
+        top: 12px;
+        width: 80px;
+      }
+      @include max-screen(lg) {
+        left: -3px;
+        top: -27px;
+        width: 60px;
       }
     }
   }
@@ -500,7 +513,7 @@ img {
     background-position: center;
     left: 0px;
     bottom: 0px;
-    transform: translate(-49%, 35%);
+    transform: translate(-57%, 54%);
 
     @include max-screen(xl) {
       width: 288px;
@@ -512,7 +525,7 @@ img {
       height: 250px;
     }
     @include max-screen(md) {
-      transform: translate(-34%, 35%);
+      transform: translate(-20%, 35%);
     }
     @include max-screen(sm) {
       transform: translate(-22%, 21%);
@@ -536,10 +549,11 @@ img {
 
 .crane-block-fly {
   position: absolute;
-  left: -30px;
-  top: -70%;
+  left: 50%;
+  top: -80%;
   transform: rotate(40deg);
   opacity: 0;
+  width: 70px;
 }
 
 .moveUp {
@@ -554,54 +568,81 @@ img {
 
 
 .active {
+
+  animation: moveUpShort linear;
+  animation-duration: 1.4s;
+  animation-fill-mode: forwards;
+
   .crane-wheel-back {
    animation: clockwise 5s linear;
     animation-duration: 1.8s;
+    animation-delay: 1.4s;
   }
 
   .crane-wheel {
   animation: anticlockwise 5s linear;
     animation-duration: 1.8s;
     transform-origin: center;
+    animation-delay: 1.4s;
   }
 
   .craneThrower {
-    animation-name: moveThrower, moveThrowerBack;
-
-    animation-duration: 1.5s, 1s;
+  //  animation-name: moveThrower, moveThrowerBack;
+    animation-name: moveThrower;
+   animation-duration: 1.5s, 1s;
+ //   animation-duration: 15s, 15s;
 
     animation-timing-function: ease-in;
-    animation-delay: 0s, 1.9s;
+    animation-delay: 1.4s, 2.9s;
+ //   animation-delay: 0s, 15s;
     animation-fill-mode: forwards;
     transform-origin: 76% 35%;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+  //  animation-iteration-count: infinite;
   }
 
   .craneThrow {
-    animation-name: moveThrow, moveThrowNext, moveThrowBack;
-    animation-duration: 1.5s, .8s, 1s;
+  //  animation-name: moveThrow, moveThrowBack;
+    animation-name: moveThrow;
+    animation-direction: alternate;
+    animation-iteration-count: 2;
+    animation-duration: 1.5s, 1s;
+  //  animation-duration: 15s, 15s;
     animation-timing-function: ease-in, linear;
-    animation-delay: 0s, 1.5s, 1.9s;
+    animation-delay: 1.4s, 2.9s;
+  //  animation-delay: 0s, 15s;
     animation-fill-mode: forwards;
-    transform-origin: 185% 15%;
+    transform-origin: 131% 3%;
+  //  animation-iteration-count: infinite;
 
     @include max-screen(xxl) {
-      transform-origin: 176% 11%;
+ //     transform-origin: 176% 11%;
     }
     @include max-screen(xl) {
-      transform-origin: 160% 9%;
+      transform-origin: 120% 10%;
+    }
+    @include max-screen(lg) {
+      transform-origin: 130% 18%;
     }
   }
 
   .craneFly {
     animation-name: flyingBlockSpin;
-    animation-duration: .8s;
-    animation-delay: 1.9s;
+    animation-duration: 1.5s;
+    animation-delay: 2.9s;
     animation-timing-function: linear;
+    animation-fill-mode: forwards;
   }
 
   .crane-block-wrap__hands {
-    animation: disappear 0.1s linear forwards;
-    animation-delay: 1.9s;
+    animation: disappear 0.9ms linear forwards;
+    animation-delay: 2.9s;
+  /*  animation-name: dissapear;
+    animation-duration: .1s, .1ms;
+    animation-timing-function: linear;
+    animation-delay: 1.9s, 3s;
+    animation-fill-mode: forwards;*/
   }
 }
 
@@ -609,13 +650,17 @@ img {
   position: absolute;
   bottom: 255px;
   right: 15%;
-  z-index: 7;
+  z-index: 1;
 
   @include max-screen(xl) {
     right: 13%;
   }
   @include max-screen(lg) {
     right: 14%;
+    z-index: 7;
+  }
+  @include max-screen(md) {
+    right: 7%;
   }
   @include max-screen(sm) {
     right: 0;
@@ -898,11 +943,13 @@ img {
     .tower {
       width: 1030px;
       margin: auto;
-      height: 1350px;
-      padding: 40px 0 235px 20px;
+      height: 1470px;
 
+      padding: 48px 45px 235px 61px;
       @include max-screen(xxxl) {
         width: 695px;
+        height: 1350px;
+        padding: 40px 0 235px 20px;
       }
       @include max-screen(xxl) {
         width: 600px;
@@ -911,7 +958,7 @@ img {
       }
       @include max-screen(xl) {
         width: 558px;
-        padding: 32px 0px 209px 11px;
+        padding: 32px 0px 200px 11px;
       }
       @include max-screen(lg) {
         width: 460px;

@@ -57,20 +57,28 @@
     transform: translateY(-164%);
   }
 }
+@keyframes moveUpShort {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-42%);
+  }
+}
 
 @keyframes moveThrower {
   0% {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(45deg);
+    transform: rotate(60deg);
 
   }
 }
 
 @keyframes moveThrowerBack {
   0% {
-    transform: rotate(45deg);
+    transform: rotate(60deg);
   }
 
   100% {
@@ -82,32 +90,35 @@
   0%{
     transform: rotate(0deg);
   }
-  100% {
-    transform: rotate(73deg);
 
+  50% {
+    transform-origin: 153% 8%;
   }
+
+  100% {
+    transform: rotate(180deg) translate(-3%, 34%);
+  }
+
+
 }
 
 @keyframes moveThrowBack {
   0% {
-    transform: rotate(73deg);
+    transform: rotate(180deg);
 
   }
+
+  50% {
+    transform-origin: 153% 8%;
+  }
+
   100%{
     transform: rotate(0deg);
   }
 
 }
 
-@keyframes moveThrowNext {
-  0%, 100% {
-    transform: rotate(73deg);
-  }
-  50% {
-    transform: rotate(122deg) translate(15%, 35%);
 
-  }
-}
 
 
 @keyframes disappear {
@@ -119,18 +130,27 @@
   }
 }
 
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes flyingBlockSpin {
   0% {
     opacity: 1;
     transform: rotate(40deg);
   }
   99% {
-    transform: translate(304%, -200%);
 
+    opacity: 0;
   }
 
   100% {
-    opacity: 0;
+    transform: translate(100%, -100%);
   }
 }
 
