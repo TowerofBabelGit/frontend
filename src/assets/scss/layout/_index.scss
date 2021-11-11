@@ -351,6 +351,7 @@ img {
   width: 240px;
   height: 220px;
   position: absolute;
+  border: none;
 
   @include align-justify-center;
 
@@ -560,6 +561,15 @@ img {
   animation: moveUp 15s linear infinite;
 
   .crane-wheel-up {
+    -webkit-animation: clockwise 5s linear infinite;
+    transform-origin: center;
+  }
+}
+
+.moveDown {
+  animation: moveDown 2s linear 1;
+
+  .crane-wheel-down {
     -webkit-animation: clockwise 5s linear infinite;
     transform-origin: center;
   }

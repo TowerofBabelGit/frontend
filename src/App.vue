@@ -17,6 +17,8 @@
         let wallet = localStorage.getItem('usedWalletName');
         if(wallet) {
           this.connectWallet(wallet)
+        } else {
+          this.connectWallet('default')
         }
       }
     },
