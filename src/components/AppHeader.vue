@@ -23,10 +23,10 @@
      <nav class="header-nav">
       <ul class="header-nav__list">
         <li class="header-nav__item">
-          <a href="#">Lorem ipsum</a>
+          <a href="#">About tower</a>
         </li>
         <li class="header-nav__item">
-          <a href="#">Dolor sit</a>
+          <a href="#">Smart contract</a>
         </li>
       </ul>
     </nav>
@@ -38,10 +38,10 @@
       <nav class="header-nav header-nav--right">
       <ul class="header-nav__list">
         <li class="header-nav__item">
-          <a href="#">Consectetur</a>
+          <a href="#">Highlight blocks</a>
         </li>
         <li class="header-nav__item">
-          <a href="#">Adipiscing elit</a>
+          <a href="#">Chat</a>
         </li>
       </ul>
     </nav>
@@ -58,16 +58,16 @@
     <nav class="mobile-nav" v-show="isOpenMenu">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
-          <a href="#">Lorem ipsum</a>
+          <a href="#">About tower</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#">Dolor sit</a>
+          <a href="#">Smart contract</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#">Consectetur</a>
+          <a href="#">Highlight blocks</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#">Adipiscing elit</a>
+          <a href="#">Chat</a>
         </li>
       </ul>
 

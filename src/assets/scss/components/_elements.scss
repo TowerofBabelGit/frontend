@@ -27,6 +27,7 @@
   width: 18px;
   height: 16px;
   display: none;
+  z-index: 18;
 
   @include max-screen(lg) {
     display: block;
