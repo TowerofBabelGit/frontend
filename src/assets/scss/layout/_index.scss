@@ -1234,3 +1234,44 @@ img {
   opacity: 0;
 }
 
+
+/* scroll styles */
+
+.scroll-area {
+  height: 400px;
+  overflow-y: auto;
+}
+
+.ps__rail-y, .ps__rail-x {
+  width: 10px !important;
+//  background: linear-gradient(90deg, rgba(80, 54, 20, 0) 0%, #503614 12.61%, #503614 88.8%, rgba(80, 54, 20, 0) 100.88%);
+  border-left: 1px solid #503614;
+  cursor: pointer !important;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+
+}
+
+.ps__thumb-y, .ps__thumb-x {
+  background: #503614 !important;
+  border-radius: 4px;
+  width: 11px !important;
+  height: 95px;
+  right: 4px !important;
+  cursor: pointer !important;
+
+  &:after {
+    content: "";
+    position: absolute;
+    background: url("assets/img/svg/scroll-img.svg") no-repeat;
+    width: 5px;
+    height: 16px;
+    background-size: 100% 100%;
+    background-position: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
