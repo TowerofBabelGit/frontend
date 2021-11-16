@@ -966,7 +966,7 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="#" class="bottom-wrap__link"></a>
+        <a @click="isAboutModalVisible = true" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-info.svg" alt="">-->
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.8"
@@ -981,7 +981,7 @@
         </svg>
 
 
-        <div class="bottom-wrap__text">
+        <div class="bottom-wrap__text" >
           <span>About</span>
           the project
         </div>
@@ -1032,6 +1032,9 @@
         </div>
       </div>
     </div>
+    <transition name="slide-fade" mode="out-in">
+    <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
+    </transition>
   </div>
 </template>
 
@@ -1039,11 +1042,13 @@
 import AppHeader from "../components/AppHeader";
 // eslint-disable-next-line no-unused-vars
 import contract from "../api/contract";
+import AboutModal from "../components/Modals/AboutModal";
 
 export default {
   name: 'Home',
   components: {
-    AppHeader
+    AppHeader,
+    AboutModal
   },
   data() {
     return {
@@ -1052,6 +1057,7 @@ export default {
       isThrowing: false,
       blocksQt: 56,
       lastBlockId: null,
+      isAboutModalVisible: false,
       towerBlocksExtraLarge: [
         {
           imageUrl: null,

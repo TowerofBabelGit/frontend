@@ -7,6 +7,12 @@
     url($file-name + '.ttf') format('truetype'),
   }
 }
+@mixin font($font-name, $file-name) {
+  @font-face {
+    font-family: quote($font-name);
+   src: url($file-name + '.ttf') format('truetype'),
+  }
+}
 
 @include font-face('CherryCreamSoda-Regular','assets/fonts/CherryCreamSoda-Regular');
 @include font-face('Poppins-bold', 'assets/fonts/Poppins-bold');
@@ -15,3 +21,4 @@
 @include font-face('Poppins-Regular', 'assets/fonts/Poppins-Regular');
 @include font-face('Poppins-light', 'assets/fonts/Poppins-light');
 
+@include font('Lora-Medium', 'assets/fonts/Lora-Medium');
