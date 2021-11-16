@@ -691,7 +691,8 @@
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
           <div class="tower">
             <div class="tower__row tower__row--xl">
-              <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksExtraLarge" :key="index">
+              <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksExtraLarge" :key="index"
+                   :class="{owner: isOwnerBlock}">
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
                 <div class="tower__block-cover">
                   <img :src="item.cover" alt="">
@@ -1058,6 +1059,7 @@ export default {
       blocksQt: 56,
       lastBlockId: null,
       isAboutModalVisible: false,
+      isOwnerBlock: true,
       towerBlocksExtraLarge: [
         {
           imageUrl: null,

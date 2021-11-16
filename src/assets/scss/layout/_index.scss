@@ -1098,7 +1098,11 @@ img {
         @include align-justify-center;
         cursor: pointer;
 
-
+        &.owner {
+          img {
+            border: 6px solid rgba(228, 190, 52, 0.9);
+          }
+        }
 
         img {
           width: 100%;
