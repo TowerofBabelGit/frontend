@@ -379,6 +379,31 @@ img {
     cursor: pointer;
   }
 
+  &:after {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 36%, rgba(255,255,255,0.8746849081429446) 50%, rgba(255,255,255,0) 62%);
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 75%;
+    left: 0;
+    right: 0;
+    top: 32px;
+   // bottom: 0;
+    z-index: 5;
+    transform: rotate(40deg);
+    animation: moveBlink 1.5s linear infinite;
+    opacity: 0.5;
+  }
+
+ /* &:after {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 14%, rgba(255,255,255,0.7150210425967262) 91%);
+    content: "";
+    height: 165px;
+    opacity: .5;
+    position: absolute;
+    width: 50px;
+  }*/
+
   &__text {
     font-size: 14px;
     line-height: 1.3;
@@ -560,6 +585,13 @@ img {
       top: -60px;
     }
 
+   /* &:after {
+      left: -15px;
+      top: -30px;
+      transform: rotate(35deg);
+      animation: moveBlick .8s linear infinite forwards;
+    }*/
+
 
     &__text {
       transform: rotate(25.07deg);
@@ -716,26 +748,39 @@ img {
     background: url("assets/img/buy-block-right.png") no-repeat;
     background-position: center;
     right: 0px;
-    bottom: 0px;
-    transform: translate(80%, 30%);
+    top: 0px;
+    transform: translate(80%, 80%) rotate(-50deg);
 
     @include max-screen(xl) {
       background-size: 100% 100%;
       width: 258px;
       height: 250px;
+      transform: translate(80%, 17%) rotate(-50deg);
     }
     @include max-screen(lg) {
-      transform: translate(70%, 60%);
+      transform: translate(74%, 17%) rotate(-50deg);
     }
     @include max-screen(md) {
-      transform: translate(28%, 85%);
+      transform: translate(30%, 73%) rotate(-50deg);
     }
     @include max-screen(sm) {
-      transform: translate(17%, 93%);
+      transform: translate(17%, 55%);
     }
     @include max-screen(xs) {
-      transform: translate(21%, 80%);
+      transform: translate(21%, 26%);
     }
+
+    &:after {
+
+    }
+
+   /* &:after {
+      right: -15px;
+      top: 25px;
+      height: 150px;
+      transform: rotate(3deg);
+      animation: moveBlickRight 1.2s linear infinite forwards;
+    }*/
   }
 
   &__img {
@@ -988,7 +1033,7 @@ img {
     max-width: 100%;
     z-index: 2;
     position: relative;
-    background: url("assets/img/tower-bg.png") no-repeat;
+    background: url("assets/img/tower-bagr.png") no-repeat;
     background-size: 100% 100%;
     background-position: center;
 
@@ -997,35 +1042,36 @@ img {
     .tower {
       width: 1030px;
       margin: auto;
-      height: 1470px;
+      height: 1393px;
 
-      padding: 48px 45px 235px 61px;
+      padding: 48px 45px 156px 61px;
       @include max-screen(xxxl) {
         width: 695px;
-        height: 1350px;
-        padding: 40px 0 235px 20px;
+        height: 1295px;
+
+        padding: 42px 0 141px 17px;
       }
       @include max-screen(xxl) {
         width: 600px;
-        height: 1146px;
-        padding: 34px 10px 201px 24px;
+        height: 1064px;
+        padding: 36px 10px 119px 24px;
       }
       @include max-screen(xl) {
         width: 558px;
-        padding: 32px 0px 200px 11px;
+        padding: 34px 0px 119px 11px;
       }
       @include max-screen(lg) {
         width: 460px;
-        padding: 25px 0 155px 11px;
-        height: 820px;
+        padding: 25px 0 94px 11px;
+        height: 765px;
       }
       @include max-screen(md) {
         width: 425px;
       }
       @include max-screen(xs) {
         width: 100%;
-        height: 500px;
-        padding: 16px 10px 113px 16px;
+        height: 470px;
+        padding: 16px 10px 77px 16px;
       }
 
       &__row {

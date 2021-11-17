@@ -162,3 +162,86 @@
   }
 }
 
+/*
+@keyframes moveBlick {
+  0% {
+    left: -15px;
+    top: -30px;
+    opacity: 0;
+    transform: rotate(35deg);
+  }
+
+  60% {
+    top: 15%;
+  }
+
+  80% {
+    opacity: 0.3;
+    top: 20%;
+    transform: rotate(60deg);
+  }
+
+  90% {
+    top: 30%;
+    transform: rotate(65deg);
+    opacity: 0.1;
+    border-radius: 20px;
+  }
+
+  100% {
+    left: 65%;
+    top: 58%;
+    opacity: 0;
+  }
+
+}
+@keyframes moveBlickRight {
+  0% {
+    right: -15px;
+    top: 25px;
+    transform: rotate(3deg);
+    opacity: 0;
+  }
+
+  60% {
+    top: 15%;
+    transform: rotate(5deg);
+  }
+
+  80% {
+    opacity: 0.3;
+  //  top: 20%;
+    transform: rotate(-5deg);
+  }
+
+  90% {
+   // top: 30%;
+    transform: rotate(5deg);
+    opacity: 0.1;
+  }
+
+  100% {
+    right: 90%;
+    top: 10%;
+    opacity: 0;
+  }
+
+}*/
+
+@keyframes moveBlink {
+  0% {
+    background: linear-gradient(90deg, rgba(255,255,255,0) 36%, rgba(255,255,255,0.8746849081429446) 50%, rgba(255,255,255,0) 62%);
+    background-position: -100px;
+  }
+
+  50% {
+    transform: rotate(52deg);
+    background-position: center;
+  }
+
+  100% {
+    transform: rotate(62deg);
+    background-position: 100px;
+    opacity: 0;
+  }
+}
