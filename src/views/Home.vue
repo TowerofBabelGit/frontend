@@ -1037,7 +1037,7 @@
       </div>
 
       <div class="bottom-wrap">
-        <a href="#" class="bottom-wrap__link"></a>
+        <a @click="scrollToTop()" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-up.svg" alt="">-->
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.8"
@@ -1446,6 +1446,9 @@ export default {
     }
   },
   methods: {
+    scrollToTop() {
+      window.scroll({top: 0, left: 0, behavior: 'smooth'});
+    },
     async addBlock() {
       try {
         let lastBlockPrice = await contract.lastBlockPrice();
