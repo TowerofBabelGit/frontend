@@ -1436,6 +1436,12 @@ export default {
           imageUrl: null,
           cover: '/img/cover-9.png',
         },
+        {
+          description: null,
+          owner: null,
+          imageUrl: null,
+          cover: '/img/cover-10.png',
+        },
       ],
     }
   },
