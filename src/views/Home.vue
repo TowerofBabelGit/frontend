@@ -728,7 +728,10 @@
               </div>
             </div>
             <div class="tower__row tower__row--xl">
-              <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksMiddleLarge" :key="index">
+              <div class="tower__col tower__col--big"
+                   v-for="(item, index) in towerBlocksMiddleLarge"
+                   :class="{owner: isOwnerBlock(item.owner)}"
+                   :key="index">
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
                 <div class="tower__block-cover" @mouseover="item.showHover = true" @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="">
@@ -767,6 +770,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksLg"
                    :key="index"
+                   :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover" @mouseover="block.showHover = true"
@@ -807,6 +811,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksMd"
                    :key="index"
+                   :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover" @mouseover="block.showHover = true"
@@ -844,6 +849,7 @@
             <div class="tower__row tower__row--sm">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
+                   :class="{owner: isOwnerBlock(block.owner)}"
                    :key="index"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
@@ -884,6 +890,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
                    :key="index"
+                   :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
                 <div class="tower__block-cover" @mouseover="block.showHover = true"
