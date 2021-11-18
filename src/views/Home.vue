@@ -1578,25 +1578,43 @@ export default {
     async addBlockToBalloon() {
       this.loading = true;
       let blocksQuantity = parseInt(prompt('Input block number in range from 1 to 4'));
+      if(blocksQuantity < 1 || blocksQuantity > 4) {
+        alert('Wrong number, input from 1 to 4');
+        this.loading = false;
+        return;
+      }
       let date = new Date(null);
-      if(this.defrostTimes.length) {
-        if(blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
-          date.setSeconds(this.defrostTimes[0]);
-        }
-        else if(blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
-          date.setSeconds(this.defrostTimes[0]);
-        }
-        else if(blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
-          date.setSeconds(this.defrostTimes[0]);
-        }
-        else if(blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
-          date.setSeconds(this.defrostTimes[0]);
-        }
+      if(blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
+        date.setSeconds(this.defrostTimes[0]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.loading = false;
-        return
+        return;
       }
+      else if(blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
+        date.setSeconds(this.defrostTimes[1]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.loading = false;
+        return;
+      }
+      else if(blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
+        date.setSeconds(this.defrostTimes[2]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.loading = false;
+        return;
+      }
+      else if(blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
+        date.setSeconds(this.defrostTimes[3]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.loading = false;
+        return;
+      }
+      let result = date.toISOString().substr(11, 8);
+      alert(`This unit is frozen. ${result} left before defrosting`);
+      this.loading = false;
       let blockPrice = await contract.balloonBlockPrice();
       let imageUrl = prompt('Input image url');
       let description = prompt('Input description');
