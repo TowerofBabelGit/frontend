@@ -1543,8 +1543,18 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getAccount: 'wallet/getAccount'
+      getAccount: 'wallet/getAccount',
+      isWrongChainId: 'wallet/isWrongChainId'
     })
+  },
+  watch: {
+    isWrongChainId(val) {
+      if(val) {
+        alert('Wrong chain id')
+      } else {
+        this.init();
+      }
+    }
   },
   methods: {
     async changeBlockInfo(blockNumber, owner) {
@@ -1636,7 +1646,7 @@ export default {
       } catch (e) {
         this.defrostTimes.push(0);
       } finally {
-        if(this.defrostTimes.length !== 4) {
+        if(this.defrostTimes.length < 4) {
           await this.getDefrostTime();
         }
       }
@@ -1731,6 +1741,18 @@ export default {
           extraSmallCount++;
         }
       }
+    },
+    init() {
+      this.loading = true;
+      setTimeout(() => {
+        Promise.all([
+          this.loadBlocks(),
+          this.getDefrostTime()
+        ])
+          .finally(() => {
+            this.loading = false;
+          })
+      }, 0);
     }
   },
   filters: {
@@ -1745,16 +1767,7 @@ export default {
     }
   },
   mounted() {
-    this.loading = true;
-    setTimeout(() => {
-      Promise.all([
-        this.loadBlocks(),
-        this.getDefrostTime()
-      ])
-        .finally(() => {
-          this.loading = false;
-        })
-    }, 0);
+    this.init();
 
 
     document.addEventListener('mouseover', () => {
