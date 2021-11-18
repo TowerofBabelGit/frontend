@@ -49,7 +49,7 @@
 
     </div>
 
-    <button class="page-btn" type="button" @click="isOpenConnect = true">
+    <button class="page-btn" type="button" @click="isOpenConnect = true" v-if="!getAccount">
       Connect wallet
     </button>
 
@@ -84,17 +84,21 @@
 
 <script>
 import ConnectWallet from "./Modals/ConnectWallet";
+import {mapGetters} from "vuex";
 
 export default {
   name: "AppHeader",
   components:{
     ConnectWallet
   },
-  data() {
-    return {
-      isOpenMenu: false,
-      isOpenConnect: false
-    }
+  data: () => ({
+    isOpenMenu: false,
+    isOpenConnect: false
+  }),
+  computed: {
+    ...mapGetters({
+      getAccount: 'wallet/getAccount'
+    })
   }
 }
 </script>

@@ -692,7 +692,7 @@
           <div class="tower">
             <div class="tower__row tower__row--xl">
               <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksExtraLarge" :key="index"
-                   :class="{owner: isOwnerBlock(item.address)}">
+                   :class="{owner: isOwnerBlock(item.owner)}">
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
                 <div class="tower__block-cover" @mouseover="item.showHover = true" @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="">
