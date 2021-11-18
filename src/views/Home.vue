@@ -1071,7 +1071,7 @@
     <transition name="slide-fade" mode="out-in">
       <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
     </transition>
-    <Preloader v-if="false"/>
+    <Preloader v-if="loading"/>
   </div>
 </template>
 
@@ -1092,6 +1092,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
@@ -1531,23 +1532,26 @@ export default {
        }
      },*/
     async addBlockToBalloon() {
+      this.loading = true;
       let blocksQuantity = parseInt(prompt('Input block number in range from 1 to 4'));
       let date = new Date(null);
       if(this.defrostTimes.length) {
-        if(blocksQuantity === 1 && this.defrostTimes.length === 1) {
+        if(blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
           date.setSeconds(this.defrostTimes[0]);
         }
-        else if(blocksQuantity === 2 && this.defrostTimes.length === 2) {
+        else if(blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
           date.setSeconds(this.defrostTimes[0]);
         }
-        else if(blocksQuantity === 3 && this.defrostTimes.length === 3) {
+        else if(blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
           date.setSeconds(this.defrostTimes[0]);
         }
-        else if(blocksQuantity === 4 && this.defrostTimes.length === 4) {
+        else if(blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
           date.setSeconds(this.defrostTimes[0]);
         }
         let result = date.toISOString().substr(11, 8);
-        this.alert(`This unit is frozen. ${result} left before defrosting`)
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.loading = false;
+        return
       }
       let blockPrice = await contract.balloonBlockPrice();
       let imageUrl = prompt('Input image url');
@@ -1556,6 +1560,8 @@ export default {
         await contract.addBlockToBalloon(blockPrice, imageUrl, description, blocksQuantity);
       } catch (e) {
         console.log(e);
+      } finally {
+        this.loading = false;
       }
     },
     scrollToTop() {
@@ -1565,19 +1571,19 @@ export default {
       return !!(this.getAccount && this.getAccount === address);
     },
     async getDefrostTime() {
-      let times = [];
       try {
-        for(let i = 1; i <= 4; i++) {
-          let time = await contract.getDefrostTime(i);
-          times.push(time);
-        }
-        return times
+        let time = await contract.getDefrostTime(this.defrostTimes.length + 1);
+        this.defrostTimes.push(time);
       } catch (e) {
-        console.log(e);
-        return times;
+        this.defrostTimes.push(0);
+      } finally {
+        if(this.defrostTimes.length !== 4) {
+          await this.getDefrostTime();
+        }
       }
     },
     async addBlock() {
+      this.loading = true;
       try {
         let lastBlockPrice = await contract.lastBlockPrice();
         let priceStep = await contract.blockStepPrice();
@@ -1592,6 +1598,7 @@ export default {
         } else {
           await contract.addBlock(buyBlockPrice, imageUrl, description);
         }
+        this.loading = false;
         this.isThrowing = true;
         setTimeout(() => {
           this.loadBlocks();
@@ -1602,6 +1609,7 @@ export default {
         }, 5000)
       } catch (e) {
         console.log(e);
+        this.loading = false;
       }
     },
     async loadBlocks() {
@@ -1673,11 +1681,18 @@ export default {
     }
   },
   mounted() {
-    setTimeout(async () => {
-      this.loadBlocks();
-      this.defrostTimes = await this.getDefrostTime();
-      console.log(this.defrostTimes)
+    this.loading = true;
+    setTimeout(() => {
+      Promise.all([
+        this.loadBlocks(),
+        this.getDefrostTime()
+      ])
+        .finally(() => {
+          this.loading = false;
+        })
     }, 0);
+
+
     document.addEventListener('mouseover', () => {
       const blockList = document.body.querySelectorAll('.tower-block');
 
