@@ -1675,7 +1675,9 @@ export default {
       let extraSmallCount = 0;
       for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
-        console.log(block)
+        if(block.owner === '0x0000000000000000000000000000000000000000') {
+          continue;
+        }
         iterationsCount++;
         if (iterationsCount === 1) {
           this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
@@ -1713,10 +1715,6 @@ export default {
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
         }
-      }
-      if (this.towerBlocksExtraLarge.length && this.towerBlocksExtraLarge[0].owner === '0x0000000000000000000000000000000000000000') {
-        this.towerBlocksExtraLarge[0].owner = null;
-        this.towerBlocksExtraLarge[0].imageUrl = null;
       }
     }
   },
