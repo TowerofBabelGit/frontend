@@ -27,7 +27,21 @@ const lastBlockPrice = () => {
     return new Promise((resolve, reject) => {
         methodsBsc.lastBlockPrice()
             .call({
-                from: account
+                from: store.getters['contract/getContractAddress']
+            }, (err, res) => {
+                if(err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
+    })
+}
+
+const balloonBlockPrice = () => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.balloonBlockPrice()
+            .call({
+                from: store.getters['contract/getContractAddress']
             }, (err, res) => {
                 if(err) {
                     reject(err)
@@ -41,7 +55,7 @@ const blockStepPrice = () => {
     return new Promise((resolve, reject) => {
         methodsBsc.blockStepPrice()
             .call({
-                from: account
+                from: store.getters['contract/getContractAddress']
             }, (err, res) => {
                 if(err) {
                     reject(err)
@@ -68,6 +82,20 @@ const lastBlockNumber = () => {
 const blockOfNumber = id => {
     return new Promise((resolve, reject) => {
         methodsBsc.blockOfNumber(id)
+            .call({
+                from: store.getters['contract/getContractAddress']
+            }, (err, res) => {
+                if(err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
+    })
+}
+
+const getDefrostTime = blockNumber => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.getDefrostTime(blockNumber)
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
@@ -106,6 +134,86 @@ const addBlock = (WEI, imageUrl, description) => {
     })
 }
 
+const addBlockWithReferralSystem = (WEI, imageUrl, description, invitingAddress) => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.addBlockWithReferralSystem(imageUrl, description, invitingAddress)
+            .send({
+                from: account,
+                value: WEI
+            }, err => {
+                if(err) {
+                    reject(err)
+                }
+                if(checkIsWalletConnect()) {
+                    resolve({
+                        isWalletConnect: true
+                    });
+                }
+            })
+            .once('confirmation', (confirmationNumber, receipt) => {
+                if(receipt.status === true) {
+                    resolve()
+                }
+                else {
+                    reject();
+                }
+            })
+    })
+}
+
+const addBlockToBalloon = (WEI, imageUrl, description, blockNumber) => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.addBlockToBalloon(imageUrl, description, blockNumber)
+            .send({
+                from: account,
+                value: WEI
+            }, err => {
+                if(err) {
+                    reject(err)
+                }
+                if(checkIsWalletConnect()) {
+                    resolve({
+                        isWalletConnect: true
+                    });
+                }
+            })
+            .once('confirmation', (confirmationNumber, receipt) => {
+                if(receipt.status === true) {
+                    resolve()
+                }
+                else {
+                    reject();
+                }
+            })
+    })
+}
+
+const changeBlockInfo = (imageUrl, description, blockNumber) => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.changeBlockInfo(imageUrl, description, blockNumber)
+            .send({
+                from: account
+            }, err => {
+                if(err) {
+                    reject(err)
+                }
+                if(checkIsWalletConnect()) {
+                    resolve({
+                        isWalletConnect: true
+                    });
+                }
+            })
+            .once('confirmation', (confirmationNumber, receipt) => {
+                if(receipt.status === true) {
+                    resolve()
+                }
+                else {
+                    reject();
+                }
+            })
+    })
+}
+
 export default {
     initWeb3Methods,
     initWalletName,
@@ -113,5 +221,10 @@ export default {
     lastBlockNumber,
     blockStepPrice,
     blockOfNumber,
-    addBlock
+    addBlock,
+    addBlockWithReferralSystem,
+    changeBlockInfo,
+    addBlockToBalloon,
+    balloonBlockPrice,
+    getDefrostTime
 }

@@ -663,7 +663,7 @@
 
           </div>
 
-          <button class="buy-wrap">
+          <button class="buy-wrap" @click="addBlock">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -692,13 +692,14 @@
           <div class="tower">
             <div class="tower__row tower__row--xl">
               <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksExtraLarge" :key="index"
-                   :class="{owner: isOwnerBlock}">
+                   :class="{owner: isOwnerBlock(item.address)}">
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover" @mouseover="item.showHover = true" @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="">
                 </div>
 
-                <div class="tower-block">
+                <div class="tower-block" :class="{active: item.showHover}" @mouseover="item.showHover = true"
+                     @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
                     <img :src="item.imageUrl" alt="">
                   </div>
@@ -716,7 +717,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{item.owner | cutHash}}
+                    {{ item.owner | cutHash }}
                   </div>
 
                   <div class="tower-block__point">
@@ -729,11 +730,12 @@
             <div class="tower__row tower__row--xl">
               <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksMiddleLarge" :key="index">
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover" @mouseover="item.showHover = true" @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="">
                 </div>
 
-                <div class="tower-block">
+                <div class="tower-block" :class="{active: item.showHover}" @mouseover="item.showHover = true"
+                     @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
                     <img :src="item.imageUrl" alt="">
                   </div>
@@ -743,7 +745,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{item.description}}
+                    {{ item.description }}
                   </div>
 
                   <div class="tower-block__title">
@@ -751,7 +753,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{item.owner | cutHash}}
+                    {{ item.owner | cutHash }}
                   </div>
 
                   <div class="tower-block__point">
@@ -767,11 +769,13 @@
                    :key="index"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
 
-                <div class="tower-block">
+                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img :src="block.imageUrl" alt="">
                   </div>
@@ -781,7 +785,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.description}}
+                    {{ block.description }}
                   </div>
 
                   <div class="tower-block__title">
@@ -789,7 +793,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.owner | cutHash}}
+                    {{ block.owner | cutHash }}
                   </div>
 
                   <div class="tower-block__point">
@@ -805,10 +809,12 @@
                    :key="index"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
-                <div class="tower-block">
+                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img :src="block.imageUrl" alt="">
                   </div>
@@ -818,7 +824,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.description}}
+                    {{ block.description }}
                   </div>
 
                   <div class="tower-block__title">
@@ -826,7 +832,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.owner | cutHash}}
+                    {{ block.owner | cutHash }}
                   </div>
 
                   <div class="tower-block__point">
@@ -841,11 +847,13 @@
                    :key="index"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
 
-                <div class="tower-block">
+                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img :src="block.imageUrl" alt="">
                   </div>
@@ -855,7 +863,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.description}}
+                    {{ block.description }}
                   </div>
 
                   <div class="tower-block__title">
@@ -863,7 +871,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{ block.owner | cutHash}}
+                    {{ block.owner | cutHash }}
                   </div>
 
                   <div class="tower-block__point">
@@ -878,11 +886,13 @@
                    :key="index"
                    :data-index="index">
                 <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
 
-                <div class="tower-block">
+                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
                   </div>
@@ -892,7 +902,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.description}}
+                    {{ block.description }}
                   </div>
 
                   <div class="tower-block__title">
@@ -900,7 +910,7 @@
                   </div>
 
                   <div class="tower-block__text">
-                    {{block.owner | cutHash}}
+                    {{ block.owner | cutHash }}
                   </div>
 
                   <div class="tower-block__point">
@@ -921,7 +931,7 @@
 
         </div>
 
-        <button class="buy-wrap" @click="addBlock">
+        <button class="buy-wrap" @click="addBlockToBalloon">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -947,7 +957,7 @@
         </svg>
 
 
-        <div class="bottom-wrap__text" >
+        <div class="bottom-wrap__text">
           <span>About</span>
           the project
         </div>
@@ -1010,8 +1020,12 @@
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="59" height="52" viewBox="0 0 59 52" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
-            <path d="M59 50.6869C58.2304 52.1576 57.2452 52.3898 55.8753 51.3991C52.9199 49.2782 49.9645 47.1729 47.0245 45.0366C46.024 44.309 44.9311 43.9684 43.6843 43.9684C36.9423 43.9839 30.2004 43.9684 23.4738 43.9684C19.3332 43.9684 16.4855 41.1045 16.4855 36.9558C16.4855 35.996 16.4855 35.0362 16.4855 33.9835C16.7318 33.9835 16.9627 33.9835 17.1782 33.9835C23.366 33.9835 29.5385 33.999 35.7263 33.9835C40.3749 33.968 44.3154 31.0422 45.5622 26.6303C45.8239 25.7015 45.947 24.6952 45.9624 23.72C46.0086 20.531 45.9778 17.342 45.9778 14.1685C45.9778 13.9673 45.9778 13.7505 45.9778 13.4874C47.0091 13.4874 47.9789 13.4719 48.9486 13.4874C50.4109 13.5028 51.8732 13.41 53.3201 13.5957C56.2293 13.9827 58.3535 16.15 58.8923 19.0603C58.9076 19.1687 58.9538 19.2771 59 19.3854C59 29.8347 59 40.2531 59 50.6869Z" fill="url(#paint0_linear_359_9)"/>
-            <path d="M23.4276 0.00387012C29.0459 0.00387012 34.6796 0.00387012 40.2979 0.00387012C41.9296 0.00387012 42.5145 0.592128 42.5145 2.21758C42.5145 9.38504 42.5145 16.537 42.5145 23.7045C42.5145 26.9399 40.4211 29.5871 37.2964 30.3146C36.7115 30.454 36.0804 30.5004 35.4646 30.5004C28.7227 30.5159 21.9807 30.5159 15.2541 30.5004C14.0381 30.5004 12.9606 30.841 11.9755 31.5531C8.95852 33.7513 5.92617 35.9186 2.89382 38.0858C1.72398 38.9218 0.307853 38.4419 0.0461779 37.1261C0 36.9093 0.0153926 36.6616 0.0153926 36.4294C0 26.6303 0 16.8157 0 7.01653C0 2.89872 2.83225 0.0193506 6.94208 0.0193506C12.4373 -0.0116104 17.9324 0.00387012 23.4276 0.00387012ZM22.4117 12.9455C23.8894 12.9455 25.3671 12.9455 26.8448 12.9455C28.6919 12.9455 30.5236 12.961 32.3707 12.9455C33.4636 12.9301 34.2178 12.0632 34.0947 11.0105C33.987 10.0662 33.2327 9.47792 32.1244 9.47792C26.8294 9.47792 21.5343 9.47792 16.2392 9.47792C15.0078 9.47792 13.7764 9.47792 12.5604 9.47792C11.8369 9.47792 11.252 9.75657 10.898 10.4222C10.2669 11.6142 11.1135 12.9301 12.5142 12.9455C15.8236 12.9455 19.1177 12.9301 22.4117 12.9455ZM22.3809 21.0418C25.5672 21.0418 28.7535 21.0418 31.9397 21.0418C32.1552 21.0418 32.3553 21.0418 32.5708 21.0264C33.3866 20.949 34.0331 20.2988 34.1101 19.4938C34.1871 18.6733 33.6945 17.8993 32.9095 17.6671C32.6324 17.5897 32.3399 17.5742 32.0629 17.5742C25.6288 17.5742 19.21 17.5742 12.7759 17.5742C12.5142 17.5742 12.191 17.5433 11.9909 17.6671C11.5753 17.9303 11.0827 18.2399 10.8672 18.6578C10.2823 19.8034 11.1751 21.0418 12.5296 21.0418C15.8236 21.0573 19.1023 21.0418 22.3809 21.0418Z" fill="url(#paint1_linear_359_9)"/>
+            <path
+                d="M59 50.6869C58.2304 52.1576 57.2452 52.3898 55.8753 51.3991C52.9199 49.2782 49.9645 47.1729 47.0245 45.0366C46.024 44.309 44.9311 43.9684 43.6843 43.9684C36.9423 43.9839 30.2004 43.9684 23.4738 43.9684C19.3332 43.9684 16.4855 41.1045 16.4855 36.9558C16.4855 35.996 16.4855 35.0362 16.4855 33.9835C16.7318 33.9835 16.9627 33.9835 17.1782 33.9835C23.366 33.9835 29.5385 33.999 35.7263 33.9835C40.3749 33.968 44.3154 31.0422 45.5622 26.6303C45.8239 25.7015 45.947 24.6952 45.9624 23.72C46.0086 20.531 45.9778 17.342 45.9778 14.1685C45.9778 13.9673 45.9778 13.7505 45.9778 13.4874C47.0091 13.4874 47.9789 13.4719 48.9486 13.4874C50.4109 13.5028 51.8732 13.41 53.3201 13.5957C56.2293 13.9827 58.3535 16.15 58.8923 19.0603C58.9076 19.1687 58.9538 19.2771 59 19.3854C59 29.8347 59 40.2531 59 50.6869Z"
+                fill="url(#paint0_linear_359_9)"/>
+            <path
+                d="M23.4276 0.00387012C29.0459 0.00387012 34.6796 0.00387012 40.2979 0.00387012C41.9296 0.00387012 42.5145 0.592128 42.5145 2.21758C42.5145 9.38504 42.5145 16.537 42.5145 23.7045C42.5145 26.9399 40.4211 29.5871 37.2964 30.3146C36.7115 30.454 36.0804 30.5004 35.4646 30.5004C28.7227 30.5159 21.9807 30.5159 15.2541 30.5004C14.0381 30.5004 12.9606 30.841 11.9755 31.5531C8.95852 33.7513 5.92617 35.9186 2.89382 38.0858C1.72398 38.9218 0.307853 38.4419 0.0461779 37.1261C0 36.9093 0.0153926 36.6616 0.0153926 36.4294C0 26.6303 0 16.8157 0 7.01653C0 2.89872 2.83225 0.0193506 6.94208 0.0193506C12.4373 -0.0116104 17.9324 0.00387012 23.4276 0.00387012ZM22.4117 12.9455C23.8894 12.9455 25.3671 12.9455 26.8448 12.9455C28.6919 12.9455 30.5236 12.961 32.3707 12.9455C33.4636 12.9301 34.2178 12.0632 34.0947 11.0105C33.987 10.0662 33.2327 9.47792 32.1244 9.47792C26.8294 9.47792 21.5343 9.47792 16.2392 9.47792C15.0078 9.47792 13.7764 9.47792 12.5604 9.47792C11.8369 9.47792 11.252 9.75657 10.898 10.4222C10.2669 11.6142 11.1135 12.9301 12.5142 12.9455C15.8236 12.9455 19.1177 12.9301 22.4117 12.9455ZM22.3809 21.0418C25.5672 21.0418 28.7535 21.0418 31.9397 21.0418C32.1552 21.0418 32.3553 21.0418 32.5708 21.0264C33.3866 20.949 34.0331 20.2988 34.1101 19.4938C34.1871 18.6733 33.6945 17.8993 32.9095 17.6671C32.6324 17.5897 32.3399 17.5742 32.0629 17.5742C25.6288 17.5742 19.21 17.5742 12.7759 17.5742C12.5142 17.5742 12.191 17.5433 11.9909 17.6671C11.5753 17.9303 11.0827 18.2399 10.8672 18.6578C10.2823 19.8034 11.1751 21.0418 12.5296 21.0418C15.8236 21.0573 19.1023 21.0418 22.3809 21.0418Z"
+                fill="url(#paint1_linear_359_9)"/>
           </g>
           <defs>
             <linearGradient id="paint0_linear_359_9" x1="29.5" y1="0" x2="29.5" y2="52" gradientUnits="userSpaceOnUse">
@@ -1055,7 +1069,7 @@
       </div>
     </div>
     <transition name="slide-fade" mode="out-in">
-    <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
+      <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
     </transition>
     <Preloader v-if="false"/>
   </div>
@@ -1067,6 +1081,7 @@ import AppHeader from "../components/AppHeader";
 import contract from "../api/contract";
 import AboutModal from "../components/Modals/AboutModal";
 import Preloader from "../components/Preloader";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'Home',
@@ -1083,13 +1098,13 @@ export default {
       blocksQt: 56,
       lastBlockId: null,
       isAboutModalVisible: false,
-      isOwnerBlock: true,
       towerBlocksExtraLarge: [
         {
           imageUrl: null,
           cover: '/img/cover-1.png',
           description: null,
           owner: null,
+          showHover: false
         }
       ],
       towerBlocksMiddleLarge: [
@@ -1098,12 +1113,14 @@ export default {
           cover: '/img/cover-1.png',
           description: null,
           owner: null,
+          showHover: false
         },
         {
           imageUrl: null,
           cover: '/img/cover-2.png',
           description: null,
           owner: null,
+          showHover: false
         },
       ],
       towerBlocksLg: [
@@ -1112,24 +1129,28 @@ export default {
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-6.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-7.png',
+          showHover: false
         }
       ],
       towerBlocksMd: [
@@ -1138,48 +1159,56 @@ export default {
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-2.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
 
       ],
@@ -1189,96 +1218,112 @@ export default {
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-2.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-2.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
       ],
       towerBlocksXs: [
@@ -1287,186 +1332,266 @@ export default {
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-2.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-2.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-5.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-4.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-2.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-8.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-9.png',
+          showHover: false
         },
         {
           description: null,
           owner: null,
           imageUrl: null,
           cover: '/img/cover-10.png',
+          showHover: false
         },
       ],
+      defrostTimes: []
     }
   },
+  computed: {
+    ...mapGetters({
+      getAccount: 'wallet/getAccount'
+    })
+  },
   methods: {
-   /* handleBlockPosition() {
-      const blockDesc =  document.body.querySelector('.tower-block');
-      const blockRect = blockDesc.getBoundingClientRect();
+    /* handleBlockPosition() {
+       const blockDesc =  document.body.querySelector('.tower-block');
+       const blockRect = blockDesc.getBoundingClientRect();
 
-      const blockRightX = blockRect.x + blockRect.width;
+       const blockRightX = blockRect.x + blockRect.width;
 
-      if (blockRightX > window.outerWidth) {
-        blockDesc.style.left = '-50%';
-        blockDesc.classList.add('change');
+       if (blockRightX > window.outerWidth) {
+         blockDesc.style.left = '-50%';
+         blockDesc.classList.add('change');
+       }
+     },*/
+    async addBlockToBalloon() {
+      let blocksQuantity = parseInt(prompt('Input block number in range from 1 to 4'));
+      let date = new Date(null);
+      if(this.defrostTimes.length) {
+        if(blocksQuantity === 1 && this.defrostTimes.length === 1) {
+          date.setSeconds(this.defrostTimes[0]);
+        }
+        else if(blocksQuantity === 2 && this.defrostTimes.length === 2) {
+          date.setSeconds(this.defrostTimes[0]);
+        }
+        else if(blocksQuantity === 3 && this.defrostTimes.length === 3) {
+          date.setSeconds(this.defrostTimes[0]);
+        }
+        else if(blocksQuantity === 4 && this.defrostTimes.length === 4) {
+          date.setSeconds(this.defrostTimes[0]);
+        }
+        let result = date.toISOString().substr(11, 8);
+        this.alert(`This unit is frozen. ${result} left before defrosting`)
       }
-    },*/
+      let blockPrice = await contract.balloonBlockPrice();
+      let imageUrl = prompt('Input image url');
+      let description = prompt('Input description');
+      try {
+        await contract.addBlockToBalloon(blockPrice, imageUrl, description, blocksQuantity);
+      } catch (e) {
+        console.log(e);
+      }
+    },
     scrollToTop() {
       window.scroll({top: 0, left: 0, behavior: 'smooth'});
+    },
+    isOwnerBlock(address) {
+      return !!(this.getAccount && this.getAccount === address);
+    },
+    async getDefrostTime() {
+      let times = [];
+      try {
+        for(let i = 1; i <= 4; i++) {
+          let time = await contract.getDefrostTime(i);
+          times.push(time);
+        }
+        return times
+      } catch (e) {
+        console.log(e);
+        return times;
+      }
     },
     async addBlock() {
       try {
         let lastBlockPrice = await contract.lastBlockPrice();
-        console.log(0.001 * 1e18)
-        console.log(lastBlockPrice)
         let priceStep = await contract.blockStepPrice();
         // eslint-disable-next-line no-undef
         let buyBlockPrice = (BigInt(lastBlockPrice) + BigInt(priceStep)).toString();
         let imageUrl = prompt('Input image url');
         let description = prompt('Input description');
-        await contract.addBlock(buyBlockPrice, imageUrl, description);
+        let checkRefSystem = confirm('Do you want to add your ref link');
+        if (checkRefSystem) {
+          let refLink = prompt('Input ref link');
+          await contract.addBlockWithReferralSystem(buyBlockPrice, imageUrl, description, refLink);
+        } else {
+          await contract.addBlock(buyBlockPrice, imageUrl, description);
+        }
         this.isThrowing = true;
         setTimeout(() => {
           this.loadBlocks();
@@ -1483,7 +1608,7 @@ export default {
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);
       let blocksToPreload = 0;
-      if(lastBlockId <= this.blocksQt) {
+      if (lastBlockId <= this.blocksQt) {
         blocksToPreload = lastBlockId;
       } else {
         blocksToPreload = lastBlockId - this.blocksQt;
@@ -1496,50 +1621,49 @@ export default {
       let middleCount = 0;
       let smallCount = 0;
       let extraSmallCount = 0;
-      for(let i = blocksToPreload; i > -1; i--) {
+      for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
         iterationsCount++;
-        if(iterationsCount === 1) {
+        if (iterationsCount === 1) {
           this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
           this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
-        }
-        else if(iterationsCount > 1 && iterationsCount < 4) {
+        } else if (iterationsCount > 1 && iterationsCount < 4) {
           this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
           this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
           this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
           middleLargeCount++;
-        }
-        else if(iterationsCount >= 4 && iterationsCount < 8) {
+        } else if (iterationsCount >= 4 && iterationsCount < 8) {
           this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
           this.towerBlocksLg[largeCount].description = block.description;
           this.towerBlocksLg[largeCount].owner = block.owner;
           largeCount++;
-        }
-        else if(iterationsCount >= 8 && iterationsCount < 16) {
+        } else if (iterationsCount >= 8 && iterationsCount < 16) {
           this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
           this.towerBlocksMd[middleCount].description = block.description;
           this.towerBlocksMd[middleCount].owner = block.owner;
           middleCount++;
-        }
-        else if(iterationsCount >= 16 && iterationsCount < 32) {
+        } else if (iterationsCount >= 16 && iterationsCount < 32) {
           this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
           this.towerBlocksSm[smallCount].description = block.description;
           this.towerBlocksSm[smallCount].owner = block.owner;
           smallCount++;
-        }
-        else if(iterationsCount >= 32 && iterationsCount < 57) {
+        } else if (iterationsCount >= 32 && iterationsCount < 57) {
           this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
           this.towerBlocksXs[extraSmallCount].description = block.description;
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
           extraSmallCount++;
         }
       }
+      if (this.towerBlocksExtraLarge.length && this.towerBlocksExtraLarge[0].owner === '0x0000000000000000000000000000000000000000') {
+        this.towerBlocksExtraLarge[0].owner = null;
+        this.towerBlocksExtraLarge[0].imageUrl = null;
+      }
     }
   },
   filters: {
-    cutHash(v){
-      if(v) {
+    cutHash(v) {
+      if (v) {
         let valStart = v.substring(0, 6)
         let valEnd = v.substring(v.length - 5, v.length);
         return `${valStart}...${valEnd}`
@@ -1549,14 +1673,15 @@ export default {
     }
   },
   mounted() {
-    setTimeout(() => {
+    setTimeout(async () => {
       this.loadBlocks();
-    }, 2000);
+      this.defrostTimes = await this.getDefrostTime();
+      console.log(this.defrostTimes)
+    }, 0);
+    document.addEventListener('mouseover', () => {
+      const blockList = document.body.querySelectorAll('.tower-block');
 
-    document.addEventListener('mouseover', ()=>{
-      const blockList =  document.body.querySelectorAll('.tower-block');
-
-      [].forEach.call(blockList, function (block){
+      [].forEach.call(blockList, function (block) {
         let blockRect = block.getBoundingClientRect();
 
         let blockRightX = blockRect.x + blockRect.width;
