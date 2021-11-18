@@ -765,8 +765,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksLg"
                    :key="index"
-                   :data-index="index"
-              >
+                   :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover">
                   <img :src="block.cover" alt="">
@@ -804,8 +803,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksMd"
                    :key="index"
-                   :data-index="index"
-              >
+                   :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover">
                   <img :src="block.cover" alt="">
@@ -841,8 +839,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
                    :key="index"
-                   :data-index="index"
-              >
+                   :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover">
                   <img :src="block.cover" alt="">
@@ -879,8 +876,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
                    :key="index"
-                   :data-index="index"
-              >
+                   :data-index="index">
                 <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
                 <div class="tower__block-cover">
                   <img :src="block.cover" alt="">
@@ -1446,6 +1442,17 @@ export default {
     }
   },
   methods: {
+   /* handleBlockPosition() {
+      const blockDesc =  document.body.querySelector('.tower-block');
+      const blockRect = blockDesc.getBoundingClientRect();
+
+      const blockRightX = blockRect.x + blockRect.width;
+
+      if (blockRightX > window.outerWidth) {
+        blockDesc.style.left = '-50%';
+        blockDesc.classList.add('change');
+      }
+    },*/
     scrollToTop() {
       window.scroll({top: 0, left: 0, behavior: 'smooth'});
     },
@@ -1544,7 +1551,25 @@ export default {
   mounted() {
     setTimeout(() => {
       this.loadBlocks();
-    }, 2000)
+    }, 2000);
+
+    document.addEventListener('mouseover', ()=>{
+      const blockList =  document.body.querySelectorAll('.tower-block');
+
+      [].forEach.call(blockList, function (block){
+        let blockRect = block.getBoundingClientRect();
+
+        let blockRightX = blockRect.x + blockRect.width;
+
+        if (blockRightX > window.outerWidth) {
+          block.style.left = 'unset';
+          block.style.right = '50%';
+
+          block.classList.add('change');
+        }
+      })
+
+    })
   }
 }
 </script>
