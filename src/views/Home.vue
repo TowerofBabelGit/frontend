@@ -1612,9 +1612,6 @@ export default {
         this.loading = false;
         return;
       }
-      let result = date.toISOString().substr(11, 8);
-      alert(`This unit is frozen. ${result} left before defrosting`);
-      this.loading = false;
       let blockPrice = await contract.balloonBlockPrice();
       let imageUrl = prompt('Input image url');
       let description = prompt('Input description');
