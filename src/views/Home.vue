@@ -691,14 +691,23 @@
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
           <div class="tower">
             <div class="tower__row tower__row--xl">
-              <div class="tower__col tower__col--big" v-for="(item, index) in towerBlocksExtraLarge" :key="index"
+              <div class="tower__col tower__col--big"
+                   v-for="(item, index) in towerBlocksExtraLarge"
+                   :key="index"
                    :class="{owner: isOwnerBlock(item.owner)}">
-                <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
-                <div class="tower__block-cover" @mouseover="item.showHover = true" @mouseleave="item.showHover = false">
+                <img v-if="item.imageUrl"
+                     :src="item.imageUrl"
+                     alt="">
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(item.number, item.owner)"
+                     @mouseover="item.showHover = true"
+                     @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="">
                 </div>
 
-                <div class="tower-block" :class="{active: item.showHover}" @mouseover="item.showHover = true"
+                <div class="tower-block"
+                     :class="{active: item.showHover}"
+                     @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
                     <img :src="item.imageUrl" alt="">
@@ -733,7 +742,10 @@
                    :class="{owner: isOwnerBlock(item.owner)}"
                    :key="index">
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
-                <div class="tower__block-cover" @mouseover="item.showHover = true" @mouseleave="item.showHover = false">
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(item.number, item.owner)"
+                     @mouseover="item.showHover = true"
+                     @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="">
                 </div>
 
@@ -773,7 +785,9 @@
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
-                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(block.number, block.owner)"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
@@ -814,7 +828,9 @@
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
-                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(block.number, block.owner)"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
@@ -853,7 +869,9 @@
                    :key="index"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
-                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(block.number, block.owner)"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
@@ -893,7 +911,9 @@
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
-                <div class="tower__block-cover" @mouseover="block.showHover = true"
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(block.number, block.owner)"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
@@ -1527,6 +1547,23 @@ export default {
     })
   },
   methods: {
+    async changeBlockInfo(blockNumber, owner) {
+      this.loading = true;
+      if(this.getAccount !== owner) {
+        alert('You are not the owner of this block');
+        this.loading = false;
+        return;
+      }
+      let imageUrl = prompt('Input image url');
+      let description = prompt('Input description');
+      try {
+        await contract.changeBlockInfo(imageUrl, description, blockNumber);
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.loading = false;
+      }
+    },
     /* handleBlockPosition() {
        const blockDesc =  document.body.querySelector('.tower-block');
        const blockRect = blockDesc.getBoundingClientRect();
@@ -1638,35 +1675,42 @@ export default {
       let extraSmallCount = 0;
       for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
+        console.log(block)
         iterationsCount++;
         if (iterationsCount === 1) {
           this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
           this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
+          this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
         } else if (iterationsCount > 1 && iterationsCount < 4) {
           this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
           this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
           this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
+          this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
           middleLargeCount++;
         } else if (iterationsCount >= 4 && iterationsCount < 8) {
           this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
           this.towerBlocksLg[largeCount].description = block.description;
           this.towerBlocksLg[largeCount].owner = block.owner;
+          this.towerBlocksLg[largeCount].number = block.number;
           largeCount++;
         } else if (iterationsCount >= 8 && iterationsCount < 16) {
           this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
           this.towerBlocksMd[middleCount].description = block.description;
           this.towerBlocksMd[middleCount].owner = block.owner;
+          this.towerBlocksMd[middleCount].number = block.number;
           middleCount++;
         } else if (iterationsCount >= 16 && iterationsCount < 32) {
           this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
           this.towerBlocksSm[smallCount].description = block.description;
           this.towerBlocksSm[smallCount].owner = block.owner;
+          this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
         } else if (iterationsCount >= 32 && iterationsCount < 57) {
           this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
           this.towerBlocksXs[extraSmallCount].description = block.description;
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
+          this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
         }
       }
