@@ -1305,6 +1305,20 @@
       </div>
     </div>
     <div class="home-page__bottom">
+
+      <div class="scroll-down" >
+        <div class="scroll-down__top">
+        <div class="scroll-down__icon">
+          <span class="scroll_arrows one"></span>
+          <span class="scroll_arrows two"></span>
+          <span class="scroll_arrows three"></span>
+        </div>
+        </div>
+        <div class="scroll-down__text">
+          Scroll down
+        </div>
+      </div>
+
       <div class="bottom-wrap">
         <a @click="isAboutModalVisible = true" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-info.svg" alt="">-->
