@@ -663,7 +663,7 @@
 
           </div>
 
-          <button class="buy-wrap" @click="addBlock">
+          <button class="buy-wrap" @click="addBlock, isBuyModalVisible = true">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1009,7 +1009,7 @@
 
         </div>
 
-        <button class="buy-wrap" @click="addBlockToBalloon">
+        <button class="buy-wrap" @click="addBlockToBalloon, isBuyModalVisible = true">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1150,6 +1150,10 @@
       <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
     </transition>
     <Preloader v-if="loading"/>
+
+    <transition name="slide-fade" mode="out-in">
+      <BuyModal v-if="isBuyModalVisible" @close="isBuyModalVisible = false"/>
+    </transition>
   </div>
 </template>
 
@@ -1160,13 +1164,15 @@ import contract from "../api/contract";
 import AboutModal from "../components/Modals/AboutModal";
 import Preloader from "../components/Preloader";
 import {mapGetters} from "vuex";
+import BuyModal from "../components/Modals/BuyModal";
 
 export default {
   name: 'Home',
   components: {
     AppHeader,
     AboutModal,
-    Preloader
+    Preloader,
+    BuyModal
   },
   data() {
     return {
@@ -1177,6 +1183,7 @@ export default {
       blocksQt: 56,
       lastBlockId: null,
       isAboutModalVisible: false,
+      isBuyModalVisible: false,
       towerBlocksExtraLarge: [
         {
           imageUrl: null,
