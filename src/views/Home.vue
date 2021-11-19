@@ -665,7 +665,7 @@
 
           <button class="buy-wrap"
                   v-if="!owner || owner === getAccount"
-                  @click="addBlock; isBuyModalVisible = true">
+                  @click="isBuyModalVisible = true">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1295,7 +1295,7 @@
 
         <button class="buy-wrap"
                 v-if="!owner || owner === getAccount"
-                @click="addBlockToBalloon; isBuyModalVisible = true">
+                @click="isBuyModalVisible = true">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1965,54 +1965,7 @@ export default {
          blockDesc.classList.add('change');
        }
      },*/
-    async addBlockToBalloon() {
-      this.loading = true;
-      let blocksQuantity = parseInt(prompt('Input block number in range from 1 to 4'));
-      if(blocksQuantity < 1 || blocksQuantity > 4) {
-        alert('Wrong number, input from 1 to 4');
-        this.loading = false;
-        return;
-      }
-      let date = new Date(null);
-      if(blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
-        date.setSeconds(this.defrostTimes[0]);
-        let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
-        this.loading = false;
-        return;
-      }
-      else if(blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
-        date.setSeconds(this.defrostTimes[1]);
-        let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
-        this.loading = false;
-        return;
-      }
-      else if(blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
-        date.setSeconds(this.defrostTimes[2]);
-        let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
-        this.loading = false;
-        return;
-      }
-      else if(blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
-        date.setSeconds(this.defrostTimes[3]);
-        let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
-        this.loading = false;
-        return;
-      }
-      let blockPrice = await contract.balloonBlockPrice();
-      let imageUrl = prompt('Input image url');
-      let description = prompt('Input description');
-      try {
-        await contract.addBlockToBalloon(blockPrice, imageUrl, description, blocksQuantity);
-      } catch (e) {
-        console.log(e);
-      } finally {
-        this.loading = false;
-      }
-    },
+
     scrollToTop() {
       window.scroll({top: 0, left: 0, behavior: 'smooth'});
     },
@@ -2031,36 +1984,7 @@ export default {
         }
       }
     },
-    async addBlock() {
-      this.loading = true;
-      try {
-        let lastBlockPrice = await contract.lastBlockPrice();
-        let priceStep = await contract.blockStepPrice();
-        // eslint-disable-next-line no-undef
-        let buyBlockPrice = (BigInt(lastBlockPrice) + BigInt(priceStep)).toString();
-        let imageUrl = prompt('Input image url');
-        let description = prompt('Input description');
-        let checkRefSystem = confirm('Do you want to add your ref link');
-        if (checkRefSystem) {
-          let refLink = prompt('Input ref link');
-          await contract.addBlockWithReferralSystem(buyBlockPrice, imageUrl, description, refLink);
-        } else {
-          await contract.addBlock(buyBlockPrice, imageUrl, description);
-        }
-        this.loading = false;
-        this.isThrowing = true;
-        setTimeout(() => {
-          this.loadBlocks();
-        }, 3000);
-        setTimeout(() => {
-          this.isThrowing = false;
-          this.isMoveDown = true;
-        }, 5000)
-      } catch (e) {
-        console.log(e);
-        this.loading = false;
-      }
-    },
+
     async loadBlocks() {
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);

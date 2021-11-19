@@ -14,26 +14,37 @@
 
           <form class="popup-form">
           <div class="page-input" :class="{error: isTitleError}">
-            <input type="text" class="input" :placeholder="inputTitle">
+            <input type="text"
+                   v-model="description"
+                   class="input"
+                   placeholder="Input block description">
 
             <div class="page-input__icon">
               <img src="@/assets/img/svg/icon-error.svg" alt="">
             </div>
           </div>
           <div class="page-input" :class="{error: isUrlError}">
-            <input type="text" class="input" :placeholder="inputUrl">
+            <input type="text"
+                   class="input"
+                   v-model="imageUrl"
+                   placeholder="Input image url">
             <div class="page-input__icon">
               <img src="@/assets/img/svg/icon-error.svg" alt="">
             </div>
           </div>
           <div class="page-input" :class="{error: isInvitorError}">
-            <input type="text" class="input" :placeholder="inputInvitor">
+            <input type="text"
+                   class="input"
+                   v-model="refLink"
+                   placeholder="Invitor address (optional)">
             <div class="page-input__icon">
               <img src="@/assets/img/svg/icon-error.svg" alt="">
             </div>
           </div>
 
-            <button class="page-btn" type="submit">Buy the block</button>
+          <button class="page-btn"
+                  type="submit"
+                  @click="setBuyMethod">Buy the block</button>
           </form>
 
 
@@ -46,19 +57,100 @@
 
 <script>
 
+import contract from "../../api/contract";
+
 export default {
   name: "BuyModal",
+  props: {
+
+  },
   data: () => ({
     isTitleError: false,
     isUrlError: false,
     isInvitorError: false,
-    inputTitle: 'Title',
-    inputUrl: 'Image URL',
-    inputInvitor: 'Invitor address (optional)'
+    description: null,
+    imageUrl: null,
+    refLink: null,
+    blocksQuantity: null,
+    defrostTimes: []
   }),
   methods: {
     closeWindow() {
       this.$emit("close");
+    },
+    setBuyMethod() {
+
+    },
+    async addBlock() {
+      this.$emit('loading', true);
+      try {
+        let lastBlockPrice = await contract.lastBlockPrice();
+        let priceStep = await contract.blockStepPrice();
+        // eslint-disable-next-line no-undef
+        let buyBlockPrice = (BigInt(lastBlockPrice) + BigInt(priceStep)).toString();
+        if (this.refLink) {
+          await contract.addBlockWithReferralSystem(buyBlockPrice, this.imageUrl, this.description, this.refLink);
+        } else {
+          await contract.addBlock(buyBlockPrice, this.imageUrl, this.description);
+        }
+        this.$emit('loading', false);
+        this.$emit('isThrowing', true);
+        setTimeout(() => {
+          this.$emit('success', false);
+        }, 3000);
+        setTimeout(() => {
+          this.$emit('isThrowing', false);
+          this.$emit('isMoveDown', true);
+        }, 5000)
+      } catch (e) {
+        console.log(e);
+        this.$emit('loading', false);
+      }
+    },
+    async addBlockToBalloon() {
+      this.$emit('loading', true);
+      if(this.blocksQuantity < 1 || this.blocksQuantity > 4) {
+        alert('Wrong number, input from 1 to 4');
+        this.loading = false;
+        return;
+      }
+      let date = new Date(null);
+      if(this.blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
+        date.setSeconds(this.defrostTimes[0]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('loading', false);
+        return;
+      }
+      else if(this.blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
+        date.setSeconds(this.defrostTimes[1]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('loading', false);
+        return;
+      }
+      else if(this.blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
+        date.setSeconds(this.defrostTimes[2]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('loading', false);
+        return;
+      }
+      else if(this.blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
+        date.setSeconds(this.defrostTimes[3]);
+        let result = date.toISOString().substr(11, 8);
+        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('loading', false);
+        return;
+      }
+      let blockPrice = await contract.balloonBlockPrice();
+      try {
+        await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        this.$emit('loading', false);
+      }
     },
   }
 }
