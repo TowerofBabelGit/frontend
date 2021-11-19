@@ -9,6 +9,12 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/tower/:owner',
+    props: true,
+    name: 'MyTower',
+    component: Home
   }
 ]
 

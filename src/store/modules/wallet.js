@@ -174,7 +174,7 @@ export default {
     },
     getters: {
         getAccount: state => state.currentConnectionInfo.account,
-        getBalance: state => state.currentConnectionInfo.balance,
+        getBalance: (state, getters, rootState) => Number((state.currentConnectionInfo.balance / rootState.contract.multiplier).toFixed(8)),
         isWrongChainId: state => {
             return state.currentConnectionInfo.chainId &&
                 state.currentConnectionInfo.chainId !== state.currentNetworkDec &&

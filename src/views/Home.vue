@@ -867,7 +867,7 @@
                 </div>
               </div>
             </div>
-            <div class="tower__row tower__row--sm">
+            <div class="tower__row tower__row--sm" v-if="!owner">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
@@ -909,7 +909,7 @@
                 </div>
               </div>
             </div>
-            <div class="tower__row tower__row--xs">
+            <div class="tower__row tower__row--xs" v-if="!owner">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
                    :key="index"
@@ -951,7 +951,7 @@
                 </div>
               </div>
             </div>
-            <div class="tower__row tower__row--xs" v-if="foundation.length">
+            <div class="tower__row tower__row--xs" v-if="foundation.length && !owner">
               <div class="tower__col"
                    v-for="(block, index) in foundation"
                    :key="index"
@@ -1200,6 +1200,12 @@ export default {
     AboutModal,
     Preloader,
     BuyModal
+  },
+  props: {
+    owner: {
+      type: String,
+      required: false
+    }
   },
   data() {
     return {
@@ -1792,6 +1798,10 @@ export default {
         if(block.owner === '0x0000000000000000000000000000000000000000') {
           continue;
         }
+
+        if(this.owner && block.owner !== this.getAccount) {
+          continue;
+        }
         iterationsCount++;
         if (iterationsCount === 1) {
           this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
@@ -1816,6 +1826,9 @@ export default {
           this.towerBlocksMd[middleCount].owner = block.owner;
           this.towerBlocksMd[middleCount].number = block.number;
           middleCount++;
+          if(this.owner) {
+            break;
+          }
         } else if (iterationsCount >= 16 && iterationsCount < 32) {
           this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
           this.towerBlocksSm[smallCount].description = block.description;

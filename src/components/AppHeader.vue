@@ -81,8 +81,8 @@
         </div>
 
         <div class="account-info__info">
-          <span>0.00685632 BNB</span>
-          <span class="account-info__address">0xF74c...1cB6</span>
+          <span>{{getBalance}} BNB</span>
+          <span class="account-info__address">{{getAccount | cutHash}}</span>
         </div>
 
       </button>
@@ -93,7 +93,7 @@
         </div>
 
         <div class="account-info__input">
-          <input type="text" readonly :value="accountId" ref="address">
+          <input type="text" readonly :value="getAccount" ref="address">
           <button class="copy-btn" @click="copy">
             <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.83333 4.00001V1.50001C3.83333 1.27899 3.92113 1.06703 4.07741 0.910749C4.23369 0.754469 4.44565 0.666672 4.66667 0.666672H14.6667C14.8877 0.666672 15.0996 0.754469 15.2559 0.910749C15.4122 1.06703 15.5 1.27899 15.5 1.50001V13.1667C15.5 13.3877 15.4122 13.5996 15.2559 13.7559C15.0996 13.9122 14.8877 14 14.6667 14H12.1667V16.5C12.1667 16.96 11.7917 17.3333 11.3275 17.3333H1.33917C1.22927 17.334 1.12033 17.3129 1.0186 17.2714C0.916873 17.2298 0.824361 17.1685 0.746382 17.0911C0.668403 17.0136 0.606494 16.9216 0.564212 16.8201C0.52193 16.7187 0.500108 16.6099 0.5 16.5L0.5025 4.83334C0.5025 4.37334 0.8775 4.00001 1.34167 4.00001H3.83333ZM2.16917 5.66667L2.16667 15.6667H10.5V5.66667H2.16917ZM5.5 4.00001H12.1667V12.3333H13.8333V2.33334H5.5V4.00001Z" fill="url(#paint1_linear_398_13)"/>
@@ -119,10 +119,10 @@
         </div>
 
         <div class="account-info__text">
-          0.00685632 BNB
+          {{getBalance}} BNB
         </div>
 
-        <button class="view-on" type="button">
+        <a class="view-on" :href="`https://bscscan.com/address/${getAccount}`">
           View on BscScan
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_405_4009)">
@@ -135,9 +135,9 @@
             </defs>
           </svg>
 
-        </button>
+        </a>
 
-        <button class="page-btn page-btn--border">Disconnect Wallet</button>
+        <button class="page-btn page-btn--border" @click="unsetWallet">Disconnect Wallet</button>
       </div>
 
     </nav>
@@ -149,8 +149,8 @@
         </div>
 
         <div class="account-info__info">
-          <span>0.00685632 BNB</span>
-          <span class="account-info__address">0xF74c...1cB6</span>
+          <span>{{getBalance}} BNB</span>
+          <span class="account-info__address">{{getAccount | cutHash}}</span>
         </div>
 
         <div class="select__icon" :class="{opened: isOpenSelect}">
@@ -163,7 +163,7 @@
         </div>
 
         <div class="account-info__input">
-          <input type="text" readonly :value="accountId" ref="address">
+          <input type="text" readonly :value="getAccount" ref="address">
           <button class="copy-btn" @click="copy()">
             <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M3.83333 4.00001V1.50001C3.83333 1.27899 3.92113 1.06703 4.07741 0.910749C4.23369 0.754469 4.44565 0.666672 4.66667 0.666672H14.6667C14.8877 0.666672 15.0996 0.754469 15.2559 0.910749C15.4122 1.06703 15.5 1.27899 15.5 1.50001V13.1667C15.5 13.3877 15.4122 13.5996 15.2559 13.7559C15.0996 13.9122 14.8877 14 14.6667 14H12.1667V16.5C12.1667 16.96 11.7917 17.3333 11.3275 17.3333H1.33917C1.22927 17.334 1.12033 17.3129 1.0186 17.2714C0.916873 17.2298 0.824361 17.1685 0.746382 17.0911C0.668403 17.0136 0.606494 16.9216 0.564212 16.8201C0.52193 16.7187 0.500108 16.6099 0.5 16.5L0.5025 4.83334C0.5025 4.37334 0.8775 4.00001 1.34167 4.00001H3.83333ZM2.16917 5.66667L2.16667 15.6667H10.5V5.66667H2.16917ZM5.5 4.00001H12.1667V12.3333H13.8333V2.33334H5.5V4.00001Z" fill="url(#paint2_linear_398_13)"/>
@@ -189,7 +189,7 @@
         </div>
 
         <div class="account-info__text">
-          0.00685632 BNB
+          {{getBalance}} BNB
         </div>
 
         <button class="view-on" type="button">
@@ -207,7 +207,7 @@
 
         </button>
 
-        <button class="page-btn page-btn--border">Disconnect Wallet</button>
+        <button class="page-btn page-btn--border" @click="unsetWallet">Disconnect Wallet</button>
       </div>
     </div>
     <transition name="slide-fade" mode="out-in">
@@ -222,7 +222,7 @@
 <script>
 import ConnectWallet from "./Modals/ConnectWallet";
 import AboutModal from "./Modals/AboutModal";
-import {mapGetters} from "vuex";
+import {mapGetters, mapMutations} from "vuex";
 
 export default {
   name: "AppHeader",
@@ -238,14 +238,28 @@ export default {
     isAboutModalVisible: false,
     isShowAccInfo: false,
     isTooltip: false,
-    accountId: '0xF74casdaw22333eff1cB6'
   }),
   computed: {
     ...mapGetters({
-      getAccount: 'wallet/getAccount'
+      getAccount: 'wallet/getAccount',
+      getBalance: 'wallet/getBalance'
     })
   },
+  filters: {
+    cutHash(v) {
+      if (v) {
+        let valStart = v.substring(0, 6)
+        let valEnd = v.substring(v.length - 5, v.length);
+        return `${valStart}...${valEnd}`
+      } else {
+        return ''
+      }
+    }
+  },
   methods: {
+    ...mapMutations({
+      unsetWallet: 'wallet/unsetWallet'
+    }),
     copy(){
       let value = this.$refs.address.value;
       navigator.clipboard.writeText(value)
