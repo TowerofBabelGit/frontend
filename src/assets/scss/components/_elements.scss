@@ -113,9 +113,14 @@
   transform: translateY(-50%);
   padding: 0;
   height: 19px;
+  transition: opacity .2s ease-in;
 
   @include max-screen(lg) {
     height: 30px;
+  }
+
+  &:hover {
+    opacity: 0.5;
   }
 
   svg {
@@ -211,4 +216,36 @@
     transform: translateY(-50%);
     display: none;
   }
+}
+
+.tooltip {
+  position: absolute;
+  background: linear-gradient(81.47deg, #59A237 0%, #79C898 100%);
+  border-radius: 10px;
+  width: 90px;
+  height: 40px;
+  @include align-justify-center;
+  right: -25px;
+
+  font-size: 15px;
+  line-height: 150%;
+  color: #FFFFFF;
+
+  @include max-screen(lg) {
+    right: 15px;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 5px 6px 5px;
+    border-color: transparent transparent #5ca53f transparent;
+    top: 0%;
+    transform: translate(-25%, -80%);
+    left: 50%;
+
+
+  }
+
 }

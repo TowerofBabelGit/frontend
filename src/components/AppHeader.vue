@@ -93,12 +93,12 @@
         </div>
 
         <div class="account-info__input">
-          <input type="text" readonly placeholder="0xF74casdaw22333eff1cB6eff1cB6">
-          <button class="copy-btn">
+          <input type="text" readonly :value="accountId" ref="address">
+          <button class="copy-btn" @click="copy">
             <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.83333 4.00001V1.50001C3.83333 1.27899 3.92113 1.06703 4.07741 0.910749C4.23369 0.754469 4.44565 0.666672 4.66667 0.666672H14.6667C14.8877 0.666672 15.0996 0.754469 15.2559 0.910749C15.4122 1.06703 15.5 1.27899 15.5 1.50001V13.1667C15.5 13.3877 15.4122 13.5996 15.2559 13.7559C15.0996 13.9122 14.8877 14 14.6667 14H12.1667V16.5C12.1667 16.96 11.7917 17.3333 11.3275 17.3333H1.33917C1.22927 17.334 1.12033 17.3129 1.0186 17.2714C0.916873 17.2298 0.824361 17.1685 0.746382 17.0911C0.668403 17.0136 0.606494 16.9216 0.564212 16.8201C0.52193 16.7187 0.500108 16.6099 0.5 16.5L0.5025 4.83334C0.5025 4.37334 0.8775 4.00001 1.34167 4.00001H3.83333ZM2.16917 5.66667L2.16667 15.6667H10.5V5.66667H2.16917ZM5.5 4.00001H12.1667V12.3333H13.8333V2.33334H5.5V4.00001Z" fill="url(#paint0_linear_398_13)"/>
+              <path d="M3.83333 4.00001V1.50001C3.83333 1.27899 3.92113 1.06703 4.07741 0.910749C4.23369 0.754469 4.44565 0.666672 4.66667 0.666672H14.6667C14.8877 0.666672 15.0996 0.754469 15.2559 0.910749C15.4122 1.06703 15.5 1.27899 15.5 1.50001V13.1667C15.5 13.3877 15.4122 13.5996 15.2559 13.7559C15.0996 13.9122 14.8877 14 14.6667 14H12.1667V16.5C12.1667 16.96 11.7917 17.3333 11.3275 17.3333H1.33917C1.22927 17.334 1.12033 17.3129 1.0186 17.2714C0.916873 17.2298 0.824361 17.1685 0.746382 17.0911C0.668403 17.0136 0.606494 16.9216 0.564212 16.8201C0.52193 16.7187 0.500108 16.6099 0.5 16.5L0.5025 4.83334C0.5025 4.37334 0.8775 4.00001 1.34167 4.00001H3.83333ZM2.16917 5.66667L2.16667 15.6667H10.5V5.66667H2.16917ZM5.5 4.00001H12.1667V12.3333H13.8333V2.33334H5.5V4.00001Z" fill="url(#paint1_linear_398_13)"/>
               <defs>
-                <linearGradient id="paint0_linear_398_13" x1="14.1634" y1="0.666673" x2="-2.36998" y2="5.8828" gradientUnits="userSpaceOnUse">
+                <linearGradient id="paint1_linear_398_13" x1="14.1634" y1="0.666673" x2="-2.36998" y2="5.8828" gradientUnits="userSpaceOnUse">
                   <stop stop-color="#D04F56"/>
                   <stop offset="1" stop-color="#AB3034"/>
                 </linearGradient>
@@ -106,6 +106,12 @@
             </svg>
 
           </button>
+
+          <div class="tooltip" v-show="isTooltip">
+            <div class="tooltip__text">
+              Copied
+            </div>
+          </div>
         </div>
 
         <div class="account-info__title">
@@ -157,12 +163,12 @@
         </div>
 
         <div class="account-info__input">
-          <input type="text" readonly placeholder="0xF74casdaw22333eff1cB6eff1cB6">
-          <button class="copy-btn">
+          <input type="text" readonly :value="accountId" ref="address">
+          <button class="copy-btn" @click="copy()">
             <svg width="16" height="18" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M3.83333 4.00001V1.50001C3.83333 1.27899 3.92113 1.06703 4.07741 0.910749C4.23369 0.754469 4.44565 0.666672 4.66667 0.666672H14.6667C14.8877 0.666672 15.0996 0.754469 15.2559 0.910749C15.4122 1.06703 15.5 1.27899 15.5 1.50001V13.1667C15.5 13.3877 15.4122 13.5996 15.2559 13.7559C15.0996 13.9122 14.8877 14 14.6667 14H12.1667V16.5C12.1667 16.96 11.7917 17.3333 11.3275 17.3333H1.33917C1.22927 17.334 1.12033 17.3129 1.0186 17.2714C0.916873 17.2298 0.824361 17.1685 0.746382 17.0911C0.668403 17.0136 0.606494 16.9216 0.564212 16.8201C0.52193 16.7187 0.500108 16.6099 0.5 16.5L0.5025 4.83334C0.5025 4.37334 0.8775 4.00001 1.34167 4.00001H3.83333ZM2.16917 5.66667L2.16667 15.6667H10.5V5.66667H2.16917ZM5.5 4.00001H12.1667V12.3333H13.8333V2.33334H5.5V4.00001Z" fill="url(#paint0_linear_398_13)"/>
+              <path d="M3.83333 4.00001V1.50001C3.83333 1.27899 3.92113 1.06703 4.07741 0.910749C4.23369 0.754469 4.44565 0.666672 4.66667 0.666672H14.6667C14.8877 0.666672 15.0996 0.754469 15.2559 0.910749C15.4122 1.06703 15.5 1.27899 15.5 1.50001V13.1667C15.5 13.3877 15.4122 13.5996 15.2559 13.7559C15.0996 13.9122 14.8877 14 14.6667 14H12.1667V16.5C12.1667 16.96 11.7917 17.3333 11.3275 17.3333H1.33917C1.22927 17.334 1.12033 17.3129 1.0186 17.2714C0.916873 17.2298 0.824361 17.1685 0.746382 17.0911C0.668403 17.0136 0.606494 16.9216 0.564212 16.8201C0.52193 16.7187 0.500108 16.6099 0.5 16.5L0.5025 4.83334C0.5025 4.37334 0.8775 4.00001 1.34167 4.00001H3.83333ZM2.16917 5.66667L2.16667 15.6667H10.5V5.66667H2.16917ZM5.5 4.00001H12.1667V12.3333H13.8333V2.33334H5.5V4.00001Z" fill="url(#paint2_linear_398_13)"/>
               <defs>
-                <linearGradient id="paint0_linear_398_13" x1="14.1634" y1="0.666673" x2="-2.36998" y2="5.8828" gradientUnits="userSpaceOnUse">
+                <linearGradient id="paint2_linear_398_13" x1="14.1634" y1="0.666673" x2="-2.36998" y2="5.8828" gradientUnits="userSpaceOnUse">
                   <stop stop-color="#D04F56"/>
                   <stop offset="1" stop-color="#AB3034"/>
                 </linearGradient>
@@ -170,6 +176,12 @@
             </svg>
 
           </button>
+
+          <div class="tooltip" v-show="isTooltip">
+            <div class="tooltip__text">
+              Copied
+            </div>
+          </div>
         </div>
 
         <div class="account-info__title">
@@ -224,11 +236,31 @@ export default {
     isOpenConnect: false,
     isOpenSelect: false,
     isAboutModalVisible: false,
-    isShowAccInfo: false
+    isShowAccInfo: false,
+    isTooltip: false,
+    accountId: '0xF74casdaw22333eff1cB6'
   }),
   computed: {
     ...mapGetters({
       getAccount: 'wallet/getAccount'
+    })
+  },
+  methods: {
+    copy(){
+      let value = this.$refs.address.value;
+      navigator.clipboard.writeText(value)
+          .then(()=>this.isTooltip=true)
+          .catch(()=>this.isTooltip=false)
+      setTimeout(() => {
+        this.isTooltip=false
+      }, 2000);
+    },
+  },
+  mounted() {
+    document.body.addEventListener('click',(e)=>{
+      if (!e.target.closest('.select__btn') && !e.target.closest('.select__drop')){
+        this.isOpenSelect = false;
+      } 
     })
   }
 }
