@@ -89,6 +89,10 @@ export default {
     blockOwner: {
       required: false,
       type: String
+    },
+    defrostTimes: {
+      required: true,
+      type: Array
     }
   },
   data: () => ({
@@ -162,26 +166,26 @@ export default {
         return;
       }
       let date = new Date(null);
-      if (this.blocksQuantity === 1 && this.$parent.defrostTimes[0] !== 0) {
-        date.setSeconds(this.$parent.defrostTimes[0]);
+      if (this.blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
+        date.setSeconds(this.defrostTimes[0]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
-      } else if (this.blocksQuantity === 2 && this.$parent.defrostTimes[1] !== 0) {
-        date.setSeconds(this.$root.defrostTimes[1]);
+      } else if (this.blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
+        date.setSeconds(this.defrostTimes[1]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
-      } else if (this.blocksQuantity === 3 && this.$parent.defrostTimes[2] !== 0) {
-        date.setSeconds(this.$parent.defrostTimes[2]);
+      } else if (this.blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
+        date.setSeconds(this.defrostTimes[2]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
-      } else if (this.blocksQuantity === 4 && this.$parent.defrostTimes[3] !== 0) {
-        date.setSeconds(this.$parent.defrostTimes[3]);
+      } else if (this.blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
+        date.setSeconds(this.defrostTimes[3]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
@@ -190,6 +194,7 @@ export default {
       let blockPrice = await contract.balloonBlockPrice();
       try {
         await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity);
+        this.$emit('success');
         this.closeWindow();
       } catch (e) {
         console.log(e);
