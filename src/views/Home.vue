@@ -949,6 +949,48 @@
                 </div>
               </div>
             </div>
+            <div class="tower__row tower__row--xs" v-if="foundation.length">
+              <div class="tower__col"
+                   v-for="(block, index) in foundation"
+                   :key="index"
+                   :class="{ownerSm: isOwnerBlock(block.owner)}"
+                   :data-index="index">
+                <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
+                <div class="tower__block-cover"
+                     @click="changeBlockInfo(block.number, block.owner)"
+                     @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
+                  <img :src="block.cover" alt="">
+                </div>
+
+                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
+                  <div class="tower-block__img">
+                    <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
+                  </div>
+
+                  <div class="tower-block__title">
+                    Block name:
+                  </div>
+
+                  <div class="tower-block__text">
+                    {{ block.description }}
+                  </div>
+
+                  <div class="tower-block__title">
+                    Name:
+                  </div>
+
+                  <div class="tower-block__text">
+                    {{ block.owner | cutHash }}
+                  </div>
+
+                  <div class="tower-block__point">
+                    <span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           
           <div class="tower-bottom">
@@ -1545,7 +1587,8 @@ export default {
           showHover: false
         },
       ],
-      defrostTimes: []
+      defrostTimes: [],
+      foundation: []
     }
   },
   computed: {
@@ -1556,6 +1599,7 @@ export default {
   },
   watch: {
     isWrongChainId(val) {
+      console.log(val)
       if(val) {
         alert('Wrong chain id')
       } else {
@@ -1705,6 +1749,7 @@ export default {
       let middleCount = 0;
       let smallCount = 0;
       let extraSmallCount = 0;
+      let foundationCount = 0;
       for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
         if(block.owner === '0x0000000000000000000000000000000000000000') {
@@ -1746,6 +1791,22 @@ export default {
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
+        } else {
+          this.foundation[foundationCount].imageUrl = block.imageUrl;
+          this.foundation[foundationCount].description = block.description;
+          this.foundation[foundationCount].owner = block.owner;
+          this.foundation[foundationCount].number = block.number;
+          foundationCount++;
+        }
+      }
+      if(this.foundation.length && this.foundation.length < 26) {
+        for(let i = 0; i < 26 - this.foundation.length; i++) {
+          this.foundation.push({
+            imageUrl: null,
+            description: null,
+            owner: null,
+            number: null
+          })
         }
       }
     },
