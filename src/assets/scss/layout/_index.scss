@@ -104,6 +104,17 @@ img {
       width: 100px;
       height: 100px;
     }
+
+    svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      margin: auto;
+      height: 40%;
+    }
   }
 
   &__img-text {
@@ -112,16 +123,10 @@ img {
     top: 0;
     right: 0;
     bottom: 0;
+    width: 40%;
     margin: auto;
-    width: 100%;
+    height: 40%;
 
-
-    text {
-      fill: #ffffff;
-      font-size: 11px;
-      font-family: $base-font;
-      box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.25);
-    }
   }
 
   &__logo {
@@ -1652,4 +1657,101 @@ img {
     top: 50%;
     transform: translate(-50%, -50%);
   }
+}
+
+
+.scroll-down {
+  position: fixed;
+ /* top: 0;
+  */
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+ // transform: translate(-50%, -60%);
+  @include align-column-center;
+  cursor: pointer;
+  z-index: 100;
+
+  &__top {
+   background: linear-gradient(250.68deg, rgba(208, 79, 86, 0.7) 6.6%, rgba(171, 48, 52, 0.7) 96.33%);
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    @include align-justify-center;
+  }
+
+  &__icon {
+    background: linear-gradient(250.68deg, #D04F56 6.6%, #AB3034 96.33%);
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    @include align-column-center;
+  }
+
+  &__text {
+    background: url("assets/img/scroll-down-bg.png") no-repeat;
+    width: 150px;
+    height: 30px;
+    @include align-justify-center;
+    background-size: 100% 100%;
+    margin-top: 10px;
+
+    font-size: 13px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+  }
+}
+
+.scroll_arrows {
+  display: block;
+  background: url("assets/img/svg/scroll-img.svg") no-repeat;
+
+
+  width: 22px;
+  height: 12px;
+
+
+  + .scroll_arrows {
+    margin-top: -2px;
+  }
+}
+
+.one, .two, .three
+{
+  -webkit-animation: mouse-scroll 1s infinite;
+  -moz-animation: mouse-scroll 1s infinite;
+  animation: mouse-scroll 1s infinite;
+
+}
+
+.one
+{
+  -webkit-animation-delay: .1s;
+  -moz-animation-delay: .1s;
+  -webkit-animation-direction: alternate;
+
+  animation-direction: alternate;
+  animation-delay: alternate;
+}
+
+.two
+{
+  -webkit-animation-delay: .2s;
+  -moz-animation-delay: .2s;
+  -webkit-animation-direction: alternate;
+
+  animation-delay: .2s;
+  animation-direction: alternate;
+
+}
+
+.three
+{
+  -webkit-animation-delay: .3s;
+  -moz-animation-delay: .3s;
+  -webkit-animation-direction: alternate;
+
+  animation-delay: .3s;
+  animation-direction: alternate;
 }
