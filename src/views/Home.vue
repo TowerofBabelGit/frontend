@@ -663,7 +663,9 @@
 
           </div>
 
-          <button class="buy-wrap" @click="addBlock, isBuyModalVisible = true">
+          <button class="buy-wrap"
+                  v-if="!owner || owner === getAccount"
+                  @click="addBlock; isBuyModalVisible = true">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1009,7 +1011,9 @@
 
         </div>
 
-        <button class="buy-wrap" @click="addBlockToBalloon, isBuyModalVisible = true">
+        <button class="buy-wrap"
+                v-if="!owner || owner === getAccount"
+                @click="addBlockToBalloon; isBuyModalVisible = true">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1799,7 +1803,7 @@ export default {
           continue;
         }
 
-        if(this.owner && block.owner !== this.getAccount) {
+        if(this.owner && block.owner !== this.owner) {
           continue;
         }
         iterationsCount++;
