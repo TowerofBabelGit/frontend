@@ -1799,7 +1799,7 @@ export default {
           foundationCount++;
         }
       }
-      if(this.foundation.length && this.foundation.length < 26) {
+      if(this.foundation.length && this.foundation.length % 26 !== 0) {
         for(let i = 0; i < 26 - this.foundation.length; i++) {
           this.foundation.push({
             imageUrl: null,
