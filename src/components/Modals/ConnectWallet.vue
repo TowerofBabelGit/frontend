@@ -11,11 +11,6 @@
             Connect your wallet
           </div>
 
-          <div class="popup__text">
-            By connecting your wallet, you agree to our <a href="#" class="popup__link">Terms of Service</a> and
-            <a href="#" class="popup__link">Privacy Policy
-            </a>
-          </div>
 
           <button class="connect-wallet__btn metamask" @click="tryConnect('metamask')">
             <svg width="45" height="45" viewBox="0 0 45 45" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,9 +56,6 @@
             WalletConnect
           </button>
 
-          <p class="connect-wallet__text">New to Ethereum?</p>
-
-          <a href="#" class="popup__link">Learn more about wallets</a>
         </div>
       </div>
     </div>

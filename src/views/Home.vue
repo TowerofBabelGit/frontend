@@ -868,7 +868,7 @@
             <div class="tower__row tower__row--sm">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
-                   :class="{owner: isOwnerBlock(block.owner)}"
+                   :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :key="index"
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
@@ -911,7 +911,7 @@
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
                    :key="index"
-                   :class="{owner: isOwnerBlock(block.owner)}"
+                   :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
                 <div class="tower__block-cover"

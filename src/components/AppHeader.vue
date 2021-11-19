@@ -71,7 +71,7 @@
         </li>
       </ul>
 
-      <button class="page-btn" type="button" @click="isOpenConnect = true">
+      <button class="page-btn" type="button" @click="isOpenConnect = true" v-if="!getAccount">
         Connect wallet
       </button>
     </nav>

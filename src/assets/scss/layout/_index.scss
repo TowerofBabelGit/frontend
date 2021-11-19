@@ -930,20 +930,19 @@ img {
 
   &__guys {
     margin-top: 190px;
-    margin-bottom: -30px;
+    margin-bottom: -15px;
     @include align-center;
     justify-content: space-between;
     z-index: -1;
 
     @include max-screen(sm) {
       margin-top: 200px;
-      margin-bottom: -23px;
     }
     @include max-screen(xs) {
       width: 90%;
       margin-right: auto;
       margin-left: auto;
-      margin-bottom: -15px;
+      margin-bottom: -5px;
       margin-top: 100px;
     }
 
@@ -1244,6 +1243,17 @@ img {
             }
           }
         }
+        &.ownerSm {
+          img {
+            border: 3px solid rgba(228, 190, 52, 0.9);
+
+            @include max-screen(xs) {
+              border-width: 2px;
+            }
+          }
+        }
+
+
 
         img {
           width: 100%;
