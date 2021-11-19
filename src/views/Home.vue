@@ -705,7 +705,7 @@
                      @click="changeBlockInfo(item.number, item.owner)"
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
-                  <img :src="item.cover" alt="">
+                  <img :src="item.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block"
@@ -725,7 +725,7 @@
                   </div>
 
                   <div class="tower-block__title">
-                    Name:
+                    Owner:
                   </div>
 
                   <div class="tower-block__text">
@@ -743,13 +743,15 @@
               <div class="tower__col tower__col--big"
                    v-for="(item, index) in towerBlocksMiddleLarge"
                    :class="{owner: isOwnerBlock(item.owner)}"
-                   :key="index">
+                   :key="index"
+
+              >
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
                 <div class="tower__block-cover"
                      @click="changeBlockInfo(item.number, item.owner)"
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
-                  <img :src="item.cover" alt="">
+                  <img :src="item.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: item.showHover}" @mouseover="item.showHover = true"
@@ -767,7 +769,7 @@
                   </div>
 
                   <div class="tower-block__title">
-                    Name:
+                    Owner:
                   </div>
 
                   <div class="tower-block__text">
@@ -792,7 +794,7 @@
                      @click="changeBlockInfo(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
-                  <img :src="block.cover" alt="">
+                  <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
@@ -810,7 +812,7 @@
                   </div>
 
                   <div class="tower-block__title">
-                    Name:
+                    Owner:
                   </div>
 
                   <div class="tower-block__text">
@@ -835,12 +837,12 @@
                      @click="changeBlockInfo(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
-                  <img :src="block.cover" alt="">
+                  <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="block.imageUrl" alt="">
+                    <img :src="block.imageUrl" alt="" >
                   </div>
 
                   <div class="tower-block__title">
@@ -852,7 +854,7 @@
                   </div>
 
                   <div class="tower-block__title">
-                    Name:
+                    Owner:
                   </div>
 
                   <div class="tower-block__text">
@@ -876,7 +878,7 @@
                      @click="changeBlockInfo(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
-                  <img :src="block.cover" alt="">
+                  <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
@@ -894,7 +896,7 @@
                   </div>
 
                   <div class="tower-block__title">
-                    Name:
+                    Owner:
                   </div>
 
                   <div class="tower-block__text">
@@ -913,12 +915,12 @@
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
+                <img v-if="block.imageUrl" :src="block.imageUrl" alt="" >
                 <div class="tower__block-cover"
                      @click="changeBlockInfo(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
-                  <img :src="block.cover" alt="">
+                  <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
@@ -936,7 +938,7 @@
                   </div>
 
                   <div class="tower-block__title">
-                    Name:
+                    Owner:
                   </div>
 
                   <div class="tower-block__text">
@@ -1092,7 +1094,7 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="#" class="bottom-wrap__link"></a>
+        <a href="https://t.me/putyourblockontop" target="_blank" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="59" height="52" viewBox="0 0 59 52" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">

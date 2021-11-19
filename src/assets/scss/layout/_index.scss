@@ -93,8 +93,8 @@ img {
       height: 250px;
     }
     @include max-screen(xl) {
-      width: 210px;
-      height: 210px;
+      width: 180px;
+      height: 160px;
     }
     @include max-screen(sm) {
       width: 115px;
@@ -129,12 +129,12 @@ img {
     z-index: 9;
 
     @include max-screen(xxl) {
-      margin: 15px 45px 0;
+      margin: 15px 30px 0;
       width: 215px;
     }
     @include max-screen(xl) {
-      margin: -5px 25px 0;
-      width: 190px;
+      margin: -25px 25px 0;
+      width: 165px;
     }
     @include max-screen(sm) {
       width: 120px;
@@ -147,7 +147,7 @@ img {
 
   }
 
-  .page-btn {
+  .page-btn--header, .account-info {
   //  margin-left: auto;
  //   margin-right: 50px;
     justify-self: flex-end;
@@ -169,6 +169,13 @@ img {
     }
   }
 
+  .account-info {
+    @include max-screen(xl) {
+      width: fit-content;
+    }
+  }
+
+
   .burger-btn {
     position: absolute;
     right: 25px;
@@ -181,9 +188,110 @@ img {
   }
 }
 
+.account-info {
+    &__coin {
+      margin-right: 8px;
+    }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 150%;
+    color: #000000;
+    font-family: $base-font;
+    align-items: flex-start;
+    white-space: nowrap;
+  }
+
+  &__address {
+    font-family: $text-font;
+    font-size: 12px;
+    line-height: 15px;
+    color: #9D9D9D;
+  }
+
+  &__title {
+    font-size: 12px;
+    line-height: 150%;
+    margin-bottom: 4px;
+  }
+
+  &__input {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+
+    input {
+      background: #F3F3F3;
+      border-radius: 10px;
+      width: 100%;
+      height: 40px;
+      border: none;
+      padding: 0 30px 0 17px;
+
+
+      font-family: $text-font;
+      font-size: 14px;
+      line-height: 18px;
+      color: #9D9D9D;
+
+      @include max-screen(lg) {
+        font-size: 18px;
+        padding: 0 45px 0 17px;
+      }
+
+      &::placeholder {
+        font-family: $text-font;
+        font-size: 14px;
+        line-height: 18px;
+        color: #9D9D9D;
+
+        @include max-screen(lg) {
+          font-size: 18px;
+        }
+      }
+
+    }
+  }
+
+  &__text {
+    font-size: 18px;
+    line-height: 150%;
+    background: linear-gradient(356.52deg, #59A237 4.14%, #79C898 98.66%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+
+    @include max-screen(xl) {
+      font-size: 16px;
+    }
+    @include max-screen(lg) {
+      font-size: 26px;
+    }
+    @include max-screen(xs) {
+      font-size: 22px;
+    }
+  }
+
+  .view-on {
+    border-top: 1px solid #F3F3F3;
+    padding-top: 15px;
+  }
+}
+
+
+
 .header-wrap {
   @include align-justify-center;
   width: 100%;
+
+  @include max-screen(xl) {
+    margin-left: -40px;
+  }
+  @include max-screen(lg) {
+    margin-left: 0;
+  }
 }
 
 .header-nav {
@@ -265,13 +373,11 @@ img {
     display: flex;
   }
   @include max-screen(md) {
-   height: 600px;
     padding-top: 120px;
   }
   @include max-screen(sm) {
     top: 0;
     min-height: 450px;
-    height: 90vh;
     padding-top: 70px;
   }
   @include max-screen(xs) {
@@ -286,10 +392,26 @@ img {
     * {
       display: block;
       height: 70px;
-      font-size: 30px;
+      font-size: 29px;
       line-height: 150%;
       color: #503614;
       @include align-center;
+    }
+  }
+
+  &__account {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.06);
+    border-radius: 22px 22px 0 0;
+    width: 100%;
+    padding: 47px 50px 70px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    animation: fadeInUp 1s ease-in ;
+
+    @include max-screen(xs) {
+      padding: 47px 30px 70px;
     }
   }
 
@@ -304,6 +426,36 @@ img {
     @include max-screen(xs) {
       font-size: 26px;
     }
+  }
+
+  .select__btn {
+    width: 100%;
+    height: 80px;
+  }
+
+  .account-info__coin {
+    width: 40px;
+    height: 40px;
+  }
+
+  .account-info__info {
+    font-size: 18px;
+  }
+
+  .account-info__address, .account-info__title {
+    font-size: 14px;
+  }
+
+  .account-info__input input {
+    height: 60px;
+  }
+
+
+
+  .page-btn--border {
+    font-size: 18px;
+    height: 60px;
+    margin-top: 10px;
   }
 }
 
@@ -1235,7 +1387,7 @@ img {
         cursor: pointer;
 
         &.owner {
-          img {
+          .tower__col-cover {
             border: 6px solid rgba(228, 190, 52, 0.9);
 
             @include max-screen(xs) {
@@ -1244,7 +1396,7 @@ img {
           }
         }
         &.ownerSm {
-          img {
+          .tower__col-cover {
             border: 3px solid rgba(228, 190, 52, 0.9);
 
             @include max-screen(xs) {
@@ -1356,19 +1508,19 @@ img {
 
 
   &__img {
-    width: 200px;
-    height: 200px;
+    max-width: 200px;
+    height: auto;
     border-radius: 30px !important;
     overflow: hidden;
     margin-bottom: 15px;
 
     @include max-screen(xs) {
       width: 100%;
-      height: 100px;
+      height: auto;
     }
 
     img {
-      object-fit: cover !important;
+      object-fit: unset;
     }
   }
 

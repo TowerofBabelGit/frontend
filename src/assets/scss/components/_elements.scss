@@ -19,6 +19,18 @@
   &:hover {
     opacity: 0.8;
   }
+
+  &--border {
+    background: none;
+    border: 1px solid rgba(208, 79, 86, 0.53);
+    font-family: $base-font;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: center;
+    color: #AB3034;
+    border-radius: 10px;
+
+  }
 }
 
 .burger-btn {
@@ -37,3 +49,95 @@
     background: url("assets/img/svg/close.svg") no-repeat;
   }
 }
+
+.select {
+  z-index: 15;
+  &__btn {
+    background: url("assets/img/account-btn.png") no-repeat;
+    border: none;
+    width: fit-content;
+    height: 52px;
+    @include align-center;
+    padding-left: 10px;
+    padding-right: 40px;
+
+    @include max-screen(xl) {
+      background-size: 100% 100%;
+      padding-right: 25px;
+    }
+  }
+
+  &__drop {
+    position: absolute;
+  }
+
+  &__icon {
+    background: url("assets/img/svg/icon-drop-down.svg") no-repeat;
+    position: absolute;
+    right: 23px;
+    width: 9px;
+    height: 7px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform .3s ease-in;
+
+    @include max-screen(xl) {
+     right: 10px;
+    }
+
+    &.opened {
+      transform: translateY(-50%) rotate(180deg);
+    }
+  }
+
+  &__drop {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.06);
+    border-radius: 22px;
+    padding: 20px;
+    margin-top: 15px;
+    animation: growDown 300ms ease-in-out forwards;
+
+    .page-btn {
+      position: static;
+      transform: translate(0);
+    }
+  }
+}
+
+.copy-btn {
+  position: absolute;
+  border: none;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0;
+  height: 19px;
+
+  @include max-screen(lg) {
+    height: 30px;
+  }
+
+  svg {
+    @include max-screen(lg) {
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.view-on {
+  font-size: 12px;
+  line-height: 150%;
+  border: none;
+  @include align-center;
+  width: 100%;
+  justify-content: flex-start;
+  font-family: $base-font;
+  padding-bottom: 10px;
+
+  svg {
+    margin-left: 7px;
+  }
+}
+
