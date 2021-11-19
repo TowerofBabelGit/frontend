@@ -58,16 +58,16 @@
     <nav class="mobile-nav" v-show="isOpenMenu">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
-          <a @click="isAboutModalVisible = true">About tower</a>
+          <a @click="isAboutModalVisible = true; isOpenMenu = false">About tower</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#">Smart contract</a>
+          <a href="#" @click="isOpenMenu = false">Smart contract</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#">Highlight blocks</a>
+          <a href="#" @click="isOpenMenu = false">Highlight blocks</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="https://t.me/putyourblockontop" target="_blank">Chat</a>
+          <a href="https://t.me/putyourblockontop" target="_blank" @click="isOpenMenu = false">Chat</a>
         </li>
       </ul>
 
@@ -274,7 +274,10 @@ export default {
     document.body.addEventListener('click',(e)=>{
       if (!e.target.closest('.select__btn') && !e.target.closest('.select__drop')){
         this.isOpenSelect = false;
-      } 
+      }
+      if (!e.target.closest('.burger-btn') && !e.target.closest('.mobile-nav')){
+        this.isOpenMenu = false;
+      }
     })
   }
 }
