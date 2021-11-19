@@ -8,45 +8,60 @@
         <div class="popup__content">
 
           <div class="popup__title">
-            Buy tower
+            <span v-if="isCatapult">Buy tower</span>
+            <span v-if="isBalloon">Buy balloon</span>
+            <span v-if="isUpdate">Update</span>
             block
           </div>
 
-          <form class="popup-form">
-          <div class="page-input" :class="{error: isTitleError}">
-            <input type="text"
-                   v-model="description"
-                   class="input"
-                   placeholder="Input block description">
+          <form class="popup-form" @submit.prevent="setBuyMethod">
+            <div class="page-input"
+                 v-if="isBalloon"
+                 :class="{error: blocksQuantityError}">
+              <input type="text"
+                     v-model.number="blocksQuantity"
+                     class="input"
+                     placeholder="Input blocks quantity">
 
-            <div class="page-input__icon">
-              <img src="@/assets/img/svg/icon-error.svg" alt="">
+              <div class="page-input__icon">
+                <img src="@/assets/img/svg/icon-error.svg" alt="">
+              </div>
             </div>
-          </div>
-          <div class="page-input" :class="{error: isUrlError}">
-            <input type="text"
-                   class="input"
-                   v-model="imageUrl"
-                   placeholder="Input image url">
-            <div class="page-input__icon">
-              <img src="@/assets/img/svg/icon-error.svg" alt="">
-            </div>
-          </div>
-          <div class="page-input" :class="{error: isInvitorError}">
-            <input type="text"
-                   class="input"
-                   v-model="refLink"
-                   placeholder="Invitor address (optional)">
-            <div class="page-input__icon">
-              <img src="@/assets/img/svg/icon-error.svg" alt="">
-            </div>
-          </div>
+            <div class="page-input" :class="{error: isTitleError}">
+              <input type="text"
+                     v-model="description"
+                     class="input"
+                     placeholder="Input block description">
 
-          <button class="page-btn"
-                  type="submit"
-                  @click="setBuyMethod">Buy the block</button>
+              <div class="page-input__icon">
+                <img src="@/assets/img/svg/icon-error.svg" alt="">
+              </div>
+            </div>
+            <div class="page-input" :class="{error: isUrlError}">
+              <input type="text"
+                     class="input"
+                     v-model="imageUrl"
+                     placeholder="Input image url">
+              <div class="page-input__icon">
+                <img src="@/assets/img/svg/icon-error.svg" alt="">
+              </div>
+            </div>
+            <div class="page-input"
+                 :class="{error: isInvitorError}"
+                 v-if="!isBalloon && !isUpdate">
+              <input type="text"
+                     class="input"
+                     v-model="refLink"
+                     placeholder="Invitor address (optional)">
+              <div class="page-input__icon">
+                <img src="@/assets/img/svg/icon-error.svg" alt="">
+              </div>
+            </div>
+
+            <button class="page-btn"
+                    type="submit">Buy the block
+            </button>
           </form>
-
 
 
         </div>
@@ -58,11 +73,23 @@
 <script>
 
 import contract from "../../api/contract";
+import {mapGetters} from "vuex";
 
 export default {
   name: "BuyModal",
   props: {
-
+    mode: {
+      required: true,
+      type: String
+    },
+    blockNumber: {
+      required: false,
+      type: String
+    },
+    blockOwner: {
+      required: false,
+      type: String
+    }
   },
   data: () => ({
     isTitleError: false,
@@ -72,14 +99,34 @@ export default {
     imageUrl: null,
     refLink: null,
     blocksQuantity: null,
-    defrostTimes: []
+    blocksQuantityError: false
   }),
+  computed: {
+    ...mapGetters({
+      getAccount: 'wallet/getAccount'
+    }),
+    isBalloon() {
+      return this.mode === 'balloon'
+    },
+    isUpdate() {
+      return this.mode === 'update'
+    },
+    isCatapult() {
+      return this.mode === 'catapult'
+    }
+  },
   methods: {
     closeWindow() {
       this.$emit("close");
     },
     setBuyMethod() {
-
+      if (this.isBalloon) {
+        this.addBlockToBalloon();
+      } else if (this.isUpdate) {
+        this.changeBlockInfo();
+      } else {
+        this.addBlock();
+      }
     },
     async addBlock() {
       this.$emit('loading', true);
@@ -96,7 +143,7 @@ export default {
         this.$emit('loading', false);
         this.$emit('isThrowing', true);
         setTimeout(() => {
-          this.$emit('success', false);
+          this.$emit('success');
         }, 3000);
         setTimeout(() => {
           this.$emit('isThrowing', false);
@@ -109,35 +156,32 @@ export default {
     },
     async addBlockToBalloon() {
       this.$emit('loading', true);
-      if(this.blocksQuantity < 1 || this.blocksQuantity > 4) {
+      if (this.blocksQuantity < 1 || this.blocksQuantity > 4) {
         alert('Wrong number, input from 1 to 4');
-        this.loading = false;
+        this.$emit('loading', false);
         return;
       }
       let date = new Date(null);
-      if(this.blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
-        date.setSeconds(this.defrostTimes[0]);
+      if (this.blocksQuantity === 1 && this.$parent.defrostTimes[0] !== 0) {
+        date.setSeconds(this.$parent.defrostTimes[0]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
-      }
-      else if(this.blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
-        date.setSeconds(this.defrostTimes[1]);
+      } else if (this.blocksQuantity === 2 && this.$parent.defrostTimes[1] !== 0) {
+        date.setSeconds(this.$root.defrostTimes[1]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
-      }
-      else if(this.blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
-        date.setSeconds(this.defrostTimes[2]);
+      } else if (this.blocksQuantity === 3 && this.$parent.defrostTimes[2] !== 0) {
+        date.setSeconds(this.$parent.defrostTimes[2]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
-      }
-      else if(this.blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
-        date.setSeconds(this.defrostTimes[3]);
+      } else if (this.blocksQuantity === 4 && this.$parent.defrostTimes[3] !== 0) {
+        date.setSeconds(this.$parent.defrostTimes[3]);
         let result = date.toISOString().substr(11, 8);
         alert(`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
@@ -146,10 +190,28 @@ export default {
       let blockPrice = await contract.balloonBlockPrice();
       try {
         await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity);
+        this.closeWindow();
       } catch (e) {
         console.log(e);
       } finally {
         this.$emit('loading', false);
+      }
+    },
+    async changeBlockInfo() {
+      this.$emit('loading', true);
+      if (this.getAccount !== this.blockOwner) {
+        alert('You are not the owner of this block');
+        this.$emit('loading', false);
+        return;
+      }
+      try {
+        await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber);
+        this.$emit('success');
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.$emit('loading', false);
+        this.closeWindow();
       }
     },
   }

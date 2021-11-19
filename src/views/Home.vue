@@ -665,7 +665,7 @@
 
           <button class="buy-wrap"
                   v-if="!owner || owner === getAccount"
-                  @click="isBuyModalVisible = true">
+                  @click="openBuyModal('catapult')">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -704,7 +704,7 @@
                      :src="item.imageUrl"
                      alt="">
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(item.number, item.owner)"
+                     @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
@@ -790,7 +790,7 @@
               >
                 <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(item.number, item.owner)"
+                     @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
@@ -875,7 +875,7 @@
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(block.number, block.owner)"
+                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -958,7 +958,7 @@
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(block.number, block.owner)"
+                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -1039,7 +1039,7 @@
                    :data-index="index">
                 <img :src="block.imageUrl" alt="">
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(block.number, block.owner)"
+                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -1121,7 +1121,7 @@
                    :data-index="index">
                 <img v-if="block.imageUrl" :src="block.imageUrl" alt="" >
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(block.number, block.owner)"
+                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -1295,7 +1295,7 @@
 
         <button class="buy-wrap"
                 v-if="!owner || owner === getAccount"
-                @click="isBuyModalVisible = true">
+                @click="openBuyModal('balloon')">
         <span class="buy-wrap__text">
          <span>Buy</span>
           this blocks
@@ -1465,7 +1465,15 @@
     <Preloader v-if="loading"/>
 
     <transition name="slide-fade" mode="out-in">
-      <BuyModal v-if="isBuyModalVisible" @close="isBuyModalVisible = false"/>
+      <BuyModal v-if="isBuyModalVisible"
+                :blockNumber="blockNumber"
+                :blockOwner="blockOwner"
+                :mode="mode"
+                @success="loadBlocks(); isBuyModalVisible = false;"
+                @loading="setBuyLoading"
+                @isThrowing="setThrowing"
+                @isMoveDown="setIsMoving"
+                @close="isBuyModalVisible = false"/>
     </transition>
   </div>
 </template>
@@ -1495,11 +1503,14 @@ export default {
   },
   data() {
     return {
+      mode: null,
       loading: false,
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
       blocksQt: 56,
+      blockNumber: null,
+      blockOwner: null,
       lastBlockId: null,
       isAboutModalVisible: false,
       isBuyModalVisible: false,
@@ -1937,35 +1948,21 @@ export default {
     }
   },
   methods: {
-    async changeBlockInfo(blockNumber, owner) {
-      this.loading = true;
-      if(this.getAccount !== owner) {
-        alert('You are not the owner of this block');
-        this.loading = false;
-        return;
-      }
-      let imageUrl = prompt('Input image url');
-      let description = prompt('Input description');
-      try {
-        await contract.changeBlockInfo(imageUrl, description, blockNumber);
-      } catch (e) {
-        console.log(e)
-      } finally {
-        this.loading = false;
-      }
+    setIsMoving(status) {
+      this.isMoveDown = status;
     },
-    /* handleBlockPosition() {
-       const blockDesc =  document.body.querySelector('.tower-block');
-       const blockRect = blockDesc.getBoundingClientRect();
-
-       const blockRightX = blockRect.x + blockRect.width;
-
-       if (blockRightX > window.outerWidth) {
-         blockDesc.style.left = '-50%';
-         blockDesc.classList.add('change');
-       }
-     },*/
-
+    setBuyLoading(status) {
+      this.loading = status;
+    },
+    setThrowing(status) {
+      this.isThrowing = status;
+    },
+    openBuyModal(mode, blockNumber, owner) {
+      this.mode = mode;
+      this.blockNumber = blockNumber;
+      this.blockOwner = owner;
+      this.isBuyModalVisible = true;
+    },
     scrollToTop() {
       window.scroll({top: 0, left: 0, behavior: 'smooth'});
     },
