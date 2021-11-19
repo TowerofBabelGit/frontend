@@ -688,6 +688,9 @@
         </div>
 
         <div class="tower-wrap__img">
+          <div class="tower-top">
+            <img src="@/assets/img/tower-top.png" alt="">
+          </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
           <div class="tower">
             <div class="tower__row tower__row--xl">
@@ -946,6 +949,10 @@
                 </div>
               </div>
             </div>
+          </div>
+          
+          <div class="tower-bottom">
+            <img src="@/assets/img/tower-bottom.png" alt="">
           </div>
         </div>
       </div>
