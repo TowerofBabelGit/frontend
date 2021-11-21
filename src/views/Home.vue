@@ -706,6 +706,7 @@
                    :class="{owner: isOwnerBlock(item.owner)}">
                 <img v-if="item.imageUrl"
                      v-lazy="item.imageUrl"
+                     class="tower__col-image"
                      alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal('update', item.number, item.owner)"
@@ -799,7 +800,7 @@
                    :key="index + 1"
 
               >
-                <img v-if="item.imageUrl" v-lazy="item.imageUrl" alt="">
+                <img v-if="item.imageUrl" v-lazy="item.imageUrl" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
@@ -891,7 +892,7 @@
                    :key="index"
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-lazy="block.imageUrl" alt="">
+                <img v-lazy="block.imageUrl" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -981,7 +982,7 @@
                    :key="index"
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-lazy="block.imageUrl" alt="">
+                <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1070,7 +1071,7 @@
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :key="index"
                    :data-index="index">
-                <img v-lazy="block.imageUrl" alt="">
+                <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1160,7 +1161,7 @@
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" >
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1250,7 +1251,7 @@
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="">
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
                      @click="changeBlockInfo(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -2264,6 +2265,10 @@ export default {
 <style scoped>
   .hidden {
     visibility: hidden;
+  }
+  img[lazy=loaded] {
+    transition: opacity 1s;
+    opacity: 1!important;
   }
   .list-enter-active, .list-leave-active, .list-move {
     transition: all 1.2s;
