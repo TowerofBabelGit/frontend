@@ -136,7 +136,7 @@ const addBlock = (WEI, imageUrl, description, webSite) => {
 
 const addBlockWithReferralSystem = (WEI, imageUrl, description, invitingAddress, webSite) => {
     return new Promise((resolve, reject) => {
-        methodsBsc.addBlockWithReferralSystem(imageUrl, description, invitingAddress, webSite)
+        methodsBsc.addBlockWithReferralSystem(imageUrl, description, webSite, invitingAddress)
             .send({
                 from: account,
                 value: WEI
