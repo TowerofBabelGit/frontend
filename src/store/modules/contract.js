@@ -3,7 +3,7 @@ import abi from '@/utils/abi';
 export default {
     namespaced: true,
     state: {
-        contractAddress: '0x66A90Bf7FbD28477E686123Ed8d2839Ce3D875d7',
+        contractAddress: '0x33ab027319A11dab41838dCB520E14cE9f536870',
         abi: abi,
         multiplier: 1e18,
     },

@@ -107,9 +107,9 @@ const getDefrostTime = blockNumber => {
     })
 }
 
-const addBlock = (WEI, imageUrl, description) => {
+const addBlock = (WEI, imageUrl, description, webSite) => {
     return new Promise((resolve, reject) => {
-        methodsBsc.addBlock(imageUrl, description)
+        methodsBsc.addBlock(imageUrl, description, webSite)
             .send({
                 from: account,
                 value: WEI
@@ -134,9 +134,9 @@ const addBlock = (WEI, imageUrl, description) => {
     })
 }
 
-const addBlockWithReferralSystem = (WEI, imageUrl, description, invitingAddress) => {
+const addBlockWithReferralSystem = (WEI, imageUrl, description, invitingAddress, webSite) => {
     return new Promise((resolve, reject) => {
-        methodsBsc.addBlockWithReferralSystem(imageUrl, description, invitingAddress)
+        methodsBsc.addBlockWithReferralSystem(imageUrl, description, invitingAddress, webSite)
             .send({
                 from: account,
                 value: WEI

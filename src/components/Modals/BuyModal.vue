@@ -21,13 +21,13 @@
               <input type="text"
                      v-model.number="blocksQuantity"
                      class="input"
-                     placeholder="Input blocks quantity">
+                     placeholder="Input block number">
 
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
             </div>
-            <div class="page-input" :class="{error: isTitleError}">
+            <div class="page-input" :class="{error: descriptionError}">
               <input type="text"
                      v-model="description"
                      class="input"
@@ -37,7 +37,7 @@
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
             </div>
-            <div class="page-input" :class="{error: isUrlError}">
+            <div class="page-input" :class="{error: imageUrlError}">
               <input type="text"
                      class="input"
                      v-model="imageUrl"
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="page-input"
-                 :class="{error: isInvitorError}"
+                 :class="{error: refLinkError}"
                  v-if="!isBalloon && !isUpdate">
               <input type="text"
                      class="input"
@@ -57,9 +57,21 @@
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
             </div>
+            <div class="page-input"
+                 :class="{error: webSiteError}"
+                 v-if="isCatapult">
+              <input type="text"
+                     class="input"
+                     v-model="webSite"
+                     placeholder="Web site address (optional)">
+              <div class="page-input__icon">
+                <img src="@/assets/img/svg/icon-error.svg" alt="">
+              </div>
+            </div>
 
-            <button class="page-btn"
-                    type="submit">Buy the block
+            <button class="page-btn" type="submit">
+              <span v-if="!isUpdate">Buy the block</span>
+              <span v-else>Update the block</span>
             </button>
           </form>
 
@@ -96,18 +108,21 @@ export default {
     }
   },
   data: () => ({
-    isTitleError: false,
-    isUrlError: false,
-    isInvitorError: false,
+    descriptionError: false,
+    imageUrlError: false,
+    refLinkError: false,
+    webSiteError: false,
+    blocksQuantityError: false,
     description: null,
     imageUrl: null,
     refLink: null,
     blocksQuantity: null,
-    blocksQuantityError: false
+    webSite: ''
   }),
   computed: {
     ...mapGetters({
-      getAccount: 'wallet/getAccount'
+      getAccount: 'wallet/getAccount',
+      isWrongChainId: 'wallet/isWrongChainId'
     }),
     isBalloon() {
       return this.mode === 'balloon'
@@ -120,6 +135,35 @@ export default {
     }
   },
   methods: {
+    validate() {
+      this.webSiteError = false;
+      this.descriptionError = false;
+      this.imageUrlError = false;
+      this.blocksQuantityError = false;
+      if(!this.getAccount) {
+        this.$emit('error', 'Connect your web3 wallet');
+        return false;
+      }
+      if(this.isWrongChainId) {
+        this.$emit('error', 'Connect to bsc test network');
+        return false;
+      }
+      if(!this.description) {
+        this.descriptionError = true;
+        return false;
+      }
+      if(!this.imageUrl) {
+        this.imageUrlError = true;
+        return false;
+      }
+      if(this.isBalloon) {
+        if(this.blocksQuantity < 1 || this.blocksQuantity > 4) {
+          this.blocksQuantityError = true;
+          return false;
+        }
+      }
+      return true;
+    },
     closeWindow() {
       this.$emit("close");
     },
@@ -133,6 +177,9 @@ export default {
       }
     },
     async addBlock() {
+      if(!this.validate()) {
+        return;
+      }
       this.$emit('loading', true);
       try {
         let lastBlockPrice = await contract.lastBlockPrice();
@@ -140,9 +187,9 @@ export default {
         // eslint-disable-next-line no-undef
         let buyBlockPrice = (BigInt(lastBlockPrice) + BigInt(priceStep)).toString();
         if (this.refLink) {
-          await contract.addBlockWithReferralSystem(buyBlockPrice, this.imageUrl, this.description, this.refLink);
+          await contract.addBlockWithReferralSystem(buyBlockPrice, this.imageUrl, this.description, this.refLink, this.webSite);
         } else {
-          await contract.addBlock(buyBlockPrice, this.imageUrl, this.description);
+          await contract.addBlock(buyBlockPrice, this.imageUrl, this.description, this.webSite);
         }
         this.$emit('loading', false);
         this.$emit('isThrowing', true);
@@ -152,6 +199,8 @@ export default {
         setTimeout(() => {
           this.$emit('isThrowing', false);
           this.$emit('isMoveDown', true);
+          this.$emit('isMoveDown', false);
+          this.closeWindow();
         }, 5000)
       } catch (e) {
         console.log(e);

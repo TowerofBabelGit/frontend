@@ -695,13 +695,17 @@
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
           <div class="tower">
-            <div class="tower__row tower__row--xl">
+            <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+
+            >
               <div class="tower__col tower__col--big"
                    v-for="(item, index) in towerBlocksExtraLarge"
                    :key="index"
                    :class="{owner: isOwnerBlock(item.owner)}">
                 <img v-if="item.imageUrl"
-                     :src="item.imageUrl"
+                     v-lazy="item.imageUrl"
                      alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal('update', item.number, item.owner)"
@@ -715,7 +719,7 @@
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="item.imageUrl" alt="">
+                    <img v-lazy="item.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -726,28 +730,28 @@
                     {{ item.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ item.owner | cutHash }}
-                  </div>
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ item.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-                  </button>
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -757,7 +761,9 @@
                     {{ item.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                     :href="`https://bscscan.com/address/${getAccount}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -770,7 +776,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="item.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -778,17 +784,22 @@
                     <span></span>
                   </div>
                 </div>
-
               </div>
-            </div>
-            <div class="tower__row tower__row--xl">
+            </transition-group>
+
+            <transition-group tag="div"
+                              name="list"
+                              appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+                              class="tower__row tower__row--xl">
               <div class="tower__col tower__col--big"
                    v-for="(item, index) in towerBlocksMiddleLarge"
                    :class="{owner: isOwnerBlock(item.owner)}"
-                   :key="index"
+                   :key="index + 1"
 
               >
-                <img v-if="item.imageUrl" :src="item.imageUrl" alt="">
+                <img v-if="item.imageUrl" v-lazy="item.imageUrl" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
@@ -801,7 +812,7 @@
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="item.imageUrl" alt="">
+                    <img v-lazy="item.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -812,28 +823,28 @@
                     {{ item.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ item.owner | cutHash }}
-                  </div>
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ item.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-                  </button>
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -843,7 +854,9 @@
                     {{ item.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                     :href="`https://bscscan.com/address/${item.owner}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -856,7 +869,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="item.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -865,15 +878,20 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tower__row tower__row--lg">
+            </transition-group>
+
+            <transition-group class="tower__row tower__row--lg"
+                              name="list" appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+                              tag="div">
 
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksLg"
                    :key="index"
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img :src="block.imageUrl" alt="">
+                <img v-lazy="block.imageUrl" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -884,7 +902,7 @@
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="block.imageUrl" alt="">
+                    <img v-lazy="block.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -895,28 +913,28 @@
                     {{ block.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+<!--                  <div class="tower-block__title">-->
+<!--                    Tx hash:-->
+<!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ block.owner | cutHash }}
-                  </div>
+<!--                  <div class="tower-block__text">-->
+<!--                    {{ block.owner | cutHash }}-->
+<!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+<!--                  <button class="view-on">-->
+<!--                    View on BscScan-->
+<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <g clip-path="url(#clip0_405_4009)">-->
+<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+<!--                      </g>-->
+<!--                      <defs>-->
+<!--                        <clipPath id="clip0_405_4009">-->
+<!--                          <rect width="14" height="14" fill="white"/>-->
+<!--                        </clipPath>-->
+<!--                      </defs>-->
+<!--                    </svg>-->
 
-                  </button>
+<!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -926,7 +944,9 @@
                     {{ block.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                     :href="`https://bscscan.com/address/${block.owner}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -939,7 +959,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -949,14 +969,19 @@
                 </div>
               </div>
 
-            </div>
-            <div class="tower__row tower__row--md">
+            </transition-group>
+
+            <transition-group class="tower__row tower__row--md"
+                              name="list" appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+                              tag="div">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksMd"
                    :key="index"
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img :src="block.imageUrl" alt="">
+                <img v-lazy="block.imageUrl" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -966,7 +991,7 @@
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="block.imageUrl" alt="">
+                    <img v-lazy="block.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -977,28 +1002,28 @@
                     {{ block.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+<!--                  <div class="tower-block__title">-->
+<!--                    Tx hash:-->
+<!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ block.owner | cutHash }}
-                  </div>
+<!--                  <div class="tower-block__text">-->
+<!--                    {{ block.owner | cutHash }}-->
+<!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+<!--                  <button class="view-on">-->
+<!--                    View on BscScan-->
+<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <g clip-path="url(#clip0_405_4009)">-->
+<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+<!--                      </g>-->
+<!--                      <defs>-->
+<!--                        <clipPath id="clip0_405_4009">-->
+<!--                          <rect width="14" height="14" fill="white"/>-->
+<!--                        </clipPath>-->
+<!--                      </defs>-->
+<!--                    </svg>-->
 
-                  </button>
+<!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1008,7 +1033,9 @@
                     {{ block.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                     :href="`https://bscscan.com/address/${block.owner}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -1021,7 +1048,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -1030,14 +1057,20 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tower__row tower__row--sm" v-if="!owner">
+            </transition-group>
+
+            <transition-group class="tower__row tower__row--sm"
+                              tag="div"
+                              name="list" appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+                              v-if="!owner">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :key="index"
                    :data-index="index">
-                <img :src="block.imageUrl" alt="">
+                <img v-lazy="block.imageUrl" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1048,7 +1081,7 @@
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="block.imageUrl" alt="">
+                    <img v-lazy="block.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -1059,28 +1092,28 @@
                     {{ block.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+<!--                  <div class="tower-block__title">-->
+<!--                    Tx hash:-->
+<!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ block.owner | cutHash }}
-                  </div>
+<!--                  <div class="tower-block__text">-->
+<!--                    {{ block.owner | cutHash }}-->
+<!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+<!--                  <button class="view-on">-->
+<!--                    View on BscScan-->
+<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <g clip-path="url(#clip0_405_4009)">-->
+<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+<!--                      </g>-->
+<!--                      <defs>-->
+<!--                        <clipPath id="clip0_405_4009">-->
+<!--                          <rect width="14" height="14" fill="white"/>-->
+<!--                        </clipPath>-->
+<!--                      </defs>-->
+<!--                    </svg>-->
 
-                  </button>
+<!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1090,7 +1123,9 @@
                     {{ block.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                     :href="`https://bscscan.com/address/${block.owner}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -1103,7 +1138,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -1112,14 +1147,20 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tower__row tower__row--xs" v-if="!owner">
+            </transition-group>
+
+            <transition-group tag="div"
+                              class="tower__row tower__row--xs"
+                              name="list" appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+                              v-if="!owner">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-if="block.imageUrl" :src="block.imageUrl" alt="" >
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" >
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1130,7 +1171,7 @@
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="block.imageUrl" alt="">
+                    <img v-lazy="block.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -1141,28 +1182,28 @@
                     {{ block.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+<!--                  <div class="tower-block__title">-->
+<!--                    Tx hash:-->
+<!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ block.owner | cutHash }}
-                  </div>
+<!--                  <div class="tower-block__text">-->
+<!--                    {{ block.owner | cutHash }}-->
+<!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+<!--                  <button class="view-on">-->
+<!--                    View on BscScan-->
+<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <g clip-path="url(#clip0_405_4009)">-->
+<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+<!--                      </g>-->
+<!--                      <defs>-->
+<!--                        <clipPath id="clip0_405_4009">-->
+<!--                          <rect width="14" height="14" fill="white"/>-->
+<!--                        </clipPath>-->
+<!--                      </defs>-->
+<!--                    </svg>-->
 
-                  </button>
+<!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1172,7 +1213,9 @@
                     {{ block.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                          :href="`https://bscscan.com/address/${block.owner}`"
+                          target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -1185,7 +1228,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -1194,14 +1237,20 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="tower__row tower__row--xs" v-if="foundation.length && !owner">
+            </transition-group>
+
+            <transition-group class="tower__row tower__row--xs"
+                              tag="div"
+                              name="list" appear
+                              @before-appear="transitionBeforeEnter"
+                              @appear="transitionEnter"
+                              v-if="foundation.length && !owner">
               <div class="tower__col"
                    v-for="(block, index) in foundation"
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-if="block.imageUrl" :src="block.imageUrl" alt="">
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="">
                 <div class="tower__block-cover"
                      @click="changeBlockInfo(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1212,7 +1261,7 @@
                 <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
-                    <img :src="block.imageUrl" alt="">
+                    <img v-lazy="block.imageUrl" alt="">
                   </div>
 
                   <div class="tower-block__title">
@@ -1223,28 +1272,28 @@
                     {{ block.description }}
                   </div>
 
-                  <div class="tower-block__title">
-                    Tx hash:
-                  </div>
+<!--                  <div class="tower-block__title">-->
+<!--                    Tx hash:-->
+<!--                  </div>-->
 
-                  <div class="tower-block__text">
-                    {{ block.owner | cutHash }}
-                  </div>
+<!--                  <div class="tower-block__text">-->
+<!--                    {{ block.owner | cutHash }}-->
+<!--                  </div>-->
 
-                  <button class="view-on">
-                    View on BscScan
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
-                      </g>
-                      <defs>
-                        <clipPath id="clip0_405_4009">
-                          <rect width="14" height="14" fill="white"/>
-                        </clipPath>
-                      </defs>
-                    </svg>
+<!--                  <button class="view-on">-->
+<!--                    View on BscScan-->
+<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--                      <g clip-path="url(#clip0_405_4009)">-->
+<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+<!--                      </g>-->
+<!--                      <defs>-->
+<!--                        <clipPath id="clip0_405_4009">-->
+<!--                          <rect width="14" height="14" fill="white"/>-->
+<!--                        </clipPath>-->
+<!--                      </defs>-->
+<!--                    </svg>-->
 
-                  </button>
+<!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1254,7 +1303,9 @@
                     {{ block.owner | cutHash }}
                   </div>
 
-                  <button class="view-on">
+                  <a class="view-on"
+                     :href="`https://bscscan.com/address/${block.owner}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
@@ -1267,7 +1318,7 @@
                       </defs>
                     </svg>
 
-                  </button>
+                  </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
 
@@ -1276,7 +1327,8 @@
                   </div>
                 </div>
               </div>
-            </div>
+              <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadDisabled"/>
+            </transition-group>
           </div>
           
           <div class="tower-bottom">
@@ -1306,7 +1358,9 @@
     </div>
     <div class="home-page__bottom">
 
-      <div class="scroll-down" >
+      <button class="scroll-down"
+              v-if="showScrollBottomButton"
+              @click="scrollToEnd">
         <div class="scroll-down__top">
         <div class="scroll-down__icon">
           <span class="scroll_arrows one"></span>
@@ -1317,7 +1371,7 @@
         <div class="scroll-down__text">
           Scroll down
         </div>
-      </div>
+      </button>
 
       <div class="bottom-wrap">
         <a @click="isAboutModalVisible = true" class="bottom-wrap__link"></a>
@@ -1371,8 +1425,8 @@
           contract
         </div>
       </div>
-      <div class="bottom-wrap" v-show="isHighlight">
-        <a href="#" class="bottom-wrap__link"></a>
+      <div class="bottom-wrap" v-show="!isHighlight">
+        <button class="bottom-wrap__link" @click="setHighlight"></button>
         <!--        <img src="@/assets/img/svg/icon-higlight.svg" alt="">-->
         <svg width="44" height="57" viewBox="0 0 44 57" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path opacity="0.8"
@@ -1393,8 +1447,8 @@
           my blocks
         </div>
       </div>
-      <div class="bottom-wrap" v-show="!isHighlight">
-        <a href="#" class="bottom-wrap__link"></a>
+      <div class="bottom-wrap" v-show="isHighlight">
+        <button @click="setHighlight" class="bottom-wrap__link"></button>
         <!--        <img src="@/assets/img/svg/icon-higlight.svg" alt="">-->
         <svg width="34" height="53" viewBox="0 0 34 53" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
@@ -1479,16 +1533,18 @@
     <Preloader v-if="loading"/>
 
     <transition name="slide-fade" mode="out-in">
-      <BuyModal v-if="isBuyModalVisible"
-                :blockNumber="blockNumber"
-                :blockOwner="blockOwner"
-                :mode="mode"
-                :defrostTimes="defrostTimes"
-                @success="loadBlocks(); isBuyModalVisible = false; defrostTimes = []; getDefrostTime()"
-                @loading="setBuyLoading"
-                @isThrowing="setThrowing"
-                @isMoveDown="setIsMoving"
-                @close="isBuyModalVisible = false"/>
+      <div :class="{hidden: isThrowing || isMoveDown}">
+        <BuyModal v-if="isBuyModalVisible"
+                  :blockNumber="blockNumber"
+                  :blockOwner="blockOwner"
+                  :mode="mode"
+                  :defrostTimes="defrostTimes"
+                  @success="loadBlocks(); defrostTimes = []; getDefrostTime()"
+                  @loading="setBuyLoading"
+                  @isThrowing="setThrowing"
+                  @isMoveDown="setIsMoving"
+                  @close="isBuyModalVisible = false"/>
+      </div>
     </transition>
   </div>
 </template>
@@ -1518,18 +1574,22 @@ export default {
   },
   data() {
     return {
+      loadDisabled: false,
+      showScrollBottomButton: true,
       mode: null,
       loading: false,
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
       blocksQt: 56,
+      size: 26,
+      page: 0,
       blockNumber: null,
       blockOwner: null,
       lastBlockId: null,
       isAboutModalVisible: false,
       isBuyModalVisible: false,
-      isHighlight: false,
+      isHighlight: !!localStorage.getItem('isHighlight'),
       towerBlocksExtraLarge: [
         {
           imageUrl: null,
@@ -1954,7 +2014,6 @@ export default {
   },
   watch: {
     isWrongChainId(val) {
-      console.log(val)
       if(val) {
         alert('Wrong chain id')
       } else {
@@ -1963,6 +2022,51 @@ export default {
     }
   },
   methods: {
+    setHighlight() {
+      if(this.isHighlight) {
+        localStorage.removeItem('isHighlight');
+      } else {
+        localStorage.setItem('isHighlight', 'true')
+      }
+      this.isHighlight = !this.isHighlight;
+    },
+    handlePageScroll() {
+      window.addEventListener('scroll', () => {
+        this.showScrollBottomButton = (window.innerHeight + window.scrollY) < document.body.offsetHeight;
+      })
+    },
+    scrollToEnd() {
+      window.scrollTo({
+        top: document.body.scrollHeight || document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    },
+    validate(config) {
+      if(!this.getAccount) {
+        alert('Connect your web3 wallet');
+        return false;
+      }
+      if(this.isWrongChainId) {
+        alert('Connect to bsc test network');
+        return false;
+      }
+      if(config.mode && config.mode === 'update' && config.owner !== this.getAccount) {
+        alert('You are not the owner of this block');
+        return false;
+      }
+      return true;
+    },
+    transitionBeforeEnter(el) {
+      el.style.opacity = 0
+    },
+    // eslint-disable-next-line no-unused-vars
+    transitionEnter(el, done) {
+      const delay = el.dataset.index * 200
+      setTimeout(() => {
+        el.style.transition = '1s'
+        el.style.opacity = 1;
+      }, delay)
+    },
     setIsMoving(status) {
       this.isMoveDown = status;
     },
@@ -1973,6 +2077,9 @@ export default {
       this.isThrowing = status;
     },
     openBuyModal(mode, blockNumber, owner) {
+      if(!this.validate({mode, owner})) {
+        return
+      }
       this.mode = mode;
       this.blockNumber = blockNumber;
       this.blockOwner = owner;
@@ -1982,7 +2089,7 @@ export default {
       window.scroll({top: 0, left: 0, behavior: 'smooth'});
     },
     isOwnerBlock(address) {
-      return !!(this.getAccount && this.getAccount === address);
+      return !!(this.getAccount && this.isHighlight && this.getAccount === address);
     },
     async getDefrostTime() {
       try {
@@ -2005,16 +2112,55 @@ export default {
         blocksToPreload = lastBlockId;
       } else {
         blocksToPreload = lastBlockId - this.blocksQt;
+        if(this.page === 0) {
+          blocksToPreload = 56;
+          this.page++;
+        } else {
+          if(blocksToPreload / 10 >= 1) {
+            for(let i = this.lastBlockId - 1; i > this.lastBlockId - 10; i--) {
+              let block = await contract.blockOfNumber(i);
+              let obj = {
+                imageUrl: block.imageUrl,
+                description: block.description,
+                owner: block.owner,
+                number: block.number
+              }
+              this.foundation.push(obj);
+              this.page++;
+              this.lastBlockId--;
+            }
+          } else {
+            for(let i = this.lastBlockId - 1; i > -1; i--) {
+              let block = await contract.blockOfNumber(i);
+              let obj = {
+                imageUrl: block.imageUrl,
+                description: block.description,
+                owner: block.owner,
+                number: block.number
+              }
+              this.foundation.push(obj);
+              this.lastBlockId--;
+            }
+            this.loadDisabled = true;
+            for(let i = 0; i < 26 - this.foundation.length; i++) {
+              this.foundation.push({
+                imageUrl: null,
+                description: null,
+                owner: null,
+                number: null
+              })
+            }
+          }
+          return;
+        }
       }
       let iterationsCount = 0;
-
       let extraLargeCount = 0;
       let middleLargeCount = 0;
       let largeCount = 0;
       let middleCount = 0;
       let smallCount = 0;
       let extraSmallCount = 0;
-      let foundationCount = 0;
       for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
         if(block.owner === '0x0000000000000000000000000000000000000000') {
@@ -2063,38 +2209,20 @@ export default {
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
-        } else {
-          this.foundation[foundationCount].imageUrl = block.imageUrl;
-          this.foundation[foundationCount].description = block.description;
-          this.foundation[foundationCount].owner = block.owner;
-          this.foundation[foundationCount].number = block.number;
-          foundationCount++;
         }
-      }
-      if(this.foundation.length && this.foundation.length % 26 !== 0) {
-        for(let i = 0; i < 26 - this.foundation.length; i++) {
-          this.foundation.push({
-            imageUrl: null,
-            description: null,
-            owner: null,
-            number: null
-          })
-        }
+        this.lastBlockId = lastBlockId;
       }
     },
     init() {
-      this.loading = true;
       setTimeout(() => {
-        Promise.all([
-          this.loadBlocks(),
-          this.getDefrostTime()
-        ])
-          .finally(() => {
-            this.loading = false;
-          })
+        this.loadBlocks()
+        this.getDefrostTime()
       }, 0);
     }
   },
+//   public static void main(String[] args){
+//     System.out.print("Hello Voloda");
+// }
   filters: {
     cutHash(v) {
       if (v) {
@@ -2107,6 +2235,7 @@ export default {
     }
   },
   mounted() {
+    this.handlePageScroll();
     this.init();
 
 
@@ -2132,6 +2261,14 @@ export default {
 </script>
 
 
-<style lang="scss">
-
+<style scoped>
+  .hidden {
+    visibility: hidden;
+  }
+  .list-enter-active, .list-leave-active, .list-move {
+    transition: all 1.2s;
+  }
+  .list-before-enter, .list-leave-to {
+    opacity: 0!important;
+  }
 </style>
