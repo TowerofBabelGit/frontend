@@ -694,7 +694,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower" >
+          <div class="tower">
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -769,7 +769,9 @@
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -863,7 +865,9 @@
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -917,28 +921,28 @@
                     {{ block.description }}
                   </div>
 
-<!--                  <div class="tower-block__title">-->
-<!--                    Tx hash:-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-<!--                  <div class="tower-block__text">-->
-<!--                    {{ block.owner | cutHash }}-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ block.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-<!--                  <button class="view-on">-->
-<!--                    View on BscScan-->
-<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                      <g clip-path="url(#clip0_405_4009)">-->
-<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
-<!--                      </g>-->
-<!--                      <defs>-->
-<!--                        <clipPath id="clip0_405_4009">-->
-<!--                          <rect width="14" height="14" fill="white"/>-->
-<!--                        </clipPath>-->
-<!--                      </defs>-->
-<!--                    </svg>-->
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-<!--                  </button>-->
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -954,7 +958,9 @@
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -1007,28 +1013,28 @@
                     {{ block.description }}
                   </div>
 
-<!--                  <div class="tower-block__title">-->
-<!--                    Tx hash:-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-<!--                  <div class="tower-block__text">-->
-<!--                    {{ block.owner | cutHash }}-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ block.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-<!--                  <button class="view-on">-->
-<!--                    View on BscScan-->
-<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                      <g clip-path="url(#clip0_405_4009)">-->
-<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
-<!--                      </g>-->
-<!--                      <defs>-->
-<!--                        <clipPath id="clip0_405_4009">-->
-<!--                          <rect width="14" height="14" fill="white"/>-->
-<!--                        </clipPath>-->
-<!--                      </defs>-->
-<!--                    </svg>-->
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-<!--                  </button>-->
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1044,7 +1050,9 @@
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -1070,7 +1078,7 @@
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
                               @leave="transitionLeave"
-                              >
+            >
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
@@ -1098,28 +1106,28 @@
                     {{ block.description }}
                   </div>
 
-<!--                  <div class="tower-block__title">-->
-<!--                    Tx hash:-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-<!--                  <div class="tower-block__text">-->
-<!--                    {{ block.owner | cutHash }}-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ block.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-<!--                  <button class="view-on">-->
-<!--                    View on BscScan-->
-<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                      <g clip-path="url(#clip0_405_4009)">-->
-<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
-<!--                      </g>-->
-<!--                      <defs>-->
-<!--                        <clipPath id="clip0_405_4009">-->
-<!--                          <rect width="14" height="14" fill="white"/>-->
-<!--                        </clipPath>-->
-<!--                      </defs>-->
-<!--                    </svg>-->
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-<!--                  </button>-->
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1135,7 +1143,9 @@
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -1189,28 +1199,28 @@
                     {{ block.description }}
                   </div>
 
-<!--                  <div class="tower-block__title">-->
-<!--                    Tx hash:-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-<!--                  <div class="tower-block__text">-->
-<!--                    {{ block.owner | cutHash }}-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ block.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-<!--                  <button class="view-on">-->
-<!--                    View on BscScan-->
-<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                      <g clip-path="url(#clip0_405_4009)">-->
-<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
-<!--                      </g>-->
-<!--                      <defs>-->
-<!--                        <clipPath id="clip0_405_4009">-->
-<!--                          <rect width="14" height="14" fill="white"/>-->
-<!--                        </clipPath>-->
-<!--                      </defs>-->
-<!--                    </svg>-->
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-<!--                  </button>-->
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1221,12 +1231,14 @@
                   </div>
 
                   <a class="view-on"
-                          :href="`https://bscscan.com/address/${block.owner}`"
-                          target="_blank">
+                     :href="`https://bscscan.com/address/${block.owner}`"
+                     target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -1280,28 +1292,28 @@
                     {{ block.description }}
                   </div>
 
-<!--                  <div class="tower-block__title">-->
-<!--                    Tx hash:-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-<!--                  <div class="tower-block__text">-->
-<!--                    {{ block.owner | cutHash }}-->
-<!--                  </div>-->
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ block.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-<!--                  <button class="view-on">-->
-<!--                    View on BscScan-->
-<!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                      <g clip-path="url(#clip0_405_4009)">-->
-<!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
-<!--                      </g>-->
-<!--                      <defs>-->
-<!--                        <clipPath id="clip0_405_4009">-->
-<!--                          <rect width="14" height="14" fill="white"/>-->
-<!--                        </clipPath>-->
-<!--                      </defs>-->
-<!--                    </svg>-->
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-<!--                  </button>-->
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1317,7 +1329,9 @@
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
-                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>
+                        <path
+                            d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                            fill="black"/>
                       </g>
                       <defs>
                         <clipPath id="clip0_405_4009">
@@ -1338,7 +1352,7 @@
             </transition-group>
             <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadDisabled"/>
           </div>
-          
+
           <div class="tower-bottom">
             <img src="@/assets/img/tower-bottom.png" alt="">
           </div>
@@ -1351,18 +1365,9 @@
           <img src="@/assets/img/balloon-ball.png" alt="" class="balloon-wrap__img--top">
           <img src="@/assets/img/balloon-blocks.png" alt="" class="balloon-wrap__img--bottom">
           <div class="balloon-wrap__blocks">
-            <div class="balloon-wrap__block">
-            <img src="@/assets/img/cover-2.png" alt="">
+            <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index">
+              <img :src="item.imageUrl" alt="">
             </div>
-            <div class="balloon-wrap__block">
-            <img src="@/assets/img/cover-3.png" alt="">
-            </div>
-              <div class="balloon-wrap__block">
-            <img src="@/assets/img/cover-2.png" alt="">
-              </div>
-                <div class="balloon-wrap__block">
-            <img src="@/assets/img/cover-3.png" alt="">
-                </div>
           </div>
 
         </div>
@@ -1384,11 +1389,11 @@
               v-if="showScrollBottomButton"
               @click="scrollToEnd">
         <div class="scroll-down__top">
-        <div class="scroll-down__icon">
-          <span class="scroll_arrows one"></span>
-          <span class="scroll_arrows two"></span>
-          <span class="scroll_arrows three"></span>
-        </div>
+          <div class="scroll-down__icon">
+            <span class="scroll_arrows one"></span>
+            <span class="scroll_arrows two"></span>
+            <span class="scroll_arrows three"></span>
+          </div>
         </div>
         <div class="scroll-down__text">
           Scroll down
@@ -1474,15 +1479,21 @@
         <!--        <img src="@/assets/img/svg/icon-higlight.svg" alt="">-->
         <svg width="34" height="53" viewBox="0 0 34 53" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
-            <path d="M22.5373 1.26107C16.373 -0.905135 10.6394 0.268914 5.7676 4.60132C-0.695032 10.3558 -1.65614 19.5332 3.34826 26.6768C7.22584 32.2328 9.62861 38.2188 9.56233 45.0978C9.54576 47.3797 10.6394 49.2483 12.4457 50.6869C13.5228 51.5468 14.7987 51.9436 16.1078 52.2413C16.7375 52.2413 17.3506 52.2413 17.9638 52.2413C18.03 52.2082 18.0963 52.1586 18.1792 52.1421C22.0236 51.3649 24.3767 48.4711 24.443 44.5686C24.4595 43.0473 24.5424 41.5095 24.7744 40.0047C25.4869 35.1431 27.492 30.8438 30.425 26.9248C33.2421 23.1546 34.3358 18.8883 33.5072 14.2583C32.3473 7.89197 28.6851 3.41074 22.5373 1.26107ZM17.0855 48.5372C14.9976 48.5868 13.2576 46.9002 13.3073 44.8497C15.7598 44.8497 18.2123 44.8497 20.6648 44.8497C20.7808 46.7513 19.074 48.4876 17.0855 48.5372ZM27.5086 24.6098C25.0064 27.9666 23.0179 31.5879 21.9242 35.6392C21.4934 37.2267 21.2614 38.8637 20.9465 40.4677C20.9134 40.6661 20.8802 40.8646 20.8305 41.0795C18.262 41.0795 15.7101 41.0795 13.1085 41.0795C12.9759 40.2527 12.8434 39.4259 12.6942 38.6157C11.7 33.5888 9.56233 29.0414 6.59615 24.8743C5.35333 23.1215 4.49165 21.253 4.11052 19.1364C2.78485 12.0094 8.12067 4.8659 15.3456 4.08871C22.4876 3.31152 28.652 7.87543 29.8451 14.9032C30.4582 18.4419 29.6628 21.7325 27.5086 24.6098Z" fill="url(#paint0_linear_399_3946)"/>
-            <path d="M19.2397 15.8127C18.5106 16.5402 17.798 17.2844 17.0855 18.0119C16.9529 17.9789 16.9198 17.9789 16.9198 17.9623C16.1741 17.2182 15.4118 16.4906 14.6662 15.7465C14.169 15.2504 13.5725 15.0024 12.8599 15.1678C11.4183 15.4985 10.9211 17.1851 11.9485 18.2765C12.8599 19.2356 13.8376 20.1285 14.7324 21.1042C14.9479 21.3357 15.097 21.6994 15.097 22.0136C15.1301 23.9318 15.1136 25.85 15.1136 27.7681C15.1136 29.1241 15.8427 29.9839 16.9861 29.9839C18.1295 29.9674 18.842 29.1241 18.842 27.7516C18.842 25.8334 18.8254 23.9153 18.8586 21.9971C18.8586 21.716 19.0077 21.3522 19.2066 21.1538C20.0683 20.2443 20.9797 19.3679 21.8745 18.4749C22.7527 17.582 22.8025 16.441 22.007 15.6804C21.2282 14.8867 20.1014 14.9528 19.2397 15.8127Z" fill="url(#paint1_linear_399_3946)"/>
+            <path
+                d="M22.5373 1.26107C16.373 -0.905135 10.6394 0.268914 5.7676 4.60132C-0.695032 10.3558 -1.65614 19.5332 3.34826 26.6768C7.22584 32.2328 9.62861 38.2188 9.56233 45.0978C9.54576 47.3797 10.6394 49.2483 12.4457 50.6869C13.5228 51.5468 14.7987 51.9436 16.1078 52.2413C16.7375 52.2413 17.3506 52.2413 17.9638 52.2413C18.03 52.2082 18.0963 52.1586 18.1792 52.1421C22.0236 51.3649 24.3767 48.4711 24.443 44.5686C24.4595 43.0473 24.5424 41.5095 24.7744 40.0047C25.4869 35.1431 27.492 30.8438 30.425 26.9248C33.2421 23.1546 34.3358 18.8883 33.5072 14.2583C32.3473 7.89197 28.6851 3.41074 22.5373 1.26107ZM17.0855 48.5372C14.9976 48.5868 13.2576 46.9002 13.3073 44.8497C15.7598 44.8497 18.2123 44.8497 20.6648 44.8497C20.7808 46.7513 19.074 48.4876 17.0855 48.5372ZM27.5086 24.6098C25.0064 27.9666 23.0179 31.5879 21.9242 35.6392C21.4934 37.2267 21.2614 38.8637 20.9465 40.4677C20.9134 40.6661 20.8802 40.8646 20.8305 41.0795C18.262 41.0795 15.7101 41.0795 13.1085 41.0795C12.9759 40.2527 12.8434 39.4259 12.6942 38.6157C11.7 33.5888 9.56233 29.0414 6.59615 24.8743C5.35333 23.1215 4.49165 21.253 4.11052 19.1364C2.78485 12.0094 8.12067 4.8659 15.3456 4.08871C22.4876 3.31152 28.652 7.87543 29.8451 14.9032C30.4582 18.4419 29.6628 21.7325 27.5086 24.6098Z"
+                fill="url(#paint0_linear_399_3946)"/>
+            <path
+                d="M19.2397 15.8127C18.5106 16.5402 17.798 17.2844 17.0855 18.0119C16.9529 17.9789 16.9198 17.9789 16.9198 17.9623C16.1741 17.2182 15.4118 16.4906 14.6662 15.7465C14.169 15.2504 13.5725 15.0024 12.8599 15.1678C11.4183 15.4985 10.9211 17.1851 11.9485 18.2765C12.8599 19.2356 13.8376 20.1285 14.7324 21.1042C14.9479 21.3357 15.097 21.6994 15.097 22.0136C15.1301 23.9318 15.1136 25.85 15.1136 27.7681C15.1136 29.1241 15.8427 29.9839 16.9861 29.9839C18.1295 29.9674 18.842 29.1241 18.842 27.7516C18.842 25.8334 18.8254 23.9153 18.8586 21.9971C18.8586 21.716 19.0077 21.3522 19.2066 21.1538C20.0683 20.2443 20.9797 19.3679 21.8745 18.4749C22.7527 17.582 22.8025 16.441 22.007 15.6804C21.2282 14.8867 20.1014 14.9528 19.2397 15.8127Z"
+                fill="url(#paint1_linear_399_3946)"/>
           </g>
           <defs>
-            <linearGradient id="paint0_linear_399_3946" x1="16.9708" y1="-11.4314" x2="16.9708" y2="52.2413" gradientUnits="userSpaceOnUse">
+            <linearGradient id="paint0_linear_399_3946" x1="16.9708" y1="-11.4314" x2="16.9708" y2="52.2413"
+                            gradientUnits="userSpaceOnUse">
               <stop stop-color="#503614"/>
               <stop offset="1" stop-color="#503614" stop-opacity="0"/>
             </linearGradient>
-            <linearGradient id="paint1_linear_399_3946" x1="16.9708" y1="-11.4314" x2="16.9708" y2="52.2413" gradientUnits="userSpaceOnUse">
+            <linearGradient id="paint1_linear_399_3946" x1="16.9708" y1="-11.4314" x2="16.9708" y2="52.2413"
+                            gradientUnits="userSpaceOnUse">
               <stop stop-color="#503614"/>
               <stop offset="1" stop-color="#503614" stop-opacity="0"/>
             </linearGradient>
@@ -1490,10 +1501,9 @@
         </svg>
 
 
-
         <div class="bottom-wrap__text">
           <span>Turn off</span>
-         backlight
+          backlight
         </div>
       </div>
       <div class="bottom-wrap">
@@ -1567,7 +1577,7 @@
                   @close="isBuyModalVisible = false"/>
       </div>
     </transition>
-    
+
   </div>
 </template>
 
@@ -1620,6 +1630,7 @@ export default {
       defrostTimes: [],
       foundation: [],
       blocksLoaded: 0,
+      balloonBlocks: []
     }
   },
   computed: {
@@ -1630,16 +1641,16 @@ export default {
   },
   watch: {
     isWrongChainId(val) {
-      if(val) {
+      if (val) {
         alert('Wrong chain id')
       } else {
-        this.init();
+        //this.init();
       }
     }
   },
   methods: {
     setHighlight() {
-      if(this.isHighlight) {
+      if (this.isHighlight) {
         localStorage.removeItem('isHighlight');
       } else {
         localStorage.setItem('isHighlight', 'true')
@@ -1658,15 +1669,15 @@ export default {
       });
     },
     validate(config) {
-      if(!this.getAccount) {
+      if (!this.getAccount) {
         alert('Connect your web3 wallet');
         return false;
       }
-      if(this.isWrongChainId) {
+      if (this.isWrongChainId) {
         alert('Connect to bsc test network');
         return false;
       }
-      if(config.mode && config.mode === 'update' && config.owner !== this.getAccount) {
+      if (config.mode && config.mode === 'update' && config.owner !== this.getAccount) {
         alert('You are not the owner of this block');
         return false;
       }
@@ -1702,7 +1713,7 @@ export default {
       this.isThrowing = status;
     },
     openBuyModal(mode, blockNumber, owner) {
-      if(!this.validate({mode, owner})) {
+      if (!this.validate({mode, owner})) {
         return
       }
       this.mode = mode;
@@ -1723,9 +1734,17 @@ export default {
       } catch (e) {
         this.defrostTimes.push(0);
       } finally {
-        if(this.defrostTimes.length < 4) {
+        if (this.defrostTimes.length < 4) {
           await this.getDefrostTime();
         }
+      }
+    },
+    async blockInBalloon() {
+      let i = 1;
+      while (i <= 4) {
+        let block = await contract.blockInBalloon(i);
+        this.balloonBlocks.push(block)
+        i++;
       }
     },
     fillArrays() {
@@ -1745,37 +1764,37 @@ export default {
       }
       el.cover = '/img/cover-1.png';
       this.towerBlocksExtraLarge.push(el)
-      for(let i = 0; i < 2; i++) {
+      for (let i = 0; i < 2; i++) {
         el.cover = this.generateCover();
         this.towerBlocksMiddleLarge.push(Object.assign({}, el))
       }
-      for(let i = 0; i < 4; i++) {
+      for (let i = 0; i < 4; i++) {
         el.cover = this.generateCover();
         this.towerBlocksLg.push(Object.assign({}, el))
       }
-      for(let i = 0; i < 8; i++) {
+      for (let i = 0; i < 8; i++) {
         this.towerBlocksMd.push(Object.assign({}, el))
       }
-      if(!this.owner) {
-        for(let i = 0; i < 16; i++) {
+      if (!this.owner) {
+        for (let i = 0; i < 16; i++) {
           this.towerBlocksSm.push(Object.assign({}, el))
         }
       }
-      for(let i = 0; i < 25; i++) {
+      for (let i = 0; i < 25; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
     },
     async loadBlocks(refresh = false) {
-      if(refresh) {
+      if (refresh) {
         this.page = 0;
         this.lastBlockId = 0;
         this.loadDisabled = false;
       }
-      if(this.loadDisabled) {
+      if (this.loadDisabled) {
         return;
       }
       this.loadDisabled = true;
-      if(this.page === 0) {
+      if (this.page === 0) {
         this.fillArrays();
       }
       let lastBlockId = await contract.lastBlockNumber();
@@ -1785,11 +1804,11 @@ export default {
         blocksToPreload = lastBlockId;
       } else {
         blocksToPreload = lastBlockId - this.lastBlockId;
-        if(this.page === 0) {
+        if (this.page === 0) {
           this.page++;
         } else {
-          if(blocksToPreload / 26 >= 1) {
-            for(let i = blocksToPreload; i > blocksToPreload - 26; i--) {
+          if (blocksToPreload / 26 >= 1) {
+            for (let i = blocksToPreload; i > blocksToPreload - 26; i--) {
               let block = await contract.blockOfNumber(i);
               this.lastBlockId++;
               let obj = {
@@ -1804,7 +1823,7 @@ export default {
             }
             this.page++;
           } else {
-            for(let i = blocksToPreload - 1; i >= 0; i--) {
+            for (let i = blocksToPreload - 1; i >= 0; i--) {
               let block = await contract.blockOfNumber(i);
               this.lastBlockId++;
               let obj = {
@@ -1816,11 +1835,11 @@ export default {
                 showHover: false
               }
               this.foundation.push(obj);
-              if(obj.owner === "0x0000000000000000000000000000000000000000") {
+              if (obj.owner === "0x0000000000000000000000000000000000000000") {
                 this.loadDisabled = true;
               }
             }
-            for(let i = 0; i < this.foundation.length % 26; i++) {
+            for (let i = 0; i < this.foundation.length % 26; i++) {
               this.foundation.push({
                 imageUrl: null,
                 description: null,
@@ -1847,7 +1866,7 @@ export default {
       for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
         this.lastBlockId++;
-        if(this.owner && block.owner !== this.owner) {
+        if (this.owner && block.owner !== this.owner) {
           continue;
         }
         iterationsCount++;
@@ -1901,11 +1920,11 @@ export default {
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
         }
-        if(iterationsCount === 57) {
+        if (iterationsCount === 57) {
           break;
         }
       }
-      if(!this.owner) {
+      if (!this.owner) {
         this.loadDisabled = false;
       }
     },
@@ -1913,6 +1932,7 @@ export default {
       setTimeout(() => {
         this.getDefrostTime();
         this.loadBlocks();
+        this.blockInBalloon();
       }, 0);
     }
   },
@@ -1955,17 +1975,20 @@ export default {
 
 
 <style scoped>
-  .hidden {
-    visibility: hidden;
-  }
-  img[lazy=loaded] {
-    transition: opacity 1s;
-    opacity: 1!important;
-  }
-  .list-enter-active, .list-leave-active, .list-move {
-    transition: all 1.2s;
-  }
-  .list-before-enter {
-    opacity: 0!important;
-  }
+.hidden {
+  visibility: hidden;
+}
+
+img[lazy=loaded] {
+  transition: opacity 1s;
+  opacity: 1 !important;
+}
+
+.list-enter-active, .list-leave-active, .list-move {
+  transition: all 1.2s;
+}
+
+.list-before-enter {
+  opacity: 0 !important;
+}
 </style>

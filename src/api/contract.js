@@ -115,6 +115,20 @@ const getDefrostTime = blockNumber => {
     })
 }
 
+const blockInBalloon = blockNumber => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.blockInBaloon(blockNumber)
+            .call({
+                from: store.getters['contract/getContractAddress']
+            }, (err, res) => {
+                if(err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
+    })
+}
+
 const addBlock = (WEI, imageUrl, description, webSite) => {
     return new Promise((resolve, reject) => {
         methodsBsc.addBlock(imageUrl, description, webSite)
@@ -235,5 +249,6 @@ export default {
     addBlockToBalloon,
     balloonBlockPrice,
     getDefrostTime,
-    referralsMap
+    referralsMap,
+    blockInBalloon
 }

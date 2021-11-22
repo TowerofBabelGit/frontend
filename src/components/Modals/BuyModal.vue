@@ -33,8 +33,8 @@
                 </div>
               <div class="page-input__drop" v-show="openDropDown">
                 <ul>
-                  <li class="page-input__item" v-for="(num, index) in blockNums" :key="index" @click="currentOption = num.order">
-                    {{num.order}}
+                  <li class="page-input__item" v-for="num in blockNums" :key="num" @click="blocksQuantity = num; currentOption = num; openDropDown = false">
+                    {{num}}
                   </li>
 
                 </ul>
@@ -140,7 +140,7 @@ export default {
     description: null,
     imageUrl: null,
     refLink: null,
-    blocksQuantity: null,
+    blocksQuantity: 1,
     webSite: '',
     showRefLink: false,
     openDropDown: false,
@@ -149,20 +149,7 @@ export default {
     movePlaceholder2: false,
     movePlaceholder3: false,
     currentOption: 'Block number',
-    blockNums: [
-      {
-        order: 'Block number 1'
-      },
-      {
-        order: 'Block number 2'
-      },
-      {
-        order: 'Block number 3'
-      },
-      {
-        order: 'Block number 4'
-      },
-    ],
+    blockNums: [1, 2, 3, 4],
   }),
   computed: {
     ...mapGetters({
