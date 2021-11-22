@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueLazyload from "vue-lazyload";
+import ScrollLoader from 'vue-scroll-loader';
 
 Vue.config.productionTip = false
 
@@ -11,6 +12,8 @@ Vue.use(VueLazyload, {
   loading: require('@/assets/img/loading.gif'),
   attempt: 1
 })
+
+Vue.use(ScrollLoader)
 
 new Vue({
   router,

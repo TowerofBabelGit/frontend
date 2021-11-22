@@ -698,6 +698,7 @@
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
 
             >
               <div class="tower__col tower__col--big"
@@ -793,6 +794,7 @@
                               appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
                               class="tower__row tower__row--xl">
               <div class="tower__col tower__col--big"
                    v-for="(item, index) in towerBlocksMiddleLarge"
@@ -885,6 +887,7 @@
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
                               tag="div">
 
               <div class="tower__col"
@@ -976,6 +979,7 @@
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
                               tag="div">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksMd"
@@ -1065,6 +1069,7 @@
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
                               v-if="!owner">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
@@ -1155,6 +1160,7 @@
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
                               v-if="!owner">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
@@ -1245,6 +1251,7 @@
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
+                              @leave="transitionLeave"
                               v-if="foundation.length && !owner">
               <div class="tower__col"
                    v-for="(block, index) in foundation"
@@ -1328,8 +1335,8 @@
                   </div>
                 </div>
               </div>
-              <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadDisabled"/>
             </transition-group>
+            <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadDisabled"/>
           </div>
           
           <div class="tower-bottom">
@@ -1552,7 +1559,6 @@
 
 <script>
 import AppHeader from "../components/AppHeader";
-// eslint-disable-next-line no-unused-vars
 import contract from "../api/contract";
 import AboutModal from "../components/Modals/AboutModal";
 import Preloader from "../components/Preloader";
@@ -1582,7 +1588,7 @@ export default {
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
-      blocksQt: 56,
+      blocksQt: 57,
       size: 26,
       page: 0,
       blockNumber: null,
@@ -1591,420 +1597,15 @@ export default {
       isAboutModalVisible: false,
       isBuyModalVisible: false,
       isHighlight: !!localStorage.getItem('isHighlight'),
-      towerBlocksExtraLarge: [
-        {
-          imageUrl: null,
-          cover: '/img/cover-1.png',
-          description: null,
-          owner: null,
-          showHover: false
-        }
-      ],
-      towerBlocksMiddleLarge: [
-        {
-          imageUrl: null,
-          cover: '/img/cover-1.png',
-          description: null,
-          owner: null,
-          showHover: false
-        },
-        {
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          description: null,
-          owner: null,
-          showHover: false
-        },
-      ],
-      towerBlocksLg: [
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-6.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-7.png',
-          showHover: false
-        }
-      ],
-      towerBlocksMd: [
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-
-      ],
-      towerBlocksSm: [
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-      ],
-      towerBlocksXs: [
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-5.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-4.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-2.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-8.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-9.png',
-          showHover: false
-        },
-        {
-          description: null,
-          owner: null,
-          imageUrl: null,
-          cover: '/img/cover-10.png',
-          showHover: false
-        },
-      ],
+      towerBlocksExtraLarge: [],
+      towerBlocksMiddleLarge: [],
+      towerBlocksLg: [],
+      towerBlocksMd: [],
+      towerBlocksSm: [],
+      towerBlocksXs: [],
       defrostTimes: [],
-      foundation: []
+      foundation: [],
+      blocksLoaded: 0,
     }
   },
   computed: {
@@ -2057,12 +1658,21 @@ export default {
       }
       return true;
     },
+    // eslint-disable-next-line no-unused-vars
     transitionBeforeEnter(el) {
-      el.style.opacity = 0
+      el.style.opacity = 0;
+    },
+    // eslint-disable-next-line no-unused-vars
+    transitionLeave(el, done) {
+      const delay = el.dataset.index * 350
+      el.style.display = "none";
+      setTimeout(() => {
+        el.style.opacity = 0;
+      }, delay)
     },
     // eslint-disable-next-line no-unused-vars
     transitionEnter(el, done) {
-      const delay = el.dataset.index * 200
+      const delay = el.dataset.index * 150
       setTimeout(() => {
         el.style.transition = '1s'
         el.style.opacity = 1;
@@ -2104,51 +1714,99 @@ export default {
         }
       }
     },
-
+    fillArrays() {
+      this.towerBlocksExtraLarge = [];
+      this.towerBlocksMiddleLarge = [];
+      this.towerBlocksLg = [];
+      this.towerBlocksMd = [];
+      this.towerBlocksSm = [];
+      this.towerBlocksXs = [];
+      this.foundation = [];
+      const generateCover = () => {
+        return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
+      }
+      const el = {
+        description: null,
+        owner: null,
+        imageUrl: null,
+        cover: null,
+        showHover: false
+      }
+      el.cover = '/img/cover-1.png';
+      this.towerBlocksExtraLarge.push(el)
+      for(let i = 0; i < 2; i++) {
+        el.cover = generateCover();
+        this.towerBlocksMiddleLarge.push(Object.assign({}, el))
+      }
+      for(let i = 0; i < 4; i++) {
+        el.cover = generateCover();
+        this.towerBlocksLg.push(Object.assign({}, el))
+      }
+      for(let i = 0; i < 8; i++) {
+        this.towerBlocksMd.push(Object.assign({}, el))
+      }
+      for(let i = 0; i < 16; i++) {
+        this.towerBlocksSm.push(Object.assign({}, el))
+      }
+      for(let i = 0; i < 26; i++) {
+        this.towerBlocksXs.push(Object.assign({}, el))
+      }
+    },
     async loadBlocks() {
+      if(this.loadDisabled) {
+        return;
+      }
+      this.loadDisabled = true;
+      if(this.page === 0) {
+        this.fillArrays();
+      }
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);
       let blocksToPreload = 0;
       if (lastBlockId <= this.blocksQt) {
         blocksToPreload = lastBlockId;
       } else {
-        blocksToPreload = lastBlockId - this.blocksQt;
+        blocksToPreload = lastBlockId - this.lastBlockId;
         if(this.page === 0) {
-          blocksToPreload = 56;
           this.page++;
         } else {
-          if(blocksToPreload / 10 >= 1) {
-            for(let i = this.lastBlockId - 1; i > this.lastBlockId - 10; i--) {
+          const generateCover = () => {
+            return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
+          }
+          if(blocksToPreload / 26 >= 1) {
+            for(let i = blocksToPreload - 1; i > blocksToPreload - 26; i--) {
               let block = await contract.blockOfNumber(i);
+              this.lastBlockId++;
               let obj = {
                 imageUrl: block.imageUrl,
                 description: block.description,
                 owner: block.owner,
-                number: block.number
+                number: block.number,
+                cover: generateCover()
               }
               this.foundation.push(obj);
               this.page++;
-              this.lastBlockId--;
             }
           } else {
-            for(let i = this.lastBlockId - 1; i > -1; i--) {
+            for(let i = blocksToPreload - 1; i > 0; i--) {
               let block = await contract.blockOfNumber(i);
+              this.lastBlockId++;
               let obj = {
                 imageUrl: block.imageUrl,
                 description: block.description,
                 owner: block.owner,
-                number: block.number
+                number: block.number,
+                cover: generateCover()
               }
               this.foundation.push(obj);
-              this.lastBlockId--;
             }
-            this.loadDisabled = true;
-            for(let i = 0; i < 26 - this.foundation.length; i++) {
+            for(let i = 0; i < this.foundation.length % 26; i++) {
               this.foundation.push({
                 imageUrl: null,
                 description: null,
                 owner: null,
-                number: null
+                number: null,
+                cover: generateCover()
               })
             }
           }
@@ -2162,12 +1820,10 @@ export default {
       let middleCount = 0;
       let smallCount = 0;
       let extraSmallCount = 0;
+
       for (let i = blocksToPreload; i > -1; i--) {
         let block = await contract.blockOfNumber(i);
-        if(block.owner === '0x0000000000000000000000000000000000000000') {
-          continue;
-        }
-
+        this.lastBlockId++;
         if(this.owner && block.owner !== this.owner) {
           continue;
         }
@@ -2204,26 +1860,26 @@ export default {
           this.towerBlocksSm[smallCount].owner = block.owner;
           this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
-        } else if (iterationsCount >= 32 && iterationsCount < 57) {
+        } else if (iterationsCount >= 32 && iterationsCount < 58) {
           this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
           this.towerBlocksXs[extraSmallCount].description = block.description;
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
         }
-        this.lastBlockId = lastBlockId;
+        if(iterationsCount === 58) {
+          break;
+        }
       }
+      this.loadDisabled = false;
     },
     init() {
       setTimeout(() => {
-        this.loadBlocks()
-        this.getDefrostTime()
+        this.getDefrostTime();
+        this.loadBlocks();
       }, 0);
     }
   },
-//   public static void main(String[] args){
-//     System.out.print("Hello Voloda");
-// }
   filters: {
     cutHash(v) {
       if (v) {
@@ -2273,7 +1929,7 @@ export default {
   .list-enter-active, .list-leave-active, .list-move {
     transition: all 1.2s;
   }
-  .list-before-enter, .list-leave-to {
+  .list-before-enter {
     opacity: 0!important;
   }
 </style>
