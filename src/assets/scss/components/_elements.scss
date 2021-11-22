@@ -174,7 +174,9 @@
     }
 
     &:focus {
-      background: white;
+      background: transparent;
+
+
 
       &::placeholder {
         font-size: 0;
@@ -193,6 +195,35 @@
 
 
   }
+
+  label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: $base-font;
+    font-size: 16px;
+    line-height: 150%;
+    color: #503614;
+    left: 22px;
+    pointer-events: none;
+  }
+
+  &.focus {
+    label {
+      left: 15px;
+      top: 0;
+      font-size: 9px;
+      line-height: 150%;
+      transform: translateY(-50%);
+      background: rgba(252, 221, 158, 0.4);
+      backdrop-filter: blur(100px);
+      padding: 3px 5px;
+      border-radius: 5px;
+      animation: slideUp .1s ease-in;
+    }
+  }
+
+
 
   &.error {
    .input {
@@ -284,6 +315,8 @@
     }
   }
 }
+
+
 
 .tooltip {
   position: absolute;

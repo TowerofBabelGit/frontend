@@ -40,43 +40,54 @@
                 </ul>
               </div>
             </div>
-            <div class="page-input" :class="{error: descriptionError}">
+            <div class="page-input" :class="{error: descriptionError, focus: movePlaceholder}" >
               <input type="text"
                      v-model="description"
                      class="input"
-                     placeholder="Input block description">
-
+                     @focus="movePlaceholder = true"
+                     @focusout="movePlaceholder = false"
+                     >
+              <label>Input block description</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
             </div>
-            <div class="page-input" :class="{error: imageUrlError}">
+            <div class="page-input" :class="{error: imageUrlError, focus: movePlaceholder1}" >
               <input type="text"
                      class="input"
                      v-model="imageUrl"
-                     placeholder="Image url">
+                     @focus="movePlaceholder1 = true"
+                     @focusout="movePlaceholder1 = false"
+              >
+              <label>Image url</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
             </div>
             <div class="page-input"
-                 :class="{error: refLinkError}"
+                 :class="{error: refLinkError, focus: movePlaceholder2}"
                  v-if="!isBalloon && !isUpdate && showRefLink">
               <input type="text"
                      class="input"
                      v-model="refLink"
-                     placeholder="Invitor address (optional)">
+                     @focus="movePlaceholder2 = true"
+                     @focusout="movePlaceholder2 = false"
+              >
+              <label>Invitor address (optional)</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
             </div>
             <div class="page-input"
-                 :class="{error: webSiteError}"
+                 :class="{error: webSiteError, focus: movePlaceholder3}"
                  v-if="isCatapult">
               <input type="text"
                      class="input"
                      v-model="webSite"
-                     placeholder="Web site address (optional)">
+                      @focus="movePlaceholder3 = true"
+                     @focusout="movePlaceholder3 = false"
+                     >
+              <label>Web site address (optional)</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
@@ -133,6 +144,10 @@ export default {
     webSite: '',
     showRefLink: false,
     openDropDown: false,
+    movePlaceholder: false,
+    movePlaceholder1: false,
+    movePlaceholder2: false,
+    movePlaceholder3: false,
     currentOption: 'Block number',
     blockNums: [
       {
