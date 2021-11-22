@@ -59,7 +59,7 @@ img {
 /* header */
 
 .header {
-  background: url("assets/img/header-bg.png") no-repeat;
+  background: url("assets/img/header-bg.png") repeat-x;
 
   @include align-center;
   position: relative;
@@ -67,8 +67,8 @@ img {
    height: 145px;
  // justify-content: center;
 
-  @include max-screen(xxl) {
- //   padding-left: 270px;
+  @include max-screen(xxxl) {
+    background: url("assets/img/header-bg.png") no-repeat;
   }
   @include max-screen(sm) {
     height: 100px;
@@ -320,6 +320,7 @@ img {
     a {
       color: #000000;
       white-space: nowrap;
+      cursor: pointer;
 
       @include max-screen(xl) {
         font-size: 16px;
@@ -590,12 +591,14 @@ img {
 .crane-wrap {
   position: absolute;
   left: 0;
-  transform: translateX(-75%);
+  transform: translateX(-67%);
   z-index: 4;
 
+  @include max-screen(xxxl) {
+    transform: translateX(-75%);
+  }
   @include max-screen(xxl) {
     transform: translateX(-79%);
-  //  left: 18%;
   }
   @include max-screen(xl) {
     transform: translateX(-78%);
@@ -1053,7 +1056,7 @@ img {
 
 .tower-wrap {
   position: relative;
-  max-width: 1030px;
+  max-width: 1050px;
   margin: auto;
 
   @include max-screen(xxxl) {
@@ -1188,16 +1191,26 @@ img {
     @include align-column-center;
 
     .tower {
-      width: 1030px;
+      width: 1085px;
       margin: auto;
    //   height: 1393px;
       height: fit-content;
+      max-height: 1410px;
+      overflow-y: auto;
+      overflow-x: visible;
 
-      padding: 32px 45px 156px 61px;
+      padding: 32px 45px 255px 61px;
+
+      &::-webkit-scrollbar {
+        width: 0;  /* Remove scrollbar space */
+        background: transparent;  /* Optional: just make scrollbar invisible */
+      }
+
       @include max-screen(xxxl) {
         width: 743px;
      //   height: 1295px;
         height: fit-content;
+        max-height: 1010px;
         padding: 32px 0 185px 41px;
       }
       @include max-screen(xxl) {
@@ -1345,6 +1358,7 @@ img {
 
         &--xs {
           height: 23px;
+          flex-wrap: wrap;
 
           @include max-screen(xxl) {
             height: 18px;
@@ -1354,6 +1368,10 @@ img {
           }
           @include max-screen(xs) {
             height: 10px;
+          }
+
+          .tower__col {
+            width: 3%;
           }
 
           .tower__col img{
@@ -1497,9 +1515,12 @@ img {
   left: 50%;
   display: none;
 
+
+
   &.active {
     display: block !important;
-    animation: fadein 0.5s;
+    animation: none;
+ //   animation: fadein 0.1s;
   }
 
   @include max-screen(xs) {
