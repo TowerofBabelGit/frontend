@@ -1351,10 +1351,18 @@
           <img src="@/assets/img/balloon-ball.png" alt="" class="balloon-wrap__img--top">
           <img src="@/assets/img/balloon-blocks.png" alt="" class="balloon-wrap__img--bottom">
           <div class="balloon-wrap__blocks">
+            <div class="balloon-wrap__block">
             <img src="@/assets/img/cover-2.png" alt="">
+            </div>
+            <div class="balloon-wrap__block">
             <img src="@/assets/img/cover-3.png" alt="">
+            </div>
+              <div class="balloon-wrap__block">
             <img src="@/assets/img/cover-2.png" alt="">
+              </div>
+                <div class="balloon-wrap__block">
             <img src="@/assets/img/cover-3.png" alt="">
+                </div>
           </div>
 
         </div>

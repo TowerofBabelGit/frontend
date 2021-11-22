@@ -901,9 +901,15 @@ img {
    // backdrop-filter: ;
 
 
-    img {
-      width: 50%;
+  }
 
+  &__block {
+    width: 50%;
+    
+
+
+    img {
+      height: 100%;
     }
   }
 
