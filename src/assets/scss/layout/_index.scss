@@ -1195,8 +1195,8 @@ img {
       margin: auto;
       height: fit-content;
  //     max-height: 1410px;
-//      overflow-y: auto;
-      overflow-x: visible;
+ //     overflow-y: scroll;
+   //   overflow-x: visible;
 
       padding: 32px 45px 255px 61px;
 
@@ -1208,7 +1208,7 @@ img {
       @include max-screen(xxxl) {
         width: 743px;
         height: fit-content;
-  //      max-height: 1110px;
+    //    max-height: 910px;
         padding: 32px 0 185px 41px;
       }
       @include max-screen(xxl) {

@@ -1554,6 +1554,7 @@
                   @close="isBuyModalVisible = false"/>
       </div>
     </transition>
+    
   </div>
 </template>
 
@@ -1571,7 +1572,7 @@ export default {
     AppHeader,
     AboutModal,
     Preloader,
-    BuyModal
+    BuyModal,
   },
   props: {
     owner: {
