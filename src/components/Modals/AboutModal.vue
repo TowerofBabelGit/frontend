@@ -13,38 +13,84 @@
 
             <vue-custom-scrollbar class="scroll-area"  :settings="settings">
               <div class="popup__text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              <p>  The Tower of Babel is a proof of how powerful the human race is if it is united by one goal and speaks in one language!
+              </p>
+               <p> The original myth tells us that before all people spoke the same language and decided to build a tower through which one could reach God.
+               </p>
+               <p> But God was angry, destroyed the tower and made the world have many languages   and people lost the opportunity to join forces to achieve such bold goals. Here is the full version of the legend -
+                 <a href="https://www.britannica.com/topic/Tower-of-Babel" target="_blank">
+                   https://www.britannica.com/topic/Tower-of-Babel.</a>
+               </p>
+                  <p>
+                On the threshold of the 21st century, all people again speak one language - the language of smart contracts.
+                The Tower of Babel project marks the beginning of a new structure that no one is able to demolish.
+                </p>
+                <ul>
+                  <li>- There is no back-end in the project</li>
+                  <li>- All interaction takes place only through a smart contract</li>
+                  <li> - All code is open and anyone can deploy a project mirror</li>
+                </ul>
 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+                <p>
+                This is a creation that by definition cannot be destroyed as long as there is at least 1 copy of it online.
+                That is why we are confident that the tower will be built as long as humanity uses information technologies. From today and forever.
+                </p>
+                <p>
+                The tower is built by people.
+                In order to make your contribution, you need to add your block to the tower.
+                </p>
+                <p>
+                The tower has the form of a binary tree and in its widest part has 32 blocks.
+                </p>
+                <ul>
+              <li>  1</li>
+              <li>  2</li>
+              <li>  4</li>
+              <li>  8</li>
+              <li> 16</li>
+              <li> 32</li>
+              <li> 32</li>
+              <li> 32</li>
+              <li> 32</li>
+              <li> etc.</li>
+                </ul>
+                <p>
+                Each subsequent block is more expensive than the previous one by a fixed step - d. <br>
+                Each subsequent block falls to the top of the tower and gradually descends with each new contribution.<br>
+                The cost of each block is divided between the 6 blocks on which it is based.<br>
+                The two blocks on which he directly relies receive 25% of the value of the block.<br>
+                And the 4 blocks that support the top two receive 12.5%   of the block cost.<br>
+                </p>
 
+                <img src="@/assets/img/scheme.png" alt="">
 
-                є   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-
-
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-
+              <p>  Thus, by purchasing a block in the tower, for the next 6 blocks you will get back the cost of the block + an additional bonus, which is provided by the fact that each subsequent block is more expensive.
+              </p>
+                <p>
+                The bonus amount is calculated by a simple formula:
+                </p>
+                <p>
+                d x 0.25 + 2d x 0.25 + 3d x 0.125 + 4d x 0.125 + 5d x 0.125 + 6d x 0.125
+                </p>
+                <p>
+                By purchasing a block, you can download (as well as edit) your advertising material: a picture and a link. Both are stored in the smart contract, so there is no ANY moderation.
+                </p>
+                <p>
+                All blocks and sequences are also recorded in the smart contract and are available for viewing by any user. Blocks remain in the tower forever, so this is the best way to leave YOUR mark in the digital history of mankind.
+                </p>
+                <p>
+                By adding your block to the tower, you have the opportunity to engrave your mark in the digital history of mankind. <br>
+                But after a while, your block will no longer be so noticeable.
+                </p>
+                <p>
+                Therefore, you can buy a flying unit, which is always at the top of the site. <br>
+                After purchasing this block, you are given the opportunity to upload a picture and a link. <br>
+                And this unit freezes for you for 24 hours. After this time, another user will be able to redeem it. But if there are no others, your material will stay in the balloon as long as you want.
+                  <br>
+                </p>
+                <p>
+                You can also buy all 4 flying blocks and place 1 large image segmented into squares.
+                </p>
               </div>
           </vue-custom-scrollbar>
 

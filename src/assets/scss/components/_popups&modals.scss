@@ -118,10 +118,31 @@
     font-size: 12px;
     line-height: 20px;
    font-family: $regular;
-    text-align: center;
+    text-align: left;
     padding: 0 13px;
     color: #503614;
 
+    p {
+      padding-bottom: 15px;
+    }
+
+    a {
+      color: inherit;
+      font-family: $text-font-medium;
+      text-decoration: underline;
+    }
+
+    li {
+      font-family: $medium;
+      margin-bottom: 10px;
+    }
+
+    img {
+      width: 80%;
+      margin: auto;
+      display: block;
+      margin-bottom: 15px;
+    }
   }
 
   &__link {
