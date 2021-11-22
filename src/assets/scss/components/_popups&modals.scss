@@ -183,8 +183,30 @@
 }
 
 .popup-about {
+
+  background: url("assets/img/big-modal-bg.png") no-repeat;
+  background-size: 100% 100%;
+  width: 977px;
+  padding: 130px 90px 50px;
+
+  @include max-screen(md) {
+    width: 100%;
+    padding: 130px 45px 50px;
+  }
+  @include max-screen(sm) {
+    padding: 130px 30px 50px;
+  }
+  @include max-screen(xs) {
+    background: url("assets/img/popup-bg.png") no-repeat;
+    background-size: 100% 100%;
+  }
+
   .popup__title {
-    margin-bottom: 20px;
+    margin-bottom: 43px;
+
+    @include max-screen(sm) {
+      margin-bottom: 25px;
+    }
   }
 
   .popup__text {
@@ -197,7 +219,7 @@
   }
 
   .page-btn {
-    margin-top: 20px;
+    margin-top: 30px;
     background: linear-gradient(180deg, #D04F56 0%, #AB3034 100%);
     box-shadow: 0px 3.12px 20px rgba(0, 0, 0, 0.4);
 
@@ -245,5 +267,16 @@
     width: 195px;
     height: 60px;
     font-size: 20px;
+  }
+}
+
+.scroll-area {
+  position: relative;
+  margin: auto;
+  width: 785px;
+  height: 390px;
+
+  @include max-screen(md) {
+    width: 100%;
   }
 }

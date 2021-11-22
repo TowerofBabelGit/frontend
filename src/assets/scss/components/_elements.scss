@@ -219,6 +219,70 @@
     transform: translateY(-50%);
     display: none;
   }
+
+  &--select {
+
+  }
+
+  &__current {
+    height: 50px;
+    width: 100%;
+    @include align-center;
+    padding: 0 13px 0 20px;
+    justify-content: space-between;
+    background: rgba(241, 203, 129, 0.6);
+    border: 1px solid #CCA24F;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 150%;
+    color: #503614;
+    transition: all .3s ease-in;
+
+    &:hover {
+      background: rgba(241, 203, 129, 0.3);
+      border: 1px solid #B17B11;
+      color: #B17B11;
+
+      svg {
+        path {
+          fill: #B17B11;
+
+        }
+      }
+    }
+
+
+  }
+
+  &__drop {
+    width: 100%;
+    background: rgb(241, 203, 129);
+    border: 1px solid #CCA24F;
+    border-radius: 10px;
+    padding: 17px 20px;
+    position: absolute;
+    bottom: -5px;
+    transform: translateY(100%);
+    font-size: 16px;
+    line-height: 150%;
+    text-align: left;
+    color: #503614;
+    cursor: pointer;
+    margin-top: 5px;
+    z-index: 5;
+
+    li {
+      &:hover {
+        color: #B17B11;
+      }
+      + li {
+        margin-top: 10px;
+
+
+      }
+    }
+  }
 }
 
 .tooltip {
