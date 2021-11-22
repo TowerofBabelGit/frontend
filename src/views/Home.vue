@@ -1350,6 +1350,12 @@
         <div class="balloon-wrap__img">
           <img src="@/assets/img/balloon-ball.png" alt="" class="balloon-wrap__img--top">
           <img src="@/assets/img/balloon-blocks.png" alt="" class="balloon-wrap__img--bottom">
+          <div class="balloon-wrap__blocks">
+            <img src="@/assets/img/cover-2.png" alt="">
+            <img src="@/assets/img/cover-3.png" alt="">
+            <img src="@/assets/img/cover-2.png" alt="">
+            <img src="@/assets/img/cover-3.png" alt="">
+          </div>
 
         </div>
 

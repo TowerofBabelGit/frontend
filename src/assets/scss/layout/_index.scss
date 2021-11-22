@@ -888,6 +888,25 @@ img {
 
   }
 
+  &__blocks {
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 150px;
+    z-index: -1;
+    background: url("assets/img/balloon-blocks-bg.png") no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+   // backdrop-filter: ;
+
+
+    img {
+      width: 50%;
+
+    }
+  }
+
   .buy-wrap {
     background: url("assets/img/buy-block-right.png") no-repeat;
     background-position: center;
