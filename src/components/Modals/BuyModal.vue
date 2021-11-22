@@ -240,13 +240,11 @@ export default {
         this.$emit('isThrowing', true);
         setTimeout(() => {
           this.$emit('success');
-        }, 3000);
+        }, 4000);
         setTimeout(() => {
           this.$emit('isThrowing', false);
-          this.$emit('isMoveDown', true);
-          this.$emit('isMoveDown', false);
           this.closeWindow();
-        }, 5000)
+        }, 8000)
       } catch (e) {
         console.log(e);
         this.$emit('loading', false);

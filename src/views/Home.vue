@@ -694,7 +694,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower">
+          <div class="tower" >
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -1070,7 +1070,7 @@
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
                               @leave="transitionLeave"
-                              v-if="!owner">
+                              >
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksSm"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
@@ -1541,7 +1541,7 @@
     <Preloader v-if="loading"/>
 
     <transition name="slide-fade" mode="out-in">
-      <div :class="{hidden: isThrowing || isMoveDown}">
+      <div :class="{hidden: isThrowing}">
         <BuyModal v-if="isBuyModalVisible"
                   :blockNumber="blockNumber"
                   :blockOwner="blockOwner"
@@ -1550,7 +1550,6 @@
                   @success="loadBlocks(true); defrostTimes = []; getDefrostTime()"
                   @loading="setBuyLoading"
                   @isThrowing="setThrowing"
-                  @isMoveDown="setIsMoving"
                   @close="isBuyModalVisible = false"/>
       </div>
     </transition>
@@ -1594,7 +1593,7 @@ export default {
       page: 0,
       blockNumber: null,
       blockOwner: null,
-      lastBlockId: null,
+      lastBlockId: 0,
       isAboutModalVisible: false,
       isBuyModalVisible: false,
       isHighlight: !!localStorage.getItem('isHighlight'),
@@ -1679,9 +1678,6 @@ export default {
         el.style.opacity = 1;
       }, delay)
     },
-    setIsMoving(status) {
-      this.isMoveDown = status;
-    },
     setBuyLoading(status) {
       this.loading = status;
     },
@@ -1749,13 +1745,15 @@ export default {
       for(let i = 0; i < 16; i++) {
         this.towerBlocksSm.push(Object.assign({}, el))
       }
-      for(let i = 0; i < 26; i++) {
+      for(let i = 0; i < 25; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
     },
     async loadBlocks(refresh = false) {
       if(refresh) {
         this.page = 0;
+        this.lastBlockId = 0;
+        this.loadDisabled = false;
       }
       if(this.loadDisabled) {
         return;
@@ -1778,7 +1776,7 @@ export default {
             return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
           }
           if(blocksToPreload / 26 >= 1) {
-            for(let i = blocksToPreload - 1; i > blocksToPreload - 26; i--) {
+            for(let i = blocksToPreload; i > blocksToPreload - 26; i--) {
               let block = await contract.blockOfNumber(i);
               this.lastBlockId++;
               let obj = {
@@ -1789,10 +1787,10 @@ export default {
                 cover: generateCover()
               }
               this.foundation.push(obj);
-              this.page++;
             }
+            this.page++;
           } else {
-            for(let i = blocksToPreload - 1; i > 0; i--) {
+            for(let i = blocksToPreload - 1; i >= 0; i--) {
               let block = await contract.blockOfNumber(i);
               this.lastBlockId++;
               let obj = {
@@ -1803,6 +1801,9 @@ export default {
                 cover: generateCover()
               }
               this.foundation.push(obj);
+              if(obj.owner === "0x0000000000000000000000000000000000000000") {
+                this.loadDisabled = true;
+              }
             }
             for(let i = 0; i < this.foundation.length % 26; i++) {
               this.foundation.push({
@@ -1813,7 +1814,9 @@ export default {
                 cover: generateCover()
               })
             }
+            return
           }
+          this.loadDisabled = false;
           return;
         }
       }
@@ -1832,7 +1835,6 @@ export default {
           continue;
         }
         iterationsCount++;
-        console.log(iterationsCount)
         if (iterationsCount === 1) {
           this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
@@ -1856,27 +1858,32 @@ export default {
           this.towerBlocksMd[middleCount].owner = block.owner;
           this.towerBlocksMd[middleCount].number = block.number;
           middleCount++;
-        } else if (iterationsCount >= 16 && iterationsCount < 32) {
+        } else if (iterationsCount >= 16 && iterationsCount < 32 && !this.owner) {
           this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
           this.towerBlocksSm[smallCount].description = block.description;
           this.towerBlocksSm[smallCount].owner = block.owner;
           this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
-        } else if (iterationsCount >= 32 && iterationsCount < 58 && !this.owner) {
+        } else if (iterationsCount >= 16 && this.owner) {
+          this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
+          this.towerBlocksSm[smallCount].description = block.description;
+          this.towerBlocksSm[smallCount].owner = block.owner;
+          this.towerBlocksSm[smallCount].number = block.number;
+          smallCount++;
+        } else if (iterationsCount >= 32 && iterationsCount < 57 && !this.owner) {
           this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
           this.towerBlocksXs[extraSmallCount].description = block.description;
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
         }
-        if(iterationsCount === 32) {
-          break;
-        }
-        if(iterationsCount === 58) {
+        if(iterationsCount === 57) {
           break;
         }
       }
-      this.loadDisabled = false;
+      if(!this.owner) {
+        this.loadDisabled = false;
+      }
     },
     init() {
       setTimeout(() => {
