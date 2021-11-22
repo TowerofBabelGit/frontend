@@ -48,7 +48,7 @@
             </div>
             <div class="page-input"
                  :class="{error: refLinkError}"
-                 v-if="!isBalloon && !isUpdate">
+                 v-if="!isBalloon && !isUpdate && showRefLink">
               <input type="text"
                      class="input"
                      v-model="refLink"
@@ -117,7 +117,8 @@ export default {
     imageUrl: null,
     refLink: null,
     blocksQuantity: null,
-    webSite: ''
+    webSite: '',
+    showRefLink: false
   }),
   computed: {
     ...mapGetters({
@@ -268,6 +269,20 @@ export default {
         this.closeWindow();
       }
     },
+    referralsMap() {
+      contract.referralsMap()
+        .then(res => {
+          if(res === '0x0000000000000000000000000000000000000000') {
+            this.showRefLink = true;
+          }
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    }
+  },
+  mounted() {
+    this.referralsMap();
   }
 }
 </script>

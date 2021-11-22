@@ -17,17 +17,25 @@ const checkIsWalletConnect = () => {
     return walletName === 'walletConnect'
 }
 
-// const formatPrice = (price) => {
-//     let coefficient = store.getters['contract/getMultiplier'];
-//     return Math.round(price * coefficient)
-//         .toLocaleString('fullwide', {useGrouping: false});
-// }
-
 const lastBlockPrice = () => {
     return new Promise((resolve, reject) => {
         methodsBsc.lastBlockPrice()
             .call({
                 from: store.getters['contract/getContractAddress']
+            }, (err, res) => {
+                if(err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
+    })
+}
+
+const referralsMap = () => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.referralsMap(account)
+            .call({
+                from: account
             }, (err, res) => {
                 if(err) {
                     reject(err)
@@ -226,5 +234,6 @@ export default {
     changeBlockInfo,
     addBlockToBalloon,
     balloonBlockPrice,
-    getDefrostTime
+    getDefrostTime,
+    referralsMap
 }

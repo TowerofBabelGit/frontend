@@ -1547,7 +1547,7 @@
                   :blockOwner="blockOwner"
                   :mode="mode"
                   :defrostTimes="defrostTimes"
-                  @success="loadBlocks(); defrostTimes = []; getDefrostTime()"
+                  @success="loadBlocks(true); defrostTimes = []; getDefrostTime()"
                   @loading="setBuyLoading"
                   @isThrowing="setThrowing"
                   @isMoveDown="setIsMoving"
@@ -1752,7 +1752,10 @@ export default {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
     },
-    async loadBlocks() {
+    async loadBlocks(refresh = false) {
+      if(refresh) {
+        this.page = 0;
+      }
       if(this.loadDisabled) {
         return;
       }
@@ -1828,6 +1831,7 @@ export default {
           continue;
         }
         iterationsCount++;
+        console.log(iterationsCount)
         if (iterationsCount === 1) {
           this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
@@ -1851,21 +1855,21 @@ export default {
           this.towerBlocksMd[middleCount].owner = block.owner;
           this.towerBlocksMd[middleCount].number = block.number;
           middleCount++;
-          if(this.owner) {
-            break;
-          }
         } else if (iterationsCount >= 16 && iterationsCount < 32) {
           this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
           this.towerBlocksSm[smallCount].description = block.description;
           this.towerBlocksSm[smallCount].owner = block.owner;
           this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
-        } else if (iterationsCount >= 32 && iterationsCount < 58) {
+        } else if (iterationsCount >= 32 && iterationsCount < 58 && !this.owner) {
           this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
           this.towerBlocksXs[extraSmallCount].description = block.description;
           this.towerBlocksXs[extraSmallCount].owner = block.owner;
           this.towerBlocksXs[extraSmallCount].number = block.number;
           extraSmallCount++;
+        }
+        if(iterationsCount === 32) {
+          break;
         }
         if(iterationsCount === 58) {
           break;
