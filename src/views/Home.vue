@@ -1678,6 +1678,9 @@ export default {
         el.style.opacity = 1;
       }, delay)
     },
+    generateCover() {
+      return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
+    },
     setBuyLoading(status) {
       this.loading = status;
     },
@@ -1719,9 +1722,6 @@ export default {
       this.towerBlocksSm = [];
       this.towerBlocksXs = [];
       this.foundation = [];
-      const generateCover = () => {
-        return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
-      }
       const el = {
         description: null,
         owner: null,
@@ -1732,18 +1732,20 @@ export default {
       el.cover = '/img/cover-1.png';
       this.towerBlocksExtraLarge.push(el)
       for(let i = 0; i < 2; i++) {
-        el.cover = generateCover();
+        el.cover = this.generateCover();
         this.towerBlocksMiddleLarge.push(Object.assign({}, el))
       }
       for(let i = 0; i < 4; i++) {
-        el.cover = generateCover();
+        el.cover = this.generateCover();
         this.towerBlocksLg.push(Object.assign({}, el))
       }
       for(let i = 0; i < 8; i++) {
         this.towerBlocksMd.push(Object.assign({}, el))
       }
-      for(let i = 0; i < 16; i++) {
-        this.towerBlocksSm.push(Object.assign({}, el))
+      if(!this.owner) {
+        for(let i = 0; i < 16; i++) {
+          this.towerBlocksSm.push(Object.assign({}, el))
+        }
       }
       for(let i = 0; i < 25; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
@@ -1772,9 +1774,6 @@ export default {
         if(this.page === 0) {
           this.page++;
         } else {
-          const generateCover = () => {
-            return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
-          }
           if(blocksToPreload / 26 >= 1) {
             for(let i = blocksToPreload; i > blocksToPreload - 26; i--) {
               let block = await contract.blockOfNumber(i);
@@ -1784,7 +1783,8 @@ export default {
                 description: block.description,
                 owner: block.owner,
                 number: block.number,
-                cover: generateCover()
+                cover: this.generateCover(),
+                showHover: false
               }
               this.foundation.push(obj);
             }
@@ -1798,7 +1798,8 @@ export default {
                 description: block.description,
                 owner: block.owner,
                 number: block.number,
-                cover: generateCover()
+                cover: this.generateCover(),
+                showHover: false
               }
               this.foundation.push(obj);
               if(obj.owner === "0x0000000000000000000000000000000000000000") {
@@ -1811,7 +1812,8 @@ export default {
                 description: null,
                 owner: null,
                 number: null,
-                cover: generateCover()
+                showHover: false,
+                cover: this.generateCover()
               })
             }
             return
@@ -1865,10 +1867,18 @@ export default {
           this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
         } else if (iterationsCount >= 16 && this.owner) {
-          this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
-          this.towerBlocksSm[smallCount].description = block.description;
-          this.towerBlocksSm[smallCount].owner = block.owner;
-          this.towerBlocksSm[smallCount].number = block.number;
+          // this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
+          // this.towerBlocksSm[smallCount].description = block.description;
+          // this.towerBlocksSm[smallCount].owner = block.owner;
+          // this.towerBlocksSm[smallCount].number = block.number;
+          this.towerBlocksSm.push({
+            imageUrl: block.imageUrl,
+            description: block.description,
+            owner: block.owner,
+            number: block.number,
+            showHover: false,
+            cover: this.generateCover()
+          })
           smallCount++;
         } else if (iterationsCount >= 32 && iterationsCount < 57 && !this.owner) {
           this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
