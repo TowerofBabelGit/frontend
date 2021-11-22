@@ -589,13 +589,11 @@ img {
 
 .crane-wrap {
   position: absolute;
-  bottom: 300px;
   left: 0;
   transform: translateX(-75%);
   z-index: 4;
 
   @include max-screen(xxl) {
-    bottom: 215px;
     transform: translateX(-79%);
   //  left: 18%;
   }
@@ -603,7 +601,7 @@ img {
     transform: translateX(-78%);
   }
   @include max-screen(lg) {
-   bottom: 105px;
+
     transform: translateX(-79%);
   }
   @include max-screen(md) {
@@ -792,53 +790,47 @@ img {
 
 
 .active {
-
-  animation: moveUpShort linear;
-  animation-duration: 1.4s;
+  animation: moveDown linear, moveUp linear;
+  animation-duration: 2.4s, 2.9s;
   animation-fill-mode: forwards;
+  animation-delay: 0s, 4.8s;
 
   .crane-wheel-back {
    animation: clockwise 5s linear;
     animation-duration: 1.8s;
-    animation-delay: 1.4s;
+    animation-delay: 2.4s;
   }
 
   .crane-wheel {
   animation: anticlockwise 5s linear;
     animation-duration: 1.8s;
     transform-origin: center;
-    animation-delay: 1.4s;
+    animation-delay: 2.4s;
   }
 
   .craneThrower {
-  //  animation-name: moveThrower, moveThrowerBack;
     animation-name: moveThrower;
    animation-duration: 1.5s, 1s;
- //   animation-duration: 15s, 15s;
+
 
     animation-timing-function: ease-in;
-    animation-delay: 1.4s, 2.9s;
- //   animation-delay: 0s, 15s;
+    animation-delay: 2.4s, 3.9s;
+
     animation-fill-mode: forwards;
     transform-origin: 76% 35%;
     animation-direction: alternate;
     animation-iteration-count: 2;
-  //  animation-iteration-count: infinite;
   }
 
   .craneThrow {
-  //  animation-name: moveThrow, moveThrowBack;
     animation-name: moveThrow;
     animation-direction: alternate;
     animation-iteration-count: 2;
     animation-duration: 1.5s, 1s;
-  //  animation-duration: 15s, 15s;
     animation-timing-function: ease-in, linear;
-    animation-delay: 1.4s, 2.9s;
-  //  animation-delay: 0s, 15s;
+    animation-delay: 2.4s, 3.9s;
     animation-fill-mode: forwards;
     transform-origin: 131% 3%;
-  //  animation-iteration-count: infinite;
 
     @include max-screen(xxl) {
  //     transform-origin: 176% 11%;
@@ -854,20 +846,17 @@ img {
   .craneFly {
     animation-name: flyingBlockSpin;
     animation-duration: 1.5s;
-    animation-delay: 2.9s;
+    animation-delay: 3.9s;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
   }
 
   .crane-block-wrap__hands {
     animation: disappear 0.9ms linear forwards;
-    animation-delay: 2.9s;
-  /*  animation-name: dissapear;
-    animation-duration: .1s, .1ms;
-    animation-timing-function: linear;
-    animation-delay: 1.9s, 3s;
-    animation-fill-mode: forwards;*/
+    animation-delay: 3.9s;
   }
+
+
 }
 
 .balloon-wrap {
@@ -1556,6 +1545,7 @@ img {
     line-height: 23px;
     color: #503614;
     margin-bottom: 4px;
+    word-break: break-all;
 
     @include max-screen(xs) {
       font-size: 14px;
@@ -1705,7 +1695,7 @@ img {
     @include align-justify-center;
     background-size: 100% 100%;
     margin-top: 10px;
-
+    font-family: $base-font;
     font-size: 13px;
     line-height: 16px;
     text-transform: uppercase;
