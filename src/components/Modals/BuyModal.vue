@@ -9,22 +9,35 @@
 
           <div class="popup__title">
             <span v-if="isCatapult">Buy tower</span>
-            <span v-if="isBalloon">Buy balloon</span>
+            <span v-if="isBalloon">Buy flying</span>
             <span v-if="isUpdate">Update</span>
             block
           </div>
 
           <form class="popup-form" @submit.prevent="setBuyMethod">
-            <div class="page-input"
+            <div class="page-input page-input--select"
                  v-if="isBalloon"
                  :class="{error: blocksQuantityError}">
-              <input type="text"
+<!--              <input type="text"
                      v-model.number="blocksQuantity"
                      class="input"
-                     placeholder="Input block number">
+                     placeholder="Block number"
+              >-->
+                <div class="page-input__current" @click="openDropDown = !openDropDown">
 
-              <div class="page-input__icon">
-                <img src="@/assets/img/svg/icon-error.svg" alt="">
+                  {{currentOption}}
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 14L8 10H16L12 14Z" fill="#644A24"/>
+                  </svg>
+
+                </div>
+              <div class="page-input__drop" v-show="openDropDown">
+                <ul>
+                  <li class="page-input__item" v-for="(num, index) in blockNums" :key="index" @click="currentOption = num.order">
+                    {{num.order}}
+                  </li>
+
+                </ul>
               </div>
             </div>
             <div class="page-input" :class="{error: descriptionError}">
@@ -41,7 +54,7 @@
               <input type="text"
                      class="input"
                      v-model="imageUrl"
-                     placeholder="Input image url">
+                     placeholder="Image url">
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
@@ -118,7 +131,23 @@ export default {
     refLink: null,
     blocksQuantity: null,
     webSite: '',
-    showRefLink: false
+    showRefLink: false,
+    openDropDown: false,
+    currentOption: 'Block number',
+    blockNums: [
+      {
+        order: 'Block number 1'
+      },
+      {
+        order: 'Block number 2'
+      },
+      {
+        order: 'Block number 3'
+      },
+      {
+        order: 'Block number 4'
+      },
+    ],
   }),
   computed: {
     ...mapGetters({

@@ -8,6 +8,10 @@
           :speed="1"
           :width="150"
       ></LottieAnimation>
+      <div class="preloader__text">
+        <p class="title">Loading...</p>
+        <p> Wait a few seconds</p>
+      </div>
     </div>
 
   </div>
@@ -20,8 +24,6 @@ export default {
   components: {
     LottieAnimation
   },
-
-
 };
 </script>
 
@@ -35,6 +37,27 @@ export default {
   bottom: 0;
   margin: auto;
   background:rgba(0,0,0,0.8);
+
+
+  &__text{
+    font-size: 18px;
+
+    line-height: 1.2;
+    text-align: center;
+    position: absolute;
+    bottom: 1rem;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding-bottom: 30px;
+    color: #C6B198;
+
+    .title {
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 7px;
+    }
+  }
 
 }
 .preloader-wrap{
