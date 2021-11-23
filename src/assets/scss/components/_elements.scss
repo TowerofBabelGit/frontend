@@ -36,6 +36,12 @@
     background: url("assets/img/svg/btn-green.svg") no-repeat;
     background-size: 100% 100%;
   }
+
+  &--change {
+    background: url("assets/img/change-btn.png") no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 10px;
+  }
 }
 
 .burger-btn {

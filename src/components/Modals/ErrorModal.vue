@@ -20,6 +20,7 @@
             {{message}}
           </div>
 
+          <button class="page-btn page-btn--change" v-show="isNeworkBtnVisible">Change network</button>
           <button class="page-btn" type="button" @click="closeWindow">Ok</button>
         </div>
       </div>
@@ -34,7 +35,10 @@ export default {
   props: {
     message: {
       type: String,
-      required: true
+      required: true,
+    },
+    isNeworkBtnVisible: {
+      default: false,
     }
   },
   methods: {
