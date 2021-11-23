@@ -708,8 +708,9 @@
                    v-for="(item, index) in towerBlocksExtraLarge"
                    :key="index"
                    :class="{owner: isOwnerBlock(item.owner)}">
-                <img v-if="item.imageUrl"
+                <img
                      v-lazy="item.imageUrl"
+                     loading="@/assets/img/loading.gif"
                      class="tower__col-image"
                      alt="">
                 <div class="tower__block-cover"
@@ -808,6 +809,7 @@
 
               >
                 <img v-if="item.imageUrl" v-lazy="item.imageUrl" class="tower__col-image" alt="">
+                <img v-else src="@/assets/img/loading.gif" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
@@ -902,7 +904,8 @@
                    :key="index"
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-lazy="block.imageUrl" class="tower__col-image" alt="">
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" class="tower__col-image" alt="">
+                <img v-else src="@/assets/img/loading.gif" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -995,7 +998,8 @@
                    :key="index"
                    :class="{owner: isOwnerBlock(block.owner)}"
                    :data-index="index">
-                <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
+                <img v-else src="@/assets/img/loading.gif" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1087,7 +1091,8 @@
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :key="index"
                    :data-index="index">
-                <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
+                <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
+                <img v-else src="@/assets/img/loading.gif" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1173,14 +1178,14 @@
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
-                              @leave="transitionLeave"
-                              v-if="!owner">
+                              @leave="transitionLeave">
               <div class="tower__col"
                    v-for="(block, index) in towerBlocksXs"
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
+                <img v-else src="@/assets/img/loading.gif" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1274,6 +1279,7 @@
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
+                <img v-else src="@/assets/img/loading.gif" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
                      @click="openBuyModal('update', block.number, block.owner)"
                      @mouseover="block.showHover = true"
@@ -1353,7 +1359,7 @@
                 </div>
               </div>
             </transition-group>
-            <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadDisabled"/>
+            <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadingDisabled"/>
           </div>
 
           <div class="tower-bottom">
@@ -1578,7 +1584,7 @@
                 :blockOwner="blockOwner"
                 :mode="mode"
                 :defrostTimes="defrostTimes"
-                @success="loadBlocks(true); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
+                @success="loadBlocks(); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
                 @loading="setBuyLoading"
                 @isThrowing="setThrowing"
                 @error="setError"
@@ -1617,7 +1623,6 @@ export default {
     return {
       error: null,
       towerHeight: 'auto',
-      loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
       loading: false,
@@ -1625,8 +1630,6 @@ export default {
       isMoveUp: false,
       isThrowing: false,
       blocksQt: 57,
-      size: 26,
-      page: 0,
       blockNumber: null,
       blockOwner: null,
       lastBlockId: 0,
@@ -1642,7 +1645,9 @@ export default {
       defrostTimes: [],
       foundation: [],
       blocksLoaded: 0,
-      balloonBlocks: []
+      balloonBlocks: [],
+      page: 0,
+      loadingDisabled: false
     }
   },
   computed: {
@@ -1713,9 +1718,9 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     transitionEnter(el, done) {
-      const delay = el.dataset.index * 150
+      const delay = el.dataset.index * 100
       setTimeout(() => {
-        el.style.transition = '1s'
+        el.style.transition = '0.5s'
         el.style.opacity = 1;
       }, delay)
     },
@@ -1764,14 +1769,14 @@ export default {
         i++;
       }
     },
-    fillArrays() {
+    async fillArrays() {
+      this.towerHeight = this.$refs.tower.clientHeight + 'px'
       this.towerBlocksExtraLarge = [];
       this.towerBlocksMiddleLarge = [];
       this.towerBlocksLg = [];
       this.towerBlocksMd = [];
       this.towerBlocksSm = [];
       this.towerBlocksXs = [];
-      this.foundation = [];
       const el = {
         description: null,
         owner: null,
@@ -1792,173 +1797,145 @@ export default {
       for (let i = 0; i < 8; i++) {
         this.towerBlocksMd.push(Object.assign({}, el))
       }
-      if (!this.owner) {
-        for (let i = 0; i < 16; i++) {
-          this.towerBlocksSm.push(Object.assign({}, el))
-        }
+      for (let i = 0; i < 16; i++) {
+        this.towerBlocksSm.push(Object.assign({}, el))
       }
       for (let i = 0; i < 25; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
-      if(!this.owner) {
-        this.towerHeight = this.$refs.tower.clientHeight - 125 + 'px'
-      } else {
-        this.towerHeight = this.$refs.tower.clientHeight - 160 + 'px'
-      }
     },
-    async loadBlocks(refresh = false) {
-      if (refresh) {
-        this.page = 0;
-        this.lastBlockId = 0;
-        this.loadDisabled = false;
+    fillFooter(numElements) {
+      let part = [];
+      const el = {
+        description: null,
+        owner: null,
+        imageUrl: null,
+        cover: this.generateCover(),
+        showHover: false,
       }
-      if (this.loadDisabled) {
-        return;
+      for (let i = 0; i < numElements; i++) {
+        part.push(Object.assign({}, el))
       }
-      this.loadDisabled = true;
-      if (this.page === 0) {
-        this.fillArrays();
+      let rows = Math.ceil(part.length / 25);
+      this.towerHeight = parseInt(this.towerHeight.replace('px', '')) + (18 * rows) + 'px'
+      this.foundation = [...this.foundation, ...part];
+    },
+    async loadBlocks() {
+      if(this.loadingDisabled) {
+        return
       }
+      this.loadingDisabled = true;
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);
-      let blocksToPreload = 0;
-      if (lastBlockId <= this.blocksQt) {
-        blocksToPreload = lastBlockId;
-        if(this.page > 0) {
-          this.loadDisabled = true;
-          return
-        }
-        this.page++;
-      } else {
-        blocksToPreload = lastBlockId - this.lastBlockId;
-        if (this.page === 0) {
-          this.page++;
-        } else {
-          this.towerHeight = `${parseInt(this.towerHeight.replace('px', '')) + 18}px`
-          if (blocksToPreload / 26 >= 1) {
-            for (let i = blocksToPreload; i > blocksToPreload - 26; i--) {
-              let block = await contract.blockOfNumber(i);
-              this.lastBlockId++;
-              let obj = {
-                imageUrl: block.imageUrl,
-                description: block.description,
-                owner: block.owner,
-                number: block.number,
-                cover: this.generateCover(),
-                showHover: false
-              }
-              this.foundation.push(obj);
-            }
-            this.page++;
-          } else {
-            for (let i = blocksToPreload - 1; i >= 0; i--) {
-              let block = await contract.blockOfNumber(i);
-              this.lastBlockId++;
-              let obj = {
-                imageUrl: block.imageUrl,
-                description: block.description,
-                owner: block.owner,
-                number: block.number,
-                cover: this.generateCover(),
-                showHover: false
-              }
-              this.foundation.push(obj);
-              if (obj.owner === "0x0000000000000000000000000000000000000000") {
-                this.loadDisabled = true;
-              }
-            }
-            for (let i = 0; i < this.foundation.length % 26; i++) {
-              this.foundation.push({
-                imageUrl: null,
-                description: null,
-                owner: null,
-                number: null,
-                showHover: false,
-                cover: this.generateCover()
-              })
-            }
-            return
+      if(this.page === 0) {
+        await this.fillArrays();
+        let iterationsCount = 0;
+        let extraLargeCount = 0;
+        let middleLargeCount = 0;
+        let largeCount = 0;
+        let middleCount = 0;
+        let smallCount = 0;
+        let extraSmallCount = 0;
+        for (let i = lastBlockId; i > lastBlockId - this.blocksQt; i--) {
+          let block = await contract.blockOfNumber(i);
+          this.blocksLoaded++;
+          if(this.owner && block.owner !== this.getAccount) {
+            continue;
           }
-          this.loadDisabled = false;
+          iterationsCount++;
+          if (iterationsCount === 1) {
+            this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
+            this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
+            this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
+            this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
+          } else if (iterationsCount > 1 && iterationsCount < 4) {
+            this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
+            this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
+            this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
+            this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
+            middleLargeCount++;
+          } else if (iterationsCount >= 4 && iterationsCount < 8) {
+            this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
+            this.towerBlocksLg[largeCount].description = block.description;
+            this.towerBlocksLg[largeCount].owner = block.owner;
+            this.towerBlocksLg[largeCount].number = block.number;
+            largeCount++;
+          } else if (iterationsCount >= 8 && iterationsCount < 16) {
+            this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
+            this.towerBlocksMd[middleCount].description = block.description;
+            this.towerBlocksMd[middleCount].owner = block.owner;
+            this.towerBlocksMd[middleCount].number = block.number;
+            middleCount++;
+          } else if (iterationsCount >= 16 && iterationsCount < 32) {
+            this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
+            this.towerBlocksSm[smallCount].description = block.description;
+            this.towerBlocksSm[smallCount].owner = block.owner;
+            this.towerBlocksSm[smallCount].number = block.number;
+            smallCount++;
+          } else if (iterationsCount >= 32 && iterationsCount < 57) {
+            this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
+            this.towerBlocksXs[extraSmallCount].description = block.description;
+            this.towerBlocksXs[extraSmallCount].owner = block.owner;
+            this.towerBlocksXs[extraSmallCount].number = block.number;
+            extraSmallCount++;
+          }
+        }
+        if(lastBlockId <= this.blocksQt) {
           return;
         }
+        this.page++;
+        this.loadingDisabled = false;
+      } else {
+        // check how match rows need 5 or less (5 * 25 = 125)
+        let blocksLeft = lastBlockId - this.blocksLoaded;
+        if(blocksLeft <= 0) {
+          return;
+        }
+        let rows = 0;
+        if(blocksLeft < 320) {
+          //this is the last block
+          //need generate less then 10 rows
+          let elementsNeed = Math.ceil(blocksLeft / 32) * 32;
+          rows = Math.ceil(elementsNeed / 32);
+          this.fillFooter(elementsNeed);
+        } else {
+          this.fillFooter(320);
+          rows = 10;
+        }
+        alert(rows)
+        for(let i = 1; i <= rows; i++) {
+          this.loadRow(blocksLeft, blocksLeft - (i * 32));
+          // blocksLeft -= 25;
+          // this.loadRow(blocksLeft, blocksLeft - 25);
+          // blocksLeft -= 25;
+          // this.loadRow(blocksLeft, blocksLeft - 25);
+          // blocksLeft -= 25;
+          // this.loadRow(blocksLeft, blocksLeft - 25);
+          // blocksLeft -= 25;
+          // this.loadRow(blocksLeft, blocksLeft - 25);
+          // blocksLeft -= 25;
+          // this.loadRow(blocksLeft, blocksLeft - 25);
+          // blocksLeft -= 25;
+          // this.loadRow(blocksLeft, blocksLeft - 25);
+        }
+        this.page++;
       }
-      let iterationsCount = 0;
-      let extraLargeCount = 0;
-      let middleLargeCount = 0;
-      let largeCount = 0;
-      let middleCount = 0;
-      let smallCount = 0;
-      let extraSmallCount = 0;
-      for (let i = blocksToPreload; i > 0; i--) {
+    },
+    async loadRow(from, to) {
+      if(to <= 0) {
+        return
+      }
+      for(let i = from; i > from; i--) {
         let block = await contract.blockOfNumber(i);
-        this.lastBlockId++;
-        if (this.owner && block.owner !== this.owner) {
-          continue;
-        }
-        iterationsCount++;
-        if (iterationsCount === 1) {
-          this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
-          this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
-          this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
-          this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
-        } else if (iterationsCount > 1 && iterationsCount < 4) {
-          this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
-          this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
-          this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
-          this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
-          middleLargeCount++;
-        } else if (iterationsCount >= 4 && iterationsCount < 8) {
-          this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
-          this.towerBlocksLg[largeCount].description = block.description;
-          this.towerBlocksLg[largeCount].owner = block.owner;
-          this.towerBlocksLg[largeCount].number = block.number;
-          largeCount++;
-        } else if (iterationsCount >= 8 && iterationsCount < 16) {
-          this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
-          this.towerBlocksMd[middleCount].description = block.description;
-          this.towerBlocksMd[middleCount].owner = block.owner;
-          this.towerBlocksMd[middleCount].number = block.number;
-          middleCount++;
-        } else if (iterationsCount >= 16 && iterationsCount < 32 && !this.owner) {
-          this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
-          this.towerBlocksSm[smallCount].description = block.description;
-          this.towerBlocksSm[smallCount].owner = block.owner;
-          this.towerBlocksSm[smallCount].number = block.number;
-          smallCount++;
-        } else if (iterationsCount >= 16 && this.owner) {
-          if(this.towerBlocksSm.length % 8 === 0) {
-            this.towerHeight = `${parseInt(this.towerHeight.replace('px', '')) + 38}px`
-          }
-          this.towerBlocksSm.push({
-            imageUrl: block.imageUrl,
-            description: block.description,
-            owner: block.owner,
-            number: block.number,
-            showHover: false,
-            cover: this.generateCover()
-          })
-          smallCount++;
-        } else if (iterationsCount >= 32 && iterationsCount < 57 && !this.owner) {
-          this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
-          this.towerBlocksXs[extraSmallCount].description = block.description;
-          this.towerBlocksXs[extraSmallCount].owner = block.owner;
-          this.towerBlocksXs[extraSmallCount].number = block.number;
-          extraSmallCount++;
-        }
-        if (iterationsCount === 57) {
-          this.towerHeight = this.$refs.tower.clientHeight + 'px';
-          break;
-        }
-      }
-      if (!this.owner) {
-        this.loadDisabled = false;
+        this.foundation[i].imageUrl = block.imageUrl;
+        this.towerBlocksXs[i].description = block.description;
+        this.towerBlocksXs[i].owner = block.owner;
+        this.towerBlocksXs[i].number = block.number;
       }
     },
     init() {
       setTimeout(() => {
         this.getDefrostTime();
-        this.loadBlocks();
         this.blockInBalloon();
       }, 0);
     }

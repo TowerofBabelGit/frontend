@@ -28,7 +28,7 @@
       <nav class="header-nav header-nav--right">
       <ul class="header-nav__list">
         <li class="header-nav__item">
-          <a href="#">My tower</a>
+          <a :href="`https://putyourblockon.top/tower/${getAccount}`" target="_blank">My tower</a>
         </li>
         <li class="header-nav__item">
           <a href="https://t.me/putyourblockontop" target="_blank">Chat</a>

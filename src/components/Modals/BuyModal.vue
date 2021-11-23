@@ -47,7 +47,7 @@
                      @focus="movePlaceholder = true"
                      @focusout="movePlaceholder = false"
                      >
-              <label>Input block description</label>
+              <label>Input block title</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
@@ -59,7 +59,7 @@
                      @focus="movePlaceholder1 = true"
                      @focusout="movePlaceholder1 = false"
               >
-              <label>Image url</label>
+              <label>Image URL</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
