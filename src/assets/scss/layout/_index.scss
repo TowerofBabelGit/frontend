@@ -1247,9 +1247,6 @@ img {
       width: 1085px;
       margin: auto;
       height: fit-content;
-      max-height: 1410px;
-      overflow-y: auto;
-   //   overflow-x: visible;
 
       padding: 32px 45px 255px 61px;
 
@@ -1260,15 +1257,10 @@ img {
 
       @include max-screen(xxxl) {
         width: 743px;
-        height: fit-content;
-    //    max-height: 1110px;
-        max-height: 910px;
         padding: 32px 0 185px 41px;
       }
       @include max-screen(xxl) {
         width: 623px;
-      //  height: 1064px;
-
         padding: 25px 0px 170px 32px;
       }
       @include max-screen(xl) {
@@ -1278,7 +1270,6 @@ img {
       @include max-screen(lg) {
         width: 498px;
         padding: 17px 0 120px 30px;
-     //   height: 765px;
       }
       @include max-screen(md) {
         width: 467px;
@@ -1289,7 +1280,6 @@ img {
       }
       @include max-screen(xs) {
         width: 100%;
-    //    height: 470px;
         padding: 6px 0px 62px 16px;
       }
 
