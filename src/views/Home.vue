@@ -1272,7 +1272,7 @@
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @click="changeBlockInfo(block.number, block.owner)"
+                     @click="openBuyModal('update', block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
@@ -1803,6 +1803,11 @@ export default {
       let blocksToPreload = 0;
       if (lastBlockId <= this.blocksQt) {
         blocksToPreload = lastBlockId;
+        if(this.page > 0) {
+          this.loadDisabled = true;
+          return
+        }
+        this.page++;
       } else {
         blocksToPreload = lastBlockId - this.lastBlockId;
         if (this.page === 0) {
@@ -1863,8 +1868,7 @@ export default {
       let middleCount = 0;
       let smallCount = 0;
       let extraSmallCount = 0;
-
-      for (let i = blocksToPreload; i > -1; i--) {
+      for (let i = blocksToPreload; i > 0; i--) {
         let block = await contract.blockOfNumber(i);
         this.lastBlockId++;
         if (this.owner && block.owner !== this.owner) {
@@ -1901,10 +1905,6 @@ export default {
           this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
         } else if (iterationsCount >= 16 && this.owner) {
-          // this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
-          // this.towerBlocksSm[smallCount].description = block.description;
-          // this.towerBlocksSm[smallCount].owner = block.owner;
-          // this.towerBlocksSm[smallCount].number = block.number;
           this.towerBlocksSm.push({
             imageUrl: block.imageUrl,
             description: block.description,

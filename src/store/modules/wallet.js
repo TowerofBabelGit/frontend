@@ -19,7 +19,7 @@ export default {
         //currentNetworkHex: '0x38',
         currentNetworkHex: '0x61', // test
         //rpcUrl: 'https://bsc-dataseed.binance.org/',
-        rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/'// test
+        rpcUrl: 'https://data-seed-prebsc-1-s2.binance.org:8545/'// test
     },
     mutations: {
         setProvider(state, payload) {
