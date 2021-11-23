@@ -54,7 +54,7 @@
           <a href="#" @click="isOpenMenu = false">Smart contract</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#" @click="isOpenMenu = false">Highlight blocks</a>
+          <a href="#" @click="isOpenMenu = false">My tower</a>
         </li>
         <li class="mobile-nav__item">
           <a href="https://t.me/putyourblockontop" target="_blank" @click="isOpenMenu = false">Chat</a>

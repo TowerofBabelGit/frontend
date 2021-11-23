@@ -785,7 +785,7 @@
 
                   </a>
 
-                  <a :href="item.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -881,7 +881,7 @@
 
                   </a>
 
-                  <a :href="item.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -974,7 +974,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1066,7 +1066,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1159,7 +1159,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1252,7 +1252,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1345,7 +1345,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View original image</a>
+                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1366,11 +1366,101 @@
 
         <div class="balloon-wrap__img">
           <img src="@/assets/img/balloon-ball.png" alt="" class="balloon-wrap__img--top">
-          <img src="@/assets/img/balloon-blocks.png" alt="" class="balloon-wrap__img--bottom">
+
+
+
           <div class="balloon-wrap__blocks">
-            <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index">
+            <div class="line"></div>
+            <div class="line-2"></div>
+
+            <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index" :class="{empty: !item.imageUrl, frozen: isFrozen}" >
               <img :src="item.imageUrl" alt="">
-              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover">
+              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" v-show="!item.imageUrl">
+
+              <div class="tower-block" >
+
+
+                <div v-show="isFrozen">
+                <div class="tower-block__text">
+                  This block is frozen
+                </div>
+                <div class="timer">
+                  <div class="timer__wrap">23</div>
+                  <span class="timer__separator">:</span>
+                  <div class="timer__wrap">59</div>
+                  <span class="timer__separator">:</span>
+                  <div class="timer__wrap">59</div>
+                </div>
+                </div>
+                <div class="tower-block__img">
+                  <img v-lazy="item.imageUrl" alt="">
+                </div>
+
+                <div class="tower-block__title">
+                  Title:
+                </div>
+
+                <div class="tower-block__text">
+                  {{ item.description }}
+                </div>
+
+                <!--                  <div class="tower-block__title">-->
+                <!--                    Tx hash:-->
+                <!--                  </div>-->
+
+                <!--                  <div class="tower-block__text">-->
+                <!--                    {{ block.owner | cutHash }}-->
+                <!--                  </div>-->
+
+                <!--                  <button class="view-on">-->
+                <!--                    View on BscScan-->
+                <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                <!--                      </g>-->
+                <!--                      <defs>-->
+                <!--                        <clipPath id="clip0_405_4009">-->
+                <!--                          <rect width="14" height="14" fill="white"/>-->
+                <!--                        </clipPath>-->
+                <!--                      </defs>-->
+                <!--                    </svg>-->
+
+                <!--                  </button>-->
+
+                <div class="tower-block__title">
+                  Owner address:
+                </div>
+
+                <div class="tower-block__text">
+                  {{ item.owner | cutHash }}
+                </div>
+
+                <a class="view-on"
+                   :href="`https://bscscan.com/address/${item.owner}`"
+                   target="_blank">
+                  View on BscScan
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_405_4009)">
+                      <path
+                          d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z"
+                          fill="black"/>
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_405_4009">
+                        <rect width="14" height="14" fill="white"/>
+                      </clipPath>
+                    </defs>
+                  </svg>
+
+                </a>
+
+                <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
+                <button class="page-btn page-btn--buy" v-show="!isFrozen">Buy this block</button>
+
+                <div class="tower-block__point">
+                  <span></span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1642,7 +1732,8 @@ export default {
       defrostTimes: [],
       foundation: [],
       blocksLoaded: 0,
-      balloonBlocks: []
+      balloonBlocks: [],
+      isFrozen: false,
     }
   },
   computed: {

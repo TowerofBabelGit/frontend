@@ -129,7 +129,7 @@ img {
       margin: auto;
       height: 40%;
       animation-name: spin;
-      animation-duration: 10s;
+      animation-duration: 25s;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
     }
@@ -366,6 +366,7 @@ img {
       white-space: nowrap;
       cursor: pointer;
       font-size: 21px;
+      text-shadow: 0px 3px 4px #FFFFFF;
 
       @include max-screen(xxl) {
         font-size: 17px;
@@ -978,7 +979,7 @@ img {
 
 .balloon-wrap {
   position: absolute;
-  top: -50px;
+  top: -150px;
   right: 12%;
   z-index: 1;
 
@@ -1003,16 +1004,96 @@ img {
   }
 
   &__blocks {
-    position: absolute;
+    position: relative;
     bottom: 0;
     display: flex;
     flex-wrap: wrap;
-    width: 150px;
-    z-index: -1;
+    width: 160px;
     background: url("assets/img/balloon-blocks-bg.png") no-repeat;
     background-position: center;
     background-size: 100% 100%;
-   // backdrop-filter: ;
+    margin-top: 50px;
+    animation: balance 10s linear infinite;
+    border-bottom: 2px solid  #413927;
+
+    @include max-screen(sm) {
+      margin-top: 25px;
+    }
+    @include max-screen(xs) {
+      margin-top: 15px;
+    }
+
+    .line {
+      position: absolute;
+      left: 33px;
+      z-index: 1;
+      height: 231px;
+      transform: rotate(21deg);
+      width: 10px;
+      bottom: -9px;
+      background: url("assets/img/svg/line.svg") no-repeat;
+      background-size: 100% 100%;
+
+      @include max-screen(xl) {
+        left: 21px;
+        height: 169px;
+        transform: rotate(20deg);
+        bottom: -7px;
+      }
+      @include max-screen(md) {
+        left: 15px;
+        height: 131px;
+        bottom: -4px;
+      }
+      @include max-screen(sm) {
+        left: 10px;
+        height: 95px;
+        bottom: -4px;
+      }
+      @include max-screen(xs) {
+        left: 6px;
+        height: 68px;
+        bottom: -4px;
+      }
+    }
+    .line-2 {
+      position: absolute;
+      right: 34px;
+      z-index: 1;
+      height: 232px;
+      transform: rotate(-18deg);
+      width: 10px;
+      bottom: -9px;
+      background: url("assets/img/svg/line.svg") no-repeat;
+      background-size: 100% 100%;
+
+      @include max-screen(xl) {
+        right: 20px;
+        z-index: 1;
+        height: 170px;
+        transform: rotate(-15deg);
+        width: 10px;
+        bottom: -7px;
+      }
+      @include max-screen(md) {
+        right: 14px;
+        height: 131px;
+        bottom: -4px;
+      }
+      @include max-screen(sm) {
+        right: 10px;
+        height: 97px;
+        bottom: -6px;
+        transform: rotate(-17deg);
+      }
+      @include max-screen(xs) {
+        right: 6px;
+        height: 68px;
+        bottom: -5px;
+      }
+    }
+
+
 
     @include max-screen(xl) {
       width: 105px;
@@ -1036,7 +1117,8 @@ img {
   &__block {
     position: relative;
     width: 50%;
-    height: 70px;
+    height: 80px;
+    cursor: pointer;
 
     @include max-screen(xl) {
       height: 52px;
@@ -1051,10 +1133,82 @@ img {
       height: 22px;
     }
 
+    &:hover {
+      .tower-block {
+        display: block;
+        z-index: 150;
+      }
+    }
+
+    &.empty {
+      &:after {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-family: $base-font;
+        font-size: 36px;
+        line-height: 150%;
+        text-align: center;
+        color: #503614;
+        opacity: 0.8;
+        text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.55);
+
+        @include max-screen(xs) {
+          font-size: 13px;
+        }
+      }
+
+      &:first-child:after {
+        content: '1';
+      }
+      &:nth-child(2):after {
+        content: '2';
+      }
+      &:nth-child(3):after {
+        content: '3';
+      }
+      &:nth-child(4):after {
+        content: '4';
+      }
+    }
+
+    &.frozen {
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: #000000;
+        opacity: 0.6;
+        border-radius: 13px;
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: 6px;
+        top: 7px;
+        background: url("assets/img/svg/icon-lock.svg") no-repeat;
+        width: 18px;
+        height: 18px;
+        background-size: 100%;
+      }
+    }
+
     img {
-      border-radius: 10px;
+      border-radius: 13px;
       height: 100%;
       border: 0;
+      object-fit: cover;
+
+      @include max-screen(xs) {
+        border-radius: 3px;
+      }
     }
   }
 
@@ -1063,6 +1217,7 @@ img {
     background-position: center;
     right: 0px;
     top: 0px;
+    z-index: -1;
     transform: translate(90%, 50%) rotate(5deg);
 
     @include max-screen(xl) {
@@ -1087,6 +1242,7 @@ img {
       height: 150px;
       overflow: hidden;
       border-radius: 90px;
+      z-index: 1;
     }
 
     &__icon {
@@ -1144,9 +1300,8 @@ img {
     }
 
     &--bottom {
-      margin-top: -5px;
-      width: 150px;
-      animation: balance 10s linear infinite;
+
+      cursor: pointer;
 
       @include max-screen(xl) {
         width: 100px;
@@ -1156,6 +1311,19 @@ img {
       }
       @include max-screen(sm) {
         animation: none;
+      }
+    }
+  }
+
+  .tower-block {
+    &__point {
+      width: 31px;
+      height: 31px;
+
+      span {
+        width: 27px;
+        height: 27px;
+        border-width: 3px;
       }
     }
   }
@@ -1266,8 +1434,8 @@ img {
   }
 
   &__guys {
-    margin-top: 190px;
-    margin-bottom: -15px;
+    margin-top: 350px;
+    margin-bottom: -20px;
     @include align-center;
     justify-content: space-between;
     z-index: -1;
@@ -1302,15 +1470,16 @@ img {
 
     &--left {
       img {
-        margin-right: -40px;
+        margin-right: -45px;
+        z-index: 0;
 
         @include max-screen(xs) {
           margin-right: -25px;
         }
 
         &:first-child {
-          transform: rotate(-24.67deg);
-          margin-left: 20px;
+          transform: rotate(-32deg);
+          margin-left: 5px;
 
           @include max-screen(xs)  {
             margin-left: 0;
@@ -1318,18 +1487,19 @@ img {
         }
 
         &:nth-child(3) {
-          transform: rotate(14.89deg);
+          transform: rotate(18deg);
         }
 
         &:last-child {
           transform: rotate(23.16deg);
-          margin-left: 10px;
+          margin-left: 6px;
         }
       }
     }
 
     &--right {
-
+      margin-right: -20px;
+      z-index: 0;
       @include max-screen(xs) {
         margin-right: -25px;
       }
@@ -1467,10 +1637,10 @@ img {
         }
 
         &--md {
-          height: 100px;
+          height: 87px;
 
           @include max-screen(xxl) {
-            height: 82px;
+            height: 73px;
           }
           @include max-screen(lg) {
             height: 58px;
@@ -1706,6 +1876,11 @@ img {
   @include max-screen(xs) {
     width: 175px;
     padding: 15px 20px;
+  }
+
+  .timer {
+    margin-top: 7px;
+    margin-bottom: 17px;
   }
 
 

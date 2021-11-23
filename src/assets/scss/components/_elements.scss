@@ -31,6 +31,11 @@
     border-radius: 10px;
 
   }
+
+  &--buy {
+    background: url("assets/img/svg/btn-green.svg") no-repeat;
+    background-size: 100% 100%;
+  }
 }
 
 .burger-btn {
@@ -348,4 +353,35 @@
 
   }
 
+}
+
+.timer {
+  @include align-center;
+
+  &__wrap {
+    background: url("assets/img/svg/timer-bg-1.svg") no-repeat;
+    background-size: 100% 100%;
+    width: 60px;
+    height: 52px;
+    @include align-justify-center;
+    font-size: 20px;
+    line-height: 150%;
+    color: #503614;
+    opacity: 0.8;
+    text-shadow: 0px 1.07258px 1.07258px rgba(255, 255, 255, 0.55);
+
+    &:nth-child(2) {
+      background: url("assets/img/svg/timer-bg-2.svg") no-repeat;
+      background-size: 100% 100%;
+    }
+  }
+
+  &__separator {
+    margin: 0 3px;
+    font-size: 20.0674px;
+    line-height: 150%;
+    color: #503614;
+    opacity: 0.8;
+    text-shadow: 0px 1.07258px 1.07258px rgba(255, 255, 255, 0.55);
+  }
 }
