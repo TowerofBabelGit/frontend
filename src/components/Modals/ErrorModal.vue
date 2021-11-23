@@ -17,7 +17,7 @@
           </div>
 
           <div class="popup__msg">
-            Lorem ipsum dolor sit amet
+            {{message}}
           </div>
 
           <button class="page-btn" type="button" @click="closeWindow">Ok</button>
@@ -31,9 +31,12 @@
 
 export default {
   name: "ErrorModal",
-  data: () => ({
-
-  }),
+  props: {
+    message: {
+      type: String,
+      required: true
+    }
+  },
   methods: {
     closeWindow() {
       this.$emit("close");

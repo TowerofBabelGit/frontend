@@ -1572,18 +1572,19 @@
     <Preloader v-if="loading"/>
 
     <transition name="slide-fade" mode="out-in">
-      <div :class="{hidden: isThrowing}">
-        <BuyModal v-if="isBuyModalVisible"
-                  :blockNumber="blockNumber"
-                  :blockOwner="blockOwner"
-                  :mode="mode"
-                  :defrostTimes="defrostTimes"
-                  @success="loadBlocks(true); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
-                  @loading="setBuyLoading"
-                  @isThrowing="setThrowing"
-                  @close="isBuyModalVisible = false"/>
-      </div>
+      <BuyModal v-if="isBuyModalVisible"
+                :class="{hidden: isThrowing}"
+                :blockNumber="blockNumber"
+                :blockOwner="blockOwner"
+                :mode="mode"
+                :defrostTimes="defrostTimes"
+                @success="loadBlocks(true); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
+                @loading="setBuyLoading"
+                @isThrowing="setThrowing"
+                @error="setError"
+                @close="isBuyModalVisible = false"/>
     </transition>
+    <ErrorModal v-if="error" :message="error" @close="error = null"/>
 
   </div>
 </template>
@@ -1595,10 +1596,12 @@ import AboutModal from "../components/Modals/AboutModal";
 import Preloader from "../components/Preloader";
 import {mapGetters} from "vuex";
 import BuyModal from "../components/Modals/BuyModal";
+import ErrorModal from "../components/Modals/ErrorModal";
 
 export default {
   name: 'Home',
   components: {
+    ErrorModal,
     AppHeader,
     AboutModal,
     Preloader,
@@ -1612,7 +1615,8 @@ export default {
   },
   data() {
     return {
-      towerHeight: '1020px',
+      error: null,
+      towerHeight: 'auto',
       loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
@@ -1650,13 +1654,16 @@ export default {
   watch: {
     isWrongChainId(val) {
       if (val) {
-        alert('Wrong chain id')
+        this.error = 'Wrong network (Looks like you connected to unsupported network. Change network to Binance Smart Chain).'
       } else {
         //this.init();
       }
     }
   },
   methods: {
+    setError(err) {
+      this.error = err;
+    },
     setHighlight() {
       if (this.isHighlight) {
         localStorage.removeItem('isHighlight');
@@ -1678,15 +1685,15 @@ export default {
     },
     validate(config) {
       if (!this.getAccount) {
-        alert('Connect your web3 wallet');
+        this.error = 'Connect your web3 wallet';
         return false;
       }
       if (this.isWrongChainId) {
-        alert('Connect to bsc test network');
+        this.error = 'Wrong network (Looks like you connected to unsupported network. Change network to Binance Smart Chain).'
         return false;
       }
       if (config.mode && config.mode === 'update' && config.owner !== this.getAccount) {
-        alert('You are not the owner of this block');
+        this.error = 'You are not the owner of this block';
         return false;
       }
       return true;
@@ -1792,6 +1799,7 @@ export default {
       for (let i = 0; i < 25; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
+      this.towerHeight = this.$refs.tower.clientHeight - 110 + 'px'
     },
     async loadBlocks(refresh = false) {
       if (refresh) {
@@ -1821,6 +1829,7 @@ export default {
         if (this.page === 0) {
           this.page++;
         } else {
+          this.towerHeight = `${parseInt(this.towerHeight.replace('px', '')) + 18}px`
           if (blocksToPreload / 26 >= 1) {
             for (let i = blocksToPreload; i > blocksToPreload - 26; i--) {
               let block = await contract.blockOfNumber(i);
@@ -1836,7 +1845,6 @@ export default {
               this.foundation.push(obj);
             }
             this.page++;
-            this.towerHeight = `${parseInt(this.towerHeight.replace('px', ''))}px`
           } else {
             for (let i = blocksToPreload - 1; i >= 0; i--) {
               let block = await contract.blockOfNumber(i);

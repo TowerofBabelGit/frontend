@@ -234,39 +234,38 @@ export default {
         }, 8000)
       } catch (e) {
         console.log(e);
+        this.$emit('error', e.message);
         this.$emit('loading', false);
       }
     },
     async addBlockToBalloon() {
-      this.$emit('loading', true);
-      if (this.blocksQuantity < 1 || this.blocksQuantity > 4) {
-        alert('Wrong number, input from 1 to 4');
-        this.$emit('loading', false);
-        return;
+      if(!this.validate()) {
+        return
       }
+      this.$emit('loading', true);
       let date = new Date(null);
       if (this.blocksQuantity === 1 && this.defrostTimes[0] !== 0) {
         date.setSeconds(this.defrostTimes[0]);
         let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('error', `This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
       } else if (this.blocksQuantity === 2 && this.defrostTimes[1] !== 0) {
         date.setSeconds(this.defrostTimes[1]);
         let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('error',`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
       } else if (this.blocksQuantity === 3 && this.defrostTimes[2] !== 0) {
         date.setSeconds(this.defrostTimes[2]);
         let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('error',`This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
       } else if (this.blocksQuantity === 4 && this.defrostTimes[3] !== 0) {
         date.setSeconds(this.defrostTimes[3]);
         let result = date.toISOString().substr(11, 8);
-        alert(`This unit is frozen. ${result} left before defrosting`);
+        this.$emit('error', `This unit is frozen. ${result} left before defrosting`);
         this.$emit('loading', false);
         return;
       }
@@ -276,15 +275,15 @@ export default {
         this.$emit('success');
         this.closeWindow();
       } catch (e) {
-        console.log(e);
-      } finally {
         this.$emit('loading', false);
+        console.log(e);
+        this.$emit('error', e.message)
       }
     },
     async changeBlockInfo() {
       this.$emit('loading', true);
       if (this.getAccount !== this.blockOwner) {
-        alert('You are not the owner of this block');
+        this.$emit('error', 'You are not the owner of this block');
         this.$emit('loading', false);
         return;
       }
@@ -293,9 +292,8 @@ export default {
         this.$emit('success');
       } catch (e) {
         console.log(e)
-      } finally {
         this.$emit('loading', false);
-        this.closeWindow();
+        this.$emit('error', e.message);
       }
     },
     referralsMap() {
