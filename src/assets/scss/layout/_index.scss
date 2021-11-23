@@ -903,13 +903,24 @@ img {
 
   }
 
-  &__block {
-    width: 50%;
+  &__cover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
 
+  &__block {
+    position: relative;
+    width: 50%;
+    height: 70px;
 
 
     img {
+      border-radius: 10px;
       height: 100%;
+      border: 0;
     }
   }
 

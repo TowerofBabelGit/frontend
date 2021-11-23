@@ -1367,6 +1367,7 @@
           <div class="balloon-wrap__blocks">
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index">
               <img :src="item.imageUrl" alt="">
+              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover">
             </div>
           </div>
 
