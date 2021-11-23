@@ -566,8 +566,7 @@ img {
     text-align: center;
     transform: rotate(-29.61deg);
     color: #ffffff;
-    margin-bottom: 20px;
-    margin-left: 15px;
+    margin-bottom: 27px;
     font-family: $base-font;
 
     @include max-screen(xs) {
@@ -585,6 +584,14 @@ img {
         font-size: 25px;
       }
     }
+  }
+
+  &__icon {
+    position: absolute;
+    width: 23px;
+    height: 23px;
+    cursor: pointer;
+    z-index: 15;
   }
 }
 
@@ -748,13 +755,18 @@ img {
 
     &__text {
       transform: rotate(25.07deg);
-      margin-bottom: 35px;
-      margin-left: -5px;
+      margin-bottom: 23px;
+      margin-left: -11px;
 
       @include max-screen(xl) {
         margin-bottom: 25px;
         margin-left: -9px;
       }
+    }
+
+    &__icon {
+      top: 77px;
+      right: 67px;
     }
   }
 }
@@ -953,6 +965,11 @@ img {
       height: 150px;
       overflow: hidden;
       border-radius: 90px;
+    }
+
+    &__icon {
+      bottom: 68px;
+      left: 44%;
     }
 
     &:after {
@@ -1230,8 +1247,8 @@ img {
       width: 1085px;
       margin: auto;
       height: fit-content;
- //     max-height: 1410px;
- //     overflow-y: scroll;
+      max-height: 1410px;
+      overflow-y: auto;
    //   overflow-x: visible;
 
       padding: 32px 45px 255px 61px;
@@ -1244,7 +1261,8 @@ img {
       @include max-screen(xxxl) {
         width: 743px;
         height: fit-content;
-    //    max-height: 910px;
+    //    max-height: 1110px;
+        max-height: 910px;
         padding: 32px 0 185px 41px;
       }
       @include max-screen(xxl) {

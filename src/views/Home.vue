@@ -668,8 +668,11 @@
                   @click="openBuyModal('catapult')">
         <span class="buy-wrap__text">
          <span>Buy</span>
-          this blocks
+          this block
         </span>
+            <div class="buy-wrap__icon">
+              <img src="@/assets/img/svg/icon-info-green.svg" alt="">
+            </div>
           </button>
         </div>
 
@@ -1380,6 +1383,9 @@
          <span>Buy</span>
           this blocks
         </span>
+          <div class="buy-wrap__icon">
+            <img src="@/assets/img/svg/icon-info-red.svg" alt="">
+          </div>
         </button>
 
       </div>
