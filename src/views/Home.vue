@@ -697,7 +697,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower">
+          <div class="tower" ref="tower" :style="{height: towerHeight}">
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -1578,7 +1578,7 @@
                   :blockOwner="blockOwner"
                   :mode="mode"
                   :defrostTimes="defrostTimes"
-                  @success="loadBlocks(true); defrostTimes = []; getDefrostTime()"
+                  @success="loadBlocks(true); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
                   @loading="setBuyLoading"
                   @isThrowing="setThrowing"
                   @close="isBuyModalVisible = false"/>
@@ -1612,6 +1612,7 @@ export default {
   },
   data() {
     return {
+      towerHeight: '1020px',
       loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
@@ -1751,6 +1752,7 @@ export default {
       while (i <= 4) {
         let block = await contract.blockInBalloon(i);
         this.balloonBlocks.push(block)
+        console.log(block)
         i++;
       }
     },
@@ -1834,6 +1836,7 @@ export default {
               this.foundation.push(obj);
             }
             this.page++;
+            this.towerHeight = `${parseInt(this.towerHeight.replace('px', ''))}px`
           } else {
             for (let i = blocksToPreload - 1; i >= 0; i--) {
               let block = await contract.blockOfNumber(i);
@@ -1928,6 +1931,7 @@ export default {
           extraSmallCount++;
         }
         if (iterationsCount === 57) {
+          this.towerHeight = this.$refs.tower.clientHeight + 'px';
           break;
         }
       }
@@ -1957,7 +1961,6 @@ export default {
   mounted() {
     this.handlePageScroll();
     this.init();
-
 
     document.addEventListener('mouseover', () => {
       const blockList = document.body.querySelectorAll('.tower-block');
