@@ -1656,6 +1656,7 @@ export default {
       if (val) {
         this.error = 'Wrong network (Looks like you connected to unsupported network. Change network to Binance Smart Chain).'
       } else {
+        this.error = null;
         //this.init();
       }
     }
@@ -1799,7 +1800,11 @@ export default {
       for (let i = 0; i < 25; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
-      this.towerHeight = this.$refs.tower.clientHeight - 110 + 'px'
+      if(!this.owner) {
+        this.towerHeight = this.$refs.tower.clientHeight - 125 + 'px'
+      } else {
+        this.towerHeight = this.$refs.tower.clientHeight - 160 + 'px'
+      }
     },
     async loadBlocks(refresh = false) {
       if (refresh) {
@@ -1922,6 +1927,9 @@ export default {
           this.towerBlocksSm[smallCount].number = block.number;
           smallCount++;
         } else if (iterationsCount >= 16 && this.owner) {
+          if(this.towerBlocksSm.length % 8 === 0) {
+            this.towerHeight = `${parseInt(this.towerHeight.replace('px', '')) + 38}px`
+          }
           this.towerBlocksSm.push({
             imageUrl: block.imageUrl,
             description: block.description,
