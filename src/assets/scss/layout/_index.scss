@@ -1665,6 +1665,9 @@ img {
           @include max-screen(xxl) {
             height: 73px;
           }
+          @include max-screen(xl) {
+            height: 71px;
+          }
           @include max-screen(lg) {
             height: 58px;
           }

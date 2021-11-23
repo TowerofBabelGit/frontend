@@ -212,7 +212,7 @@
     top: 50%;
     transform: translateY(-50%);
     font-family: $base-font;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 150%;
     color: #503614;
     left: 22px;
@@ -248,6 +248,10 @@
        color: #AB3034;
      }
    }
+
+    label {
+      display: none;
+    }
 
     .page-input__icon {
       display: block !important;

@@ -59,7 +59,7 @@
                      @focus="movePlaceholder1 = true"
                      @focusout="movePlaceholder1 = false"
               >
-              <label>Image URL</label>
+              <label>Your site URL</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
