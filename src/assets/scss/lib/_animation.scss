@@ -264,3 +264,12 @@
   50%  { opacity: .5; }
   100% { opacity: 1; transform: translateY(-50%); }
 }
+
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}

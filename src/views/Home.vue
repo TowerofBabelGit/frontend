@@ -665,12 +665,12 @@
 
           <button class="buy-wrap"
                   v-if="!owner || owner === getAccount"
-                  @click="openBuyModal('catapult')">
-        <span class="buy-wrap__text">
+                 >
+        <span class="buy-wrap__text"  @click="openBuyModal('catapult')">
          <span>Buy</span>
           this block
         </span>
-            <div class="buy-wrap__icon">
+            <div class="buy-wrap__icon" >
               <img src="@/assets/img/svg/icon-info-green.svg" alt="">
             </div>
           </button>
@@ -1378,8 +1378,8 @@
 
         <button class="buy-wrap"
                 v-if="!owner || owner === getAccount"
-                @click="openBuyModal('balloon')">
-        <span class="buy-wrap__text">
+               >
+        <span class="buy-wrap__text"  @click="openBuyModal('balloon')">
          <span>Buy</span>
           this blocks
         </span>

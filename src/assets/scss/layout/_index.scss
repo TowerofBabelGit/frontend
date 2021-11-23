@@ -59,26 +59,44 @@ img {
 /* header */
 
 .header {
-  background: url("assets/img/header-bg.png") repeat-x;
-
+  background: url("assets/img/header-bg.png") repeat-x, url("assets/img/svg/header-bg-bg.svg") ;
   @include align-center;
   position: relative;
- //padding-left: 390px;
-   height: 145px;
- // justify-content: center;
+   height: 110px;
+  background-position: center;
+ // z-index: 2;
 
   @include max-screen(xxxl) {
-    background: url("assets/img/header-bg.png") no-repeat;
+    background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
+    background-size: 100%;
+  }
+  @include max-screen(xxl) {
+   height: 90px;
+    background-size: 100% 100%, 100% 85%;
   }
   @include max-screen(sm) {
-    height: 100px;
-    background-size: 100% 100%;
+    background: none;
+    height: 75px;
   }
   @include max-screen(xs) {
-    background-size: cover;
-    background-position: center;
-    height: 150px;
+    height: 66px;
+
   }
+
+  &:before {
+    @include max-screen(sm) {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: url("assets/img/header-bg-mobile.png") no-repeat;
+      background-size: 100% 100%;
+      z-index: 15;
+    }
+  }
+
 
   &__img {
     position: absolute;
@@ -86,23 +104,19 @@ img {
     height: 340px;
     left: 0;
     top: 0;
-    z-index: 9;
+    z-index: 17;
 
     @include max-screen(xxl) {
       width: 250px;
       height: 250px;
     }
     @include max-screen(xl) {
-      width: 180px;
-      height: 160px;
+      width: 200px;
+      height: 200px;
     }
     @include max-screen(sm) {
-      width: 115px;
-      height: 115px;
-    }
-    @include max-screen(xs) {
-      width: 100px;
-      height: 100px;
+      width: 130px;
+      height: 130px;
     }
 
     svg {
@@ -114,6 +128,10 @@ img {
       width: 40%;
       margin: auto;
       height: 40%;
+      animation-name: spin;
+      animation-duration: 10s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
     }
   }
 
@@ -130,24 +148,29 @@ img {
   }
 
   &__logo {
-    margin: 65px 100px 0;
-    z-index: 9;
+    margin: 0 50px;
+    z-index: 17;
+    align-self: flex-start;
 
     @include max-screen(xxl) {
-      margin: 15px 30px 0;
-      width: 215px;
+        margin: 0;
+      margin-right: 20px;
+      width: 200px;
     }
     @include max-screen(xl) {
-      margin: -25px 25px 0;
-      width: 165px;
+      width: 180px;
+      margin-right: 30px;
+    }
+    @include max-screen(lg) {
+      margin-right: 0;
     }
     @include max-screen(sm) {
-      width: 120px;
-      margin: -12px 31px 0;
+      width: 170px;
+
     }
     @include max-screen(xs) {
-      width: 110px;
-      margin: -70px 31px 0;
+
+
     }
 
   }
@@ -159,11 +182,11 @@ img {
     position: absolute;
     right: 50px;
     top: 50%;
-    transform: translateY(-80%);
+    transform: translateY(-50%);
 
     @include max-screen(xxl) {
-      transform: translateY(-95%);
-      right: 30px;
+      transform: translateY(-45%);
+      right: 20px;
     }
     @include max-screen(xl) {
       width: 160px;
@@ -184,11 +207,16 @@ img {
   .burger-btn {
     position: absolute;
     right: 25px;
-    top: 35%;
+    top: 55%;
     transform: translateY(-100%);
 
-    @include max-screen(xs) {
-      top: 25%;
+    @include max-screen(sm) {
+      top: 50%;
+    }
+
+    &.active {
+      animation: none;
+
     }
   }
 }
@@ -288,51 +316,74 @@ img {
 
 
 .header-wrap {
-  @include align-justify-center;
+  @include align-center;
+  justify-content: space-between;
   width: 100%;
+  height: 100%;
 
   @include max-screen(xl) {
     margin-left: -40px;
   }
   @include max-screen(lg) {
     margin-left: 0;
+    justify-content: center;
   }
 }
 
 .header-nav {
-  margin-top: -45px;
+   margin-left: 17%;
+
+  @include max-screen(xxl) {
+    margin-left: 19%;
+  }
+  @include max-screen(xl) {
+    margin-left: 22%;
+  }
   @include max-screen(lg) {
     display: none;
   }
 
   &__list {
     @include align-center;
+    justify-content: center;
+    width: 445px;
+
+    @include max-screen(xxl) {
+      width: fit-content;
+    }
   }
 
   &__item {
-    margin-left: 30px;
+ //   margin-left: 30px;
     min-width: 120px;
 
     @include max-screen(xl) {
-      margin-left: 20px;
+ //     margin-left: 20px;
     }
 
     a {
       color: #000000;
       white-space: nowrap;
       cursor: pointer;
+      font-size: 21px;
 
+      @include max-screen(xxl) {
+        font-size: 17px;
+      }
       @include max-screen(xl) {
         font-size: 16px;
       }
     }
 
     +.header-nav__item {
-      padding-left: 36px;
+      padding-left: 50px;
       position: relative;
 
+      @include max-screen(xxl) {
+        padding-left: 32px;
+      }
       @include max-screen(xl) {
-        padding-left: 25px;
+        padding-left: 20px;
       }
 
       &:before {
@@ -341,19 +392,55 @@ img {
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        left: 0;
+        left: 20px;
         top: 50%;
         transform: translateY(-50%);
-        background: #CFAE82;
+        background: #CA5454;
+
+        @include max-screen(xxl) {
+          left: 12px;
+        }
+        @include max-screen(xl) {
+          left: 2px;
+        }
       }
     }
   }
 
   &--right {
+      margin-left: 0;
+      margin-right: 19%;
+
+    @include max-screen(xl) {
+      margin-right: 17%;
+    }
+
+    .header-nav__list {
+      width: 415px;
+
+      @include max-screen(xxl) {
+        padding-right: 30px;
+        padding-left: 0;
+        width: fit-content;
+      }
+      @include max-screen(xl) {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+
     .header-nav__item {
       &:first-child {
         @include max-screen(xxl) {
           margin-left: 0;
+        }
+      }
+
+      + .header-nav__item {
+        padding-left: 60px;
+
+        @include max-screen(xl) {
+         padding-left: 37px;
         }
       }
     }
@@ -384,11 +471,13 @@ img {
   @include max-screen(sm) {
     top: 0;
     min-height: 450px;
-    padding-top: 70px;
+    padding-top: 130px;
+    z-index: 10;
   }
   @include max-screen(xs) {
     width: 100%;
     padding: 95px 30px 50px;
+    padding-top: 130px;
   }
 
 
@@ -568,6 +657,7 @@ img {
     color: #ffffff;
     margin-bottom: 27px;
     font-family: $base-font;
+    z-index: 15;
 
     @include max-screen(xs) {
       font-size: 13px;
@@ -767,6 +857,14 @@ img {
     &__icon {
       top: 77px;
       right: 67px;
+
+      @include max-screen(xl) {
+        top: 50px;
+        right: 37px;
+      }
+      @include max-screen(md) {
+        transform: rotate(41deg);
+      }
     }
   }
 }
@@ -912,7 +1010,9 @@ img {
     background-size: 100% 100%;
    // backdrop-filter: ;
 
-
+    @include max-screen(sm) {
+      width: 80%;
+    }
   }
 
   &__cover {
@@ -928,6 +1028,12 @@ img {
     width: 50%;
     height: 70px;
 
+    @include max-screen(sm) {
+      height: 30px;
+    }
+    @include max-screen(xs) {
+      height: 22px;
+    }
 
     img {
       border-radius: 10px;
@@ -970,6 +1076,11 @@ img {
     &__icon {
       bottom: 68px;
       left: 44%;
+
+      @include max-screen(sm) {
+        bottom: 81px;
+        left: 45%;
+      }
     }
 
     &:after {
@@ -1002,7 +1113,7 @@ img {
     }
     @include max-screen(sm) {
       animation: none;
-      width: 77px;
+      width: 80px;
     }
     @include max-screen(xs) {
       width: 57px;
