@@ -697,7 +697,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower" ref="tower" :style="{height: towerHeight}">
+          <div class="tower" ref="tower" >
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -1264,12 +1264,9 @@
             <transition-group class="tower__row tower__row--xs"
                               tag="div"
                               name="list" appear
-                              @before-appear="transitionBeforeEnter"
-                              @appear="transitionEnter"
-                              @leave="transitionLeave"
-                              v-if="foundation.length && !owner">
+                              v-for="(item, index) in rows" :key="index">
               <div class="tower__col"
-                   v-for="(block, index) in foundation"
+                   v-for="(block, index) in item.foundation"
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
@@ -1353,7 +1350,7 @@
                 </div>
               </div>
             </transition-group>
-            <ScrollLoader :loader-method="loadBlocks" :loader-disable="loadDisabled"/>
+            <ScrollLoader :loader-distance="-200" :loader-method="loadBlocks" :loader-disable="loadingDisabled"/>
           </div>
 
           <div class="tower-bottom">
@@ -1668,7 +1665,7 @@
                 :blockOwner="blockOwner"
                 :mode="mode"
                 :defrostTimes="defrostTimes"
-                @success="loadBlocks(true); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
+                @success="loadBlocks(); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
                 @loading="setBuyLoading"
                 @isThrowing="setThrowing"
                 @error="setError"
@@ -1706,7 +1703,7 @@ export default {
   data() {
     return {
       error: null,
-      towerHeight: 'auto',
+      towerHeight: '1015px',
       loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
@@ -1714,7 +1711,7 @@ export default {
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
-      blocksQt: 57,
+      blocksQt: 65,
       size: 26,
       page: 0,
       blockNumber: null,
@@ -1735,6 +1732,7 @@ export default {
       balloonBlocks: [],
       loadingDisabled: false,
       isFrozen: false,
+      rows: []
     }
   },
   computed: {
@@ -1852,7 +1850,6 @@ export default {
       while (i <= 4) {
         let block = await contract.blockInBalloon(i);
         this.balloonBlocks.push(block)
-        console.log(block)
         i++;
       }
     },
@@ -1887,12 +1884,12 @@ export default {
       for (let i = 0; i < 16; i++) {
         this.towerBlocksSm.push(Object.assign({}, el))
       }
-      for (let i = 0; i < 25; i++) {
+      for (let i = 0; i < 33; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
     },
-    fillFooter(numElements) {
-      let part = [];
+    fillFooter() {
+      let rowsIndexes = [];
       const el = {
         description: null,
         owner: null,
@@ -1900,12 +1897,19 @@ export default {
         cover: this.generateCover(),
         showHover: false,
       }
-      for (let i = 0; i < numElements; i++) {
-        part.push(Object.assign({}, el))
+      for(let i = 0; i < 4; i++) {
+        let part = [];
+        for (let j = 0; j < 33; j++) {
+          part.push(Object.assign({}, el))
+        }
+        this.rows.push({
+          foundation: part
+        });
+        rowsIndexes.push(this.rows.length - 1);
       }
-      let rows = Math.ceil(part.length / 25);
-      this.towerHeight = parseInt(this.towerHeight.replace('px', '')) + (18 * rows) + 'px'
-      this.foundation = [...this.foundation, ...part];
+      this.towerHeight = `${parseInt(this.towerHeight.replace('px', '')) + (18 * 4)}px`
+
+      return rowsIndexes
     },
     async loadBlocks() {
       if(this.loadingDisabled) {
@@ -1923,48 +1927,100 @@ export default {
         let middleCount = 0;
         let smallCount = 0;
         let extraSmallCount = 0;
-        for (let i = lastBlockId; i > lastBlockId - this.blocksQt; i--) {
-          let block = await contract.blockOfNumber(i);
-          this.blocksLoaded++;
-          if(this.owner && block.owner !== this.getAccount) {
-            continue;
+        if(this.owner) {
+          let i = lastBlockId;
+          // eslint-disable-next-line no-constant-condition
+          while (true) {
+            let block = await contract.blockOfNumber(i);
+            if(this.owner && block.owner !== this.getAccount) {
+              i--;
+              continue;
+            }
+            i--;
+            this.blocksLoaded++;
+            iterationsCount++;
+            if (iterationsCount === 1) {
+              this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
+              this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
+              this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
+              this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
+            } else if (iterationsCount > 1 && iterationsCount < 4) {
+              this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
+              this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
+              this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
+              this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
+              middleLargeCount++;
+            } else if (iterationsCount >= 4 && iterationsCount < 8) {
+              this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
+              this.towerBlocksLg[largeCount].description = block.description;
+              this.towerBlocksLg[largeCount].owner = block.owner;
+              this.towerBlocksLg[largeCount].number = block.number;
+              largeCount++;
+            } else if (iterationsCount >= 8 && iterationsCount < 16) {
+              this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
+              this.towerBlocksMd[middleCount].description = block.description;
+              this.towerBlocksMd[middleCount].owner = block.owner;
+              this.towerBlocksMd[middleCount].number = block.number;
+              middleCount++;
+            } else if (iterationsCount >= 16 && iterationsCount < 32) {
+              this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
+              this.towerBlocksSm[smallCount].description = block.description;
+              this.towerBlocksSm[smallCount].owner = block.owner;
+              this.towerBlocksSm[smallCount].number = block.number;
+              smallCount++;
+            } else if (iterationsCount >= 32 && iterationsCount < 65) {
+              this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
+              this.towerBlocksXs[extraSmallCount].description = block.description;
+              this.towerBlocksXs[extraSmallCount].owner = block.owner;
+              this.towerBlocksXs[extraSmallCount].number = block.number;
+              extraSmallCount++;
+            }
+            if(i < 1 || this.towerBlocksSm[this.towerBlocksSm.length - 1].owner) {
+              break;
+            }
           }
-          iterationsCount++;
-          if (iterationsCount === 1) {
-            this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
-            this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
-            this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
-            this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
-          } else if (iterationsCount > 1 && iterationsCount < 4) {
-            this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
-            this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
-            this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
-            this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
-            middleLargeCount++;
-          } else if (iterationsCount >= 4 && iterationsCount < 8) {
-            this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
-            this.towerBlocksLg[largeCount].description = block.description;
-            this.towerBlocksLg[largeCount].owner = block.owner;
-            this.towerBlocksLg[largeCount].number = block.number;
-            largeCount++;
-          } else if (iterationsCount >= 8 && iterationsCount < 16) {
-            this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
-            this.towerBlocksMd[middleCount].description = block.description;
-            this.towerBlocksMd[middleCount].owner = block.owner;
-            this.towerBlocksMd[middleCount].number = block.number;
-            middleCount++;
-          } else if (iterationsCount >= 16 && iterationsCount < 32) {
-            this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
-            this.towerBlocksSm[smallCount].description = block.description;
-            this.towerBlocksSm[smallCount].owner = block.owner;
-            this.towerBlocksSm[smallCount].number = block.number;
-            smallCount++;
-          } else if (iterationsCount >= 32 && iterationsCount < 57) {
-            this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
-            this.towerBlocksXs[extraSmallCount].description = block.description;
-            this.towerBlocksXs[extraSmallCount].owner = block.owner;
-            this.towerBlocksXs[extraSmallCount].number = block.number;
-            extraSmallCount++;
+        }
+        else {
+          for (let i = lastBlockId; i > lastBlockId - this.blocksQt; i--) {
+            let block = await contract.blockOfNumber(i);
+            this.blocksLoaded++;
+            iterationsCount++;
+            if (iterationsCount === 1) {
+              this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
+              this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
+              this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
+              this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
+            } else if (iterationsCount > 1 && iterationsCount < 4) {
+              this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
+              this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
+              this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
+              this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
+              middleLargeCount++;
+            } else if (iterationsCount >= 4 && iterationsCount < 8) {
+              this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
+              this.towerBlocksLg[largeCount].description = block.description;
+              this.towerBlocksLg[largeCount].owner = block.owner;
+              this.towerBlocksLg[largeCount].number = block.number;
+              largeCount++;
+            } else if (iterationsCount >= 8 && iterationsCount < 16) {
+              this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
+              this.towerBlocksMd[middleCount].description = block.description;
+              this.towerBlocksMd[middleCount].owner = block.owner;
+              this.towerBlocksMd[middleCount].number = block.number;
+              middleCount++;
+            } else if (iterationsCount >= 16 && iterationsCount < 32) {
+              this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
+              this.towerBlocksSm[smallCount].description = block.description;
+              this.towerBlocksSm[smallCount].owner = block.owner;
+              this.towerBlocksSm[smallCount].number = block.number;
+              smallCount++;
+            } else if (iterationsCount >= 32 && iterationsCount < 65) {
+              this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
+              this.towerBlocksXs[extraSmallCount].description = block.description;
+              this.towerBlocksXs[extraSmallCount].owner = block.owner;
+              this.towerBlocksXs[extraSmallCount].number = block.number;
+              extraSmallCount++;
+            }
           }
         }
         if(lastBlockId <= this.blocksQt) {
@@ -1973,57 +2029,46 @@ export default {
         this.page++;
         this.loadingDisabled = false;
       } else {
-        // check how match rows need 5 or less (5 * 25 = 125)
         let blocksLeft = lastBlockId - this.blocksLoaded;
         if(blocksLeft <= 0) {
           return;
         }
-        let rows = 0;
-        if(blocksLeft < 320) {
-          //this is the last block
-          //need generate less then 10 rows
-          let elementsNeed = Math.ceil(blocksLeft / 32) * 32;
-          rows = Math.ceil(elementsNeed / 32);
-          this.fillFooter(elementsNeed);
-        } else {
-          this.fillFooter(320);
-          rows = 10;
-        }
-        alert(rows)
-        for(let i = 1; i <= rows; i++) {
-          this.loadRow(blocksLeft, blocksLeft - (i * 32));
-          // blocksLeft -= 25;
-          // this.loadRow(blocksLeft, blocksLeft - 25);
-          // blocksLeft -= 25;
-          // this.loadRow(blocksLeft, blocksLeft - 25);
-          // blocksLeft -= 25;
-          // this.loadRow(blocksLeft, blocksLeft - 25);
-          // blocksLeft -= 25;
-          // this.loadRow(blocksLeft, blocksLeft - 25);
-          // blocksLeft -= 25;
-          // this.loadRow(blocksLeft, blocksLeft - 25);
-          // blocksLeft -= 25;
-          // this.loadRow(blocksLeft, blocksLeft - 25);
+        let rowsIndexes = this.fillFooter();
+        let index = 0;
+        for(let i = 0; i < 4; i++) {
+          if(blocksLeft - 32 <= 0) {
+            this.loadRow(blocksLeft, 1, rowsIndexes[index]);
+            return
+          }
+          this.loadRow(blocksLeft, blocksLeft - 32, rowsIndexes[index]);
+          blocksLeft -= 33;
+          index++;
         }
         this.page++;
+        this.loadingDisabled = false;
       }
     },
-    async loadRow(from, to) {
-      if(to <= 0) {
+    async loadRow(from, to, row) {
+      if(to <= 0 || from <= 0) {
         return
       }
-      for(let i = from; i > from; i--) {
+      let index = 0;
+      console.log(from, to, row)
+      for(let i = from; i >= to; i--) {
         let block = await contract.blockOfNumber(i);
-        this.foundation[i].imageUrl = block.imageUrl;
-        this.towerBlocksXs[i].description = block.description;
-        this.towerBlocksXs[i].owner = block.owner;
-        this.towerBlocksXs[i].number = block.number;
+        this.blocksLoaded++;
+        this.rows[row].foundation[index].imageUrl = block.imageUrl;
+        this.rows[row].foundation[index].description = block.description;
+        this.rows[row].foundation[index].owner = block.owner;
+        this.rows[row].foundation[index].number = block.number;
+        index++;
       }
     },
     init() {
       setTimeout(() => {
         this.getDefrostTime();
         this.blockInBalloon();
+        this.loadBlocks();
       }, 0);
     }
   },
