@@ -1,6 +1,7 @@
 <template>
   <header class="header">
     <div class="header__img">
+      <div class="header__img-ray"></div>
       <svg class="header__img-sun" width="342" height="343" viewBox="0 0 342 343" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M167.907 287.537C233.424 287.537 286.537 234.424 286.537 168.907C286.537 103.389 233.424 50.2764 167.907 50.2764C102.389 50.2764 49.2767 103.389 49.2767 168.907C49.2767 234.424 102.389 287.537 167.907 287.537Z" fill="url(#paint0_radial_465_3877)"/>
         <g opacity="0.4" filter="url(#filter0_f_465_3877)">
@@ -10,74 +11,8 @@
         <g style="mix-blend-mode:screen" opacity="0.3">
           <path d="M166.425 119.646C166.233 117.92 164.7 116.674 162.974 116.961C141.788 120.412 124.532 136.422 119.451 157.417C119.067 159.142 120.218 160.772 121.943 161.06L138.145 163.936C139.87 164.223 141.117 163.073 141.117 161.347C140.829 139.49 157.414 130.095 164.22 127.123C165.85 126.452 167 124.631 166.809 122.905L166.425 119.646Z" fill="url(#paint2_linear_465_3877)"/>
         </g>
-        <g>
-        <g filter="url(#filter1_f_465_3877)">
-          <ellipse rx="8.89726" ry="47.4521" transform="matrix(1 0 0 -1 168.5 47.9044)" fill="url(#paint3_linear_465_3877)"/>
-        </g>
-        </g>
-        <g filter="url(#filter2_f_465_3877)">
-          <ellipse rx="5.33836" ry="25.5055" transform="matrix(0.965926 0.258819 0.258819 -0.965926 194.905 73.3273)" fill="url(#paint4_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter3_f_465_3877)">
-          <ellipse rx="5.33836" ry="25.5055" transform="matrix(0.707107 0.707107 0.707107 -0.707107 240.64 99.7329)" fill="url(#paint5_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter4_f_465_3877)">
-          <ellipse rx="5.33836" ry="25.5055" transform="matrix(0.258819 0.965926 0.965926 -0.258819 267.046 145.468)" fill="url(#paint6_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter5_f_465_3877)">
-          <ellipse rx="5.33836" ry="25.5055" transform="matrix(-0.258819 0.965926 0.965926 0.258819 267.046 198.278)" fill="url(#paint7_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter6_f_465_3877)">
-          <ellipse rx="5.33836" ry="25.5055" transform="matrix(-0.707107 0.707107 0.707107 0.707107 240.64 244.013)" fill="url(#paint8_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter7_f_465_3877)">
-          <ellipse cx="142.095" cy="270.418" rx="5.33836" ry="25.5055" transform="rotate(15 142.095 270.418)" fill="url(#paint9_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter8_f_465_3877)">
-          <ellipse cx="96.3597" cy="244.013" rx="5.33836" ry="25.5055" transform="rotate(45 96.3597 244.013)" fill="url(#paint10_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter9_f_465_3877)">
-          <ellipse cx="69.9544" cy="198.278" rx="5.33836" ry="25.5055" transform="rotate(75 69.9544 198.278)" fill="url(#paint11_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter10_f_465_3877)">
-          <ellipse cx="69.9544" cy="145.468" rx="5.33836" ry="25.5055" transform="rotate(105 69.9544 145.468)" fill="url(#paint12_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter11_f_465_3877)">
-          <ellipse cx="96.3596" cy="99.7328" rx="5.33836" ry="25.5055" transform="rotate(135 96.3596 99.7328)" fill="url(#paint13_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter12_f_465_3877)">
-          <ellipse rx="8.89726" ry="47.4521" transform="matrix(0.866025 0.5 0.5 -0.866025 229.298 64.1948)" fill="url(#paint14_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter13_f_465_3877)">
-          <ellipse rx="8.89726" ry="47.4521" transform="matrix(-4.37114e-08 1 1 4.37114e-08 290.096 169.5)" fill="url(#paint15_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter14_f_465_3877)">
-          <ellipse rx="8.89726" ry="47.4521" transform="matrix(-0.866025 0.5 0.5 0.866025 229.298 274.805)" fill="url(#paint16_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter15_f_465_3877)">
-          <ellipse rx="8.89726" ry="47.4521" transform="matrix(0.5 0.866025 0.866025 -0.5 273.805 108.702)" fill="url(#paint17_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter16_f_465_3877)">
-          <ellipse rx="8.89726" ry="47.4521" transform="matrix(-0.5 0.866025 0.866025 0.5 273.805 230.298)" fill="url(#paint18_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter17_f_465_3877)">
-          <ellipse cx="168.5" cy="291.096" rx="8.89726" ry="47.4521" fill="url(#paint19_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter18_f_465_3877)">
-          <ellipse cx="107.702" cy="274.805" rx="8.89726" ry="47.4521" transform="rotate(30 107.702 274.805)" fill="url(#paint20_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter19_f_465_3877)">
-          <ellipse cx="46.9041" cy="169.5" rx="8.89726" ry="47.4521" transform="rotate(90 46.9041 169.5)" fill="url(#paint21_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter20_f_465_3877)">
-          <ellipse cx="107.702" cy="64.1948" rx="8.89726" ry="47.4521" transform="rotate(150 107.702 64.1948)" fill="url(#paint22_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter21_f_465_3877)">
-          <ellipse cx="63.1949" cy="230.298" rx="8.89726" ry="47.4521" transform="rotate(60 63.1949 230.298)" fill="url(#paint23_linear_465_3877)"/>
-        </g>
-        <g filter="url(#filter22_f_465_3877)">
-          <ellipse cx="63.1948" cy="108.702" rx="8.89726" ry="47.4521" transform="rotate(120 63.1948 108.702)" fill="url(#paint24_linear_465_3877)"/>
-        </g>
+
+
         <defs>
           <filter id="filter0_f_465_3877" x="108.495" y="109.647" width="119.505" height="119.506" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
             <feFlood flood-opacity="0" result="BackgroundImageFix"/>

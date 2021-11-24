@@ -45,7 +45,7 @@
                      v-model="description"
                      class="input"
                      @focus="movePlaceholder = true"
-                     @focusout="movePlaceholder = false"
+
                      >
               <label>Input block title</label>
               <div class="page-input__icon">
@@ -57,9 +57,9 @@
                      class="input"
                      v-model="imageUrl"
                      @focus="movePlaceholder1 = true"
-                     @focusout="movePlaceholder1 = false"
+
               >
-              <label>Your site URL</label>
+              <label >Your site URL</label>
               <div class="page-input__icon">
                 <img src="@/assets/img/svg/icon-error.svg" alt="">
               </div>
@@ -71,7 +71,7 @@
                      class="input"
                      v-model="refLink"
                      @focus="movePlaceholder2 = true"
-                     @focusout="movePlaceholder2 = false"
+
               >
               <label>Invitor address (optional)</label>
               <div class="page-input__icon">
@@ -85,7 +85,7 @@
                      class="input"
                      v-model="webSite"
                       @focus="movePlaceholder3 = true"
-                     @focusout="movePlaceholder3 = false"
+
                      >
               <label>Web site address (optional)</label>
               <div class="page-input__icon">

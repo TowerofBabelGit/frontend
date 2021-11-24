@@ -75,43 +75,43 @@ const blockStepPrice = () => {
 
 const lastBlockNumber = () => {
     return new Promise((resolve, reject) => {
-        // import('@/utils/data.json')
-        //     .then(res => {
-        //         resolve(res.data.length - 1)
-        //     })
-        //     .catch(err => {
-        //         reject(err)
-        //     })
-        methodsBsc.lastBlockNumber()
-            .call({
-                from: store.getters['contract/getContractAddress']
-            }, (err, res) => {
-                if(err) {
-                    reject(err)
-                }
-                resolve(res)
+        import('@/utils/data.json')
+            .then(res => {
+                resolve(res.data.length - 1)
             })
+            .catch(err => {
+                reject(err)
+            })
+        // methodsBsc.lastBlockNumber()
+        //     .call({
+        //         from: store.getters['contract/getContractAddress']
+        //     }, (err, res) => {
+        //         if(err) {
+        //             reject(err)
+        //         }
+        //         resolve(res)
+        //     })
     })
 }
 
 const blockOfNumber = id => {
     return new Promise((resolve, reject) => {
-        // import('@/utils/data.json')
-        //     .then(res => {
-        //         resolve(res.data[id].Result)
-        //     })
-        //     .catch(err => {
-        //         reject(err)
-        //     })
-        methodsBsc.blockOfNumber(id)
-            .call({
-                from: store.getters['contract/getContractAddress']
-            }, (err, res) => {
-                if(err) {
-                    reject(err)
-                }
-                resolve(res)
+        import('@/utils/data.json')
+            .then(res => {
+                resolve(res.data[id].Result)
             })
+            .catch(err => {
+                reject(err)
+            })
+        // methodsBsc.blockOfNumber(id)
+        //     .call({
+        //         from: store.getters['contract/getContractAddress']
+        //     }, (err, res) => {
+        //         if(err) {
+        //             reject(err)
+        //         }
+        //         resolve(res)
+        //     })
     })
 }
 

@@ -273,3 +273,28 @@
     transform:rotate(360deg);
   }
 }
+
+@keyframes sunAnimation {
+
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(0.95);
+    opacity: 0;
+  }
+
+  70% {
+    transform: translate(-50%, -50%) scale(1.3);
+    opacity: 0.9;
+  }
+
+}
+@keyframes sunAnimationRays {
+
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform:  scale(0.9);
+    opacity: 0.6;
+  }
+}

@@ -670,7 +670,7 @@
          <span>Buy</span>
           this block
         </span>
-            <div class="buy-wrap__icon" >
+            <div class="buy-wrap__icon" @click="isCraneBlockInfoVisible = true">
               <img src="@/assets/img/svg/icon-info-green.svg" alt="">
             </div>
           </button>
@@ -1470,7 +1470,7 @@
          <span>Buy</span>
           this blocks
         </span>
-          <div class="buy-wrap__icon">
+          <div class="buy-wrap__icon" @click="isBalloonBlocksInfoVisible = true">
             <img src="@/assets/img/svg/icon-info-red.svg" alt="">
           </div>
         </button>
@@ -1672,7 +1672,12 @@
                 @close="isBuyModalVisible = false"/>
     </transition>
     <ErrorModal v-if="error" :message="error" @close="error = null"/>
-
+    <InfoModal v-show="isCraneBlockInfoVisible"
+               msg="Nulla gravida justo nec est venenatis, at fringilla velit finibus. Cras et tortor in erat maximus interdum vel ut arcu. Donec ac sapien sapien. Phasellus dapibus rhoncus cursus. Aliquam erat volutpat. Aliquam non leo pretium, sodales lacus nec, tempor ante. Integer at libero quis tellus lacinia eleifend. Praesent sit amet nunc condimentum mi cursus pretium id quis sapien."
+               @close="isCraneBlockInfoVisible = false"/>
+    <InfoModal v-show="isBalloonBlocksInfoVisible"
+               msg="Resent sit amet nunc condimentum mi cursus pretium id quis sapien."
+               @close="isBalloonBlocksInfoVisible = false"/>
   </div>
 </template>
 
@@ -1684,6 +1689,7 @@ import Preloader from "../components/Preloader";
 import {mapGetters} from "vuex";
 import BuyModal from "../components/Modals/BuyModal";
 import ErrorModal from "../components/Modals/ErrorModal";
+import InfoModal from "../components/Modals/InfoModal";
 
 export default {
   name: 'Home',
@@ -1693,6 +1699,7 @@ export default {
     AboutModal,
     Preloader,
     BuyModal,
+    InfoModal,
   },
   props: {
     owner: {
@@ -1732,7 +1739,9 @@ export default {
       balloonBlocks: [],
       loadingDisabled: false,
       isFrozen: false,
-      rows: []
+      rows: [],
+      isCraneBlockInfoVisible: false,
+      isBalloonBlocksInfoVisible: false,
     }
   },
   computed: {
