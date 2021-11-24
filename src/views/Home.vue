@@ -1787,7 +1787,7 @@ export default {
   data() {
     return {
       error: null,
-      towerHeight: '1020px',
+      towerHeight: '800px',
       loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
@@ -2018,7 +2018,7 @@ export default {
       this.loadingDisabled = true;
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);
-
+      console.log(this.lastBlockId)
       if (this.page === 0) {
         await this.fillArrays();
         let iterationsCount = 0;
@@ -2138,7 +2138,6 @@ export default {
               } catch (e) {
                 block = await contract.blockOfNumber(lastBlockId);
                 console.log(e)
-                continue;
               }
             }
           }
@@ -2282,7 +2281,8 @@ export default {
     },
     async initLoader() {
       this.lastBlockId = await contract.lastBlockNumber();
-      this.towerHeight = `${(Math.ceil(this.lastBlockId / 32) * 18) + 1020}px`;
+      this.towerHeight = `${(Math.ceil(this.lastBlockId / 32) * 18) + 1160}px`;
+
     },
     init() {
       setTimeout(() => {
