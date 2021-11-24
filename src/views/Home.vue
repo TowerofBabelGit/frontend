@@ -1261,9 +1261,7 @@
               </div>
             </transition-group>
 
-            <transition-group class="tower__row tower__row--xs"
-                              tag="div"
-                              name="list" appear
+            <div class="tower__row tower__row--xs"
                               v-for="(item, index) in rows" :key="index">
               <div class="tower__col"
                    v-for="(block, index) in item.foundation"
@@ -1272,9 +1270,7 @@
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @click="openBuyModal('update', block.number, block.owner)"
-                     @mouseover="block.showHover = true"
-                     @mouseleave="block.showHover = false">
+                     @click="openBuyModal('update', block.number, block.owner)">
                   <img :src="block.cover" alt="">
                 </div>
 
@@ -1349,8 +1345,19 @@
                   </div>
                 </div>
               </div>
-            </transition-group>
-            <ScrollLoader :loader-distance="-200" :loader-method="loadBlocks" :loader-disable="loadingDisabled"/>
+            </div>
+            <ScrollLoader :loader-size="10" class="tower__row tower__row--xs" :loader-distance="-200" :loader-method="loadBlocks" :loader-disable="loadingDisabled">
+              <div class="tower__col"
+                   v-for="index in 128"
+                   :key="index"
+                   style="height: 18px"
+                   :data-index="index">
+                <img src="@/assets/img/cover-1.png" alt="" class="tower__col-image">
+                <div class="tower__block-cover">
+                  <img src="@/assets/img/cover-1.png" alt="">
+                </div>
+              </div>
+            </ScrollLoader>
           </div>
 
           <div class="tower-bottom">
@@ -1906,7 +1913,7 @@ export default {
         cover: this.generateCover(),
         showHover: false,
       }
-      for(let i = 0; i < 4; i++) {
+      for(let i = 0; i < 10; i++) {
         let part = [];
         for (let j = 0; j < 32; j++) {
           part.push(Object.assign({}, el))
@@ -2009,7 +2016,7 @@ export default {
         let blocksLeft = lastBlockId - this.blocksLoaded;
         let rowsIndexes = this.fillFooter();
         let index = 0;
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < 10; i++) {
           if(blocksLeft - 31 <= 0) {
             this.loadRow(blocksLeft, 1, rowsIndexes[index]);
             return
@@ -2027,7 +2034,21 @@ export default {
       let index = 0;
       switch (row) {
         case 0:
-          block = await contract.blockOfNumber(lastBlockId);
+
+          try {
+            block = await contract.blockOfNumber(lastBlockId);
+          } catch(e) {
+            console.log(e);
+            // eslint-disable-next-line no-constant-condition
+            while(true) {
+              try {
+                block = await contract.blockOfNumber(lastBlockId);
+                break;
+              }  catch (e) {
+                console.log(e)
+              }
+            }
+          }
           this.towerBlocksExtraLarge[0].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[0].description = block.description;
           this.towerBlocksExtraLarge[0].owner = block.owner;
@@ -2039,7 +2060,15 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch(e) {
               console.log(e);
-              block = await contract.blockOfNumber(i);
+              // eslint-disable-next-line no-constant-condition
+              while(true) {
+                try {
+                  block = await contract.blockOfNumber(i);
+                  break;
+                }  catch (e) {
+                  console.log(e)
+                }
+              }
             }
             this.towerBlocksMiddleLarge[index].imageUrl = block.imageUrl;
             this.towerBlocksMiddleLarge[index].description = block.description;
@@ -2054,7 +2083,15 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch(e) {
               console.log(e);
-              block = await contract.blockOfNumber(i);
+              // eslint-disable-next-line no-constant-condition
+              while(true) {
+                try {
+                  block = await contract.blockOfNumber(i);
+                  break;
+                }  catch (e) {
+                  console.log(e)
+                }
+              }
             }
             this.towerBlocksLg[index].imageUrl = block.imageUrl;
             this.towerBlocksLg[index].description = block.description;
@@ -2069,7 +2106,15 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch(e) {
               console.log(e);
-              block = await contract.blockOfNumber(i);
+              // eslint-disable-next-line no-constant-condition
+              while(true) {
+                try {
+                  block = await contract.blockOfNumber(i);
+                  break;
+                }  catch (e) {
+                  console.log(e)
+                }
+              }
             }
             this.towerBlocksMd[index].imageUrl = block.imageUrl;
             this.towerBlocksMd[index].description = block.description;
@@ -2084,7 +2129,15 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch(e) {
               console.log(e);
-              block = await contract.blockOfNumber(i);
+              // eslint-disable-next-line no-constant-condition
+              while(true) {
+                try {
+                  block = await contract.blockOfNumber(i);
+                  break;
+                }  catch (e) {
+                  console.log(e)
+                }
+              }
             }
             this.towerBlocksSm[index].imageUrl = block.imageUrl;
             this.towerBlocksSm[index].description = block.description;
@@ -2099,7 +2152,15 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch(e) {
               console.log(e);
-              block = await contract.blockOfNumber(i);
+              // eslint-disable-next-line no-constant-condition
+              while(true) {
+                try {
+                  block = await contract.blockOfNumber(i);
+                  break;
+                }  catch (e) {
+                  console.log(e)
+                }
+              }
             }
             this.towerBlocksXs[index].imageUrl = block.imageUrl;
             this.towerBlocksXs[index].description = block.description;
@@ -2187,5 +2248,8 @@ img[lazy=loaded] {
 
 .list-before-enter {
   opacity: 0 !important;
+}
+.loader {
+  padding: 0!important;
 }
 </style>
