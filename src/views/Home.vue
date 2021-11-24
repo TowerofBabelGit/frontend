@@ -665,8 +665,8 @@
 
           <button class="buy-wrap"
                   v-if="!owner || owner === getAccount"
-                 >
-        <span class="buy-wrap__text"  @click="openBuyModal('catapult')">
+          >
+        <span class="buy-wrap__text" @click="openBuyModal('catapult')">
          <span>Buy</span>
           this block
         </span>
@@ -697,7 +697,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower" ref="tower" >
+          <div class="tower" ref="tower">
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -1262,7 +1262,7 @@
             </transition-group>
 
             <div class="tower__row tower__row--xs"
-                              v-for="(item, index) in rows" :key="index">
+                 v-for="(item, index) in rows" :key="index">
               <div class="tower__col"
                    v-for="(block, index) in item.foundation"
                    :key="index"
@@ -1348,7 +1348,7 @@
             </div>
             <ScrollLoader :loader-size="10" class="tower__row tower__row--xs" :loader-distance="-200" :loader-method="loadBlocks" :loader-disable="loadingDisabled">
               <div class="tower__col"
-                   v-for="index in 128"
+                   v-for="index in 1000"
                    :key="index"
                    style="height: 18px"
                    :data-index="index">
@@ -1374,29 +1374,29 @@
           <img src="@/assets/img/balloon-ball.png" alt="" class="balloon-wrap__img--top">
 
 
-
           <div class="balloon-wrap__blocks">
             <div class="line"></div>
             <div class="line-2"></div>
 
-            <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index" :class="{empty: !item.imageUrl, frozen: isFrozen}" >
+            <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
+                 :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0}">
               <img :src="item.imageUrl" alt="">
               <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" v-show="!item.imageUrl">
 
-              <div class="tower-block" >
+              <div class="tower-block">
 
 
-                <div v-show="isFrozen">
-                <div class="tower-block__text">
-                  This block is frozen
-                </div>
-                <div class="timer">
-                  <div class="timer__wrap">23</div>
-                  <span class="timer__separator">:</span>
-                  <div class="timer__wrap">59</div>
-                  <span class="timer__separator">:</span>
-                  <div class="timer__wrap">59</div>
-                </div>
+                <div v-show="defrostTimes[index] !== 0">
+                  <div class="tower-block__text">
+                    This block is frozen
+                  </div>
+                  <div class="timer">
+                    <div class="timer__wrap">{{ getFrostTime('hours') }}</div>
+                    <span class="timer__separator">:</span>
+                    <div class="timer__wrap">{{ getFrostTime('minutes') }}</div>
+                    <span class="timer__separator">:</span>
+                    <div class="timer__wrap">{{ getFrostTime('seconds') }}</div>
+                  </div>
                 </div>
                 <div class="tower-block__img">
                   <img v-lazy="item.imageUrl" alt="">
@@ -1461,7 +1461,7 @@
                 </a>
 
                 <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
-                <button class="page-btn page-btn--buy" v-show="!isFrozen">Buy this block</button>
+                <button class="page-btn page-btn--buy" v-show="defrostTimes[index] === 0">Buy this block</button>
 
                 <div class="tower-block__point">
                   <span></span>
@@ -1474,8 +1474,8 @@
 
         <button class="buy-wrap"
                 v-if="!owner || owner === getAccount"
-               >
-        <span class="buy-wrap__text"  @click="openBuyModal('balloon')">
+        >
+        <span class="buy-wrap__text" @click="openBuyModal('balloon')">
          <span>Buy</span>
           this blocks
         </span>
@@ -1558,17 +1558,39 @@
         <button class="bottom-wrap__link" @click="setHighlight"></button>
         <svg width="38" height="42" viewBox="0 0 38 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
-            <path d="M15.886 40.9588C16.6081 41.5287 17.4543 41.7918 18.323 42C18.7743 42 19.2256 42 19.6769 42C19.7672 41.9671 19.8574 41.9342 19.9477 41.9123C21.4821 41.5945 22.6442 40.7834 23.4227 39.4682C23.8515 38.7338 24.0771 37.9557 24.0545 37.1008C20.6585 37.1008 17.3189 37.1008 13.9341 37.1008C14.0244 38.679 14.6336 39.9723 15.886 40.9588Z" fill="url(#paint0_linear_465_3541)"/>
-            <path d="M17.7702 7.52982C11.5535 8.08879 7.74001 13.547 7.60462 18.0846C7.52564 20.737 8.3267 23.1044 9.91754 25.2526C11.5535 27.4666 12.7382 29.8997 13.3813 32.5741C13.5392 33.2207 13.6521 33.8783 13.7762 34.525C17.2625 34.525 20.7262 34.525 24.19 34.525C24.3705 33.6701 24.5059 32.8481 24.709 32.048C25.3521 29.5052 26.548 27.2254 28.1501 25.1211C29.9553 22.7536 30.7225 20.0793 30.2825 17.1639C29.4702 11.7057 24.8331 6.88316 17.7702 7.52982ZM22.3283 19.5094C21.7191 20.1122 21.0873 20.7041 20.4893 21.3179C20.3652 21.4384 20.2862 21.6467 20.2862 21.8111C20.2749 23.1263 20.2749 24.4306 20.2749 25.7458C20.2749 26.5788 19.7672 27.1378 19.0226 27.1487C18.2553 27.1597 17.7476 26.5897 17.7476 25.7239C17.7476 24.4635 17.7363 23.203 17.7589 21.9535C17.7589 21.6467 17.6912 21.4165 17.443 21.1973C16.845 20.6493 16.2583 20.0684 15.6829 19.4875C15.1075 18.9175 15.0624 18.1723 15.5927 17.6681C16.1117 17.1529 16.8902 17.1858 17.4656 17.7448C17.9733 18.238 18.4697 18.7422 19.0226 19.2902C19.5754 18.7422 20.0605 18.249 20.557 17.7667C21.1437 17.1968 21.8996 17.1529 22.4299 17.6571C22.9602 18.1613 22.9263 18.9175 22.3283 19.5094Z" fill="url(#paint1_linear_465_3541)"/>
-            <path d="M19.0113 4.99806C19.6995 4.99806 20.2524 4.461 20.2637 3.7705C20.2749 3.34305 20.2637 2.92656 20.2637 2.49911C20.2637 2.0607 20.2749 1.62229 20.2637 1.19484C20.2411 0.526262 19.6882 0.0111284 19.0113 0.000168157C18.3231 -0.0107921 17.7476 0.515301 17.7364 1.2058C17.7138 2.0607 17.7251 2.92656 17.7364 3.78146C17.7476 4.48292 18.3231 5.00902 19.0113 4.99806Z" fill="url(#paint2_linear_465_3541)"/>
-            <path d="M3.75725 19.7725C4.51318 19.7616 5.06603 19.2355 5.06603 18.5559C5.06603 17.8654 4.52446 17.3284 3.77982 17.3174C2.95619 17.3065 2.12128 17.3065 1.29766 17.3174C0.553011 17.3174 -0.0111162 17.8654 0.000166294 18.5559C0.0114488 19.2245 0.553011 19.7506 1.27509 19.7725C1.69255 19.7835 2.12128 19.7725 2.53874 19.7725C2.94491 19.7725 3.35108 19.7725 3.75725 19.7725Z" fill="url(#paint3_linear_465_3541)"/>
-            <path d="M36.7587 17.3175C35.9013 17.2956 35.0438 17.3065 34.1863 17.3175C33.4755 17.3284 32.934 17.8764 32.934 18.545C32.934 19.2136 33.4868 19.7507 34.1976 19.7726C34.6151 19.7835 35.0438 19.7726 35.4613 19.7726C35.9013 19.7726 36.33 19.7835 36.77 19.7726C37.4583 19.7507 37.9885 19.2136 37.9998 18.5669C38.0111 17.8874 37.4695 17.3284 36.7587 17.3175Z" fill="url(#paint4_linear_465_3541)"/>
-            <path d="M10.3688 6.44482C10.6621 6.90516 11.2488 7.08052 11.7791 6.91612C12.3094 6.75171 12.6591 6.28042 12.6591 5.65568C12.6366 5.58992 12.6366 5.41456 12.5576 5.27207C12.095 4.46101 11.6324 3.64995 11.1134 2.87177C10.7637 2.34568 10.0077 2.24704 9.45489 2.57585C8.91333 2.90465 8.68768 3.58419 8.99231 4.15413C9.43233 4.93231 9.89491 5.69953 10.3688 6.44482Z" fill="url(#paint5_linear_465_3541)"/>
-            <path d="M35.0664 26.1514C34.2991 25.6801 33.5094 25.2198 32.697 24.8252C31.8621 24.4197 30.9144 25.0116 30.9031 25.9103C30.8918 26.3268 31.0836 26.7214 31.4672 26.9515C32.2344 27.4009 33.0129 27.8503 33.8027 28.2558C34.4007 28.5627 35.1228 28.3325 35.45 27.7845C35.7884 27.2146 35.653 26.5022 35.0664 26.1514Z" fill="url(#paint6_linear_465_3541)"/>
-            <path d="M25.9726 6.8175C26.6044 7.16823 27.3378 6.95998 27.7327 6.30236C28.1388 5.64475 28.5337 4.98713 28.9061 4.31855C29.0302 4.11031 29.0866 3.86918 29.1768 3.63901C29.1317 3.091 28.7707 2.60875 28.2404 2.4553C27.6763 2.27994 27.1009 2.47722 26.7849 2.99236C26.3562 3.68286 25.95 4.37335 25.5439 5.07481C25.1603 5.73243 25.3408 6.46677 25.9726 6.8175Z" fill="url(#paint7_linear_465_3541)"/>
-            <path d="M5.34804 24.8033C4.50185 25.2308 3.67823 25.7021 2.87717 26.1953C2.4033 26.4802 2.26791 27.0721 2.45971 27.5872C2.62895 28.0585 3.13666 28.3983 3.74592 28.3873C3.81362 28.3654 3.98285 28.3654 4.11825 28.2996C4.96444 27.8393 5.81063 27.3899 6.62297 26.8858C7.14197 26.557 7.24351 25.8336 6.9276 25.3075C6.60041 24.7704 5.91217 24.5184 5.34804 24.8033Z" fill="url(#paint8_linear_465_3541)"/>
-            <path d="M2.93367 10.9386C3.70088 11.4098 4.49066 11.8592 5.303 12.2647C6.13791 12.6703 7.08565 12.0675 7.08565 11.1687C7.08565 10.7632 6.91641 10.3796 6.54408 10.1604C5.76559 9.70004 4.98709 9.25067 4.17475 8.83418C3.57678 8.52729 2.86598 8.75746 2.5275 9.31643C2.21159 9.86445 2.35826 10.5878 2.93367 10.9386Z" fill="url(#paint9_linear_465_3541)"/>
-            <path d="M32.2231 12.3853C32.2908 12.3743 32.46 12.3743 32.5841 12.3086C33.4529 11.8373 34.3329 11.3879 35.1678 10.8508C35.6981 10.5111 35.7658 9.78769 35.4273 9.27256C35.0888 8.75742 34.4006 8.52726 33.8365 8.81222C33.0241 9.22872 32.2231 9.68905 31.4333 10.1603C30.9594 10.4453 30.7902 11.0262 30.9594 11.5304C31.1287 12.0346 31.6025 12.3743 32.2231 12.3853Z" fill="url(#paint10_linear_465_3541)"/>
+            <path
+                d="M15.886 40.9588C16.6081 41.5287 17.4543 41.7918 18.323 42C18.7743 42 19.2256 42 19.6769 42C19.7672 41.9671 19.8574 41.9342 19.9477 41.9123C21.4821 41.5945 22.6442 40.7834 23.4227 39.4682C23.8515 38.7338 24.0771 37.9557 24.0545 37.1008C20.6585 37.1008 17.3189 37.1008 13.9341 37.1008C14.0244 38.679 14.6336 39.9723 15.886 40.9588Z"
+                fill="url(#paint0_linear_465_3541)"/>
+            <path
+                d="M17.7702 7.52982C11.5535 8.08879 7.74001 13.547 7.60462 18.0846C7.52564 20.737 8.3267 23.1044 9.91754 25.2526C11.5535 27.4666 12.7382 29.8997 13.3813 32.5741C13.5392 33.2207 13.6521 33.8783 13.7762 34.525C17.2625 34.525 20.7262 34.525 24.19 34.525C24.3705 33.6701 24.5059 32.8481 24.709 32.048C25.3521 29.5052 26.548 27.2254 28.1501 25.1211C29.9553 22.7536 30.7225 20.0793 30.2825 17.1639C29.4702 11.7057 24.8331 6.88316 17.7702 7.52982ZM22.3283 19.5094C21.7191 20.1122 21.0873 20.7041 20.4893 21.3179C20.3652 21.4384 20.2862 21.6467 20.2862 21.8111C20.2749 23.1263 20.2749 24.4306 20.2749 25.7458C20.2749 26.5788 19.7672 27.1378 19.0226 27.1487C18.2553 27.1597 17.7476 26.5897 17.7476 25.7239C17.7476 24.4635 17.7363 23.203 17.7589 21.9535C17.7589 21.6467 17.6912 21.4165 17.443 21.1973C16.845 20.6493 16.2583 20.0684 15.6829 19.4875C15.1075 18.9175 15.0624 18.1723 15.5927 17.6681C16.1117 17.1529 16.8902 17.1858 17.4656 17.7448C17.9733 18.238 18.4697 18.7422 19.0226 19.2902C19.5754 18.7422 20.0605 18.249 20.557 17.7667C21.1437 17.1968 21.8996 17.1529 22.4299 17.6571C22.9602 18.1613 22.9263 18.9175 22.3283 19.5094Z"
+                fill="url(#paint1_linear_465_3541)"/>
+            <path
+                d="M19.0113 4.99806C19.6995 4.99806 20.2524 4.461 20.2637 3.7705C20.2749 3.34305 20.2637 2.92656 20.2637 2.49911C20.2637 2.0607 20.2749 1.62229 20.2637 1.19484C20.2411 0.526262 19.6882 0.0111284 19.0113 0.000168157C18.3231 -0.0107921 17.7476 0.515301 17.7364 1.2058C17.7138 2.0607 17.7251 2.92656 17.7364 3.78146C17.7476 4.48292 18.3231 5.00902 19.0113 4.99806Z"
+                fill="url(#paint2_linear_465_3541)"/>
+            <path
+                d="M3.75725 19.7725C4.51318 19.7616 5.06603 19.2355 5.06603 18.5559C5.06603 17.8654 4.52446 17.3284 3.77982 17.3174C2.95619 17.3065 2.12128 17.3065 1.29766 17.3174C0.553011 17.3174 -0.0111162 17.8654 0.000166294 18.5559C0.0114488 19.2245 0.553011 19.7506 1.27509 19.7725C1.69255 19.7835 2.12128 19.7725 2.53874 19.7725C2.94491 19.7725 3.35108 19.7725 3.75725 19.7725Z"
+                fill="url(#paint3_linear_465_3541)"/>
+            <path
+                d="M36.7587 17.3175C35.9013 17.2956 35.0438 17.3065 34.1863 17.3175C33.4755 17.3284 32.934 17.8764 32.934 18.545C32.934 19.2136 33.4868 19.7507 34.1976 19.7726C34.6151 19.7835 35.0438 19.7726 35.4613 19.7726C35.9013 19.7726 36.33 19.7835 36.77 19.7726C37.4583 19.7507 37.9885 19.2136 37.9998 18.5669C38.0111 17.8874 37.4695 17.3284 36.7587 17.3175Z"
+                fill="url(#paint4_linear_465_3541)"/>
+            <path
+                d="M10.3688 6.44482C10.6621 6.90516 11.2488 7.08052 11.7791 6.91612C12.3094 6.75171 12.6591 6.28042 12.6591 5.65568C12.6366 5.58992 12.6366 5.41456 12.5576 5.27207C12.095 4.46101 11.6324 3.64995 11.1134 2.87177C10.7637 2.34568 10.0077 2.24704 9.45489 2.57585C8.91333 2.90465 8.68768 3.58419 8.99231 4.15413C9.43233 4.93231 9.89491 5.69953 10.3688 6.44482Z"
+                fill="url(#paint5_linear_465_3541)"/>
+            <path
+                d="M35.0664 26.1514C34.2991 25.6801 33.5094 25.2198 32.697 24.8252C31.8621 24.4197 30.9144 25.0116 30.9031 25.9103C30.8918 26.3268 31.0836 26.7214 31.4672 26.9515C32.2344 27.4009 33.0129 27.8503 33.8027 28.2558C34.4007 28.5627 35.1228 28.3325 35.45 27.7845C35.7884 27.2146 35.653 26.5022 35.0664 26.1514Z"
+                fill="url(#paint6_linear_465_3541)"/>
+            <path
+                d="M25.9726 6.8175C26.6044 7.16823 27.3378 6.95998 27.7327 6.30236C28.1388 5.64475 28.5337 4.98713 28.9061 4.31855C29.0302 4.11031 29.0866 3.86918 29.1768 3.63901C29.1317 3.091 28.7707 2.60875 28.2404 2.4553C27.6763 2.27994 27.1009 2.47722 26.7849 2.99236C26.3562 3.68286 25.95 4.37335 25.5439 5.07481C25.1603 5.73243 25.3408 6.46677 25.9726 6.8175Z"
+                fill="url(#paint7_linear_465_3541)"/>
+            <path
+                d="M5.34804 24.8033C4.50185 25.2308 3.67823 25.7021 2.87717 26.1953C2.4033 26.4802 2.26791 27.0721 2.45971 27.5872C2.62895 28.0585 3.13666 28.3983 3.74592 28.3873C3.81362 28.3654 3.98285 28.3654 4.11825 28.2996C4.96444 27.8393 5.81063 27.3899 6.62297 26.8858C7.14197 26.557 7.24351 25.8336 6.9276 25.3075C6.60041 24.7704 5.91217 24.5184 5.34804 24.8033Z"
+                fill="url(#paint8_linear_465_3541)"/>
+            <path
+                d="M2.93367 10.9386C3.70088 11.4098 4.49066 11.8592 5.303 12.2647C6.13791 12.6703 7.08565 12.0675 7.08565 11.1687C7.08565 10.7632 6.91641 10.3796 6.54408 10.1604C5.76559 9.70004 4.98709 9.25067 4.17475 8.83418C3.57678 8.52729 2.86598 8.75746 2.5275 9.31643C2.21159 9.86445 2.35826 10.5878 2.93367 10.9386Z"
+                fill="url(#paint9_linear_465_3541)"/>
+            <path
+                d="M32.2231 12.3853C32.2908 12.3743 32.46 12.3743 32.5841 12.3086C33.4529 11.8373 34.3329 11.3879 35.1678 10.8508C35.6981 10.5111 35.7658 9.78769 35.4273 9.27256C35.0888 8.75742 34.4006 8.52726 33.8365 8.81222C33.0241 9.22872 32.2231 9.68905 31.4333 10.1603C30.9594 10.4453 30.7902 11.0262 30.9594 11.5304C31.1287 12.0346 31.6025 12.3743 32.2231 12.3853Z"
+                fill="url(#paint10_linear_465_3541)"/>
           </g>
           <defs>
             <linearGradient id="paint0_linear_465_3541" x1="19" y1="0" x2="19" y2="42" gradientUnits="userSpaceOnUse">
@@ -1617,7 +1639,6 @@
             </linearGradient>
           </defs>
         </svg>
-
 
 
         <div class="bottom-wrap__text">
@@ -1767,7 +1788,7 @@ export default {
   data() {
     return {
       error: null,
-      towerHeight: '1015px',
+      towerHeight: '015px',
       loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
@@ -1795,7 +1816,6 @@ export default {
       blocksLoaded: 62,
       balloonBlocks: [],
       loadingDisabled: false,
-      isFrozen: false,
       rows: [],
       isCraneBlockInfoVisible: false,
       isBalloonBlocksInfoVisible: false,
@@ -1818,6 +1838,22 @@ export default {
     }
   },
   methods: {
+    getFrostTime(time) {
+      let date = new Date(null);
+      date.setSeconds(this.defrostTimes[0]);
+      let result = date.toISOString().substr(11, 8);
+      let chunks = result.split(':');
+      switch (time) {
+        case 'hours':
+          return chunks[0];
+        case 'minutes':
+          return chunks[1];
+        case 'seconds':
+          return chunks[2];
+        default:
+          return ''
+      }
+    },
     setError(err) {
       this.error = err;
     },
@@ -1963,7 +1999,7 @@ export default {
         cover: this.generateCover(),
         showHover: false,
       }
-      for(let i = 0; i < 10; i++) {
+      for (let i = 0; i < 10; i++) {
         let part = [];
         for (let j = 0; j < 32; j++) {
           part.push(Object.assign({}, el))
@@ -1978,13 +2014,13 @@ export default {
       return rowsIndexes
     },
     async loadBlocks() {
-      if(this.loadingDisabled) {
+      if (this.loadingDisabled) {
         return
       }
       this.loadingDisabled = true;
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);
-      if(this.page === 0) {
+      if (this.page === 0) {
         await this.fillArrays();
         let iterationsCount = 0;
         let extraLargeCount = 0;
@@ -1993,12 +2029,12 @@ export default {
         let middleCount = 0;
         let smallCount = 0;
         let extraSmallCount = 0;
-        if(this.owner) {
+        if (this.owner) {
           let i = lastBlockId;
           // eslint-disable-next-line no-constant-condition
           while (true) {
             let block = await contract.blockOfNumber(i);
-            if(this.owner && block.owner !== this.getAccount) {
+            if (this.owner && block.owner !== this.getAccount) {
               i--;
               continue;
             }
@@ -2041,12 +2077,11 @@ export default {
               this.towerBlocksXs[extraSmallCount].number = block.number;
               extraSmallCount++;
             }
-            if(i < 1 || this.towerBlocksSm[this.towerBlocksSm.length - 1].owner) {
+            if (i < 1 || this.towerBlocksSm[this.towerBlocksSm.length - 1].owner) {
               break;
             }
           }
-        }
-        else {
+        } else {
           this.loadMainTowerPart(0, lastBlockId)
           this.loadMainTowerPart(1, lastBlockId)
           this.loadMainTowerPart(2, lastBlockId)
@@ -2054,20 +2089,20 @@ export default {
           this.loadMainTowerPart(4, lastBlockId)
           this.loadMainTowerPart(5, lastBlockId)
         }
-        if(lastBlockId <= this.blocksQt) {
+        if (lastBlockId <= this.blocksQt) {
           return;
         }
         this.page++;
         this.loadingDisabled = false;
       } else {
-        if(lastBlockId <= this.blocksQt) {
+        if (lastBlockId <= this.blocksQt) {
           return;
         }
         let blocksLeft = lastBlockId - this.blocksLoaded;
         let rowsIndexes = this.fillFooter();
         let index = 0;
-        for(let i = 0; i < 10; i++) {
-          if(blocksLeft - 31 <= 0) {
+        for (let i = 0; i < 10; i++) {
+          if (blocksLeft - 31 <= 0) {
             this.loadRow(blocksLeft, 1, rowsIndexes[index]);
             return
           }
@@ -2087,14 +2122,14 @@ export default {
 
           try {
             block = await contract.blockOfNumber(lastBlockId);
-          } catch(e) {
+          } catch (e) {
             console.log(e);
             // eslint-disable-next-line no-constant-condition
-            while(true) {
+            while (true) {
               try {
                 block = await contract.blockOfNumber(lastBlockId);
                 break;
-              }  catch (e) {
+              } catch (e) {
                 console.log(e)
               }
             }
@@ -2105,17 +2140,17 @@ export default {
           this.towerBlocksExtraLarge[0].number = block.number;
           break;
         case 1:
-          for(let i = lastBlockId - 1; i >= lastBlockId - 2; i--) {
+          for (let i = lastBlockId - 1; i >= lastBlockId - 2; i--) {
             try {
               block = await contract.blockOfNumber(i);
-            } catch(e) {
+            } catch (e) {
               console.log(e);
               // eslint-disable-next-line no-constant-condition
-              while(true) {
+              while (true) {
                 try {
                   block = await contract.blockOfNumber(i);
                   break;
-                }  catch (e) {
+                } catch (e) {
                   console.log(e)
                 }
               }
@@ -2128,17 +2163,17 @@ export default {
           }
           break;
         case 2:
-          for(let i = lastBlockId - 3; i >= lastBlockId - 6; i--) {
+          for (let i = lastBlockId - 3; i >= lastBlockId - 6; i--) {
             try {
               block = await contract.blockOfNumber(i);
-            } catch(e) {
+            } catch (e) {
               console.log(e);
               // eslint-disable-next-line no-constant-condition
-              while(true) {
+              while (true) {
                 try {
                   block = await contract.blockOfNumber(i);
                   break;
-                }  catch (e) {
+                } catch (e) {
                   console.log(e)
                 }
               }
@@ -2151,17 +2186,17 @@ export default {
           }
           break;
         case 3:
-          for(let i = lastBlockId - 7; i >= lastBlockId - 14; i--) {
+          for (let i = lastBlockId - 7; i >= lastBlockId - 14; i--) {
             try {
               block = await contract.blockOfNumber(i);
-            } catch(e) {
+            } catch (e) {
               console.log(e);
               // eslint-disable-next-line no-constant-condition
-              while(true) {
+              while (true) {
                 try {
                   block = await contract.blockOfNumber(i);
                   break;
-                }  catch (e) {
+                } catch (e) {
                   console.log(e)
                 }
               }
@@ -2174,17 +2209,17 @@ export default {
           }
           break;
         case 4:
-          for(let i = lastBlockId - 15; i >= lastBlockId - 30; i--) {
+          for (let i = lastBlockId - 15; i >= lastBlockId - 30; i--) {
             try {
               block = await contract.blockOfNumber(i);
-            } catch(e) {
+            } catch (e) {
               console.log(e);
               // eslint-disable-next-line no-constant-condition
-              while(true) {
+              while (true) {
                 try {
                   block = await contract.blockOfNumber(i);
                   break;
-                }  catch (e) {
+                } catch (e) {
                   console.log(e)
                 }
               }
@@ -2197,17 +2232,17 @@ export default {
           }
           break;
         case 5:
-          for(let i = lastBlockId - 31; i >= lastBlockId - 62; i--) {
+          for (let i = lastBlockId - 31; i >= lastBlockId - 62; i--) {
             try {
               block = await contract.blockOfNumber(i);
-            } catch(e) {
+            } catch (e) {
               console.log(e);
               // eslint-disable-next-line no-constant-condition
-              while(true) {
+              while (true) {
                 try {
                   block = await contract.blockOfNumber(i);
                   break;
-                }  catch (e) {
+                } catch (e) {
                   console.log(e)
                 }
               }
@@ -2223,11 +2258,11 @@ export default {
 
     },
     async loadRow(from, to, row) {
-      if(to <= 0 || from <= 0) {
+      if (to <= 0 || from <= 0) {
         return
       }
       let index = 0;
-      for(let i = from; i >= to; i--) {
+      for (let i = from; i >= to; i--) {
         let block = await contract.blockOfNumber(i);
         this.blocksLoaded++;
         this.rows[row].foundation[index].imageUrl = block.imageUrl;
@@ -2299,7 +2334,8 @@ img[lazy=loaded] {
 .list-before-enter {
   opacity: 0 !important;
 }
+
 .loader {
-  padding: 0!important;
+  padding: 0 !important;
 }
 </style>
