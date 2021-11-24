@@ -1354,7 +1354,9 @@
           </div>
 
           <div class="tower-bottom">
-            <img src="@/assets/img/tower-bottom.png" alt="">
+            <img src="@/assets/img/tower-bottom.png" alt="" class="desktop">
+            <img src="@/assets/img/tower-bottom-mobile.png" class="mobile">
+
           </div>
         </div>
       </div>
