@@ -1318,7 +1318,7 @@ img {
       transform: translate(74%, 17%) rotate(5deg);
     }
     @include max-screen(md) {
-      transform: translate(30%, 73%) rotate(5deg);
+      transform: translate(30%, 90%) rotate(5deg);
     }
     @include max-screen(sm) {
       transform: translate(17%, 55%);
@@ -1639,7 +1639,7 @@ img {
       height: fit-content;
 
   //    padding: 32px 45px 255px 61px;
-      padding: 32px 0 185px 41px;
+      padding: 32px 0 215px 41px;
       &::-webkit-scrollbar {
         width: 0;
         background: transparent;
@@ -1651,26 +1651,26 @@ img {
       }
       @include max-screen(xxl) {
         width: 623px;
-        padding: 25px 0px 154px 32px;
+        padding: 25px 0px 208px 32px;
       }
       @include max-screen(xl) {
         width: 605px;
-        padding: 24px 0px 150px 34px;
+        padding: 24px 0px 203px 34px;
       }
       @include max-screen(lg) {
         width: 498px;
-        padding: 17px 0 122px 30px;
+        padding: 17px 0 180px 30px;
       }
       @include max-screen(md) {
         width: 467px;
-        padding: 15px 10px 110px 30px;
+        padding: 15px 10px 170px 30px;
       }
       @include max-screen(sm) {
-        padding: 15px 10px 127px 27px;
+        padding: 15px 10px 190px 27px;
       }
       @include max-screen(xs) {
         width: 100%;
-        padding: 6px 0px 128px 16px;
+        padding: 6px 0px 170px 16px;
       }
 
       &__row {
