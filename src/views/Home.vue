@@ -697,7 +697,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower" ref="tower">
+          <div class="tower" ref="tower" :style="{height: towerHeight}">
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -1362,9 +1362,8 @@
             </div>
             <ScrollLoader :loader-size="10" class="tower__row tower__row--xs" :loader-distance="-200" :loader-method="loadBlocks" :loader-disable="loadingDisabled">
               <div class="tower__col"
-                   v-for="index in 1000"
+                   v-for="index in lastBlockId"
                    :key="index"
-                   style="height: 18px"
                    :data-index="index">
                 <img src="@/assets/img/cover-1.png" alt="" class="tower__col-image">
                 <div class="tower__block-cover">
@@ -1405,11 +1404,11 @@
                     This block is frozen
                   </div>
                   <div class="timer">
-                    <div class="timer__wrap">{{ getFrostTime('hours') }}</div>
+                    <div class="timer__wrap">{{ getFrostTime('hours', index) }}</div>
                     <span class="timer__separator">:</span>
-                    <div class="timer__wrap">{{ getFrostTime('minutes') }}</div>
+                    <div class="timer__wrap">{{ getFrostTime('minutes', index) }}</div>
                     <span class="timer__separator">:</span>
-                    <div class="timer__wrap">{{ getFrostTime('seconds') }}</div>
+                    <div class="timer__wrap">{{ getFrostTime('seconds', index) }}</div>
                   </div>
                 </div>
                 <div class="tower-block__img">
@@ -1802,7 +1801,7 @@ export default {
   data() {
     return {
       error: null,
-      towerHeight: '015px',
+      towerHeight: '1020px',
       loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
@@ -1852,9 +1851,9 @@ export default {
     }
   },
   methods: {
-    getFrostTime(time) {
+    getFrostTime(time, index) {
       let date = new Date(null);
-      date.setSeconds(this.defrostTimes[0]);
+      date.setSeconds(this.defrostTimes[index]);
       let result = date.toISOString().substr(11, 8);
       let chunks = result.split(':');
       switch (time) {
@@ -2023,7 +2022,6 @@ export default {
         });
         rowsIndexes.push(this.rows.length - 1);
       }
-      this.towerHeight = `${parseInt(this.towerHeight.replace('px', '')) + (18 * 4)}px`
 
       return rowsIndexes
     },
@@ -2034,6 +2032,7 @@ export default {
       this.loadingDisabled = true;
       let lastBlockId = await contract.lastBlockNumber();
       lastBlockId = parseInt(lastBlockId);
+
       if (this.page === 0) {
         await this.fillArrays();
         let iterationsCount = 0;
@@ -2112,6 +2111,13 @@ export default {
         if (lastBlockId <= this.blocksQt) {
           return;
         }
+        if(this.lastBlockId - 320 < 0) {
+          this.lastBlockId = 0;
+        }
+        else {
+          this.lastBlockId -= 320;
+          console.log(this.lastBlockId)
+        }
         let blocksLeft = lastBlockId - this.blocksLoaded;
         let rowsIndexes = this.fillFooter();
         let index = 0;
@@ -2144,7 +2150,9 @@ export default {
                 block = await contract.blockOfNumber(lastBlockId);
                 break;
               } catch (e) {
+                block = await contract.blockOfNumber(lastBlockId);
                 console.log(e)
+                continue;
               }
             }
           }
@@ -2286,8 +2294,13 @@ export default {
         index++;
       }
     },
+    async initLoader() {
+      this.lastBlockId = await contract.lastBlockNumber();
+      this.towerHeight = `${(Math.ceil(this.lastBlockId / 32) * 18) + 1020}px`;
+    },
     init() {
       setTimeout(() => {
+        this.initLoader();
         this.getDefrostTime();
         this.blockInBalloon();
         this.loadBlocks();
