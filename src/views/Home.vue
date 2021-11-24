@@ -713,7 +713,6 @@
                      class="tower__col-image"
                      alt="">
                 <div class="tower__block-cover"
-                     @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
@@ -786,6 +785,9 @@
                   </a>
 
                   <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', item.number, item.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -809,7 +811,6 @@
               >
                 <img v-if="item.imageUrl" v-lazy="item.imageUrl" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
-                     @click="openBuyModal('update', item.number, item.owner)"
                      @mouseover="item.showHover = true"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
@@ -882,6 +883,9 @@
                   </a>
 
                   <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', item.number, item.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -904,7 +908,6 @@
                    :data-index="index">
                 <img v-lazy="block.imageUrl" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
-                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -975,6 +978,9 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', block.number, block.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -997,7 +1003,6 @@
                    :data-index="index">
                 <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -1067,6 +1072,9 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', block.number, block.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1089,7 +1097,6 @@
                    :data-index="index">
                 <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -1160,6 +1167,9 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', block.number, block.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1182,7 +1192,6 @@
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @click="openBuyModal(block.number, block.owner)"
                      @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
@@ -1253,6 +1262,9 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', block.number, block.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>
@@ -1269,8 +1281,7 @@
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
-                <div class="tower__block-cover"
-                     @click="openBuyModal('update', block.number, block.owner)">
+                <div class="tower__block-cover">
                   <img :src="block.cover" alt="">
                 </div>
 
@@ -1339,6 +1350,9 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <button type="button" class="page-btn page-btn--buy"
+                          @click="openBuyModal('update', block.number, block.owner)"
+                  >Edit block</button>
 
                   <div class="tower-block__point">
                     <span></span>

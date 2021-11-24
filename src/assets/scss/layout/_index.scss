@@ -245,6 +245,12 @@ img {
     }
   }
 
+  .page-btn--header {
+    width: 212px;
+    height: 42px;
+    font-size: 19px;
+  }
+
   .account-info {
     @include max-screen(xl) {
       width: fit-content;
