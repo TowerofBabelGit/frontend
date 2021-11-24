@@ -1711,7 +1711,7 @@ export default {
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
-      blocksQt: 65,
+      blocksQt: 64,
       size: 26,
       page: 0,
       blockNumber: null,
@@ -1728,7 +1728,7 @@ export default {
       towerBlocksXs: [],
       defrostTimes: [],
       foundation: [],
-      blocksLoaded: 0,
+      blocksLoaded: 62,
       balloonBlocks: [],
       loadingDisabled: false,
       isFrozen: false,
@@ -1803,11 +1803,11 @@ export default {
     },
     // eslint-disable-next-line no-unused-vars
     transitionEnter(el, done) {
-      const delay = el.dataset.index * 150
+      //const delay = el.dataset.index * 150
       setTimeout(() => {
-        el.style.transition = '1s'
+        el.style.transition = '0.5s'
         el.style.opacity = 1;
-      }, delay)
+      }, 0)
     },
     generateCover() {
       return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
@@ -1968,7 +1968,7 @@ export default {
               this.towerBlocksSm[smallCount].owner = block.owner;
               this.towerBlocksSm[smallCount].number = block.number;
               smallCount++;
-            } else if (iterationsCount >= 32 && iterationsCount < 65) {
+            } else if (iterationsCount >= 32 && iterationsCount < 64) {
               this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
               this.towerBlocksXs[extraSmallCount].description = block.description;
               this.towerBlocksXs[extraSmallCount].owner = block.owner;
@@ -1981,47 +1981,12 @@ export default {
           }
         }
         else {
-          for (let i = lastBlockId; i > lastBlockId - this.blocksQt; i--) {
-            let block = await contract.blockOfNumber(i);
-            this.blocksLoaded++;
-            iterationsCount++;
-            if (iterationsCount === 1) {
-              this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
-              this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
-              this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
-              this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
-            } else if (iterationsCount > 1 && iterationsCount < 4) {
-              this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
-              this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
-              this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
-              this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
-              middleLargeCount++;
-            } else if (iterationsCount >= 4 && iterationsCount < 8) {
-              this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
-              this.towerBlocksLg[largeCount].description = block.description;
-              this.towerBlocksLg[largeCount].owner = block.owner;
-              this.towerBlocksLg[largeCount].number = block.number;
-              largeCount++;
-            } else if (iterationsCount >= 8 && iterationsCount < 16) {
-              this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
-              this.towerBlocksMd[middleCount].description = block.description;
-              this.towerBlocksMd[middleCount].owner = block.owner;
-              this.towerBlocksMd[middleCount].number = block.number;
-              middleCount++;
-            } else if (iterationsCount >= 16 && iterationsCount < 32) {
-              this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
-              this.towerBlocksSm[smallCount].description = block.description;
-              this.towerBlocksSm[smallCount].owner = block.owner;
-              this.towerBlocksSm[smallCount].number = block.number;
-              smallCount++;
-            } else if (iterationsCount >= 32 && iterationsCount < 65) {
-              this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
-              this.towerBlocksXs[extraSmallCount].description = block.description;
-              this.towerBlocksXs[extraSmallCount].owner = block.owner;
-              this.towerBlocksXs[extraSmallCount].number = block.number;
-              extraSmallCount++;
-            }
-          }
+          this.loadMainTowerPart(0, lastBlockId)
+          this.loadMainTowerPart(1, lastBlockId)
+          this.loadMainTowerPart(2, lastBlockId)
+          this.loadMainTowerPart(3, lastBlockId)
+          this.loadMainTowerPart(4, lastBlockId)
+          this.loadMainTowerPart(5, lastBlockId)
         }
         if(lastBlockId <= this.blocksQt) {
           return;
@@ -2029,10 +1994,10 @@ export default {
         this.page++;
         this.loadingDisabled = false;
       } else {
-        let blocksLeft = lastBlockId - this.blocksLoaded;
-        if(blocksLeft <= 0) {
+        if(lastBlockId <= this.blocksQt) {
           return;
         }
+        let blocksLeft = lastBlockId - this.blocksLoaded;
         let rowsIndexes = this.fillFooter();
         let index = 0;
         for(let i = 0; i < 4; i++) {
@@ -2048,12 +2013,100 @@ export default {
         this.loadingDisabled = false;
       }
     },
+    async loadMainTowerPart(row, lastBlockId) {
+      let block = null;
+      let index = 0;
+      switch (row) {
+        case 0:
+          block = await contract.blockOfNumber(lastBlockId);
+          this.towerBlocksExtraLarge[0].imageUrl = block.imageUrl;
+          this.towerBlocksExtraLarge[0].description = block.description;
+          this.towerBlocksExtraLarge[0].owner = block.owner;
+          this.towerBlocksExtraLarge[0].number = block.number;
+          break;
+        case 1:
+          for(let i = lastBlockId - 1; i >= lastBlockId - 2; i--) {
+            try {
+              block = await contract.blockOfNumber(i);
+            } catch(e) {
+              console.log(e);
+              block = await contract.blockOfNumber(i);
+            }
+            this.towerBlocksMiddleLarge[index].imageUrl = block.imageUrl;
+            this.towerBlocksMiddleLarge[index].description = block.description;
+            this.towerBlocksMiddleLarge[index].owner = block.owner;
+            this.towerBlocksMiddleLarge[index].number = block.number;
+            index++;
+          }
+          break;
+        case 2:
+          for(let i = lastBlockId - 3; i >= lastBlockId - 6; i--) {
+            try {
+              block = await contract.blockOfNumber(i);
+            } catch(e) {
+              console.log(e);
+              block = await contract.blockOfNumber(i);
+            }
+            this.towerBlocksLg[index].imageUrl = block.imageUrl;
+            this.towerBlocksLg[index].description = block.description;
+            this.towerBlocksLg[index].owner = block.owner;
+            this.towerBlocksLg[index].number = block.number;
+            index++;
+          }
+          break;
+        case 3:
+          for(let i = lastBlockId - 7; i >= lastBlockId - 14; i--) {
+            try {
+              block = await contract.blockOfNumber(i);
+            } catch(e) {
+              console.log(e);
+              block = await contract.blockOfNumber(i);
+            }
+            this.towerBlocksMd[index].imageUrl = block.imageUrl;
+            this.towerBlocksMd[index].description = block.description;
+            this.towerBlocksMd[index].owner = block.owner;
+            this.towerBlocksMd[index].number = block.number;
+            index++;
+          }
+          break;
+        case 4:
+          for(let i = lastBlockId - 15; i >= lastBlockId - 30; i--) {
+            try {
+              block = await contract.blockOfNumber(i);
+            } catch(e) {
+              console.log(e);
+              block = await contract.blockOfNumber(i);
+            }
+            this.towerBlocksSm[index].imageUrl = block.imageUrl;
+            this.towerBlocksSm[index].description = block.description;
+            this.towerBlocksSm[index].owner = block.owner;
+            this.towerBlocksSm[index].number = block.number;
+            index++;
+          }
+          break;
+        case 5:
+          for(let i = lastBlockId - 31; i >= lastBlockId - 62; i--) {
+            try {
+              block = await contract.blockOfNumber(i);
+            } catch(e) {
+              console.log(e);
+              block = await contract.blockOfNumber(i);
+            }
+            this.towerBlocksXs[index].imageUrl = block.imageUrl;
+            this.towerBlocksXs[index].description = block.description;
+            this.towerBlocksXs[index].owner = block.owner;
+            this.towerBlocksXs[index].number = block.number;
+            index++;
+          }
+          break;
+      }
+
+    },
     async loadRow(from, to, row) {
       if(to <= 0 || from <= 0) {
         return
       }
       let index = 0;
-      console.log(from, to, row)
       for(let i = from; i >= to; i--) {
         let block = await contract.blockOfNumber(i);
         this.blocksLoaded++;
