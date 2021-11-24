@@ -62,9 +62,9 @@ img {
   background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
   @include align-center;
   position: relative;
-  background-position: center;
+  background-position: center, top;
   background-size: 100% 100%;
-  height: 184px;
+  height: 170px;
  // z-index: 2;
 
   @include max-screen(xxxl) {
@@ -254,7 +254,7 @@ img {
 
   .burger-btn {
     position: absolute;
-    right: 25px;
+    right: 15px;
     top: 55%;
     transform: translateY(-100%);
 
@@ -518,7 +518,7 @@ img {
   display: none;
   background: #FFFFFF;
   width: 430px;
-  height: 800px;
+ // height: 800px;
   right: 0;
   top: 0;
   z-index: 8;
@@ -535,7 +535,7 @@ img {
   }
   @include max-screen(sm) {
     top: 0;
-    min-height: 450px;
+    min-height: 100vh;
     padding-top: 130px;
     z-index: 10;
   }
@@ -566,7 +566,7 @@ img {
     width: 100%;
     padding: 47px 50px 70px;
     position: absolute;
-    bottom: 0;
+    bottom: -45px;
     left: 0;
     animation: fadeInUp 1s ease-in ;
 
@@ -619,6 +619,7 @@ img {
   }
 }
 
+
 .home-page {
   background:url("assets/img/background-bottom.png") no-repeat, url("assets/img/background.png") no-repeat ;
   min-height: 100vh;
@@ -637,6 +638,10 @@ img {
     width: 545px;
     height: 120px;
 
+    @include max-screen(xxl) {
+      width: 345px;
+      height: 87px;
+    }
     @include max-screen(xl) {
       width: 246px;
       height: 75px;
@@ -770,7 +775,8 @@ img {
 .crane-wrap {
   position: absolute;
   left: 0;
-  transform: translateX(-67%);
+//  transform: translateX(-67%);
+  transform: translateX(-75%);
   z-index: 4;
 
   @include max-screen(xxxl) {
@@ -1200,6 +1206,7 @@ img {
     width: 50%;
     height: 80px;
     cursor: pointer;
+    margin-bottom: -1px;
 
     @include max-screen(xl) {
       height: 52px;
@@ -1443,6 +1450,7 @@ img {
     height: 100%;
     cursor: pointer;
     border: none;
+
   }
 
   svg {
@@ -1459,6 +1467,8 @@ img {
   &__text {
     font-size: 12px;
     line-height: 1.1;
+    text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.55);
+
 
     @include max-screen(sm) {
       font-size: 10px;
@@ -1486,7 +1496,8 @@ img {
 
 .tower-wrap {
   position: relative;
-  max-width: 1050px;
+//  max-width: 1050px;
+  max-width: 750px;
   margin: auto;
 
   @include max-screen(xxxl) {
@@ -1616,26 +1627,27 @@ img {
   //  z-index: 2;
     position: relative;
     background: url("assets/img/tower-blocks-bg.png") no-repeat;
-    background-size: 99% 100%;
+    background-size: 100% 100%;
     background-position: center;
 
     @include align-column-center;
 
     .tower {
-      width: 1085px;
+   //   width: 1085px;
+      width: 743px;
       margin: auto;
       height: fit-content;
 
-      padding: 32px 45px 255px 61px;
-
+  //    padding: 32px 45px 255px 61px;
+      padding: 32px 0 185px 41px;
       &::-webkit-scrollbar {
         width: 0;
         background: transparent;
       }
 
       @include max-screen(xxxl) {
-        width: 743px;
-        padding: 32px 0 185px 41px;
+
+
       }
       @include max-screen(xxl) {
         width: 623px;
@@ -2078,7 +2090,7 @@ img {
 /* scroll styles */
 
 .scroll-area {
-  height: 400px;
+  height: 360px;
   overflow-y: auto;
 }
 
@@ -2140,6 +2152,11 @@ img {
     height: 65px;
     border-radius: 50%;
     @include align-justify-center;
+
+    @include max-screen(sm) {
+      width: 45px;
+      height: 45px;
+    }
   }
 
   &__icon {
@@ -2148,6 +2165,11 @@ img {
     height: 55px;
     border-radius: 50%;
     @include align-column-center;
+
+    @include max-screen(sm) {
+      width: 35px;
+      height: 35px;
+    }
   }
 
   &__text {
@@ -2162,6 +2184,12 @@ img {
     line-height: 16px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    @include max-screen(sm) {
+      width: 120px;
+      height: 25px;
+      font-size: 11px;
+    }
   }
 }
 
@@ -2172,6 +2200,12 @@ img {
 
   width: 22px;
   height: 12px;
+
+  @include max-screen(sm) {
+    width: 11px;
+    height: 7px;
+    background-size: 100%;
+  }
 
 
   + .scroll_arrows {
