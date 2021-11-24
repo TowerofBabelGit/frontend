@@ -1884,7 +1884,7 @@ export default {
       for (let i = 0; i < 16; i++) {
         this.towerBlocksSm.push(Object.assign({}, el))
       }
-      for (let i = 0; i < 33; i++) {
+      for (let i = 0; i < 32; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
     },
@@ -1899,7 +1899,7 @@ export default {
       }
       for(let i = 0; i < 4; i++) {
         let part = [];
-        for (let j = 0; j < 33; j++) {
+        for (let j = 0; j < 32; j++) {
           part.push(Object.assign({}, el))
         }
         this.rows.push({
@@ -2036,12 +2036,12 @@ export default {
         let rowsIndexes = this.fillFooter();
         let index = 0;
         for(let i = 0; i < 4; i++) {
-          if(blocksLeft - 32 <= 0) {
+          if(blocksLeft - 31 <= 0) {
             this.loadRow(blocksLeft, 1, rowsIndexes[index]);
             return
           }
-          this.loadRow(blocksLeft, blocksLeft - 32, rowsIndexes[index]);
-          blocksLeft -= 33;
+          this.loadRow(blocksLeft, blocksLeft - 31, rowsIndexes[index]);
+          blocksLeft -= 32;
           index++;
         }
         this.page++;
