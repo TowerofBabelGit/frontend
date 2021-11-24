@@ -130,14 +130,52 @@ img {
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(1);
-  //    animation: sunAnimation 1s ease-in-out infinite ;
+      animation: sunAnimation 3s linear infinite;
     }
 
+    &:after {
+      content: "";
+      position: absolute;
+      background: url("assets/img/svg/sun-big-rays.svg") no-repeat;
+      background-size: 100% 100%;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transform: scale(0.5);
+      animation: sunAnimationRays alternate 1.5s linear infinite ;
+    }
   }
 
   &__img-sun {
     width: 100%;
     height: 100%;
+    position: relative;
+  }
+
+  &__img-ray {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+
+    &:before {
+      content: "";
+      position: absolute;
+      background: url("assets/img/svg/sun-small-rays.svg") no-repeat;
+      background-size: 100% 100%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      width: 80%;
+      height: 80%;
+      animation: sunAnimationRays alternate 1.5s linear infinite ;
+      animation-delay: 0.8s;
+    }
   }
 
   &__img-text {
@@ -1030,7 +1068,7 @@ img {
   position: absolute;
   top: -150px;
   right: 12%;
-  z-index: 1;
+  z-index: 3;
 
   @include max-screen(xl) {
     right: 13%;
@@ -1046,6 +1084,7 @@ img {
     right: 0;
     top: unset;
     bottom: 170px;
+    z-index: 1;
   }
   @include max-screen(xs) {
     bottom: 142px;
