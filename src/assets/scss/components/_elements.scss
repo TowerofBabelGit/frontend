@@ -217,6 +217,7 @@
     color: #503614;
     left: 22px;
     pointer-events: none;
+
   }
 
   &.focus {
@@ -230,7 +231,7 @@
       backdrop-filter: blur(100px);
       padding: 3px 5px;
       border-radius: 5px;
-      animation: slideUp .1s ease-in;
+      animation: slideUp .1s ease-in forwards;
     }
   }
 

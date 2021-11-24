@@ -59,16 +59,17 @@ img {
 /* header */
 
 .header {
-  background: url("assets/img/header-bg.png") repeat-x, url("assets/img/svg/header-bg-bg.svg") ;
+  background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
   @include align-center;
   position: relative;
-   height: 110px;
   background-position: center;
+  background-size: 100% 100%;
+  height: 184px;
  // z-index: 2;
 
   @include max-screen(xxxl) {
-    background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
     background-size: 100%;
+    height: 110px;
   }
   @include max-screen(xxl) {
    height: 90px;
@@ -119,6 +120,18 @@ img {
       height: 130px;
     }
 
+    &:before {
+      content: "";
+      position: absolute;
+      background: url("assets/img/svg/sun-essense.svg") no-repeat;
+      background-size: 100% 100%;
+      width: 60%;
+      height: 60%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      animation: sunAnimation 1s ease-in-out infinite ;
+    }
 
   }
 
@@ -146,7 +159,11 @@ img {
     margin: 0 50px;
     z-index: 17;
     align-self: flex-start;
+    width: 500px;
 
+    @include max-screen(xxxl) {
+      width: auto;
+    }
     @include max-screen(xxl) {
         margin: 0;
       margin-right: 20px;
@@ -326,8 +343,11 @@ img {
 }
 
 .header-nav {
-   margin-left: 17%;
+  margin-left: 15%;
 
+  @include max-screen(xxxl) {
+    margin-left: 17%;
+  }
   @include max-screen(xxl) {
     margin-left: 19%;
   }
@@ -341,8 +361,11 @@ img {
   &__list {
     @include align-center;
     justify-content: center;
-    width: 445px;
 
+
+    @include max-screen(xxxl) {
+      width: 445px;
+    }
     @include max-screen(xxl) {
       width: fit-content;
     }
@@ -360,10 +383,13 @@ img {
       color: #000000;
       white-space: nowrap;
       cursor: pointer;
-      font-size: 21px;
+      font-size: 34px;
       text-shadow: 0px 3px 4px #FFFFFF;
       transition: text-shadow 0.01s ease-in;
 
+      @include max-screen(xxxl) {
+        font-size: 21px;
+      }
       @include max-screen(xxl) {
         font-size: 17px;
       }
@@ -1565,7 +1591,7 @@ img {
   //  z-index: 2;
     position: relative;
     background: url("assets/img/tower-blocks-bg.png") no-repeat;
-    background-size: 100% 100%;
+    background-size: 99% 100%;
     background-position: center;
 
     @include align-column-center;
@@ -1588,7 +1614,7 @@ img {
       }
       @include max-screen(xxl) {
         width: 623px;
-        padding: 25px 0px 170px 32px;
+        padding: 25px 0px 154px 32px;
       }
       @include max-screen(xl) {
         width: 605px;
@@ -1596,7 +1622,7 @@ img {
       }
       @include max-screen(lg) {
         width: 498px;
-        padding: 17px 0 120px 30px;
+        padding: 17px 0 122px 30px;
       }
       @include max-screen(md) {
         width: 467px;
@@ -1729,21 +1755,22 @@ img {
         }
 
         &--xs {
-          height: 23px;
+          height: 21px;
           flex-wrap: wrap;
+          justify-content: center;
 
           @include max-screen(xxl) {
             height: 18px;
           }
           @include max-screen(lg) {
-            height: 20px;
+            height: 14px;
           }
           @include max-screen(xs) {
             height: 10px;
           }
 
           .tower__col {
-            width: 3%;
+            width: 3.1%;
 
           }
 
@@ -1837,6 +1864,7 @@ img {
         bottom: 0;
         z-index: 2;
         @include align-justify-center;
+
       }
     }
 
