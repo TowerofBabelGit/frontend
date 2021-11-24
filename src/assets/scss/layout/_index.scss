@@ -62,9 +62,9 @@ img {
   background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
   @include align-center;
   position: relative;
-  background-position: center;
+  background-position: center, top;
   background-size: 100% 100%;
-  height: 184px;
+  height: 170px;
  // z-index: 2;
 
   @include max-screen(xxxl) {
@@ -80,7 +80,7 @@ img {
     height: 75px;
   }
   @include max-screen(xs) {
-    height: 66px;
+    height: 60px;
 
   }
 
@@ -216,11 +216,9 @@ img {
     }
     @include max-screen(sm) {
       width: 170px;
-
     }
     @include max-screen(xs) {
-
-
+      width: 140px;
     }
 
   }
@@ -256,7 +254,7 @@ img {
 
   .burger-btn {
     position: absolute;
-    right: 25px;
+    right: 15px;
     top: 55%;
     transform: translateY(-100%);
 
@@ -520,7 +518,7 @@ img {
   display: none;
   background: #FFFFFF;
   width: 430px;
-  height: 800px;
+ // height: 800px;
   right: 0;
   top: 0;
   z-index: 8;
@@ -537,7 +535,7 @@ img {
   }
   @include max-screen(sm) {
     top: 0;
-    min-height: 450px;
+    min-height: 100vh;
     padding-top: 130px;
     z-index: 10;
   }
@@ -568,7 +566,7 @@ img {
     width: 100%;
     padding: 47px 50px 70px;
     position: absolute;
-    bottom: 0;
+    bottom: -45px;
     left: 0;
     animation: fadeInUp 1s ease-in ;
 
@@ -621,17 +619,14 @@ img {
   }
 }
 
+
 .home-page {
   background:url("assets/img/background-bottom.png") no-repeat, url("assets/img/background.png") no-repeat ;
   min-height: 100vh;
   background-position:  bottom, top;
   overflow-x: hidden;
-  background-size: 100%;
+  background-size: contain, cover;
   position: relative;
-
-  @include max-screen(xxl) {
-    background-size: contain, cover;
-  }
 
   &:after {
     content: "";
@@ -643,6 +638,10 @@ img {
     width: 545px;
     height: 120px;
 
+    @include max-screen(xxl) {
+      width: 345px;
+      height: 87px;
+    }
     @include max-screen(xl) {
       width: 246px;
       height: 75px;
@@ -677,7 +676,7 @@ img {
     }
     @include max-screen(sm) {
      max-width: 100%;
-      margin-top: -43px;
+      margin-top: -30px;
       height: 100px;
     }
     @include max-screen(xs) {
@@ -776,7 +775,8 @@ img {
 .crane-wrap {
   position: absolute;
   left: 0;
-  transform: translateX(-67%);
+//  transform: translateX(-67%);
+  transform: translateX(-75%);
   z-index: 4;
 
   @include max-screen(xxxl) {
@@ -922,7 +922,7 @@ img {
       top: -15px;
     }
     @include max-screen(xs) {
-      transform: translate(-10%, 100%) rotate(-42deg);
+      transform: translate(-10%, 110%) rotate(-42deg);
       top: 0;
       width: 139px;
       height: 136px;
@@ -1084,7 +1084,6 @@ img {
     right: 0;
     top: unset;
     bottom: 170px;
-    z-index: 1;
   }
   @include max-screen(xs) {
     bottom: 142px;
@@ -1207,6 +1206,7 @@ img {
     width: 50%;
     height: 80px;
     cursor: pointer;
+    margin-bottom: -1px;
 
     @include max-screen(xl) {
       height: 52px;
@@ -1324,7 +1324,7 @@ img {
       transform: translate(17%, 55%);
     }
     @include max-screen(xs) {
-      transform: translate(9%, 70%);
+      transform: translate(9%, 85%);
       background-size: 150% 150%;
       width: 158px;
       height: 150px;
@@ -1433,12 +1433,6 @@ img {
     border-left: 1px dashed rgba(0, 0, 0, 0.3);
   }
 
-  &:nth-child(4) {
-    @include max-screen(xs) {
-      border-left: none;
-    }
-  }
-
   @include max-screen(sm) {
     height: 53px;
   }
@@ -1456,6 +1450,7 @@ img {
     height: 100%;
     cursor: pointer;
     border: none;
+
   }
 
   svg {
@@ -1472,6 +1467,8 @@ img {
   &__text {
     font-size: 12px;
     line-height: 1.1;
+    text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.55);
+
 
     @include max-screen(sm) {
       font-size: 10px;
@@ -1499,7 +1496,8 @@ img {
 
 .tower-wrap {
   position: relative;
-  max-width: 1050px;
+//  max-width: 1050px;
+  max-width: 750px;
   margin: auto;
 
   @include max-screen(xxxl) {
@@ -1536,7 +1534,6 @@ img {
       margin-right: auto;
       margin-left: auto;
       margin-bottom: -5px;
-      margin-top: 100px;
     }
 
     img {
@@ -1630,26 +1627,27 @@ img {
   //  z-index: 2;
     position: relative;
     background: url("assets/img/tower-blocks-bg.png") no-repeat;
-    background-size: 99% 100%;
+    background-size: 100% 100%;
     background-position: center;
 
     @include align-column-center;
 
     .tower {
-      width: 1085px;
+   //   width: 1085px;
+      width: 743px;
       margin: auto;
       height: fit-content;
 
-      padding: 32px 45px 255px 61px;
-
+  //    padding: 32px 45px 255px 61px;
+      padding: 32px 0 185px 41px;
       &::-webkit-scrollbar {
         width: 0;
         background: transparent;
       }
 
       @include max-screen(xxxl) {
-        width: 743px;
-        padding: 32px 0 185px 41px;
+
+
       }
       @include max-screen(xxl) {
         width: 623px;
@@ -1668,11 +1666,11 @@ img {
         padding: 15px 10px 110px 30px;
       }
       @include max-screen(sm) {
-        padding: 15px 10px 112px 27px;
+        padding: 15px 10px 127px 27px;
       }
       @include max-screen(xs) {
         width: 100%;
-        padding: 6px 0px 62px 16px;
+        padding: 6px 0px 128px 16px;
       }
 
       &__row {
@@ -1690,7 +1688,7 @@ img {
             height: 194px;
           }
           @include max-screen(xs) {
-            height: 122px;
+            height: 135px;
           }
         }
 
@@ -1704,7 +1702,7 @@ img {
             height: 103px;
           }
           @include max-screen(xs) {
-            height: 61px;
+            height: 70px;
           }
 
           .tower__col {
@@ -1737,7 +1735,7 @@ img {
             height: 58px;
           }
           @include max-screen(xs) {
-            height: 31px;
+            height: 35px;
           }
 
           .tower__col img{
@@ -1770,7 +1768,7 @@ img {
             height: 26px;
           }
           @include max-screen(xs) {
-            height: 15px;
+            height: 17px;
           }
 
           .tower__col img {
@@ -1816,7 +1814,7 @@ img {
           .tower__col img{
             border-radius: 5px;
             @include max-screen(xs) {
-              border-radius: 3px;
+              border-radius: 2px;
             }
           }
 
@@ -1837,7 +1835,6 @@ img {
         height: 100%;
 
         position: relative;
-     //   overflow: hidden;
         width: 100%;
         @include align-justify-center;
         cursor: pointer;
@@ -1877,17 +1874,6 @@ img {
           }
         }
 
-
-
-        //&:hover {
-        //  .tower-block {
-        //    display: block !important;
-        //    animation: fadein 0.5s;
-        //  }
-        //}
-
-
-
         &--big {
           width: 100%;
         }
@@ -1907,10 +1893,6 @@ img {
       }
     }
 
-  /*  .tower-bottom {
-      margin-top: -50px;
-      margin-left: 25px;
-    }*/
   }
 }
 
@@ -1942,6 +1924,28 @@ img {
   width: 105%;
   left: 0px;
   z-index: 3;
+
+  @include max-screen(sm) {
+    width: 104%;
+    height: 130px;
+  }
+
+  .desktop {
+    @include max-screen(sm) {
+      display: none;
+    }
+  }
+
+  .mobile {
+    display: none;
+
+    @include max-screen(sm) {
+      display: block;
+    }
+    @include max-screen(md) {
+      //   display: none;
+    }
+  }
 }
 
 .tower-block {
@@ -2086,8 +2090,12 @@ img {
 /* scroll styles */
 
 .scroll-area {
-  height: 400px;
+  height: 360px;
   overflow-y: auto;
+}
+
+.ps .ps__rail-y:focus {
+  background: none!important;
 }
 
 .ps__rail-y, .ps__rail-x {
@@ -2144,6 +2152,11 @@ img {
     height: 65px;
     border-radius: 50%;
     @include align-justify-center;
+
+    @include max-screen(sm) {
+      width: 45px;
+      height: 45px;
+    }
   }
 
   &__icon {
@@ -2152,6 +2165,11 @@ img {
     height: 55px;
     border-radius: 50%;
     @include align-column-center;
+
+    @include max-screen(sm) {
+      width: 35px;
+      height: 35px;
+    }
   }
 
   &__text {
@@ -2166,6 +2184,12 @@ img {
     line-height: 16px;
     text-transform: uppercase;
     color: #FFFFFF;
+
+    @include max-screen(sm) {
+      width: 120px;
+      height: 25px;
+      font-size: 11px;
+    }
   }
 }
 
@@ -2176,6 +2200,12 @@ img {
 
   width: 22px;
   height: 12px;
+
+  @include max-screen(sm) {
+    width: 11px;
+    height: 7px;
+    background-size: 100%;
+  }
 
 
   + .scroll_arrows {

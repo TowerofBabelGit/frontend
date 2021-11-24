@@ -68,6 +68,7 @@
   min-height: 100px;
   padding: 143px 80px 115px;
 
+
   @include max-screen(xs) {
     width: 100%;
     padding: 143px 45px 115px;
@@ -138,7 +139,7 @@
     }
 
     img {
-      width: 80%;
+      width: 75%;
       margin: auto;
       display: block;
       margin-bottom: 15px;
