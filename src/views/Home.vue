@@ -1360,7 +1360,7 @@
                 </div>
               </div>
             </div>
-            <ScrollLoader :loader-size="10" class="tower__row tower__row--xs" :loader-distance="-200" :loader-method="loadBlocks" :loader-disable="loadingDisabled">
+            <ScrollLoader :loader-size="10" class="tower__row tower__row--xs" :loader-distance="300" :loader-method="loadBlocks" :loader-disable="loadingDisabled">
               <div class="tower__col"
                    v-for="index in lastBlockId"
                    :key="index"
