@@ -1360,17 +1360,6 @@
                 </div>
               </div>
             </div>
-            <ScrollLoader :loader-size="10" class="tower__row tower__row--xs" :loader-distance="300" :loader-method="loadBlocks" :loader-disable="loadingDisabled">
-              <div class="tower__col"
-                   v-for="index in lastBlockId"
-                   :key="index"
-                   :data-index="index">
-                <img src="@/assets/img/cover-1.png" alt="" class="tower__col-image">
-                <div class="tower__block-cover">
-                  <img src="@/assets/img/cover-1.png" alt="">
-                </div>
-              </div>
-            </ScrollLoader>
           </div>
 
           <div class="tower-bottom">
@@ -1516,7 +1505,7 @@
         </div>
       </button>-->
 
-      <button class="view-more" type="button">
+      <button class="view-more" type="button" @click="loadBlocks" v-if="!loadMore">
       View more
         <span>blocks</span>
         <div class="view-more__icon">
@@ -1766,7 +1755,7 @@
                 :blockOwner="blockOwner"
                 :mode="mode"
                 :defrostTimes="defrostTimes"
-                @success="loadBlocks(); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
+                @success="loadBlocks('refresh'); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
                 @loading="setBuyLoading"
                 @isThrowing="setThrowing"
                 @error="setError"
@@ -1811,8 +1800,6 @@ export default {
   data() {
     return {
       error: null,
-      towerHeight: '800px',
-      loadDisabled: false,
       showScrollBottomButton: true,
       mode: null,
       loading: false,
@@ -1820,11 +1807,9 @@ export default {
       isMoveUp: false,
       isThrowing: false,
       blocksQt: 64,
-      size: 26,
       page: 0,
       blockNumber: null,
       blockOwner: null,
-      lastBlockId: 0,
       isAboutModalVisible: false,
       isBuyModalVisible: false,
       isHighlight: !!localStorage.getItem('isHighlight'),
@@ -1836,12 +1821,14 @@ export default {
       towerBlocksXs: [],
       defrostTimes: [],
       foundation: [],
-      blocksLoaded: 62,
+      blocksLoaded: 63,
       balloonBlocks: [],
       loadingDisabled: false,
       rows: [],
+      lastBlockId: 0,
       isCraneBlockInfoVisible: false,
       isBalloonBlocksInfoVisible: false,
+      loadMore: false
     }
   },
   computed: {
@@ -1971,11 +1958,14 @@ export default {
       }
     },
     async blockInBalloon() {
-      let i = 1;
-      while (i <= 4) {
-        let block = await contract.blockInBalloon(i);
-        this.balloonBlocks.push(block)
-        i++;
+      try {
+        while (this.balloonBlocks.length !== 4) {
+          let block = await contract.blockInBalloon(this.balloonBlocks.length + 1);
+          this.balloonBlocks.push(block)
+        }
+      } catch (e) {
+        console.log(e);
+        this.blockInBalloon();
       }
     },
     fillArrays() {
@@ -2022,27 +2012,36 @@ export default {
         cover: this.generateCover(),
         showHover: false,
       }
-      for (let i = 0; i < 10; i++) {
-        let part = [];
-        for (let j = 0; j < 32; j++) {
-          part.push(Object.assign({}, el))
-        }
+      let part = new Array(32).fill().map(() => Object.assign({}, el));
+      let rows = Math.ceil((this.lastBlockId - this.blocksLoaded) / 32);
+      if(rows > 10) {
+        rows = 10;
+      } else {
+        this.loadMore = true;
+      }
+      for (let i = 0; i < rows; i++) {
         this.rows.push({
-          foundation: part
+          foundation: JSON.parse(JSON.stringify(part))
         });
         rowsIndexes.push(this.rows.length - 1);
       }
 
       return rowsIndexes
     },
-    async loadBlocks() {
-      if (this.loadingDisabled) {
-        return
+    async calcBlocks() {
+      this.lastBlockId = await contract.lastBlockNumber()
+      this.lastBlockId = parseInt(this.lastBlockId);
+    },
+    async loadBlocks(refresh) {
+      if(refresh === 'refresh') {
+        await this.calcBlocks()
+        this.page = 0;
+        this.blocksLoaded = 63;
+        this.rows = [];
+        this.loadMore = false;
       }
       this.loadingDisabled = true;
-      let lastBlockId = await contract.lastBlockNumber();
-      lastBlockId = parseInt(lastBlockId);
-      console.log(this.lastBlockId)
+      let lastBlockId = this.lastBlockId;
       if (this.page === 0) {
         await this.fillArrays();
         let iterationsCount = 0;
@@ -2121,17 +2120,11 @@ export default {
         if (lastBlockId <= this.blocksQt) {
           return;
         }
-        if(this.lastBlockId - 320 < 0) {
-          this.lastBlockId = 0;
-        }
-        else {
-          this.lastBlockId -= 320;
-          console.log(this.lastBlockId)
-        }
         let blocksLeft = lastBlockId - this.blocksLoaded;
         let rowsIndexes = this.fillFooter();
+        this.blocksLoaded += 320;
         let index = 0;
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < rowsIndexes.length; i++) {
           if (blocksLeft - 31 <= 0) {
             this.loadRow(blocksLeft, 1, rowsIndexes[index]);
             return
@@ -2154,16 +2147,7 @@ export default {
             block = await contract.blockOfNumber(lastBlockId);
           } catch (e) {
             console.log(e);
-            // eslint-disable-next-line no-constant-condition
-            while (true) {
-              try {
-                block = await contract.blockOfNumber(lastBlockId);
-                break;
-              } catch (e) {
-                block = await contract.blockOfNumber(lastBlockId);
-                console.log(e)
-              }
-            }
+            this.loadMainTowerPart(row, lastBlockId);
           }
           this.towerBlocksExtraLarge[0].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[0].description = block.description;
@@ -2176,15 +2160,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              // eslint-disable-next-line no-constant-condition
-              while (true) {
-                try {
-                  block = await contract.blockOfNumber(i);
-                  break;
-                } catch (e) {
-                  console.log(e)
-                }
-              }
+              this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksMiddleLarge[index].imageUrl = block.imageUrl;
             this.towerBlocksMiddleLarge[index].description = block.description;
@@ -2199,15 +2175,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              // eslint-disable-next-line no-constant-condition
-              while (true) {
-                try {
-                  block = await contract.blockOfNumber(i);
-                  break;
-                } catch (e) {
-                  console.log(e)
-                }
-              }
+              this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksLg[index].imageUrl = block.imageUrl;
             this.towerBlocksLg[index].description = block.description;
@@ -2222,15 +2190,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              // eslint-disable-next-line no-constant-condition
-              while (true) {
-                try {
-                  block = await contract.blockOfNumber(i);
-                  break;
-                } catch (e) {
-                  console.log(e)
-                }
-              }
+              this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksMd[index].imageUrl = block.imageUrl;
             this.towerBlocksMd[index].description = block.description;
@@ -2245,15 +2205,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              // eslint-disable-next-line no-constant-condition
-              while (true) {
-                try {
-                  block = await contract.blockOfNumber(i);
-                  break;
-                } catch (e) {
-                  console.log(e)
-                }
-              }
+              this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksSm[index].imageUrl = block.imageUrl;
             this.towerBlocksSm[index].description = block.description;
@@ -2269,14 +2221,7 @@ export default {
             } catch (e) {
               console.log(e);
               // eslint-disable-next-line no-constant-condition
-              while (true) {
-                try {
-                  block = await contract.blockOfNumber(i);
-                  break;
-                } catch (e) {
-                  console.log(e)
-                }
-              }
+              this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksXs[index].imageUrl = block.imageUrl;
             this.towerBlocksXs[index].description = block.description;
@@ -2294,8 +2239,13 @@ export default {
       }
       let index = 0;
       for (let i = from; i >= to; i--) {
-        let block = await contract.blockOfNumber(i);
-        this.blocksLoaded++;
+        let block = null;
+        try {
+          block = await contract.blockOfNumber(i);
+        } catch (e) {
+          console.log(e);
+          this.loadRow(from, to, row);
+        }
         this.rows[row].foundation[index].imageUrl = block.imageUrl;
         this.rows[row].foundation[index].description = block.description;
         this.rows[row].foundation[index].owner = block.owner;
@@ -2303,14 +2253,9 @@ export default {
         index++;
       }
     },
-    async initLoader() {
-      this.lastBlockId = await contract.lastBlockNumber();
-      this.towerHeight = `${(Math.ceil(this.lastBlockId / 32) * 18) + 1160}px`;
-
-    },
     init() {
-      setTimeout(() => {
-        this.initLoader();
+      setTimeout(async () => {
+        await this.calcBlocks();
         this.getDefrostTime();
         this.blockInBalloon();
         this.loadBlocks();
