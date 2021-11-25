@@ -697,7 +697,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower" ref="tower" :style="{height: towerHeight}">
+          <div class="tower" ref="tower" >
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"

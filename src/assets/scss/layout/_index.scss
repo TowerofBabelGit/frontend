@@ -696,6 +696,7 @@ img {
 
 .home-page-content {
   position: relative;
+  height: 100% !important;
 }
 
 .buy-wrap {
@@ -1505,6 +1506,9 @@ img {
 //  max-width: 1050px;
   max-width: 750px;
   margin: auto;
+  height: 100%;
+//  display: flex;
+ // flex-direction: column;
 
   @include max-screen(xxxl) {
     max-width: 750px;
@@ -1530,7 +1534,7 @@ img {
     margin-bottom: -20px;
     @include align-center;
     justify-content: space-between;
-    z-index: -1;
+    z-index: 0;
 
     @include max-screen(sm) {
       margin-top: 200px;
@@ -1628,6 +1632,7 @@ img {
   }
 
   &__img {
+    height: 100%;
     margin: auto;
     max-width: 100%;
   //  z-index: 2;
@@ -1636,16 +1641,20 @@ img {
     background-size: 100% 100%;
     background-position: center;
 
+
     @include align-column-center;
 
     .tower {
    //   width: 1085px;
       width: 743px;
+      height: 100%;
       margin: auto;
-      height: fit-content;
-
+  //    height: fit-content;
+      display: flex;
+      flex-direction: column;
   //    padding: 32px 45px 255px 61px;
-      padding: 32px 0 215px 41px;
+      padding: 32px 0 185px 41px;
+   //   overflow-y: hidden;
       &::-webkit-scrollbar {
         width: 0;
         background: transparent;
@@ -1657,26 +1666,26 @@ img {
       }
       @include max-screen(xxl) {
         width: 623px;
-        padding: 25px 0px 208px 32px;
+        padding: 25px 0px 155px 32px;
       }
       @include max-screen(xl) {
         width: 605px;
-        padding: 24px 0px 203px 34px;
+        padding: 24px 0px 150px 34px;
       }
       @include max-screen(lg) {
         width: 498px;
-        padding: 17px 0 180px 30px;
+        padding: 17px 0 123px 30px;
       }
       @include max-screen(md) {
         width: 467px;
-        padding: 15px 10px 170px 30px;
+        padding: 15px 10px 113px 30px;
       }
       @include max-screen(sm) {
-        padding: 15px 10px 190px 27px;
+        padding: 15px 10px 128px 27px;
       }
       @include max-screen(xs) {
         width: 100%;
-        padding: 6px 0px 170px 16px;
+        padding: 6px 0px 129px 16px;
       }
 
       &__row {
@@ -1798,23 +1807,24 @@ img {
         }
 
         &--xs {
-          height: 21px;
           flex-wrap: wrap;
           justify-content: center;
 
-          @include max-screen(xxl) {
-            height: 18px;
-          }
-          @include max-screen(lg) {
-            height: 14px;
-          }
-          @include max-screen(xs) {
-            height: 10px;
-          }
+
 
           .tower__col {
             width: 3.1%;
+            height: 21px;
 
+            @include max-screen(xxl) {
+              height: 18px;
+            }
+            @include max-screen(lg) {
+              height: 14px;
+            }
+            @include max-screen(xs) {
+              height: 10px;
+            }
           }
 
           .tower__col img{
