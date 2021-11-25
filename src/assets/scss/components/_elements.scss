@@ -419,14 +419,34 @@
 
   color: #FFFFFF;
 
+  @include max-screen(lg) {
+    width: 100px;
+    height: 100px;
+    background-size: 150% 150%;
+    font-size: 11px;
+  }
+  @include max-screen(xs) {
+    width: 80px;
+    height: 80px;
+    font-size: 9px;
+  }
+
   span {
     font-size: 26px;
+
+    @include max-screen(lg) {
+      font-size: 19px;
+    }
+    @include max-screen(xs) {
+      font-size: 16px;
+    }
   }
 
   &__icon {
     margin-top: 6px;
     @include align-column-center;
     margin-bottom: -15px;
+
   }
 
   &:focus {
@@ -435,27 +455,55 @@
   }
 
   .scroll_arrows {
-    background: none;
+    background: url("assets/img/svg/view-arrow-1.svg") no-repeat;
     background-position: center;
+    background-size: 100% 100%;
 
       &.one {
-        background: url("assets/img/svg/view-arrow-1.svg") no-repeat;
-        width: 27px;
+
+        width: 31px;
         height: 20px;
+
+
+        @include max-screen(md) {
+          width: 32px;
+        }
+        @include max-screen(xs) {
+         background-size: 100% 100%;
+          width: 29px;
+          height: 13px;
+        }
       }
 
     &.two {
-      background: url("assets/img/svg/view-arrow-2.svg") no-repeat;
-      width: 26px;
-      height: 25px;
-      margin-top: -12px;
+
+      width: 28px;
+      height: 24px;
+      margin-top: -15px;
+
+      @include max-screen(md) {
+        width: 30px;
+      }
+      @include max-screen(xs) {
+        background-size: 100% 100%;
+        width: 18px;
+        height: 15px;
+        margin-top: -9px;
+      }
     }
 
     &.three {
-      background: url("assets/img/svg/view-arrow-3.svg") no-repeat;
-      width: 21px;
+
+      width: 23px;
       height: 18px;
-      margin-top: -17px;
+      margin-top: -15px;
+
+      @include max-screen(xs) {
+        background-size: 100% 100%;
+        width: 13px;
+        height: 20px;
+        margin-top: -14px;
+      }
     }
 
     + .scroll_arrows {
