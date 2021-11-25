@@ -1501,7 +1501,7 @@
     </div>
     <div class="home-page__bottom">
 
-      <button class="scroll-down"
+<!--      <button class="scroll-down"
               v-if="showScrollBottomButton"
               @click="scrollToEnd">
         <div class="scroll-down__top">
@@ -1513,6 +1513,16 @@
         </div>
         <div class="scroll-down__text">
           Scroll down
+        </div>
+      </button>-->
+
+      <button class="view-more" type="button">
+      View more
+        <span>blocks</span>
+        <div class="view-more__icon">
+          <span class="scroll_arrows one"></span>
+          <span class="scroll_arrows two"></span>
+          <span class="scroll_arrows three"></span>
         </div>
       </button>
 
