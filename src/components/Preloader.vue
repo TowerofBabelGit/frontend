@@ -45,7 +45,7 @@ export default {
     line-height: 1.2;
     text-align: center;
     position: absolute;
-    bottom: 1rem;
+    bottom: -8rem;
     left: 0;
     right: 0;
     margin: auto;
@@ -63,10 +63,10 @@ export default {
 .preloader-wrap{
   // max-height: 80vh;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 0;
-  bottom: 0;
   right: 0;
+  transform: translateY(-80%);  
 
   svg {
     height: 80% !important;

@@ -8,7 +8,7 @@
         <div class="popup__content">
 
           <div class="popup__title">
-            Buy this block
+            {{title }}
           </div>
 
           <div class="popup__text">
@@ -25,7 +25,10 @@ export default {
   name: "InfoModal",
   props: {
     msg: {
-      default: ''
+      default: '',
+    },
+    title: {
+      default: 'Buy tower block'
     }
   },
   methods: {

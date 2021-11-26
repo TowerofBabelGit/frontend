@@ -1383,7 +1383,7 @@
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
                  :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0}">
               <img :src="item.imageUrl" alt="">
-              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" v-show="!item.imageUrl">
+              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" >
 
               <div class="tower-block">
 
@@ -1754,7 +1754,7 @@
     <transition name="slide-fade" mode="out-in">
       <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
     </transition>
-    <Preloader v-if="loading"/>
+    <Preloader />
 
     <transition name="slide-fade" mode="out-in">
       <BuyModal v-if="isBuyModalVisible"
@@ -1771,9 +1771,11 @@
     </transition>
     <ErrorModal v-if="error" :message="error" @close="error = null"/>
     <InfoModal v-show="isCraneBlockInfoVisible"
+               title="Buy tower block"
                msg="Nulla gravida justo nec est venenatis, at fringilla velit finibus. Cras et tortor in erat maximus interdum vel ut arcu. Donec ac sapien sapien. Phasellus dapibus rhoncus cursus. Aliquam erat volutpat. Aliquam non leo pretium, sodales lacus nec, tempor ante. Integer at libero quis tellus lacinia eleifend. Praesent sit amet nunc condimentum mi cursus pretium id quis sapien."
                @close="isCraneBlockInfoVisible = false"/>
     <InfoModal v-show="isBalloonBlocksInfoVisible"
+               title="Buy flying block"
                msg="Resent sit amet nunc condimentum mi cursus pretium id quis sapien."
                @close="isBalloonBlocksInfoVisible = false"/>
   </div>
