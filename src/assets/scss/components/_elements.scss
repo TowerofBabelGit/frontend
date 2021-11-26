@@ -511,3 +511,26 @@
     }
   }
 }
+
+.spin-wrap {
+  width: 33px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.spinner{
+  // Common styles
+  width: 15px;
+  height: 15px;
+  margin-bottom: 1px;
+  border-radius: 3px;
+  margin-left: 1px;
+
+  &.spinner{
+    background: #ffffff;
+    animation: flip 1.2s ease infinite;
+  }
+}
+
+
+

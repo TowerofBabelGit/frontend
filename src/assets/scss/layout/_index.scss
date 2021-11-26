@@ -11,7 +11,10 @@
     box-sizing: border-box;
   }
 
+  -webkit-tap-highlight-color: transparent;
 }
+
+
 
 body {
   min-height: 100vh;
@@ -198,6 +201,7 @@ img {
     z-index: 17;
     align-self: flex-start;
     width: 500px;
+    cursor: pointer;
 
     @include max-screen(xxxl) {
       width: auto;
@@ -1220,15 +1224,16 @@ img {
 
   &__block {
     position: relative;
-    width: 50%;
-    height: 80px;
+    width: 49.5%;
+    height: 79px;
     cursor: pointer;
+    margin-bottom: 1px;
 
     @include max-screen(xl) {
-      height: 52px;
+      height: 51px;
     }
     @include max-screen(md) {
-      height: 35px;
+      height: 39px;
     }
     @include max-screen(sm) {
       height: 30px;
