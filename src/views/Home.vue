@@ -1083,7 +1083,7 @@
               </div>
             </transition-group>
 
-            <transition-group v-show="loadRowsMobile" class="tower__row tower__row--sm"
+            <transition-group class="tower__row tower__row--sm"
                               tag="div"
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
@@ -1178,15 +1178,15 @@
               </div>
             </transition-group>
 
-<!--            <transition-group tag="div"
-                              class="tower__row tower__row&#45;&#45;xs"
+            <transition-group tag="div"
+                              class="tower__row tower__row--sm"
                               name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
                               @leave="transitionLeave"
                               v-if="!owner">
               <div class="tower__col"
-                   v-for="(block, index) in towerBlocksXs"
+                   v-for="(block, index) in towerBlocksSm"
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
@@ -1211,28 +1211,28 @@
                     {{ block.description }}
                   </div>
 
-                  &lt;!&ndash;                  <div class="tower-block__title">&ndash;&gt;
-                  &lt;!&ndash;                    Tx hash:&ndash;&gt;
-                  &lt;!&ndash;                  </div>&ndash;&gt;
+                  <!--                  <div class="tower-block__title">-->
+                  <!--                    Tx hash:-->
+                  <!--                  </div>-->
 
-                  &lt;!&ndash;                  <div class="tower-block__text">&ndash;&gt;
-                  &lt;!&ndash;                    {{ block.owner | cutHash }}&ndash;&gt;
-                  &lt;!&ndash;                  </div>&ndash;&gt;
+                  <!--                  <div class="tower-block__text">-->
+                  <!--                    {{ block.owner | cutHash }}-->
+                  <!--                  </div>-->
 
-                  &lt;!&ndash;                  <button class="view-on">&ndash;&gt;
-                  &lt;!&ndash;                    View on BscScan&ndash;&gt;
-                  &lt;!&ndash;                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">&ndash;&gt;
-                  &lt;!&ndash;                      <g clip-path="url(#clip0_405_4009)">&ndash;&gt;
-                  &lt;!&ndash;                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>&ndash;&gt;
-                  &lt;!&ndash;                      </g>&ndash;&gt;
-                  &lt;!&ndash;                      <defs>&ndash;&gt;
-                  &lt;!&ndash;                        <clipPath id="clip0_405_4009">&ndash;&gt;
-                  &lt;!&ndash;                          <rect width="14" height="14" fill="white"/>&ndash;&gt;
-                  &lt;!&ndash;                        </clipPath>&ndash;&gt;
-                  &lt;!&ndash;                      </defs>&ndash;&gt;
-                  &lt;!&ndash;                    </svg>&ndash;&gt;
+                  <!--                  <button class="view-on">-->
+                  <!--                    View on BscScan-->
+                  <!--                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <g clip-path="url(#clip0_405_4009)">-->
+                  <!--                        <path d="M5.83333 1.75V2.91667H2.91667V11.0833H11.0833V8.16667H12.25V11.6667C12.25 11.8214 12.1885 11.9698 12.0791 12.0791C11.9698 12.1885 11.8214 12.25 11.6667 12.25H2.33333C2.17862 12.25 2.03025 12.1885 1.92085 12.0791C1.81146 11.9698 1.75 11.8214 1.75 11.6667V2.33333C1.75 2.17862 1.81146 2.03025 1.92085 1.92085C2.03025 1.81146 2.17862 1.75 2.33333 1.75H5.83333ZM10.3291 4.49575L7 7.82483L6.17517 7L9.50425 3.67092L7.58333 1.75H12.25V6.41667L10.3291 4.49575Z" fill="black"/>-->
+                  <!--                      </g>-->
+                  <!--                      <defs>-->
+                  <!--                        <clipPath id="clip0_405_4009">-->
+                  <!--                          <rect width="14" height="14" fill="white"/>-->
+                  <!--                        </clipPath>-->
+                  <!--                      </defs>-->
+                  <!--                    </svg>-->
 
-                  &lt;!&ndash;                  </button>&ndash;&gt;
+                  <!--                  </button>-->
 
                   <div class="tower-block__title">
                     Owner address:
@@ -1262,7 +1262,7 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
-                  <button type="button" class="page-btn page-btn&#45;&#45;buy"
+                  <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
@@ -1271,9 +1271,9 @@
                   </div>
                 </div>
               </div>
-            </transition-group>-->
+            </transition-group>
 
-            <div class="tower__row tower__row--xs"
+            <div class="tower__row tower__row--sm"
                  v-for="(item, index) in rows" :key="index">
               <div class="tower__col"
                    v-for="(block, index) in item.foundation"
@@ -1828,8 +1828,6 @@ export default {
       isCraneBlockInfoVisible: false,
       isBalloonBlocksInfoVisible: false,
       loadMore: false,
-      loadRowsMobile: false,
-      windowWidth: window.innerWidth,
     }
   },
   computed: {
@@ -1850,14 +1848,6 @@ export default {
     }
   },
   methods: {
-    isMobile() {
-      if( this.windowWidth <= 760 ) {
-        return true;
-      }
-      else {
-        return false;
-      }
-    },
     getFrostTime(time, index) {
       let date = new Date(null);
       date.setSeconds(this.defrostTimes[index]);
@@ -2022,8 +2012,8 @@ export default {
         cover: this.generateCover(),
         showHover: false,
       }
-      let part = new Array(32).fill().map(() => Object.assign({}, el));
-      let rows = Math.ceil((this.lastBlockId - this.blocksLoaded) / 32);
+      let part = new Array(16).fill().map(() => Object.assign({}, el));
+      let rows = Math.ceil((this.lastBlockId - this.blocksLoaded) / 16);
       if(rows > 10) {
         rows = 10;
       } else {
@@ -2037,7 +2027,7 @@ export default {
       }
 
       if(this.loadMore) {
-        for(let i = (this.lastBlockId - this.blocksLoaded) % 32; i < 32; i++) {
+        for(let i = (this.lastBlockId - this.blocksLoaded) % 16; i < 16; i++) {
           this.rows[this.rows.length - 1].foundation[i].imageUrl = null;
         }
       }
@@ -2049,7 +2039,6 @@ export default {
       this.lastBlockId = parseInt(this.lastBlockId);
     },
     async loadBlocks(refresh) {
-   //   this.loadRowsMobile = true;
       if(refresh === 'refresh') {
 
         await this.calcBlocks()
@@ -2141,7 +2130,6 @@ export default {
         let rowsIndexes = this.fillFooter();
         this.blocksLoaded += 320;
         let index = 0;
-        this.loadRowsMobile = true;
         for (let i = 0; i < rowsIndexes.length; i++) {
           if (blocksLeft - 31 <= 0) {
             this.loadRow(blocksLeft, 1, rowsIndexes[index]);
@@ -2310,13 +2298,6 @@ export default {
       })
 
     })
-
-    if (this.isMobile()) {
-      this.loadRowsMobile = false;
-    }
-    else {
-      this.loadRowsMobile = true;
-    }
   },
 }
 </script>
