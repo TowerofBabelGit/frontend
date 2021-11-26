@@ -310,9 +310,9 @@
         </ul>
       </nav>
 
-      <div class="header__logo">
+      <router-link tag="div" to="/" class="header__logo">
         <img src="@/assets/img/logo.png" alt="">
-      </div>
+      </router-link>
 
       <nav class="header-nav header-nav--right">
         <ul class="header-nav__list">

@@ -1506,12 +1506,20 @@
       </button>-->
 
       <button class="view-more" type="button" @click="loadBlocks" v-if="!loadMore">
-      View more
-        <span>blocks</span>
-        <div class="view-more__icon">
-          <span class="scroll_arrows one"></span>
-          <span class="scroll_arrows two"></span>
-          <span class="scroll_arrows three"></span>
+        <div>
+          View more
+          <span>blocks</span>
+          <div class="view-more__icon">
+            <span class="scroll_arrows one"></span>
+            <span class="scroll_arrows two"></span>
+            <span class="scroll_arrows three"></span>
+          </div>
+        </div>
+        <div class="spin-wrap" v-show="false">
+        <div class="spinner spinner"></div>
+        <div class="spinner spinner"></div>
+        <div class="spinner spinner"></div>
+        <div class="spinner spinner"></div>
         </div>
       </button>
 
