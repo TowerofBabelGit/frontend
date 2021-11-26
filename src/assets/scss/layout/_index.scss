@@ -1108,6 +1108,7 @@ img {
     display: flex;
     flex-wrap: wrap;
     width: 160px;
+    height: 160px;
     background: url("assets/img/balloon-blocks-bg.png") no-repeat;
     background-position: center;
     background-size: 100% 100%;
@@ -1197,12 +1198,15 @@ img {
 
     @include max-screen(xl) {
       width: 105px;
+      height: 105px;
     }
     @include max-screen(md) {
       width: 80px;
+      height: 80px;
     }
     @include max-screen(sm) {
       width: 80%;
+      height: auto;
     }
   }
 
@@ -1778,8 +1782,11 @@ img {
           @include max-screen(lg) {
             height: 58px;
           }
-          @include max-screen(xs) {
+          @include max-screen(sm) {
             height: 35px;
+          }
+          @include max-screen(xs) {
+            height: 30px;
           }
 
           .tower__col img{
@@ -1805,6 +1812,7 @@ img {
         &--sm {
           height: 45px;
 
+
           @include max-screen(xxl) {
             height: 36px;
           }
@@ -1812,7 +1820,15 @@ img {
             height: 26px;
           }
           @include max-screen(xs) {
-            height: 17px;
+          //  height: 17px;
+            height: 30px;
+            flex-wrap: wrap;
+          }
+
+          .tower__col {
+            @include max-screen(xs) {
+              width: 12.5%;
+            }
           }
 
           .tower__col img {
