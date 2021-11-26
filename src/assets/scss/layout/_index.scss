@@ -1822,13 +1822,15 @@ img {
           }
           @include max-screen(xs) {
           //  height: 17px;
-            height: 30px;
+            height: auto;
             flex-wrap: wrap;
           }
 
           .tower__col {
             @include max-screen(xs) {
               width: 12.5%;
+              margin-bottom: 1px;
+              height: 30px;
             }
           }
 
