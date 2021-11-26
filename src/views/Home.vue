@@ -1754,7 +1754,7 @@
     <transition name="slide-fade" mode="out-in">
       <AboutModal v-if="isAboutModalVisible" @close="isAboutModalVisible = false"/>
     </transition>
-    <Preloader />
+    <Preloader v-if="loading"/>
 
     <transition name="slide-fade" mode="out-in">
       <BuyModal v-if="isBuyModalVisible"

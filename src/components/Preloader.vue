@@ -66,7 +66,7 @@ export default {
   top: 50%;
   left: 0;
   right: 0;
-  transform: translateY(-80%);  
+  transform: translateY(-80%);
 
   svg {
     height: 80% !important;
