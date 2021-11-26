@@ -1473,10 +1473,7 @@
           </div>
 
         </div>
-
-        <button class="buy-wrap"
-                v-if="!owner || owner === getAccount"
-        >
+        <button class="buy-wrap" v-if="defrostTimes.filter(i => i === 0).length">
         <span class="buy-wrap__text" @click="openBuyModal('balloon')">
          <span>Buy</span>
           flying block
@@ -1505,8 +1502,8 @@
         </div>
       </button>-->
 
-      <button class="view-more" type="button" @click="loadBlocks" v-if="!loadMore">
-        <div>
+      <button class="view-more" type="button" @click="loadBlocks" v-if="!loadMore" :disabled="sectionPortion !== 160 && page !== 1">
+        <div v-if="!(sectionPortion !== 160 && page !== 1)">
           View more
           <span>blocks</span>
           <div class="view-more__icon">
@@ -1515,7 +1512,7 @@
             <span class="scroll_arrows three"></span>
           </div>
         </div>
-        <div class="spin-wrap" v-show="false">
+        <div class="spin-wrap" v-show="sectionPortion !== 160 && page !== 1">
         <div class="spinner spinner"></div>
         <div class="spinner spinner"></div>
         <div class="spinner spinner"></div>
@@ -1837,6 +1834,8 @@ export default {
       isCraneBlockInfoVisible: false,
       isBalloonBlocksInfoVisible: false,
       loadMore: false,
+      disableLoading: false,
+      sectionPortion: 0
     }
   },
   computed: {
@@ -2055,7 +2054,7 @@ export default {
         this.rows = [];
         this.loadMore = false;
       }
-
+      this.sectionPortion = 0;
       let lastBlockId = this.lastBlockId;
       if (this.page === 0) {
         await this.fillArrays();
@@ -2133,6 +2132,7 @@ export default {
         this.page++;
       } else {
         if (lastBlockId <= this.blocksQt) {
+          this.loadMore = false;
           return;
         }
         let blocksLeft = lastBlockId - this.blocksLoaded;
@@ -2253,6 +2253,7 @@ export default {
         let block = null;
         try {
           block = await contract.blockOfNumber(i);
+          this.sectionPortion++;
         } catch (e) {
           console.log(e);
           this.loadRow(from, to, row);
