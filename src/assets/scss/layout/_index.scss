@@ -545,7 +545,7 @@ img {
   }
   @include max-screen(sm) {
     top: 0;
-    height: 100vh;
+    height: 95vh;
     padding-top: 130px;
     z-index: 10;
   }
@@ -815,7 +815,7 @@ img {
     bottom: -27px;
   }
   @include max-screen(xs) {
-    bottom: -23px;
+    bottom: 20px;
     transform: translateX(-70%);
   }
 
@@ -835,6 +835,7 @@ img {
     @include max-screen(xs) {
       width: 67px;
       margin-left: 0;
+      margin-bottom: 160px;
     }
   }
 
