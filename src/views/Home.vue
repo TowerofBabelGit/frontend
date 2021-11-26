@@ -1186,7 +1186,7 @@
                               @leave="transitionLeave"
                               v-if="!owner">
               <div class="tower__col"
-                   v-for="(block, index) in towerBlocksSm"
+                   v-for="(block, index) in towerBlocksXs"
                    :key="index"
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
@@ -1830,7 +1830,6 @@ export default {
       towerBlocksSm: [],
       towerBlocksXs: [],
       defrostTimes: [],
-      foundation: [],
       blocksLoaded: 63,
       balloonBlocks: [],
       rows: [],
@@ -1985,7 +1984,6 @@ export default {
       this.towerBlocksMd = [];
       this.towerBlocksSm = [];
       this.towerBlocksXs = [];
-      this.foundation = [];
       const el = {
         description: null,
         owner: null,
@@ -2009,7 +2007,7 @@ export default {
       for (let i = 0; i < 16; i++) {
         this.towerBlocksSm.push(Object.assign({}, el))
       }
-      for (let i = 0; i < 32; i++) {
+      for (let i = 0; i < 16; i++) {
         this.towerBlocksXs.push(Object.assign({}, el))
       }
     },
@@ -2129,6 +2127,7 @@ export default {
           this.loadMainTowerPart(5, lastBlockId)
         }
         if (lastBlockId <= this.blocksQt) {
+
           return;
         }
         this.page++;
@@ -2138,15 +2137,15 @@ export default {
         }
         let blocksLeft = lastBlockId - this.blocksLoaded;
         let rowsIndexes = this.fillFooter();
-        this.blocksLoaded += 320;
+        this.blocksLoaded += 160;
         let index = 0;
         for (let i = 0; i < rowsIndexes.length; i++) {
-          if (blocksLeft - 31 <= 0) {
+          if (blocksLeft - 15 <= 0) {
             this.loadRow(blocksLeft, 1, rowsIndexes[index]);
             return
           }
-          this.loadRow(blocksLeft, blocksLeft - 31, rowsIndexes[index]);
-          blocksLeft -= 32;
+          this.loadRow(blocksLeft, blocksLeft - 15, rowsIndexes[index]);
+          blocksLeft -= 16;
           index++;
         }
         this.page++;
@@ -2229,12 +2228,11 @@ export default {
           }
           break;
         case 5:
-          for (let i = lastBlockId - 31; i >= lastBlockId - 62; i--) {
+          for (let i = lastBlockId - 31; i >= lastBlockId - 47; i--) {
             try {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              // eslint-disable-next-line no-constant-condition
               this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksXs[index].imageUrl = block.imageUrl;
@@ -2245,7 +2243,6 @@ export default {
           }
           break;
       }
-
     },
     async loadRow(from, to, row) {
       if (to <= 0 || from <= 0) {
@@ -2268,11 +2265,17 @@ export default {
       }
     },
     init() {
-      setTimeout(async () => {
-        await this.calcBlocks();
-        this.getDefrostTime();
-        this.blockInBalloon();
-        this.loadBlocks();
+      this.loading = true;
+      setTimeout(() => {
+        Promise.all([
+          this.calcBlocks(),
+          this.getDefrostTime(),
+          this.blockInBalloon(),
+        ])
+          .then(() => {
+            this.loadBlocks()
+            this.loading = false;
+          })
       }, 0);
     }
   },
