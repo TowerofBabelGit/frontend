@@ -334,7 +334,7 @@
 
     <button class="burger-btn" type="button" :class="{active: isOpenMenu}" @click="isOpenMenu = !isOpenMenu"></button>
 
-    <nav class="mobile-nav" v-show="isOpenMenu">
+    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo}">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
           <a @click="isAboutModalVisible = true; isOpenMenu = false">About tower</a>

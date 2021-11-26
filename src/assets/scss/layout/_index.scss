@@ -541,7 +541,7 @@ img {
   }
   @include max-screen(sm) {
     top: 0;
-    min-height: 100vh;
+    height: 100vh;
     padding-top: 130px;
     z-index: 10;
   }
@@ -549,6 +549,11 @@ img {
     width: 100%;
     padding: 95px 30px 50px;
     padding-top: 130px;
+  }
+
+  &.adaptive {
+    height: 760px;
+    min-height: 100vh;
   }
 
 
@@ -1109,6 +1114,7 @@ img {
     margin-top: 50px;
     animation: balance 10s linear infinite;
     border-bottom: 2px solid  #413927;
+    justify-content: space-between;
 
     @include max-screen(sm) {
       margin-top: 25px;
@@ -1213,7 +1219,6 @@ img {
     width: 50%;
     height: 80px;
     cursor: pointer;
-    margin-bottom: -1px;
 
     @include max-screen(xl) {
       height: 52px;
@@ -1269,6 +1274,7 @@ img {
     }
 
     &.frozen {
+      &:hover {
       &:before {
         content: "";
         position: absolute;
@@ -1311,6 +1317,7 @@ img {
           width: 10px;
           height: 10px;
         }
+      }
       }
     }
 

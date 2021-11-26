@@ -668,7 +668,7 @@
           >
         <span class="buy-wrap__text" @click="openBuyModal('catapult')">
          <span>Buy</span>
-          this block
+          tower block
         </span>
             <div class="buy-wrap__icon" @click="isCraneBlockInfoVisible = true">
               <img src="@/assets/img/icon-info-green.png" alt="">
@@ -1479,7 +1479,7 @@
         >
         <span class="buy-wrap__text" @click="openBuyModal('balloon')">
          <span>Buy</span>
-          this blocks
+          flying block
         </span>
           <div class="buy-wrap__icon" @click="isBalloonBlocksInfoVisible = true">
             <img src="@/assets/img/icon-info-red.png" alt="">
