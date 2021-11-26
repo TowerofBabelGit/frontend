@@ -23,7 +23,7 @@
                      class="input"
                      placeholder="Block number"
               >-->
-                <div class="page-input__current" @click="openDropDown = !openDropDown">
+                <div class="page-input__current" @click="setDropdown">
 
                   {{currentOption}}
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -149,7 +149,7 @@ export default {
     movePlaceholder2: false,
     movePlaceholder3: false,
     currentOption: 'Block number',
-    blockNums: [1, 2, 3, 4],
+    blockNums: [],
   }),
   computed: {
     ...mapGetters({
@@ -167,6 +167,12 @@ export default {
     }
   },
   methods: {
+    setDropdown() {
+      if(!this.blockNums.length) {
+        return;
+      }
+      this.openDropDown = !this.openDropDown;
+    },
     validate() {
       this.webSiteError = false;
       this.descriptionError = false;
@@ -189,6 +195,10 @@ export default {
         return false;
       }
       if(this.isBalloon) {
+        if(!this.blockNums.length) {
+          this.$emit('error', 'No available blocks for purchase');
+          return false;
+        }
         if(this.blocksQuantity < 1 || this.blocksQuantity > 4) {
           this.blocksQuantityError = true;
           return false;
@@ -272,6 +282,7 @@ export default {
       let blockPrice = await contract.balloonBlockPrice();
       try {
         await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity);
+        this.$emit('loading', false);
         this.$emit('success');
         this.closeWindow();
       } catch (e) {
@@ -306,10 +317,21 @@ export default {
         .catch(err => {
           console.log(err);
         })
+    },
+    checkAvailableBlocks() {
+      this.defrostTimes.map((i, index) => {
+        if(i === 0) {
+          this.blockNums.push(index + 1);
+        }
+      });
+      if(!this.blockNums.length) {
+        this.currentOption = 'No available blocks'
+      }
     }
   },
   mounted() {
     this.referralsMap();
+    this.checkAvailableBlocks();
   }
 }
 </script>

@@ -121,7 +121,7 @@ export default {
                 }
                 if (!isMetamaskInstalled()) {
                     commit('setIsMetamaskInstalled', false)
-                    throw Error('Ethereum provider not found. Try using Wallet Connect')
+                    throw Error('not_installed')
                 } else {
                     await window.ethereum.request({method: 'eth_requestAccounts'});
                     window.web3 = new Web3(window.ethereum)

@@ -1823,7 +1823,6 @@ export default {
       foundation: [],
       blocksLoaded: 63,
       balloonBlocks: [],
-      loadingDisabled: false,
       rows: [],
       lastBlockId: 0,
       isCraneBlockInfoVisible: false,
@@ -1979,7 +1978,7 @@ export default {
       const el = {
         description: null,
         owner: null,
-        imageUrl: null,
+        imageUrl: require('@/assets/img/loading.gif'),
         cover: null,
         showHover: false
       }
@@ -2008,7 +2007,7 @@ export default {
       const el = {
         description: null,
         owner: null,
-        imageUrl: null,
+        imageUrl: require('@/assets/img/loading.gif'),
         cover: this.generateCover(),
         showHover: false,
       }
@@ -2026,6 +2025,12 @@ export default {
         rowsIndexes.push(this.rows.length - 1);
       }
 
+      if(this.loadMore) {
+        for(let i = (this.lastBlockId - this.blocksLoaded) % 32; i < 32; i++) {
+          this.rows[this.rows.length - 1].foundation[i].imageUrl = null;
+        }
+      }
+
       return rowsIndexes
     },
     async calcBlocks() {
@@ -2040,7 +2045,6 @@ export default {
         this.rows = [];
         this.loadMore = false;
       }
-      this.loadingDisabled = true;
       let lastBlockId = this.lastBlockId;
       if (this.page === 0) {
         await this.fillArrays();
@@ -2115,7 +2119,6 @@ export default {
           return;
         }
         this.page++;
-        this.loadingDisabled = false;
       } else {
         if (lastBlockId <= this.blocksQt) {
           return;
@@ -2134,7 +2137,6 @@ export default {
           index++;
         }
         this.page++;
-        this.loadingDisabled = false;
       }
     },
     async loadMainTowerPart(row, lastBlockId) {
@@ -2142,7 +2144,6 @@ export default {
       let index = 0;
       switch (row) {
         case 0:
-
           try {
             block = await contract.blockOfNumber(lastBlockId);
           } catch (e) {

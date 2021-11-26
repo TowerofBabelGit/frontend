@@ -67,23 +67,51 @@ import {mapActions} from "vuex";
 
 export default {
   name: "ConnectWallet",
-  data: () => ({
-    loading: false
-  }),
   methods: {
     ...mapActions({
       connectWallet: 'wallet/connectWallet'
     }),
+    detectMob() {
+      const toMatch = [
+        /Android/i,
+        /webOS/i,
+        /iPhone/i,
+        /iPad/i,
+        /iPod/i,
+        /BlackBerry/i,
+        /Windows Phone/i
+      ];
+
+      return toMatch.some((toMatchItem) => {
+        return navigator.userAgent.match(toMatchItem);
+      });
+    },
     tryConnect(wallet) {
-      this.loading = true;
+      this.$emit('loading', true);
       this.connectWallet(wallet)
         .then(() => {
+          this.$emit('loading', false);
           this.closeWindow();
         })
         .catch(err => {
-          this.$emit('error', err.message);
+          this.$emit('loading', false);
+          if(err.message && err.message === 'not_installed' && this.detectMob()) {
+            window.location.href = 'https://metamask.app.link/dapp/artbay.in.ua/home?lang=ua';
+            return
+          }
+          if (!err.code) {
+            this.$emit('error', err.message)
+            return
+          }
+          switch (err.code) {
+            case -32002:
+              this.$emit('error', "You have already opened Metamask. Please, check window of your browser.")
+              break;
+            default:
+              this.closeWindow();
+              break;
+          }
         })
-        .finally(() => this.loading = false)
     },
     closeWindow() {
       this.$emit("close");
