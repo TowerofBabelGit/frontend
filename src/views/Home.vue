@@ -1281,7 +1281,9 @@
                    :class="{ownerSm: isOwnerBlock(block.owner)}"
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
-                <div class="tower__block-cover">
+                <div class="tower__block-cover"
+                     @mouseover="block.showHover = true"
+                     @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
 
