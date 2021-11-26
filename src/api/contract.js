@@ -1,5 +1,6 @@
 import abi from "@/utils/abi";
 import store from '@/store'
+
 let methodsBsc = null;
 let account = null;
 let walletName = null;
@@ -23,7 +24,7 @@ const lastBlockPrice = () => {
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
                 resolve(res)
@@ -37,7 +38,7 @@ const referralsMap = () => {
             .call({
                 from: account
             }, (err, res) => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
                 resolve(res)
@@ -51,7 +52,7 @@ const balloonBlockPrice = () => {
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
                 resolve(res)
@@ -65,7 +66,7 @@ const blockStepPrice = () => {
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
                 resolve(res)
@@ -75,48 +76,48 @@ const blockStepPrice = () => {
 
 const lastBlockNumber = () => {
     return new Promise((resolve, reject) => {
-         import('@/utils/data.json')
-             .then(res => {
-                 setTimeout(() => {
-                     resolve(res.data.length - 1)
-                 }, 200)
-             })
-             .catch(err => {
-                 reject(err)
-             })
-        // methodsBsc.lastBlockNumber()
-        //     .call({
-        //         from: store.getters['contract/getContractAddress']
-        //     }, (err, res) => {
-        //         if(err) {
-        //             reject(err)
-        //         }
-        //         resolve(res)
+        // import('@/utils/data.json')
+        //     .then(res => {
+        //         setTimeout(() => {
+        //             resolve(res.data.length - 1)
+        //         }, 200)
         //     })
+        //     .catch(err => {
+        //         reject(err)
+        //     })
+        methodsBsc.lastBlockNumber()
+            .call({
+                from: store.getters['contract/getContractAddress']
+            }, (err, res) => {
+                if (err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
     })
 }
 
 const blockOfNumber = id => {
     return new Promise((resolve, reject) => {
-         import('@/utils/data.json')
-             .then(res => {
-                 setTimeout(() => {
-                     resolve(res.data[id].Result)
-                 }, Math.floor(Math.random() * (3000 - 1000 + 1) + 1000))
-
-             })
-             .catch(err => {
-                 reject(err)
-             })
-       // methodsBsc.blockOfNumber(id)
-       //      .call({
-       //          from: store.getters['contract/getContractAddress']
-       //      }, (err, res) => {
-       //          if(err) {
-       //              reject(err)
-       //          }
-       //          resolve(res)
-       //      })
+        // import('@/utils/data.json')
+        //     .then(res => {
+        //         setTimeout(() => {
+        //             resolve(res.data[id].Result)
+        //         }, Math.floor(Math.random() * (3000 - 1000 + 1) + 1000))
+        //
+        //     })
+        //     .catch(err => {
+        //         reject(err)
+        //     })
+        methodsBsc.blockOfNumber(id)
+            .call({
+                from: store.getters['contract/getContractAddress']
+            }, (err, res) => {
+                if (err) {
+                    reject(err)
+                }
+                resolve(res)
+            })
     })
 }
 
@@ -126,7 +127,7 @@ const getDefrostTime = blockNumber => {
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
                 resolve(res)
@@ -140,7 +141,7 @@ const blockInBalloon = blockNumber => {
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
                 resolve(res)
@@ -155,20 +156,19 @@ const addBlock = (WEI, imageUrl, description, webSite) => {
                 from: account,
                 value: WEI
             }, err => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
-                if(checkIsWalletConnect()) {
+                if (checkIsWalletConnect()) {
                     resolve({
                         isWalletConnect: true
                     });
                 }
             })
             .once('confirmation', (confirmationNumber, receipt) => {
-                if(receipt.status === true) {
+                if (receipt.status === true) {
                     resolve()
-                }
-                else {
+                } else {
                     reject();
                 }
             })
@@ -182,20 +182,19 @@ const addBlockWithReferralSystem = (WEI, imageUrl, description, invitingAddress,
                 from: account,
                 value: WEI
             }, err => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
-                if(checkIsWalletConnect()) {
+                if (checkIsWalletConnect()) {
                     resolve({
                         isWalletConnect: true
                     });
                 }
             })
             .once('confirmation', (confirmationNumber, receipt) => {
-                if(receipt.status === true) {
+                if (receipt.status === true) {
                     resolve()
-                }
-                else {
+                } else {
                     reject();
                 }
             })
@@ -209,20 +208,19 @@ const addBlockToBalloon = (WEI, imageUrl, description, blockNumber) => {
                 from: account,
                 value: WEI
             }, err => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
-                if(checkIsWalletConnect()) {
+                if (checkIsWalletConnect()) {
                     resolve({
                         isWalletConnect: true
                     });
                 }
             })
             .once('confirmation', (confirmationNumber, receipt) => {
-                if(receipt.status === true) {
+                if (receipt.status === true) {
                     resolve()
-                }
-                else {
+                } else {
                     reject();
                 }
             })
@@ -235,20 +233,19 @@ const changeBlockInfo = (imageUrl, description, blockNumber) => {
             .send({
                 from: account
             }, err => {
-                if(err) {
+                if (err) {
                     reject(err)
                 }
-                if(checkIsWalletConnect()) {
+                if (checkIsWalletConnect()) {
                     resolve({
                         isWalletConnect: true
                     });
                 }
             })
             .once('confirmation', (confirmationNumber, receipt) => {
-                if(receipt.status === true) {
+                if (receipt.status === true) {
                     resolve()
-                }
-                else {
+                } else {
                     reject();
                 }
             })
