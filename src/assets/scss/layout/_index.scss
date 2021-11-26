@@ -545,7 +545,7 @@ img {
   }
   @include max-screen(sm) {
     top: 0;
-    height: 100vh;
+    height: 95vh;
     padding-top: 130px;
     z-index: 10;
   }
@@ -815,7 +815,7 @@ img {
     bottom: -27px;
   }
   @include max-screen(xs) {
-    bottom: -23px;
+    bottom: 20px;
     transform: translateX(-70%);
   }
 
@@ -835,6 +835,7 @@ img {
     @include max-screen(xs) {
       width: 67px;
       margin-left: 0;
+      margin-bottom: 160px;
     }
   }
 
@@ -1122,6 +1123,7 @@ img {
     }
     @include max-screen(xs) {
       margin-top: 15px;
+      animation: none;
     }
 
     .line {
@@ -1449,10 +1451,21 @@ img {
       width: 31px;
       height: 31px;
 
+      @include max-screen(xs) {
+        width: 13px;
+        height: 13px;
+      }
+
       span {
         width: 27px;
         height: 27px;
         border-width: 3px;
+
+        @include max-screen(xs) {
+          width: 9px;
+          height: 9px;
+          border-width: 1px;
+        }
       }
     }
   }
@@ -2039,6 +2052,10 @@ img {
   .timer {
     margin-top: 7px;
     margin-bottom: 17px;
+
+    @include max-screen(xs) {
+      margin: 0;
+    }
   }
 
 
@@ -2082,7 +2099,7 @@ img {
     word-break: break-all;
 
     @include max-screen(xs) {
-      font-size: 14px;
+      font-size: 12px;
     }
   }
 
