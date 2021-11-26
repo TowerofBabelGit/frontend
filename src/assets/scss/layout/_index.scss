@@ -654,16 +654,12 @@ img {
     height: 120px;
 
     @include max-screen(xxl) {
-      width: 345px;
-      height: 87px;
-    }
-    @include max-screen(xl) {
-      width: 246px;
-      height: 75px;
+      width: 209px;
+      height: 54px;
+      bottom: 95px;
     }
     @include max-screen(sm) {
-      width: 146px;
-      height: 45px;
+     display: none;
     }
   }
 
