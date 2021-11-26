@@ -1391,15 +1391,22 @@
 
 
                 <div v-show="defrostTimes[index] !== 0">
+                  <vac :end-time="getFrostTime(defrostTimes[index], index)">
+                    <template v-slot:process="{ timeObj }">
+                      <div class="timer">
+                        <div class="timer__wrap">{{ timeObj.h }}</div>
+                        <span class="timer__separator">:</span>
+                        <div class="timer__wrap">{{ timeObj.m }}</div>
+                        <span class="timer__separator">:</span>
+                        <div class="timer__wrap">{{ timeObj.s }}</div>
+                      </div>
+                    </template>
+                    <template v-slot:finish>
+                      <span>The unit is thawed</span>
+                    </template>
+                  </vac>
                   <div class="tower-block__text">
                     This block is frozen
-                  </div>
-                  <div class="timer">
-                    <div class="timer__wrap">{{ getFrostTime('hours', index) }}</div>
-                    <span class="timer__separator">:</span>
-                    <div class="timer__wrap">{{ getFrostTime('minutes', index) }}</div>
-                    <span class="timer__separator">:</span>
-                    <div class="timer__wrap">{{ getFrostTime('seconds', index) }}</div>
                   </div>
                 </div>
                 <div class="tower-block__img">
@@ -1859,20 +1866,8 @@ export default {
   },
   methods: {
     getFrostTime(time, index) {
-      let date = new Date(null);
-      date.setSeconds(this.defrostTimes[index]);
-      let result = date.toISOString().substr(11, 8);
-      let chunks = result.split(':');
-      switch (time) {
-        case 'hours':
-          return chunks[0];
-        case 'minutes':
-          return chunks[1];
-        case 'seconds':
-          return chunks[2];
-        default:
-          return ''
-      }
+      let date = new Date();
+      return Number(date.setSeconds(date.getSeconds() + Number(this.defrostTimes[index])));
     },
     setError(err) {
       this.error = err;

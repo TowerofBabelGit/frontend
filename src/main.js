@@ -4,8 +4,11 @@ import router from './router'
 import store from './store'
 import VueLazyload from "vue-lazyload";
 import ScrollLoader from 'vue-scroll-loader';
+import vueAwesomeCountdown from 'vue-awesome-countdown';
 
 Vue.config.productionTip = false
+
+Vue.use(vueAwesomeCountdown, 'vac')
 
 Vue.use(VueLazyload, {
   preLoad: 1.3,

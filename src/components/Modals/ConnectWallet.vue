@@ -96,7 +96,7 @@ export default {
         .catch(err => {
           this.$emit('loading', false);
           if(err.message && err.message === 'not_installed' && this.detectMob()) {
-            window.location.href = 'https://metamask.app.link/dapp/artbay.in.ua/home?lang=ua';
+            window.location.href = 'https://metamask.app.link/dapp/putyourblockon.top/';
             return
           }
           if (!err.code) {
