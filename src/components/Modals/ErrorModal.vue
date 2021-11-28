@@ -23,7 +23,7 @@
           <button class="page-btn page-btn--change"
                   @click="toggleChain"
                   v-show="isNetworkBtnVisible">Change network</button>
-          <button class="page-btn" type="button" @click="closeWindow">Ok</button>
+          <button class="page-btn" type="button" @click="closeWindow" @keyup.esc="closeWindow" @keyup.enter="closeWindow" v-focus>Ok</button>
         </div>
       </div>
     </div>

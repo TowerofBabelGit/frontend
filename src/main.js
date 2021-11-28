@@ -16,6 +16,12 @@ Vue.use(VueLazyload, {
   attempt: 1
 })
 
+Vue.directive('focus', {
+  inserted: function (el) {
+    el.focus()
+  }
+})
+
 Vue.use(ScrollLoader)
 
 new Vue({
