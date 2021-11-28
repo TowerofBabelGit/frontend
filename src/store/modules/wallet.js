@@ -35,7 +35,6 @@ export default {
             if (obj.account) state.currentConnectionInfo.account = obj.account
             if (obj.balance) state.currentConnectionInfo.balance = obj.balance;
             if (obj.chainId) state.currentConnectionInfo.chainId = obj.chainId;
-            if (obj.provider) state.currentConnectionInfo.provider = obj.provider;
             if (obj.walletName) {
                 state.currentConnectionInfo.walletName = obj.walletName;
                 localStorage.setItem('usedWalletName', obj.walletName)
@@ -126,7 +125,7 @@ export default {
                     await window.ethereum.request({method: 'eth_requestAccounts'});
                     window.web3 = new Web3(window.ethereum)
                     provider = window.ethereum;
-                    dispatch('setChain', provider)
+                    await dispatch('setChain', provider)
                 }
             }
             commit('setProvider', provider)
@@ -144,7 +143,7 @@ export default {
                     chainId: res,
                     balance: await window.web3.eth.getBalance(accounts[0])
                 })
-                dispatch('setChain', provider)
+                await dispatch('setChain', provider)
             })
             provider.on('accountsChanged', async (acs) => {
                 if (!acs.length) {
@@ -180,6 +179,7 @@ export default {
                 state.currentConnectionInfo.chainId !== state.currentNetworkDec &&
                 state.currentConnectionInfo.chainId !== state.currentNetworkHex
         },
-        getIsMetamaskInstalled: state => state.isMetamaskInstalled
+        getIsMetamaskInstalled: state => state.isMetamaskInstalled,
+        getWalletName: state => state.currentConnectionInfo.walletName
     }
 }

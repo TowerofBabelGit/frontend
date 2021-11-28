@@ -13,14 +13,16 @@
           </div>
 
           <div class="popup__title">
-            Oops..
+            {{title}}
           </div>
 
           <div class="popup__msg">
             {{message}}
           </div>
 
-          <button class="page-btn page-btn--change" v-show="isNeworkBtnVisible">Change network</button>
+          <button class="page-btn page-btn--change"
+                  @click="toggleChain"
+                  v-show="isNetworkBtnVisible">Change network</button>
           <button class="page-btn" type="button" @click="closeWindow">Ok</button>
         </div>
       </div>
@@ -30,18 +32,36 @@
 
 <script>
 
+import {mapActions, mapGetters} from "vuex";
+
 export default {
   name: "ErrorModal",
   props: {
+    title: {
+      type: String,
+      required: false,
+      default: () => 'Oops..'
+    },
     message: {
       type: String,
       required: true,
     },
-    isNeworkBtnVisible: {
+    isNetworkBtnVisible: {
       default: false,
     }
   },
+  computed: {
+    ...mapGetters({
+      getWalletName: 'wallet/getWalletName'
+    })
+  },
   methods: {
+    ...mapActions({
+      connectWallet: 'wallet/connectWallet'
+    }),
+    toggleChain() {
+      this.connectWallet(this.getWalletName)
+    },
     closeWindow() {
       this.$emit("close");
     },

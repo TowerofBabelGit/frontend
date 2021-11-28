@@ -1775,7 +1775,11 @@
                 @error="setError"
                 @close="isBuyModalVisible = false"/>
     </transition>
-    <ErrorModal v-if="error" :message="error" @close="error = null"/>
+    <ErrorModal v-if="error"
+                :message="error"
+                :title="errorModalTitle"
+                @close="error = null; isNetworkBtnVisible = false; errorModalTitle = null"
+                :isNetworkBtnVisible="isNetworkBtnVisible"/>
     <InfoModal v-show="isCraneBlockInfoVisible"
                title="Buy tower block"
                msg="Nulla gravida justo nec est venenatis, at fringilla velit finibus. Cras et tortor in erat maximus interdum vel ut arcu. Donec ac sapien sapien. Phasellus dapibus rhoncus cursus. Aliquam erat volutpat. Aliquam non leo pretium, sodales lacus nec, tempor ante. Integer at libero quis tellus lacinia eleifend. Praesent sit amet nunc condimentum mi cursus pretium id quis sapien."
@@ -1817,6 +1821,8 @@ export default {
     return {
       error: null,
       showScrollBottomButton: true,
+      isNetworkBtnVisible: false,
+      errorModalTitle: null,
       mode: null,
       loading: false,
       isMoveDown: false,
@@ -1857,7 +1863,9 @@ export default {
   watch: {
     isWrongChainId(val) {
       if (val) {
-        this.error = 'Wrong network (Looks like you connected to unsupported network. Change network to Binance Smart Chain).'
+        this.error = 'Looks like you connected to unsupported network. Change network to Binance Smart Chain.'
+        this.isNetworkBtnVisible = true;
+        this.errorModalTitle = 'Wrong network'
       } else {
         this.error = null;
         //this.init();
