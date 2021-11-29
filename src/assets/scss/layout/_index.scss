@@ -202,19 +202,22 @@ img {
     align-self: flex-start;
     width: 500px;
     cursor: pointer;
+    margin-top: -35px;
 
     @include max-screen(xxxl) {
       width: auto;
       margin: 0 150px;
+      margin-top: -25px;
     }
     @include max-screen(xxl) {
       margin: 0 70px;
-  //    margin-right: 20px;
+      margin-top: -22px;
       width: 200px;
     }
     @include max-screen(xl) {
       width: 180px;
       margin: 0 55px;
+      margin-top: -16px;
     }
     @include max-screen(lg) {
  //     margin-right: 0;
@@ -235,7 +238,7 @@ img {
     position: absolute;
     right: 50px;
     top: 50%;
-    transform: translateY(-50%);
+    transform: translateY(-25%);
 
     @include max-screen(xxl) {
       transform: translateY(-40%);
@@ -379,9 +382,16 @@ img {
   justify-content: center;
   width: 100%;
   height: 100%;
+  padding-top: 35px;
+  padding-bottom: 21px;
+  position: relative;
 
-  @include max-screen(xl) {
-   // margin-left: -40px;
+  @include max-screen(xxxl) {
+  padding-top: 25px;
+  }
+  @include max-screen(xxl) {
+  padding-top: 16px;
+    padding-bottom: 13px;
   }
   @include max-screen(lg) {
     margin-left: 0;

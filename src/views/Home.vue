@@ -1390,7 +1390,7 @@
             <div class="line-2"></div>
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
                  :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0}">
-              <img :src="item.imageUrl" alt="">
+              <img :src="item.imageUrl" alt="" v-show="item.imageUrl">
               <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" >
               <div class="tower-block">
 
