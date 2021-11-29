@@ -10,19 +10,15 @@
           <div class="popup__title">
             <span v-if="isCatapult">Buy tower</span>
             <span v-if="isBalloon">Buy flying</span>
+            <span v-if="isUpdateBalloon">Update flying</span>
             <span v-if="isUpdate">Update</span>
             block
           </div>
 
           <form class="popup-form" @submit.prevent="setBuyMethod">
             <div class="page-input page-input--select"
-                 v-if="isBalloon"
+                 v-if="isBalloon || isUpdateBalloon"
                  :class="{error: blocksQuantityError}">
-<!--              <input type="text"
-                     v-model.number="blocksQuantity"
-                     class="input"
-                     placeholder="Block number"
-              >-->
                 <div class="page-input__current" @click="setDropdown">
 
                   {{currentOption}}
@@ -80,7 +76,7 @@
             </div>
             <div class="page-input"
                  :class="{error: webSiteError, focus: movePlaceholder3}"
-                 v-if="isCatapult">
+                 v-if="isCatapult || isUpdate || isUpdateBalloon">
               <input type="text"
                      class="input"
                      v-model="webSite"
@@ -159,6 +155,9 @@ export default {
     isBalloon() {
       return this.mode === 'balloon'
     },
+    isUpdateBalloon() {
+      return this.mode === 'updateBalloon'
+    },
     isUpdate() {
       return this.mode === 'update'
     },
@@ -214,6 +213,8 @@ export default {
         this.addBlockToBalloon();
       } else if (this.isUpdate) {
         this.changeBlockInfo();
+      } else if (this.isUpdateBalloon) {
+        this.changeBalloonBlockInfo();
       } else {
         this.addBlock();
       }
@@ -299,7 +300,23 @@ export default {
         return;
       }
       try {
-        await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber);
+        await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
+        this.$emit('success');
+      } catch (e) {
+        console.log(e)
+        this.$emit('loading', false);
+        this.$emit('error', e.message);
+      }
+    },
+    async changeBalloonBlockInfo() {
+      this.$emit('loading', true);
+      if (this.getAccount !== this.blockOwner) {
+        this.$emit('error', 'You are not the owner of this block');
+        this.$emit('loading', false);
+        return;
+      }
+      try {
+        await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
         this.$emit('success');
       } catch (e) {
         console.log(e)

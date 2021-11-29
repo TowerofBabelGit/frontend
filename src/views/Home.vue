@@ -1479,7 +1479,16 @@
                 </a>
 
                 <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
-                <button class="page-btn page-btn--buy" v-show="defrostTimes[index] === 0">Buy this block</button>
+                <button class="page-btn page-btn--buy"
+                        v-show="defrostTimes[index] === 0"
+                        @click="openBuyModal(balloonBlocks[index].owner !== getAccount ? 'balloon' : 'updateBalloon')">
+                    <template v-if="balloonBlocks[index].owner !== getAccount">
+                      Buy this block
+                    </template>
+                  <template v-else>
+                    Update this block
+                  </template>
+                </button>
 
                 <div class="tower-block__point">
                   <span></span>

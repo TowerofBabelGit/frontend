@@ -227,9 +227,34 @@ const addBlockToBalloon = (WEI, imageUrl, description, blockNumber) => {
     })
 }
 
-const changeBlockInfo = (imageUrl, description, blockNumber) => {
+const changeBlockInfo = (imageUrl, description, blockNumber, webSite) => {
     return new Promise((resolve, reject) => {
-        methodsBsc.changeBlockInfo(imageUrl, description, blockNumber)
+        methodsBsc.changeBlockInfo(imageUrl, description, webSite, blockNumber)
+            .send({
+                from: account
+            }, err => {
+                if (err) {
+                    reject(err)
+                }
+                if (checkIsWalletConnect()) {
+                    resolve({
+                        isWalletConnect: true
+                    });
+                }
+            })
+            .once('confirmation', (confirmationNumber, receipt) => {
+                if (receipt.status === true) {
+                    resolve()
+                } else {
+                    reject();
+                }
+            })
+    })
+}
+
+const changeBalloonBlockInfo = (imageUrl, description, webSite, blockNumber) => {
+    return new Promise((resolve, reject) => {
+        methodsBsc.changeBalloonBlockInfo(imageUrl, description, webSite, blockNumber)
             .send({
                 from: account
             }, err => {
@@ -266,5 +291,6 @@ export default {
     balloonBlockPrice,
     getDefrostTime,
     referralsMap,
-    blockInBalloon
+    blockInBalloon,
+    changeBalloonBlockInfo
 }
