@@ -785,7 +785,7 @@
                   </a>
 
                   <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
-                  <button type="button" class="page-btn page-btn--buy"
+                  <button type="button" class="page-btn page-btn--buy" v-if="item.owner === getAccount"
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
 
@@ -883,7 +883,7 @@
                   </a>
 
                   <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
-                  <button type="button" class="page-btn page-btn--buy"
+                  <button type="button" class="page-btn page-btn--buy" v-if="item.owner === getAccount"
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
 
@@ -979,7 +979,7 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
-                  <button type="button" class="page-btn page-btn--buy"
+                  <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
@@ -1074,7 +1074,7 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
-                  <button type="button" class="page-btn page-btn--buy"
+                  <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
@@ -1170,7 +1170,7 @@
                   </a>
 
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
-                  <button type="button" class="page-btn page-btn--buy"
+                  <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
@@ -1268,6 +1268,7 @@
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
+                          v-if="block.owner === getAccount"
                   >Edit block</button>
 
                   <div class="tower-block__point">
@@ -1359,6 +1360,7 @@
                   <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
+                          v-if="block.owner === getAccount"
                   >Edit block</button>
 
                   <div class="tower-block__point">
