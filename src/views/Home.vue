@@ -713,14 +713,14 @@
                      class="tower__col-image"
                      alt="">
                 <div class="tower__block-cover"
-                     @mouseover="item.showHover = true"
+                     @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block"
                      :class="{active: item.showHover}"
-                     @mouseover="item.showHover = true"
+                     @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="item.imageUrl" alt="">
@@ -811,14 +811,14 @@
               >
                 <img v-if="item.imageUrl" v-lazy="item.imageUrl" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
-                     @mouseover="item.showHover = true"
+                     @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block"
                      :class="{active: item.showHover}"
-                     @mouseover="item.showHover = true"
+                     @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="item.imageUrl" alt="">
@@ -908,13 +908,13 @@
                    :data-index="index">
                 <img v-lazy="block.imageUrl" class="tower__col-image" alt="">
                 <div class="tower__block-cover"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1004,12 +1004,12 @@
                    :data-index="index">
                 <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
                 <div class="tower-block" :class="{active: block.showHover}"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1099,13 +1099,13 @@
                    :data-index="index">
                 <img v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1195,13 +1195,13 @@
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1287,13 +1287,13 @@
                    :data-index="index">
                 <img v-if="block.imageUrl" v-lazy="block.imageUrl" alt="" class="tower__col-image">
                 <div class="tower__block-cover"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
-                     @mouseover="block.showHover = true"
+                     @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1887,6 +1887,11 @@ export default {
     }
   },
   methods: {
+    showHover(block) {
+      if(block.owner && block.owner !== '0x0000000000000000000000000000000000000000') {
+        block.showHover = true
+      }
+    },
     getFrostTime(time, index) {
       let date = new Date();
       return Number(date.setSeconds(date.getSeconds() + Number(this.defrostTimes[index])));
@@ -2266,7 +2271,7 @@ export default {
           }
           break;
         case 4:
-          if(lastBlockId <= 7) {
+          if(lastBlockId <= 15) {
             this.towerBlocksSm.forEach(i => i.imageUrl = null);
             this.towerBlocksXs.forEach(i => i.imageUrl = null);
             this.loadMore = true;
@@ -2287,7 +2292,7 @@ export default {
           }
           break;
         case 5:
-          if(lastBlockId <= 15) {
+          if(lastBlockId <= 31) {
             this.towerBlocksXs.forEach(i => i.imageUrl = null);
             this.loadMore = true;
             return
