@@ -789,9 +789,9 @@
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -887,9 +887,9 @@
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -983,9 +983,9 @@
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
 
@@ -1078,9 +1078,9 @@
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1174,9 +1174,9 @@
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1271,9 +1271,9 @@
                           v-if="block.owner === getAccount"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1363,9 +1363,9 @@
                           v-if="block.owner === getAccount"
                   >Edit block</button>
 
-                  <div class="tower-block__point">
-                    <span></span>
-                  </div>
+<!--                  <div class="tower-block__point">-->
+<!--                    <span></span>-->
+<!--                  </div>-->
                 </div>
               </div>
             </div>
@@ -1488,9 +1488,9 @@
                   </template>
                 </button>
 
-                <div class="tower-block__point">
-                  <span></span>
-                </div>
+<!--                <div class="tower-block__point">-->
+<!--                  <span></span>-->
+<!--                </div>-->
               </div>
             </div>
           </div>
@@ -2194,7 +2194,7 @@ export default {
             block = await contract.blockOfNumber(lastBlockId);
           } catch (e) {
             console.log(e);
-            this.loadMainTowerPart(row, lastBlockId);
+            //this.loadMainTowerPart(row, lastBlockId);
           }
           this.towerBlocksExtraLarge[0].imageUrl = block.imageUrl;
           this.towerBlocksExtraLarge[0].description = block.description;
@@ -2216,7 +2216,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              this.loadMainTowerPart(row, lastBlockId);
+              //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksMiddleLarge[index].imageUrl = block.imageUrl;
             this.towerBlocksMiddleLarge[index].description = block.description;
@@ -2239,7 +2239,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              this.loadMainTowerPart(row, lastBlockId);
+              //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksLg[index].imageUrl = block.imageUrl;
             this.towerBlocksLg[index].description = block.description;
@@ -2261,7 +2261,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              this.loadMainTowerPart(row, lastBlockId);
+              //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksMd[index].imageUrl = block.imageUrl;
             this.towerBlocksMd[index].description = block.description;
@@ -2282,7 +2282,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              this.loadMainTowerPart(row, lastBlockId);
+              //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksSm[index].imageUrl = block.imageUrl;
             this.towerBlocksSm[index].description = block.description;
@@ -2302,7 +2302,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
-              this.loadMainTowerPart(row, lastBlockId);
+              //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksXs[index].imageUrl = block.imageUrl;
             this.towerBlocksXs[index].description = block.description;
