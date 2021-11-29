@@ -153,6 +153,15 @@
     color: #C44D52;
     text-decoration: underline;
   }
+
+  &__msg {
+    font-family: $text-font-medium;
+    font-size: 18px;
+    line-height: 17px;
+    text-align: center;
+
+    color: #503614;
+  }
 }
 
 .connect-wallet {
