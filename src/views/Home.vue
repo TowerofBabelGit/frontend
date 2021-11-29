@@ -2177,6 +2177,16 @@ export default {
       let index = 0;
       switch (row) {
         case 0:
+          if(lastBlockId <= 0) {
+            this.towerBlocksExtraLarge.forEach(i => i.imageUrl = null);
+            this.towerBlocksMiddleLarge.forEach(i => i.imageUrl = null);
+            this.towerBlocksLg.forEach(i => i.imageUrl = null);
+            this.towerBlocksMd.forEach(i => i.imageUrl = null);
+            this.towerBlocksSm.forEach(i => i.imageUrl = null);
+            this.towerBlocksXs.forEach(i => i.imageUrl = null);
+            this.loadMore = true;
+            return
+          }
           try {
             block = await contract.blockOfNumber(lastBlockId);
           } catch (e) {
@@ -2189,6 +2199,15 @@ export default {
           this.towerBlocksExtraLarge[0].number = block.number;
           break;
         case 1:
+          if(lastBlockId <= 1) {
+            this.towerBlocksMiddleLarge.forEach(i => i.imageUrl = null);
+            this.towerBlocksLg.forEach(i => i.imageUrl = null);
+            this.towerBlocksMd.forEach(i => i.imageUrl = null);
+            this.towerBlocksSm.forEach(i => i.imageUrl = null);
+            this.towerBlocksXs.forEach(i => i.imageUrl = null);
+            this.loadMore = true;
+            return
+          }
           for (let i = lastBlockId - 1; i >= lastBlockId - 2; i--) {
             try {
               block = await contract.blockOfNumber(i);
@@ -2204,6 +2223,14 @@ export default {
           }
           break;
         case 2:
+          if(lastBlockId <= 3) {
+            this.towerBlocksLg.forEach(i => i.imageUrl = null);
+            this.towerBlocksMd.forEach(i => i.imageUrl = null);
+            this.towerBlocksSm.forEach(i => i.imageUrl = null);
+            this.towerBlocksXs.forEach(i => i.imageUrl = null);
+            this.loadMore = true;
+            return
+          }
           for (let i = lastBlockId - 3; i >= lastBlockId - 6; i--) {
             try {
               block = await contract.blockOfNumber(i);
@@ -2219,6 +2246,13 @@ export default {
           }
           break;
         case 3:
+          if(lastBlockId <= 7) {
+            this.towerBlocksMd.forEach(i => i.imageUrl = null);
+            this.towerBlocksSm.forEach(i => i.imageUrl = null);
+            this.towerBlocksXs.forEach(i => i.imageUrl = null);
+            this.loadMore = true;
+            return
+          }
           for (let i = lastBlockId - 7; i >= lastBlockId - 14; i--) {
             try {
               block = await contract.blockOfNumber(i);
@@ -2234,6 +2268,12 @@ export default {
           }
           break;
         case 4:
+          if(lastBlockId <= 7) {
+            this.towerBlocksSm.forEach(i => i.imageUrl = null);
+            this.towerBlocksXs.forEach(i => i.imageUrl = null);
+            this.loadMore = true;
+            return
+          }
           for (let i = lastBlockId - 15; i >= lastBlockId - 30; i--) {
             try {
               block = await contract.blockOfNumber(i);
@@ -2249,6 +2289,11 @@ export default {
           }
           break;
         case 5:
+          if(lastBlockId <= 15) {
+            this.towerBlocksXs.forEach(i => i.imageUrl = null);
+            this.loadMore = true;
+            return
+          }
           for (let i = lastBlockId - 31; i >= lastBlockId - 47; i--) {
             try {
               block = await contract.blockOfNumber(i);
