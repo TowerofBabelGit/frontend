@@ -267,7 +267,7 @@
   }
 }
 
-.popup-info {
+.popup-warning {
   background: url("assets/img/modal-bg.png") no-repeat;
   background-size: 100% 100%;
   width: 385px;
@@ -300,5 +300,11 @@
 
   @include max-screen(md) {
     width: 100%;
+  }
+}
+
+.popup-info {
+  .popup__text {
+    text-align: center;
   }
 }

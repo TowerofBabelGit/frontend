@@ -913,7 +913,8 @@
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
-                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                <div class="tower-block" :class="{active: block.showHover}"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1007,7 +1008,8 @@
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
-                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                <div class="tower-block" :class="{active: block.showHover}"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1102,7 +1104,8 @@
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
-                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                <div class="tower-block" :class="{active: block.showHover}"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1197,7 +1200,8 @@
                   <img :src="block.cover" alt="" class="tower__col-cover">
                 </div>
 
-                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                <div class="tower-block" :class="{active: block.showHover}"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1287,7 +1291,8 @@
                   <img :src="block.cover" alt="">
                 </div>
 
-                <div class="tower-block" :class="{active: block.showHover}" @mouseover="block.showHover = true"
+                <div class="tower-block" :class="{active: block.showHover}"
+                     @mouseover="block.showHover = true"
                      @mouseleave="block.showHover = false">
                   <div class="tower-block__img">
                     <img v-lazy="block.imageUrl" alt="">
@@ -1550,7 +1555,7 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="#" class="bottom-wrap__link"></a>
+        <a href="https://bscscan.com/" target="_blank" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
@@ -1782,11 +1787,10 @@
                 :isNetworkBtnVisible="isNetworkBtnVisible"/>
     <InfoModal v-show="isCraneBlockInfoVisible"
                title="Buy tower block"
-               msg="Nulla gravida justo nec est venenatis, at fringilla velit finibus. Cras et tortor in erat maximus interdum vel ut arcu. Donec ac sapien sapien. Phasellus dapibus rhoncus cursus. Aliquam erat volutpat. Aliquam non leo pretium, sodales lacus nec, tempor ante. Integer at libero quis tellus lacinia eleifend. Praesent sit amet nunc condimentum mi cursus pretium id quis sapien."
                @close="isCraneBlockInfoVisible = false"/>
     <InfoModal v-show="isBalloonBlocksInfoVisible"
                title="Buy flying block"
-               msg="Resent sit amet nunc condimentum mi cursus pretium id quis sapien."
+               is-balloon="true"
                @close="isBalloonBlocksInfoVisible = false"/>
   </div>
 </template>
@@ -1850,7 +1854,8 @@ export default {
       isBalloonBlocksInfoVisible: false,
       loadMore: false,
       disableLoading: false,
-      sectionPortion: 0
+      sectionPortion: 0,
+    //  movePoint: false,
     }
   },
   computed: {
@@ -2303,18 +2308,18 @@ export default {
     document.addEventListener('mouseover', () => {
       const blockList = document.body.querySelectorAll('.tower-block');
 
-      [].forEach.call(blockList, function (block) {
-        let blockRect = block.getBoundingClientRect();
+      for (let i = 0; i < blockList.length; i++) {
+        let blockRect = blockList[i].getBoundingClientRect();
 
         let blockRightX = blockRect.x + blockRect.width;
 
         if (blockRightX > window.outerWidth) {
-          block.style.left = 'unset';
-          block.style.right = '50%';
+          blockList[i].classList.add("change");
+          blockList[i].style.left = 'unset';
+          blockList[i].style.right = '50%';
 
-          block.classList.add('change');
         }
-      })
+      }
 
     })
   },

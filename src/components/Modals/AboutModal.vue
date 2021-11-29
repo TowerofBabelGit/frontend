@@ -78,19 +78,7 @@
                 <p>
                 All blocks and sequences are also recorded in the smart contract and are available for viewing by any user. Blocks remain in the tower forever, so this is the best way to leave YOUR mark in the digital history of mankind.
                 </p>
-                <p>
-                By adding your block to the tower, you have the opportunity to engrave your mark in the digital history of mankind. <br>
-                But after a while, your block will no longer be so noticeable.
-                </p>
-                <p>
-                Therefore, you can buy a flying unit, which is always at the top of the site. <br>
-                After purchasing this block, you are given the opportunity to upload a picture and a link. <br>
-                And this unit freezes for you for 24 hours. After this time, another user will be able to redeem it. But if there are no others, your material will stay in the balloon as long as you want.
-                  <br>
-                </p>
-                <p>
-                You can also buy all 4 flying blocks and place 1 large image segmented into squares.
-                </p>
+
               </div>
           </vue-custom-scrollbar>
 

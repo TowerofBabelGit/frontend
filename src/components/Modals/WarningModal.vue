@@ -2,7 +2,7 @@
   <div class="popup-container">
     <div class="popup-bg"></div>
     <div class="popup-slide">
-      <div class="popup popup-info">
+      <div class="popup popup-warning">
 
 
 

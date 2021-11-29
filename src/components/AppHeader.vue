@@ -305,7 +305,7 @@
             <a @click="isAboutModalVisible = true">About tower</a>
           </li>
           <li class="header-nav__item">
-            <a href="#">Smart contract</a>
+            <a href="https://bscscan.com/" target="_blank">Smart contract</a>
           </li>
         </ul>
       </nav>
@@ -334,13 +334,13 @@
 
     <button class="burger-btn" type="button" :class="{active: isOpenMenu}" @click="isOpenMenu = !isOpenMenu"></button>
 
-    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo}">
+    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo}" v-on="resizeMobileNav">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
           <a @click="isAboutModalVisible = true; isOpenMenu = false">About tower</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#" @click="isOpenMenu = false">Smart contract</a>
+          <a href="https://bscscan.com/" target="_blank" @click="isOpenMenu = false">Smart contract</a>
         </li>
         <li class="mobile-nav__item">
           <a href="#" @click="isOpenMenu = false">My tower</a>
@@ -561,6 +561,10 @@ export default {
     ...mapMutations({
       unsetWallet: 'wallet/unsetWallet'
     }),
+    resizeMobileNav() {
+      let vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    },
     setError(err) {
       this.error = err;
     },
@@ -582,7 +586,11 @@ export default {
       if (!e.target.closest('.burger-btn') && !e.target.closest('.mobile-nav')) {
         this.isOpenMenu = false;
       }
-    })
+    }),
+        window.addEventListener('resize', () => {
+          let vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+        });
   }
 }
 </script>
