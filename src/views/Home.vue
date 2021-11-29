@@ -2308,20 +2308,36 @@ export default {
     document.addEventListener('mouseover', () => {
       const blockList = document.body.querySelectorAll('.tower-block');
 
+
+
       for (let i = 0; i < blockList.length; i++) {
         let blockRect = blockList[i].getBoundingClientRect();
 
         let blockRightX = blockRect.x + blockRect.width;
+        //let blockTopY = blockRect.y + blockRect.height;
+
+        /*     let x = e.clientX - blockRect.left;
+             let y = e.clientY - blockRect.top;
+
+           blockList[i].style.left = x + 'px';
+           blockList[i].style.top = y + 'px';*/
+
 
         if (blockRightX > window.outerWidth) {
           blockList[i].classList.add("change");
           blockList[i].style.left = 'unset';
           blockList[i].style.right = '50%';
+          ////    this.movePoint = true;
 
         }
+        /*  if (blockTopY > window.outerHeight) {
+         //   blockList[i].style.bottom = '0%';
+          }*/
       }
 
     })
+
+
   },
 }
 </script>

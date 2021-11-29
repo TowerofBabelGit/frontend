@@ -197,7 +197,7 @@ img {
   }
 
   &__logo {
-    margin: 0 50px;
+    margin: 0 100px;
     z-index: 17;
     align-self: flex-start;
     width: 500px;
@@ -205,18 +205,19 @@ img {
 
     @include max-screen(xxxl) {
       width: auto;
+      margin: 0 150px;
     }
     @include max-screen(xxl) {
-        margin: 0;
-      margin-right: 20px;
+      margin: 0 70px;
+  //    margin-right: 20px;
       width: 200px;
     }
     @include max-screen(xl) {
       width: 180px;
-      margin-right: 30px;
+      margin: 0 55px;
     }
     @include max-screen(lg) {
-      margin-right: 0;
+ //     margin-right: 0;
     }
     @include max-screen(sm) {
       width: 170px;
@@ -237,7 +238,7 @@ img {
     transform: translateY(-50%);
 
     @include max-screen(xxl) {
-      transform: translateY(-45%);
+      transform: translateY(-40%);
       right: 20px;
     }
     @include max-screen(xl) {
@@ -375,30 +376,33 @@ img {
 
 .header-wrap {
   @include align-center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 100%;
 
   @include max-screen(xl) {
-    margin-left: -40px;
+   // margin-left: -40px;
   }
   @include max-screen(lg) {
     margin-left: 0;
-    justify-content: center;
+
   }
 }
 
 .header-nav {
-  margin-left: 15%;
+  width: 33.3%;
+  @include align-center;
+  justify-content: flex-end;
+//  margin-left: 15%;
 
   @include max-screen(xxxl) {
-    margin-left: 17%;
+ //   margin-left: 17%;
   }
   @include max-screen(xxl) {
-    margin-left: 19%;
+  //  margin-left: 19%;
   }
   @include max-screen(xl) {
-    margin-left: 22%;
+ //   margin-left: 22%;
   }
   @include max-screen(lg) {
     display: none;
@@ -410,16 +414,16 @@ img {
 
 
     @include max-screen(xxxl) {
-      width: 445px;
+  //    width: 445px;
     }
     @include max-screen(xxl) {
-      width: fit-content;
+ //     width: fit-content;
     }
   }
 
   &__item {
  //   margin-left: 30px;
-    min-width: 120px;
+  //  min-width: 120px;
 
     @include max-screen(xl) {
  //     margin-left: 20px;
@@ -476,22 +480,23 @@ img {
           left: 12px;
         }
         @include max-screen(xl) {
-          left: 2px;
+          left: 7px;
         }
       }
     }
   }
 
   &--right {
-      margin-left: 0;
-      margin-right: 19%;
+    justify-content: flex-start;
+  //    margin-left: 0;
+  //    margin-right: 19%;
 
     @include max-screen(xl) {
-      margin-right: 17%;
+  //    margin-right: 17%;
     }
 
     .header-nav__list {
-      width: 415px;
+ //     width: 415px;
 
       @include max-screen(xxl) {
         padding-right: 30px;
@@ -512,10 +517,21 @@ img {
       }
 
       + .header-nav__item {
-        padding-left: 60px;
 
+        @include max-screen(xxl) {
+         padding-left: 80px;
+        }
         @include max-screen(xl) {
-         padding-left: 37px;
+         padding-left: 75px;
+        }
+
+        &:before {
+          @include max-screen(xxl) {
+            left: 40px;
+          }
+          @include max-screen(xl) {
+            left: 35px;
+          }
         }
       }
     }
@@ -2036,8 +2052,9 @@ img {
   bottom: 50%;
   left: 50%;
   display: none;
+//  transform: translate(200%, -50%);
+
  // transform: translate(50%, 0%);
-//  transform-origin: bottom left;
 
 
   &.active {
