@@ -282,7 +282,7 @@ export default {
       }
       let blockPrice = await contract.balloonBlockPrice();
       try {
-        await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity, this.webSite);
+        await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.webSite, this.blocksQuantity);
         this.$emit('loading', false);
         this.$emit('success');
         this.closeWindow();
