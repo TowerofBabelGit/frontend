@@ -789,9 +789,9 @@
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -887,9 +887,9 @@
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -983,9 +983,9 @@
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
 
@@ -1078,9 +1078,9 @@
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1174,9 +1174,9 @@
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1271,9 +1271,9 @@
                           v-if="block.owner === getAccount"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1363,9 +1363,9 @@
                           v-if="block.owner === getAccount"
                   >Edit block</button>
 
-<!--                  <div class="tower-block__point">-->
-<!--                    <span></span>-->
-<!--                  </div>-->
+<!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                    <span></span>
+                  </div>-->
                 </div>
               </div>
             </div>
@@ -1480,8 +1480,8 @@
 
                 <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
                 <button class="page-btn page-btn--buy"
-                        v-show="defrostTimes[index] === 0"
-                        @click="openBuyModal(balloonBlocks[index].owner !== getAccount ? 'balloon' : 'updateBalloon')">
+                        v-show="defrostTimes[index] !== 0"
+                        @click="openBuyModal(balloonBlocks[index].owner !== getAccount ? 'balloon' : 'updateBalloon', item.number, item.owner)">
                     <template v-if="balloonBlocks[index].owner !== getAccount">
                       Buy this block
                     </template>
@@ -1490,9 +1490,9 @@
                   </template>
                 </button>
 
-<!--                <div class="tower-block__point">-->
-<!--                  <span></span>-->
-<!--                </div>-->
+<!--                <div class="tower-block__point" :class="{change: movePoint}">
+                  <span></span>
+                </div>-->
               </div>
             </div>
           </div>
@@ -1866,7 +1866,7 @@ export default {
       loadMore: false,
       disableLoading: false,
       sectionPortion: 0,
-    //  movePoint: false,
+      movePoint: false,
     }
   },
   computed: {
@@ -2385,24 +2385,27 @@ export default {
         let blockRect = blockList[i].getBoundingClientRect();
 
         let blockRightX = blockRect.x + blockRect.width;
-        //let blockTopY = blockRect.y + blockRect.height;
+   //     let blockTopY = blockRect.y + blockRect.height;
 
         /*     let x = e.clientX - blockRect.left;
              let y = e.clientY - blockRect.top;
 
            blockList[i].style.left = x + 'px';
            blockList[i].style.top = y + 'px';*/
-
-
-        if (blockRightX > window.outerWidth) {
-          blockList[i].classList.add("change");
+        if (blockRect.x < 0) {
+       //   blockList[i].classList.remove('change');
+          this.movePoint = false
+          blockList[i].style.left = '50%';
+          blockList[i].style.right = 'unset';
+        } else if (blockRightX > window.outerWidth) {
+          blockList[i].classList.add('change');
           blockList[i].style.left = 'unset';
           blockList[i].style.right = '50%';
-          ////    this.movePoint = true;
+              this.movePoint = true;
 
         }
-        /*  if (blockTopY > window.outerHeight) {
-         //   blockList[i].style.bottom = '0%';
+         /* if (blockTopY > window.outerHeight) {
+           blockList[i].style.bottom = '0%';
           }*/
       }
 

@@ -317,7 +317,7 @@ export default {
         return;
       }
       try {
-        await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
+        await contract.changeBalloonBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
         this.$emit('loading', false);
         this.$emit('success');
       } catch (e) {
@@ -339,10 +339,13 @@ export default {
     },
     checkAvailableBlocks() {
       this.defrostTimes.map((i, index) => {
-        if(i === 0) {
+        if(i === 0 && !this.isUpdateBalloon) {
           this.blockNums.push(index + 1);
         }
       });
+      if(this.isUpdateBalloon) {
+        this.blockNums = [1, 2, 3, 4]
+      }
       if(!this.blockNums.length) {
         this.currentOption = 'No available blocks'
       }

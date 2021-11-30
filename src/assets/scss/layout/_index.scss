@@ -2182,6 +2182,12 @@ img {
     transform: translate(-50%, 50%);
     @include align-justify-center;
 
+    &.change {
+        left: unset;
+        right: 0;
+        transform: translate(50%, 50%);
+    }
+
     @include max-screen(xs) {
       width: 37px;
       height: 37px;
