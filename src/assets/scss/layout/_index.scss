@@ -1285,6 +1285,13 @@ img {
     @include max-screen(xs) {
       height: 22px;
     }
+    //&.hover {
+    //  .tower-block {
+    //    display: block!important;
+    //    z-index: 150!important;
+    //  }
+    //
+    //}
 
     &:hover {
       .tower-block {

@@ -766,7 +766,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${getAccount}`"
+                     :href="`https://bscscan.com/address/${item.owner}`"
                      target="_blank">
                     View on BscScan
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1389,10 +1389,12 @@
             <div class="line"></div>
             <div class="line-2"></div>
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
+                 @mouseenter="showHover(item)"
+                 @mouseleave="item.showHover = false"
                  :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0}">
               <img :src="item.imageUrl" alt="" v-show="item.imageUrl">
               <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" >
-              <div class="tower-block">
+              <div class="tower-block" v-if="item.showHover">
 
 
                 <div v-show="defrostTimes[index] !== 0">
@@ -1993,6 +1995,7 @@ export default {
       try {
         while (this.balloonBlocks.length !== 4) {
           let block = await contract.blockInBalloon(this.balloonBlocks.length + 1);
+          this.$set(block, 'showHover', false);
           this.balloonBlocks.push(block)
         }
       } catch (e) {
