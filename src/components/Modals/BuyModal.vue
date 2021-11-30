@@ -62,7 +62,7 @@
             </div>
             <div class="page-input"
                  :class="{error: refLinkError, focus: movePlaceholder2}"
-                 v-if="!isBalloon && !isUpdate && showRefLink">
+                 v-if="!isBalloon && !isUpdate && showRefLink && !isUpdateBalloon">
               <input type="text"
                      class="input"
                      v-model="refLink"
@@ -90,7 +90,7 @@
             </div>
 
             <button class="page-btn" type="submit">
-              <span v-if="!isUpdate">Buy the block</span>
+              <span v-if="!isUpdate && !isUpdateBalloon">Buy the block</span>
               <span v-else>Update the block</span>
             </button>
           </form>
@@ -113,6 +113,10 @@ export default {
     mode: {
       required: true,
       type: String
+    },
+    balloonBlocks: {
+      required: true,
+      type: Array
     },
     blockNumber: {
       required: false,
@@ -317,7 +321,7 @@ export default {
         return;
       }
       try {
-        await contract.changeBalloonBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
+        await contract.changeBalloonBlockInfo(this.imageUrl, this.description, this.webSite, this.blockNumber);
         this.$emit('loading', false);
         this.$emit('success');
       } catch (e) {
@@ -344,7 +348,11 @@ export default {
         }
       });
       if(this.isUpdateBalloon) {
-        this.blockNums = [1, 2, 3, 4]
+        this.balloonBlocks.map((i, index) => {
+          if(i.owner === this.getAccount) {
+            this.blockNums.push(index + 1)
+          }
+        })
       }
       if(!this.blockNums.length) {
         this.currentOption = 'No available blocks'

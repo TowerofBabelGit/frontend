@@ -1784,6 +1784,7 @@
                 :blockNumber="blockNumber"
                 :blockOwner="blockOwner"
                 :mode="mode"
+                :balloonBlocks="balloonBlocks"
                 :defrostTimes="defrostTimes"
                 @success="loadBlocks('refresh'); defrostTimes = []; getDefrostTime(); balloonBlocks = []; blockInBalloon();"
                 @loading="setBuyLoading"

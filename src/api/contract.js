@@ -253,6 +253,7 @@ const changeBlockInfo = (imageUrl, description, blockNumber, webSite) => {
 }
 
 const changeBalloonBlockInfo = (imageUrl, description, webSite, blockNumber) => {
+    console.log(imageUrl, description, webSite, blockNumber)
     return new Promise((resolve, reject) => {
         methodsBsc.changeBalloonBlockInfo(imageUrl, description, webSite, blockNumber)
             .send({
