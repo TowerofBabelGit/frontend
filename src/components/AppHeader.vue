@@ -302,10 +302,11 @@
       <nav class="header-nav">
         <ul class="header-nav__list">
           <li class="header-nav__item">
-            <a @click="isAboutModalVisible = true">About tower</a>
+            <a @click="isAboutModalVisible = true">About</a>
           </li>
           <li class="header-nav__item">
-            <a href="https://testnet.bscscan.com/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank">Smart contract</a>
+            <a href="https://testnet.bscscan.com/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank">Contract</a>
+
           </li>
         </ul>
       </nav>
@@ -337,10 +338,11 @@
     <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo}" v-on="resizeMobileNav">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
-          <a @click="isAboutModalVisible = true; isOpenMenu = false">About tower</a>
+          <a @click="isAboutModalVisible = true; isOpenMenu = false">About</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="https://bscscan.com/" target="_blank" @click="isOpenMenu = false">Smart contract</a>
+          <a href="https://testnet.bscscan.com/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank" @click="isOpenMenu = false">
+            Contract</a>
         </li>
         <li class="mobile-nav__item">
           <a href="#" @click="isOpenMenu = false">My tower</a>
