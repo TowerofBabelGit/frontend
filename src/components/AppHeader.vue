@@ -318,7 +318,7 @@
       <nav class="header-nav header-nav--right">
         <ul class="header-nav__list">
           <li class="header-nav__item">
-            <a :href="`https://putyourblockon.top/tower/${getAccount}`" target="_blank">My tower</a>
+            <router-link :to="`/tower/${getAccount}`" >My tower</router-link>
           </li>
           <li class="header-nav__item">
             <a href="https://t.me/putyourblockontop" target="_blank">Chat</a>
@@ -345,7 +345,7 @@
             Contract</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="#" @click="isOpenMenu = false">My tower</a>
+          <router-link :to="`/tower/${getAccount}`" @click="isOpenMenu = false">My tower</router-link>
         </li>
         <li class="mobile-nav__item">
           <a href="https://t.me/putyourblockontop" target="_blank" @click="isOpenMenu = false">Chat</a>
@@ -557,6 +557,11 @@ export default {
       } else {
         return ''
       }
+    }
+  },
+  watch: {
+    $route() {
+      window.location.reload();
     }
   },
   methods: {
