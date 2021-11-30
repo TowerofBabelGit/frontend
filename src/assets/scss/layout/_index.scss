@@ -197,7 +197,7 @@ img {
   }
 
   &__logo {
-    margin: 0 100px;
+    margin: 0 40px;
     z-index: 17;
     align-self: flex-start;
     width: 300px;
@@ -206,17 +206,17 @@ img {
 
     @include max-screen(xxxl) {
       width: auto;
-      margin: 0 90px;
+      margin: 0 55px;
       margin-top: -25px;
     }
     @include max-screen(xxl) {
-      margin: 0 70px;
+      margin: 0 40px;
       margin-top: -22px;
       width: 200px;
     }
     @include max-screen(xl) {
-      width: 180px;
-      margin: 0 55px;
+      width: 195px;
+      margin: 0 30px;
       margin-top: -16px;
     }
     @include max-screen(lg) {
@@ -419,9 +419,9 @@ img {
 }
 
 .header-nav {
-  width: 33.3%;
+  width: 22.5%;
   @include align-center;
-  justify-content: flex-end;
+  justify-content: space-between;
 //  margin-left: 15%;
 
   @include max-screen(xxxl) {
@@ -431,7 +431,7 @@ img {
   //  margin-left: 19%;
   }
   @include max-screen(xl) {
- //   margin-left: 22%;
+    width: 20.5%;
   }
   @include max-screen(lg) {
     display: none;
@@ -440,7 +440,7 @@ img {
   &__list {
     @include align-center;
     justify-content: center;
-
+    width: 100%;
 
     @include max-screen(xxxl) {
   //    width: 445px;
@@ -484,14 +484,12 @@ img {
     }
 
     +.header-nav__item {
-      padding-left: 50px;
+      padding-left: 80px;
       position: relative;
 
-      @include max-screen(xxl) {
-        padding-left: 32px;
-      }
+
       @include max-screen(xl) {
-        padding-left: 20px;
+        padding-left: 60px;
       }
 
       &:before {
@@ -500,37 +498,34 @@ img {
         width: 6px;
         height: 6px;
         border-radius: 50%;
-        left: 20px;
+        left: 40px;
         top: 50%;
         transform: translateY(-50%);
         background: #CA5454;
 
         @include max-screen(xxl) {
-          left: 12px;
+
         }
         @include max-screen(xl) {
-          left: 7px;
+            left: 30px;
         }
       }
     }
   }
 
   &--right {
-    justify-content: flex-start;
+
   //    margin-left: 0;
   //    margin-right: 19%;
 
-    @include max-screen(xl) {
-  //    margin-right: 17%;
-    }
+
 
     .header-nav__list {
  //     width: 415px;
 
       @include max-screen(xxl) {
-        padding-right: 30px;
         padding-left: 0;
-        width: fit-content;
+
       }
       @include max-screen(xl) {
         padding-right: 0;
@@ -546,6 +541,7 @@ img {
       }
 
       + .header-nav__item {
+        padding-left: 100px;
         @include max-screen(xxxl) {
           padding-left: 90px;
         }
@@ -557,9 +553,9 @@ img {
         }
 
         &:before {
-          @include max-screen(xxxl) {
+
             left: 40px;
-          }
+
           @include max-screen(xl) {
             left: 35px;
           }
