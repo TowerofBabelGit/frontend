@@ -2092,17 +2092,19 @@ export default {
         let middleCount = 0;
         let smallCount = 0;
         let extraSmallCount = 0;
-        if (this.owner) {
+        if (this.owner && this.page === 0) {
+          if (lastBlockId <= this.blocksQt) {
+            this.loadMore = true;
+          }
           let i = lastBlockId;
           // eslint-disable-next-line no-constant-condition
           while (true) {
             let block = await contract.blockOfNumber(i);
-            if (this.owner && block.owner !== this.getAccount) {
+            if (this.owner && block.owner !== this.owner) {
               i--;
               continue;
             }
             i--;
-            this.blocksLoaded++;
             iterationsCount++;
             if (iterationsCount === 1) {
               this.towerBlocksExtraLarge[extraLargeCount].imageUrl = block.imageUrl;
@@ -2141,6 +2143,7 @@ export default {
               extraSmallCount++;
             }
             if (i < 1 || this.towerBlocksSm[this.towerBlocksSm.length - 1].owner) {
+              this.loadMore = true;
               break;
             }
           }
@@ -2196,6 +2199,7 @@ export default {
           try {
             block = await contract.blockOfNumber(lastBlockId);
           } catch (e) {
+            this.loadMore = true;
             console.log(e);
             //this.loadMainTowerPart(row, lastBlockId);
           }
@@ -2219,6 +2223,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
+              this.loadMore = true;
               //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksMiddleLarge[index].imageUrl = block.imageUrl;
@@ -2242,6 +2247,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
+              this.loadMore = true;
               //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksLg[index].imageUrl = block.imageUrl;
@@ -2264,6 +2270,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
+              this.loadMore = true;
               //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksMd[index].imageUrl = block.imageUrl;
@@ -2285,6 +2292,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
+              this.loadMore = true;
               //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksSm[index].imageUrl = block.imageUrl;
@@ -2305,6 +2313,7 @@ export default {
               block = await contract.blockOfNumber(i);
             } catch (e) {
               console.log(e);
+              this.loadMore = true;
               //this.loadMainTowerPart(row, lastBlockId);
             }
             this.towerBlocksXs[index].imageUrl = block.imageUrl;

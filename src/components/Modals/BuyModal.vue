@@ -301,6 +301,7 @@ export default {
       }
       try {
         await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
+        this.$emit('loading', false);
         this.$emit('success');
       } catch (e) {
         console.log(e)
@@ -317,6 +318,7 @@ export default {
       }
       try {
         await contract.changeBlockInfo(this.imageUrl, this.description, this.blockNumber, this.webSite);
+        this.$emit('loading', false);
         this.$emit('success');
       } catch (e) {
         console.log(e)
