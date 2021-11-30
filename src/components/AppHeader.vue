@@ -428,7 +428,7 @@
 
     </nav>
 
-    <div class="account-info select" v-if="getAccount">
+    <div class="account-info select" v-if="getAccount" :class="{open: isOpenSelect}">
       <button type="button" class="select__btn" @click="isOpenSelect = !isOpenSelect">
         <div class="account-info__coin">
           <img src="@/assets/img/bnb.png" alt="">
