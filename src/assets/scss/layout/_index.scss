@@ -66,8 +66,8 @@ img {
   @include align-center;
   position: relative;
   background-position: center, top;
-  background-size: 100% 100%;
-  height: 170px;
+  background-size: 100%;
+  height: 120px;
  // z-index: 2;
 
   @include max-screen(xxxl) {
@@ -200,13 +200,13 @@ img {
     margin: 0 100px;
     z-index: 17;
     align-self: flex-start;
-    width: 500px;
+    width: 300px;
     cursor: pointer;
     margin-top: -35px;
 
     @include max-screen(xxxl) {
       width: auto;
-      margin: 0 150px;
+      margin: 0 90px;
       margin-top: -25px;
     }
     @include max-screen(xxl) {
@@ -230,17 +230,36 @@ img {
     }
 
   }
+  .page-btn--header {
+    transform: translateY(-40%);
+    justify-self: flex-end;
+    position: absolute;
+    right: 50px;
+    top: 50%;
 
-  .page-btn--header, .account-info {
+    @include max-screen(xxl) {
+      transform: translateY(-40%);
+      right: 20px;
+    }
+    @include max-screen(xl) {
+      width: 160px;
+      font-size: 16px;
+    }
+    @include max-screen(lg) {
+      display: none;
+    }
+  }
+
+  .account-info {
   //  margin-left: auto;
  //   margin-right: 50px;
     justify-self: flex-end;
     position: absolute;
     right: 50px;
     top: 50%;
-    transform: translateY(-25%);
+    transform: translateY(-37%);
 
-    @include max-screen(xxl) {
+    @include max-screen(xxxl) {
       transform: translateY(-40%);
       right: 20px;
     }
@@ -382,7 +401,7 @@ img {
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: 35px;
+  padding-top: 30px;
   padding-bottom: 21px;
   position: relative;
 
@@ -443,7 +462,7 @@ img {
       color: #000000;
       white-space: nowrap;
       cursor: pointer;
-      font-size: 34px;
+      font-size: 22px;
       text-shadow: 0px 3px 4px #FFFFFF;
       transition: text-shadow 0.01s ease-in;
 
@@ -527,7 +546,9 @@ img {
       }
 
       + .header-nav__item {
-
+        @include max-screen(xxxl) {
+          padding-left: 90px;
+        }
         @include max-screen(xxl) {
          padding-left: 80px;
         }
@@ -536,7 +557,7 @@ img {
         }
 
         &:before {
-          @include max-screen(xxl) {
+          @include max-screen(xxxl) {
             left: 40px;
           }
           @include max-screen(xl) {
@@ -989,8 +1010,9 @@ img {
       right: 67px;
 
       @include max-screen(xl) {
-        top: 50px;
-        right: 37px;
+        top: 53px;
+        right: 42px;
+        width: 20px;
       }
       @include max-screen(md) {
         transform: rotate(41deg);
@@ -1289,6 +1311,9 @@ img {
         opacity: 0.8;
         text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.55);
 
+        @include max-screen(xl) {
+          font-size: 26px;
+        }
         @include max-screen(sm) {
           font-size: 13px;
         }
