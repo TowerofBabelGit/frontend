@@ -62,7 +62,11 @@
 }
 
 .select {
-  z-index: 15;
+
+  &.open {
+    z-index: 15;
+  }
+
   &__btn {
     background: url("assets/img/account-btn.png") no-repeat;
     border: none;
