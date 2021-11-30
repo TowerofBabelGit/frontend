@@ -201,9 +201,9 @@ const addBlockWithReferralSystem = (WEI, imageUrl, description, invitingAddress,
     })
 }
 
-const addBlockToBalloon = (WEI, imageUrl, description, blockNumber) => {
+const addBlockToBalloon = (WEI, imageUrl, description, blockNumber, webSite) => {
     return new Promise((resolve, reject) => {
-        methodsBsc.addBlockToBalloon(imageUrl, description, blockNumber)
+        methodsBsc.addBlockToBalloon(imageUrl, description, webSite, blockNumber)
             .send({
                 from: account,
                 value: WEI

@@ -76,7 +76,7 @@
             </div>
             <div class="page-input"
                  :class="{error: webSiteError, focus: movePlaceholder3}"
-                 v-if="isCatapult || isUpdate || isUpdateBalloon">
+                 v-if="isCatapult || isUpdate || isBalloon || isUpdateBalloon">
               <input type="text"
                      class="input"
                      v-model="webSite"
@@ -282,7 +282,7 @@ export default {
       }
       let blockPrice = await contract.balloonBlockPrice();
       try {
-        await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity);
+        await contract.addBlockToBalloon(blockPrice, this.imageUrl, this.description, this.blocksQuantity, this.webSite);
         this.$emit('loading', false);
         this.$emit('success');
         this.closeWindow();
