@@ -2009,6 +2009,12 @@ img {
         &--big {
           width: 100%;
         }
+
+        &:hover {
+          .tower__block-cover {
+            opacity: .4;
+          }
+        }
       }
 
       &__block-cover {
@@ -2216,6 +2222,8 @@ img {
       transform: translate(50%, 50%);
     }
   }
+
+
 }
 
 .slide-fade-enter-active {
