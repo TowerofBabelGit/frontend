@@ -1124,11 +1124,10 @@ img {
   }
   @include max-screen(sm) {
     right: 0;
-    top: unset;
-    bottom: 170px;
+    top: 0;
+
   }
   @include max-screen(xs) {
-    bottom: 142px;
 
   }
 
@@ -1393,10 +1392,10 @@ img {
       transform: translate(30%, 90%) rotate(5deg);
     }
     @include max-screen(sm) {
-      transform: translate(17%, 55%);
+      transform: translate(9%, 363%);
     }
     @include max-screen(xs) {
-      transform: translate(9%, 85%);
+      transform: translate(9%, 363%);
       background-size: 150% 150%;
       width: 158px;
       height: 150px;
@@ -1618,6 +1617,7 @@ img {
       margin-right: auto;
       margin-left: auto;
       margin-bottom: -5px;
+      margin-top: 100px;
     }
 
     img {
