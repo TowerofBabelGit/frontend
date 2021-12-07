@@ -679,7 +679,7 @@
         <div class="tower-wrap__flags">
           <div class="flag flag-red" ref="flag">
             <div class="flag-element" v-for="i in flagLength" :key="i"
-                 :style="{'background-position': -i + 'px', 'animation-delay': i * 15 + 'ms'}">
+                 :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
 
             </div>
 
@@ -698,7 +698,7 @@
           </div>
           <div class="flag flag-yellow" ref="flag">
             <div class="flag-element" v-for="i in flagLength" :key="i"
-                 :style="{'background-position': -i + 'px', 'animation-delay': i * 15 + 'ms'}">
+                 :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
             </div>
 
             <span class="flag__text">
@@ -1908,7 +1908,7 @@ export default {
       disableLoading: false,
       sectionPortion: 0,
       movePoint: false,
-      flagLength: 550,
+      flagLength: 2000,
       showYellowTooltip: false,
       showRedTooltip: false,
     }

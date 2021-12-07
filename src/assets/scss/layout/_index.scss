@@ -1634,14 +1634,14 @@ img {
   }
 
   &__guys {
-    margin-top: 455px;
+    margin-top: 350px;
     margin-bottom: -20px;
     @include align-center;
     justify-content: space-between;
     z-index: 0;
 
     @include max-screen(xxl) {
-      margin-top: 380px;
+      margin-top: 300px;
     }
 
     @include max-screen(xs) {
@@ -2041,12 +2041,16 @@ img {
 .tower-wrap__flags {
   position: absolute;
   margin: 0;
-  top: -16%;
+  top: -9%;
   left: 50%;
   transform: translate(-50%, -50%);
 
+  @include max-screen(xl) {
+    top: -11%;
+  }
   @include max-screen(lg) {
     left: 60%;
+    top: -15%;
   }
   @include max-screen(xs) {
     left: 70%;
@@ -2061,9 +2065,14 @@ img {
 
   position: relative;
 
-  @include max-screen(xs) {
+  @include max-screen(sm) {
+    background: url("assets/img/red.png") no-repeat;
+    background-size: 100%;
     width: 116px;
-    height: 52px;
+    height: 38px;
+  }
+  @include max-screen(xs) {
+
   }
 
   &:before {
@@ -2091,7 +2100,7 @@ img {
     @include max-screen(md) {
       right: 35px;
     }
-    @include max-screen(xs) {
+    @include max-screen(sm) {
       width: 18px;
       height: 18px;
       right: 8px;
@@ -2116,7 +2125,7 @@ img {
     @include max-screen(md) {
       font-size: 24px;
     }
-    @include max-screen(xs) {
+    @include max-screen(sm) {
       font-size: 16px;
       left: 9px;
     }
@@ -2150,23 +2159,33 @@ img {
    //   height: 7px;
     }
   }
+
+  &.flag-yellow {
+    @include max-screen(sm) {
+      background: url("assets/img/yellow.png") no-repeat;
+      background-size: 100%;
+    }
+  }
 }
 
 .flag-element {
   position: relative;
   background: url("assets/img/red.png") no-repeat;
-  background-size: 500px 100%;
-  width: 0.4px;
+  background-size: 2000px 100%;
+  width: 0.1px;
+
   height: 100%;
   display: inline-block;
   animation: wave 1s ease-in-out infinite alternate;
-  border-radius: 2px;
 
   @include max-screen(md) {
-    background-size: 445px 100%;
+
+  }
+  @include max-screen(sm) {
+  display: none;
   }
   @include max-screen(xs) {
-    background-size: 290px 100%;
+    background-size: 1100px 100%;
   }
 }
 
@@ -2179,13 +2198,13 @@ img {
 
   .flag-element {
     background: url("assets/img/yellow.png") no-repeat;
-    background-size: 500px 100%;
+    background-size: 2000px 100%;
 
     @include max-screen(md) {
-      background-size: 445px 100%;
+  //    background-size: 445px 100%;
     }
     @include max-screen(xs) {
-      background-size: 290px 100%;
+      background-size: 1100px 100%;
     }
   }
 }
