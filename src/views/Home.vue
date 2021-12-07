@@ -676,6 +676,38 @@
           </button>
         </div>
 
+        <div class="tower-wrap__flags">
+          <div class="flag flag-red" ref="flag">
+            <div class="flag-element" v-for="i in flagLength" :key="i"
+                 :style="{'background-position': -i + 'px', 'animation-delay': i * 15 + 'ms'}">
+
+            </div>
+
+            <span class="flag__text">
+              10000
+            </span>
+
+            <button class="flag__icon">
+
+              <img src="@/assets/img/icon-info-flag.png" alt="">
+            </button>
+          </div>
+          <div class="flag flag-yellow" ref="flag">
+            <div class="flag-element" v-for="i in flagLength" :key="i"
+                 :style="{'background-position': -i + 'px', 'animation-delay': i * 15 + 'ms'}">
+            </div>
+
+            <span class="flag__text">
+              10000
+            </span>
+
+            <button class="flag__icon">
+
+              <img src="@/assets/img/icon-info-yellow.png" alt="">
+            </button>
+          </div>
+        </div>
+
         <div class="tower-wrap__guys">
           <div class="tower-wrap__guys--left">
             <img src="@/assets/img/guy.png" alt="">
@@ -784,7 +816,7 @@
 
                   </a>
 
-                  <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="item.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="item.owner === getAccount"
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
@@ -882,7 +914,7 @@
 
                   </a>
 
-                  <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="item.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="item.owner === getAccount"
                           @click="openBuyModal('update', item.number, item.owner)"
                   >Edit block</button>
@@ -978,7 +1010,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
@@ -1073,7 +1105,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
@@ -1169,7 +1201,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
                   >Edit block</button>
@@ -1265,7 +1297,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
                           v-if="block.owner === getAccount"
@@ -1357,7 +1389,7 @@
 
                   </a>
 
-                  <a :href="block.imageUrl" target="_blank" class="page-btn">View website</a>
+                  <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
                           v-if="block.owner === getAccount"
@@ -1478,7 +1510,7 @@
 
                 </a>
 
-                <a :href="item.imageUrl" target="_blank" class="page-btn">View website</a>
+                <a :href="item.webSite" target="_blank" class="page-btn">View website</a>
                 <button class="page-btn page-btn--buy"
                         v-show="defrostTimes[index] !== 0"
                         @click="openBuyModal(balloonBlocks[index].owner !== getAccount ? 'balloon' : 'updateBalloon', item.number, item.owner)">
@@ -1844,7 +1876,7 @@ export default {
       isMoveDown: false,
       isMoveUp: false,
       isThrowing: false,
-      blocksQt: 64,
+      blocksQt: 47,
       page: 0,
       blockNumber: null,
       blockOwner: null,
@@ -1858,7 +1890,7 @@ export default {
       towerBlocksSm: [],
       towerBlocksXs: [],
       defrostTimes: [],
-      blocksLoaded: 63,
+      blocksLoaded: 47,
       balloonBlocks: [],
       rows: [],
       lastBlockId: 0,
@@ -1868,6 +1900,7 @@ export default {
       disableLoading: false,
       sectionPortion: 0,
       movePoint: false,
+      flagLength: 550
     }
   },
   computed: {
@@ -1890,6 +1923,9 @@ export default {
     }
   },
   methods: {
+   /* flagAnimation() {
+     this.flagLength = this.$ref.flag.clientWidth;
+    },*/
     showHover(block) {
       if(block.owner && block.owner !== '0x0000000000000000000000000000000000000000') {
         block.showHover = true
@@ -2016,7 +2052,8 @@ export default {
         owner: null,
         imageUrl: require('@/assets/img/loading.gif'),
         cover: null,
-        showHover: false
+        showHover: false,
+        webSite: null
       }
       el.cover = '/img/cover-1.png';
       this.towerBlocksExtraLarge.push(el)
@@ -2046,6 +2083,7 @@ export default {
         imageUrl: require('@/assets/img/loading.gif'),
         cover: this.generateCover(),
         showHover: false,
+        webSite: null
       }
       let part = new Array(16).fill().map(() => Object.assign({}, el));
       let rows = Math.ceil((this.lastBlockId - this.blocksLoaded) / 16);
@@ -2071,7 +2109,7 @@ export default {
     },
     async calcBlocks() {
       this.lastBlockId = await contract.lastBlockNumber()
-      this.lastBlockId = parseInt(this.lastBlockId);
+      this.lastBlockId = parseInt(this.lastBlockId)
     },
     async loadBlocks(refresh) {
       if(refresh === 'refresh') {
@@ -2112,35 +2150,41 @@ export default {
               this.towerBlocksExtraLarge[extraLargeCount].description = block.description;
               this.towerBlocksExtraLarge[extraLargeCount].owner = block.owner;
               this.towerBlocksExtraLarge[extraLargeCount].number = block.number;
+              this.towerBlocksExtraLarge[extraLargeCount].webSite = block.webSite;
             } else if (iterationsCount > 1 && iterationsCount < 4) {
               this.towerBlocksMiddleLarge[middleLargeCount].imageUrl = block.imageUrl;
               this.towerBlocksMiddleLarge[middleLargeCount].description = block.description;
               this.towerBlocksMiddleLarge[middleLargeCount].owner = block.owner;
               this.towerBlocksMiddleLarge[middleLargeCount].number = block.number;
+              this.towerBlocksMiddleLarge[middleLargeCount].webSite = block.webSite;
               middleLargeCount++;
             } else if (iterationsCount >= 4 && iterationsCount < 8) {
               this.towerBlocksLg[largeCount].imageUrl = block.imageUrl;
               this.towerBlocksLg[largeCount].description = block.description;
               this.towerBlocksLg[largeCount].owner = block.owner;
               this.towerBlocksLg[largeCount].number = block.number;
+              this.towerBlocksLg[largeCount].webSite = block.webSite;
               largeCount++;
             } else if (iterationsCount >= 8 && iterationsCount < 16) {
               this.towerBlocksMd[middleCount].imageUrl = block.imageUrl;
               this.towerBlocksMd[middleCount].description = block.description;
               this.towerBlocksMd[middleCount].owner = block.owner;
               this.towerBlocksMd[middleCount].number = block.number;
+              this.towerBlocksMd[middleCount].webSite = block.webSite;
               middleCount++;
             } else if (iterationsCount >= 16 && iterationsCount < 32) {
               this.towerBlocksSm[smallCount].imageUrl = block.imageUrl;
               this.towerBlocksSm[smallCount].description = block.description;
               this.towerBlocksSm[smallCount].owner = block.owner;
               this.towerBlocksSm[smallCount].number = block.number;
+              this.towerBlocksSm[smallCount].webSite = block.webSite;
               smallCount++;
             } else if (iterationsCount >= 32 && iterationsCount < 64) {
               this.towerBlocksXs[extraSmallCount].imageUrl = block.imageUrl;
               this.towerBlocksXs[extraSmallCount].description = block.description;
               this.towerBlocksXs[extraSmallCount].owner = block.owner;
               this.towerBlocksXs[extraSmallCount].number = block.number;
+              this.towerBlocksXs[extraSmallCount].webSite = block.webSite;
               extraSmallCount++;
             }
             if (i < 1 || this.towerBlocksSm[this.towerBlocksSm.length - 1].owner) {
@@ -2208,6 +2252,7 @@ export default {
           this.towerBlocksExtraLarge[0].description = block.description;
           this.towerBlocksExtraLarge[0].owner = block.owner;
           this.towerBlocksExtraLarge[0].number = block.number;
+          this.towerBlocksExtraLarge[0].webSite = block.webSite;
           break;
         case 1:
           if(lastBlockId <= 1) {
@@ -2231,6 +2276,7 @@ export default {
             this.towerBlocksMiddleLarge[index].description = block.description;
             this.towerBlocksMiddleLarge[index].owner = block.owner;
             this.towerBlocksMiddleLarge[index].number = block.number;
+            this.towerBlocksMiddleLarge[index].webSite = block.webSite;
             index++;
           }
           break;
@@ -2255,6 +2301,7 @@ export default {
             this.towerBlocksLg[index].description = block.description;
             this.towerBlocksLg[index].owner = block.owner;
             this.towerBlocksLg[index].number = block.number;
+            this.towerBlocksLg[index].webSite = block.webSite;
             index++;
           }
           break;
@@ -2278,6 +2325,7 @@ export default {
             this.towerBlocksMd[index].description = block.description;
             this.towerBlocksMd[index].owner = block.owner;
             this.towerBlocksMd[index].number = block.number;
+            this.towerBlocksMd[index].webSite = block.webSite;
             index++;
           }
           break;
@@ -2300,6 +2348,7 @@ export default {
             this.towerBlocksSm[index].description = block.description;
             this.towerBlocksSm[index].owner = block.owner;
             this.towerBlocksSm[index].number = block.number;
+            this.towerBlocksSm[index].webSite = block.webSite;
             index++;
           }
           break;
@@ -2321,6 +2370,7 @@ export default {
             this.towerBlocksXs[index].description = block.description;
             this.towerBlocksXs[index].owner = block.owner;
             this.towerBlocksXs[index].number = block.number;
+            this.towerBlocksXs[index].webSite = block.webSite;
             index++;
           }
           break;
@@ -2344,6 +2394,7 @@ export default {
         this.rows[row].foundation[index].description = block.description;
         this.rows[row].foundation[index].owner = block.owner;
         this.rows[row].foundation[index].number = block.number;
+        this.rows[row].foundation[index].webSite = block.webSite;
         index++;
       }
     },

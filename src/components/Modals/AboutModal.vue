@@ -40,7 +40,7 @@
                 In order to make your contribution, you need to add your block to the tower.
                 </p>
                 <p>
-                The tower has the form of a binary tree and in its widest part has 32 blocks.
+                The tower has the form of a binary tree and in its widest part has 16 blocks.
                 </p>
                 <ul>
               <li>  1</li>
@@ -48,10 +48,10 @@
               <li>  4</li>
               <li>  8</li>
               <li> 16</li>
-              <li> 32</li>
-              <li> 32</li>
-              <li> 32</li>
-              <li> 32</li>
+              <li> 16</li>
+              <li> 16</li>
+              <li> 16</li>
+              <li> 16</li>
               <li> etc.</li>
                 </ul>
                 <p>

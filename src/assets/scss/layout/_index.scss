@@ -1634,18 +1634,22 @@ img {
   }
 
   &__guys {
-    margin-top: 180px;
+    margin-top: 455px;
     margin-bottom: -20px;
     @include align-center;
     justify-content: space-between;
     z-index: 0;
+
+    @include max-screen(xxl) {
+      margin-top: 380px;
+    }
 
     @include max-screen(xs) {
       width: 90%;
       margin-right: auto;
       margin-left: auto;
       margin-bottom: -5px;
-      margin-top: 100px;
+      margin-top: 265px;
     }
 
     img {
@@ -2031,6 +2035,137 @@ img {
       }
     }
 
+  }
+}
+
+.tower-wrap__flags {
+  position: absolute;
+  margin: 0;
+  top: -16%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @include max-screen(lg) {
+    left: 60%;
+  }
+  @include max-screen(xs) {
+    left: 70%;
+  }
+}
+
+.flag {
+
+  margin: 31px;
+  width: 200px;
+  height: 60px;
+
+  position: relative;
+
+  @include max-screen(xs) {
+    width: 116px;
+    height: 52px;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    background: url("assets/img/stick.png") no-repeat;
+    background-size: 100% 100%;
+    left: 0;
+    top: -12px;
+    width: 5px;
+    height: 365px;
+  }
+
+  &__icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    padding: 0;
+
+    @include max-screen(md) {
+      right: 35px;
+    }
+    @include max-screen(xs) {
+      width: 18px;
+      height: 18px;
+      right: 8px;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28px;
+    line-height: 1;
+    text-align: center;
+    left: 20px;
+    color: #FFFFFF;
+    max-width: 135px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0px 2px 1px rgba(0, 0, 0, 0.28);
+
+    @include max-screen(md) {
+      font-size: 24px;
+    }
+    @include max-screen(xs) {
+      font-size: 16px;
+      left: 9px;
+    }
+  }
+}
+
+.flag-element {
+  position: relative;
+  background: url("assets/img/red.png") no-repeat;
+  background-size: 500px 100%;
+  width: 0.4px;
+  height: 100%;
+  display: inline-block;
+  animation: wave 1s ease-in-out infinite alternate;
+  border-radius: 2px;
+
+  @include max-screen(md) {
+    background-size: 445px 100%;
+  }
+  @include max-screen(xs) {
+    background-size: 290px 100%;
+  }
+}
+
+.flag-yellow {
+  margin-left: 69px;
+
+  @include max-screen(xs) {
+    margin-left: 55px;
+  }
+
+  .flag-element {
+    background: url("assets/img/yellow.png") no-repeat;
+    background-size: 500px 100%;
+
+    @include max-screen(md) {
+      background-size: 445px 100%;
+    }
+    @include max-screen(xs) {
+      background-size: 290px 100%;
+    }
+  }
+}
+
+@keyframes wave {
+  0% {
+    top: 5%;
+  }
+  100% {
+    top: -5%;
   }
 }
 
