@@ -2086,6 +2086,7 @@ img {
     transform: translateY(-50%);
     border: none;
     padding: 0;
+    cursor: pointer;
 
     @include max-screen(md) {
       right: 35px;
@@ -2118,6 +2119,35 @@ img {
     @include max-screen(xs) {
       font-size: 16px;
       left: 9px;
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+
+    right: -10px;
+    top: 10px;
+    background: rgba(80, 54, 20, 0.9);
+    height: 40px;
+    width: fit-content;
+    padding: 0 15px;
+    transform: translate(100%,-50%);
+    @include align-justify-center;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #FFFFFF;
+
+    &:before {
+      position: absolute;
+      content: "";
+      border-style: solid;
+      border-width: 5px 7px 5px 0;
+      border-color: transparent rgba(80, 54, 20, 0.9) transparent transparent;
+      left: 1px;
+      top: 50%;
+      transform: translate(-100%,-50%);
+  //    width: 10px;
+   //   height: 7px;
     }
   }
 }

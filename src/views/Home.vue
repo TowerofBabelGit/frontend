@@ -687,10 +687,14 @@
               10000
             </span>
 
-            <button class="flag__icon">
+            <div class="flag__icon" @mouseover="showRedTooltip = true" @mouseleave="showRedTooltip = false">
 
               <img src="@/assets/img/icon-info-flag.png" alt="">
-            </button>
+
+              <div class="flag__tooltip" v-show="showRedTooltip">
+                Visitors
+              </div>
+            </div>
           </div>
           <div class="flag flag-yellow" ref="flag">
             <div class="flag-element" v-for="i in flagLength" :key="i"
@@ -698,13 +702,17 @@
             </div>
 
             <span class="flag__text">
-              10000
+             {{lastBlockId }}
             </span>
 
-            <button class="flag__icon">
+            <div class="flag__icon" @mouseover="showYellowTooltip = true" @mouseleave="showYellowTooltip = false">
 
               <img src="@/assets/img/icon-info-yellow.png" alt="">
-            </button>
+
+              <div class="flag__tooltip" v-show="showYellowTooltip">
+                Blocks
+              </div>
+            </div>
           </div>
         </div>
 
@@ -1900,7 +1908,9 @@ export default {
       disableLoading: false,
       sectionPortion: 0,
       movePoint: false,
-      flagLength: 550
+      flagLength: 550,
+      showYellowTooltip: false,
+      showRedTooltip: false,
     }
   },
   computed: {
