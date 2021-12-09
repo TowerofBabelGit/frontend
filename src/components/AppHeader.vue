@@ -426,8 +426,36 @@
 
     </nav>
 
-    <div class="account-info select" v-if="getAccount" :class="{open: isOpenSelect}">
-      <button type="button" class="select__btn" @click="isOpenSelect = !isOpenSelect">
+    <div class="coin-select select" v-if="getAccount" :class="{open: isOpenCoinSelect}">
+      <button type="button" class="select__btn" @click="isOpenCoinSelect = !isOpenCoinSelect, isOpenSelect = false">
+      <div class="account-info__coin">
+        <img :src="currentCoinImg" alt="">
+      </div>
+       <span> {{ currentCoin}} </span>
+      </button>
+
+      <div class="select__icon" :class="{opened: isOpenCoinSelect}"></div>
+
+      <div class="select__drop" v-show="isOpenCoinSelect">
+       <ul class="coin-select__list">
+         <li class="coin-select__item"  v-for="(item, index) in coinMap"
+             :key="index"
+         >
+           <div class="coin-select__icon">
+             <img :src="item.coinImg" alt="">
+           </div>
+
+           <div class="coin-select__name">
+             {{ item.coinName }}
+           </div>
+         </li>
+
+       </ul>
+      </div>
+    </div>
+
+    <div class="account-info select" v-if="getAccount" :class="{open: isOpenSelect, }">
+      <button type="button" class="select__btn" @click="isOpenSelect = !isOpenSelect, isOpenCoinSelect = false">
         <div class="account-info__coin">
           <img src="@/assets/img/bnb.png" alt="">
         </div>
@@ -538,7 +566,43 @@ export default {
     isShowAccInfo: false,
     isTooltip: false,
     error: null,
-    loading: false
+    loading: false,
+    isOpenCoinSelect: false,
+    currentCoin: 'BNB',
+    currentCoinImg: '/img/coin/BNB.png',
+    coinMap: [
+      {
+        coinImg: '/img/coin/BNB.png',
+        coinName: 'BNB',
+        isCurrent: false,
+      },
+      {
+        coinImg: '/img/coin/ETH.png',
+        coinName: 'ETH',
+        isCurrent: false,
+      },
+      {
+        coinImg: '/img/coin/MATIC.png',
+        coinName: 'MATIC',
+        isCurrent: false,
+      },
+      {
+        coinImg: '/img/coin/HARMONY.png',
+        coinName: 'HARMONY',
+        isCurrent: false,
+      },
+      {
+        coinImg: '/img/coin/FANTOM.png',
+        coinName: 'FANTOM',
+        isCurrent: false,
+      },
+
+      {
+        coinImg: '/img/coin/AVALANCE.png',
+        coinName: 'AVALANCHE',
+        isCurrent: false,
+      }
+    ]
   }),
   computed: {
     ...mapGetters({
@@ -587,6 +651,7 @@ export default {
     document.body.addEventListener('click', (e) => {
       if (!e.target.closest('.select__btn') && !e.target.closest('.select__drop')) {
         this.isOpenSelect = false;
+        this.isOpenCoinSelect = false;
       }
       if (!e.target.closest('.burger-btn') && !e.target.closest('.mobile-nav')) {
         this.isOpenMenu = false;
