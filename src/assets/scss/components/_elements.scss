@@ -79,6 +79,9 @@
     background-size: 100% 100%;
     font-family: $base-font;
 
+    @include max-screen(xxl) {
+      height: 48px;
+    }
     @include max-screen(xl) {
       height: 42px;
       padding-right: 25px;

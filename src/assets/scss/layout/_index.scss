@@ -75,7 +75,7 @@ img {
 
   }
   @include max-screen(xxl) {
-    height: 161px;
+    height: 160px;
     background-size: 100% 77%, 100%;
   }
   @include max-screen(xl) {
@@ -1756,7 +1756,7 @@ img {
     z-index: 0;
 
     @include max-screen(xxl) {
-      margin-top: 300px;
+      margin-top: 223px;
     }
 
     @include max-screen(xs) {
