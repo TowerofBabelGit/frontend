@@ -439,7 +439,7 @@
       <div class="select__drop" v-show="isOpenCoinSelect">
        <ul class="coin-select__list">
          <li class="coin-select__item"  v-for="(item, index) in coinMap"
-             :key="index"
+             :key="index" @click="isOpenCoinSelect = false"
          >
            <div class="coin-select__icon">
              <img :src="item.coinImg" alt="">

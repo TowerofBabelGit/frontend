@@ -783,6 +783,11 @@ img {
     opacity: 0.3;
     transition: opacity .3s ease-in;
 
+
+    &:first-child {
+      opacity: 1;
+      cursor: pointer;
+    }
   }
 
   &__icon {
