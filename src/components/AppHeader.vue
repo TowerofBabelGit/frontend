@@ -333,7 +333,7 @@
 
     <button class="burger-btn" type="button" :class="{active: isOpenMenu}" @click="isOpenMenu = !isOpenMenu"></button>
 
-    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo}" v-on="resizeMobileNav">
+    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo, adaptive: isShowCoinInfo}" v-on="resizeMobileNav">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
           <a @click="isAboutModalVisible = true; isOpenMenu = false">About</a>
@@ -354,7 +354,36 @@
         Connect wallet
       </button>
 
-      <button class="select__btn" type="button" @click="isShowAccInfo = true" v-if="getAccount">
+      <button class="select__btn coin-select--mobile" type="button" @click="isShowCoinInfo = true">
+        <div class="account-info__coin">
+          <img :src="currentCoinImg" alt="">
+        </div>
+
+        <div class="account-info__info">
+          <span> {{ currentCoin}} </span>
+        </div>
+
+        <div class="select__icon"></div>
+      </button>
+
+      <div class="mobile-nav__account mobile-nav__coin" v-show="isShowCoinInfo">
+        <ul class="coin-select__list">
+          <li class="coin-select__item"  v-for="(item, index) in coinMap"
+              :key="index" @click="isOpenCoinSelect = false"
+          >
+            <div class="coin-select__icon">
+              <img :src="item.coinImg" alt="">
+            </div>
+
+            <div class="coin-select__name">
+              {{ item.coinName }}
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <button class="select__btn openAcc" type="button" @click="isShowAccInfo = true" v-if="getAccount">
         <div class="account-info__coin">
           <img src="@/assets/img/bnb.png" alt="">
         </div>
@@ -426,7 +455,7 @@
 
     </nav>
 
-    <div class="coin-select select" v-if="getAccount" :class="{open: isOpenCoinSelect}">
+    <div class="coin-select select"  :class="{open: isOpenCoinSelect}">
       <button type="button" class="select__btn" @click="isOpenCoinSelect = !isOpenCoinSelect, isOpenSelect = false">
       <div class="account-info__coin">
         <img :src="currentCoinImg" alt="">
@@ -568,6 +597,7 @@ export default {
     error: null,
     loading: false,
     isOpenCoinSelect: false,
+    isShowCoinInfo: false,
     currentCoin: 'BNB',
     currentCoinImg: '/img/coin/BNB.png',
     coinMap: [
@@ -655,6 +685,12 @@ export default {
       }
       if (!e.target.closest('.burger-btn') && !e.target.closest('.mobile-nav')) {
         this.isOpenMenu = false;
+      }
+      if (!e.target.closest('.openAcc')) {
+        this.isShowAccInfo = false;
+      }
+      if (!e.target.closest('.coin-select--mobile')) {
+        this.isShowCoinInfo = false;
       }
     }),
         window.addEventListener('resize', () => {

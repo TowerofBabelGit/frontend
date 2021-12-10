@@ -67,26 +67,25 @@ img {
   position: relative;
   background-position: top;
   background-size: 100%;
-  height: 188px;
+  height: 126px;
 
   @include max-screen(xxxl) {
     background-size: 100%;
-    height: 170px;
+    height: 115px;
 
   }
   @include max-screen(xxl) {
-    height: 160px;
-    background-size: 100% 77%, 100%;
+    height: 108px;
+    background-size: 100% 93%, 100% 80%;
   }
   @include max-screen(xl) {
-    height: 125px;
-    background-size: 100% 80%, 100%;
+    height: 92px;
   }
   @include max-screen(lg) {
-    height: 110px;
+
   }
   @include max-screen(md) {
-    height: 90px;
+    height: 72px;
   }
   @include max-screen(sm) {
     background: none;
@@ -241,14 +240,14 @@ img {
 
   }
   .page-btn--header {
-    transform: translateY(-40%);
-    justify-self: flex-end;
+    top: 50%;
+    transform: translateY(-50%);
     position: absolute;
     right: 50px;
-    top: 50%;
+
 
     @include max-screen(xxl) {
-      transform: translateY(-40%);
+
       right: 20px;
     }
     @include max-screen(xl) {
@@ -281,8 +280,12 @@ img {
 
   .page-btn--header {
     width: 212px;
-    height: 42px;
+    height: 52px;
     font-size: 19px;
+
+    @include max-screen(xl) {
+      height: 42px;
+    }
   }
 
   .account-info {
@@ -673,6 +676,18 @@ img {
     }
   }
 
+  &__coin {
+    padding: 47px 30px 30px;
+    .coin-select__icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .coin-select__item {
+      margin-bottom: 10px;
+    }
+  }
+
   .page-btn {
     display: block;
     position: static;
@@ -794,6 +809,19 @@ img {
     width: 22px;
     height: 22px;
     margin-right: 13px;
+  }
+
+  &--mobile {
+    margin: 15px 0;
+    padding-left: 25px;
+    position: relative;
+
+    .select__icon {
+      right: 17px;
+      width: 18px;
+    }
+
+
   }
 }
 
@@ -1761,7 +1789,7 @@ img {
     z-index: 0;
 
     @include max-screen(xxl) {
-      margin-top: 223px;
+      margin-top: 300px;
     }
 
     @include max-screen(xs) {
