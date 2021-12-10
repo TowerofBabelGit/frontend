@@ -598,12 +598,12 @@ export default {
     loading: false,
     isOpenCoinSelect: false,
     isShowCoinInfo: false,
-    currentCoin: 'BNB',
+    currentCoin: 'BSC',
     currentCoinImg: '/img/coin/BNB.png',
     coinMap: [
       {
         coinImg: '/img/coin/BNB.png',
-        coinName: 'BNB',
+        coinName: 'BSC',
         isCurrent: false,
       },
       {
@@ -613,7 +613,7 @@ export default {
       },
       {
         coinImg: '/img/coin/MATIC.png',
-        coinName: 'MATIC',
+        coinName: 'POLYGON',
         isCurrent: false,
       },
       {
