@@ -65,22 +65,33 @@ img {
   background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
   @include align-center;
   position: relative;
-  background-position: center, top;
+  background-position: top;
   background-size: 100%;
-  height: 120px;
- // z-index: 2;
+  height: 188px;
 
   @include max-screen(xxxl) {
     background-size: 100%;
-    height: 110px;
+    height: 170px;
+
   }
   @include max-screen(xxl) {
-   height: 90px;
-    background-size: 100% 100%, 100% 85%;
+    height: 161px;
+    background-size: 100% 77%, 100%;
+  }
+  @include max-screen(xl) {
+    height: 125px;
+    background-size: 100% 80%, 100%;
+  }
+  @include max-screen(lg) {
+    height: 110px;
+  }
+  @include max-screen(md) {
+    height: 90px;
   }
   @include max-screen(sm) {
     background: none;
     height: 75px;
+
   }
   @include max-screen(xs) {
     height: 60px;
@@ -202,25 +213,24 @@ img {
     align-self: flex-start;
     width: 300px;
     cursor: pointer;
-    margin-top: -35px;
 
     @include max-screen(xxxl) {
       width: auto;
       margin: 0 55px;
-      margin-top: -25px;
     }
     @include max-screen(xxl) {
       margin: 0 40px;
-      margin-top: -22px;
       width: 200px;
     }
     @include max-screen(xl) {
-      width: 195px;
+      width: 160px;
       margin: 0 30px;
-      margin-top: -16px;
     }
     @include max-screen(lg) {
  //     margin-right: 0;
+    }
+    @include max-screen(md) {
+      height: 90px;
     }
     @include max-screen(sm) {
       width: 170px;
@@ -300,7 +310,10 @@ img {
 }
 
 .account-info {
-    &__coin {
+  top: 50%;
+  transform: translateY(-50%);
+
+  &__coin {
       margin-right: 8px;
       width: 30px;
     }
@@ -415,16 +428,13 @@ img {
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: 30px;
-  padding-bottom: 21px;
   position: relative;
 
   @include max-screen(xxxl) {
-  padding-top: 25px;
+
   }
   @include max-screen(xxl) {
-  padding-top: 16px;
-    padding-bottom: 13px;
+
   }
   @include max-screen(lg) {
     margin-left: 0;
@@ -445,7 +455,7 @@ img {
   //  margin-left: 19%;
   }
   @include max-screen(xl) {
-    width: 20.5%;
+    width: 24.5%;
   }
   @include max-screen(lg) {
     display: none;
@@ -537,19 +547,28 @@ img {
     .header-nav__list {
  //     width: 415px;
       justify-content: flex-start;
-      padding-left: 75px;
+      padding-left: 130px;
 
       @include max-screen(xxxl) {
-        padding-left: 10px;
+        padding-left: 87px;
 
       }
       @include max-screen(xxl) {
-        padding-left: 25px;
+        padding-left: 0;
+        justify-content: center;
 
+      }
+      
+      @media (max-width: 1550px) {
+        padding-left: 15%;
+        justify-content: flex-start;
+      }
+      @media (max-width: 1450px) {
+        padding-left: 7%;
       }
       @include max-screen(xl) {
         padding-right: 0;
-
+        padding-left: 13%;
       }
     }
 
@@ -707,6 +726,9 @@ img {
   margin-right: 20px;
   transform: translateY(-50%);
 
+  @include max-screen(xxl) {
+    right: 258px;
+  }
   @include max-screen(xl) {
     right: 220px;
   }
@@ -715,16 +737,18 @@ img {
   }
 
   .select__btn {
-    min-width: 205px;
+    min-width: 30px;
     font-size: 16px;
+    background: url("assets/img/coin-btn.png") no-repeat;
+    background-size: 100% 100%;
 
     @include max-screen(xxl) {
-      min-width: 30px;
+      min-width: 70px;
       padding: 5px;
       padding-right: 15px;
       border-radius: 30px;
-      background-size: cover;
-      background-position: right;
+      justify-content: center;
+      background-position: center;
     }
 
     span {
@@ -736,20 +760,15 @@ img {
 
   .select__icon {
     @include max-screen(xxl) {
-      right: 10px;
+      right: 14px;
     }
   }
 
   .select__drop {
     padding: 15px;
-
-    @include max-screen(xxl) {
       width: auto;
-    }
-    @include max-screen(xl) {
-     right: unset;
-      left: 0;
-    }
+    right: unset;
+    left: 0;
   }
 
   .account-info__coin {
@@ -2158,12 +2177,12 @@ img {
   margin: 31px;
   width: 200px;
   height: 60px;
-
+  background: url("assets/img/red.png") no-repeat;
+  background-size: 100%;
   position: relative;
 
   @include max-screen(sm) {
-    background: url("assets/img/red.png") no-repeat;
-    background-size: 100%;
+
     width: 116px;
     height: 38px;
   }
@@ -2257,10 +2276,9 @@ img {
   }
 
   &.flag-yellow {
-    @include max-screen(sm) {
       background: url("assets/img/yellow.png") no-repeat;
       background-size: 100%;
-    }
+
   }
 }
 

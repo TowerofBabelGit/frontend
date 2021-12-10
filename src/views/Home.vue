@@ -678,10 +678,10 @@
 
         <div class="tower-wrap__flags">
           <div class="flag flag-red" ref="flag">
-            <div class="flag-element" v-for="i in flagLength" :key="i"
+<!--            <div class="flag-element" v-for="i in flagLength" :key="i"
                  :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
 
-            </div>
+            </div>-->
 
             <span class="flag__text">
               10000
@@ -697,9 +697,9 @@
             </div>
           </div>
           <div class="flag flag-yellow" ref="flag">
-            <div class="flag-element" v-for="i in flagLength" :key="i"
+<!--            <div class="flag-element" v-for="i in flagLength" :key="i"
                  :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
-            </div>
+            </div>-->
 
             <span class="flag__text">
              {{lastBlockId }}

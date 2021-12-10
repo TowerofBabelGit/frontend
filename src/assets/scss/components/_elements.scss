@@ -72,7 +72,7 @@
     border: none;
     width: fit-content;
     min-width: 220px;
-    height: 42px;
+    height: 52px;
     @include align-center;
     padding-left: 10px;
     padding-right: 40px;
@@ -80,7 +80,7 @@
     font-family: $base-font;
 
     @include max-screen(xl) {
-
+      height: 42px;
       padding-right: 25px;
     }
   }
