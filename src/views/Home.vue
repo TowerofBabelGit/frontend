@@ -684,7 +684,7 @@
             </div>-->
 
             <span class="flag__text">
-              SOON
+              Soon...
             </span>
 
             <div class="flag__icon" @mouseover="showRedTooltip = true" @mouseleave="showRedTooltip = false">
