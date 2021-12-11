@@ -303,7 +303,7 @@
             <a @click="isAboutModalVisible = true">About</a>
           </li>
           <li class="header-nav__item">
-            <a href="https://testnet.bscscan.com/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank">Contract</a>
+            <a href="https://testnet.bscscan.com/address/0x27175F599134147ee93322959c9788200e5b7C0F" target="_blank">Contract</a>
 
           </li>
         </ul>
@@ -630,6 +630,11 @@ export default {
       {
         coinImg: '/img/coin/AVALANCE.png',
         coinName: 'AVALANCHE',
+        isCurrent: false,
+      },
+      {
+        coinImg: require('@/assets/img/combined.png'),
+        coinName: 'COMBINED',
         isCurrent: false,
       }
     ]

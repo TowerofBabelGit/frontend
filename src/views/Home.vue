@@ -684,7 +684,7 @@
             </div>-->
 
             <span class="flag__text">
-              10000
+              SOON
             </span>
 
             <div class="flag__icon" @mouseover="showRedTooltip = true" @mouseleave="showRedTooltip = false">
@@ -1606,7 +1606,7 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="https://bscscan.com/" target="_blank" class="bottom-wrap__link"></a>
+        <a href="https://testnet.bscscan.com/address/0x27175F599134147ee93322959c9788200e5b7C0F" target="_blank" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
