@@ -1571,7 +1571,7 @@ img {
       transform: translate(8%, 90%) rotate(5deg);
     }
     @include max-screen(xs) {
-
+      bottom: -305%;
       background-size: 150% 150%;
       width: 158px;
       height: 150px;
@@ -2294,6 +2294,15 @@ img {
     font-size: 15px;
     color: #FFFFFF;
 
+    @include max-screen(xs) {
+      top: 0;
+      height: 35px;
+      padding: 0 10px;
+      transform: translate(24%, 70%);
+      font-size: 13px;
+      z-index: 15;
+    }
+
     &:before {
       position: absolute;
       content: "";
@@ -2305,6 +2314,14 @@ img {
       transform: translate(-100%,-50%);
   //    width: 10px;
    //   height: 7px;
+
+      @include max-screen(xs) {
+        border-width: 0 5px 5px 5px;
+        border-color: transparent transparent rgba(80, 54, 20, 0.9) transparent;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -85%);
+      }
     }
   }
 
