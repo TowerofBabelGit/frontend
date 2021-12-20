@@ -1,5 +1,6 @@
 <template>
   <header class="header">
+    <Gerland/>
     <div class="header__img">
       <div class="header__img-ray"></div>
       <svg class="header__img-sun" width="342" height="343" viewBox="0 0 342 343" fill="none"
@@ -577,10 +578,12 @@ import AboutModal from "./Modals/AboutModal";
 import {mapGetters, mapMutations} from "vuex";
 import ErrorModal from "./Modals/ErrorModal";
 import Preloader from "./Preloader";
+import Gerland from "./Gerland";
 
 export default {
   name: "AppHeader",
   components: {
+    Gerland,
     Preloader,
     ErrorModal,
     ConnectWallet,
