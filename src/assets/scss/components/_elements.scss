@@ -103,6 +103,7 @@
     top: 50%;
     transform: translateY(-50%);
     transition: transform .3s ease-in;
+    cursor: pointer;
 
     @include max-screen(xl) {
      right: 10px;
