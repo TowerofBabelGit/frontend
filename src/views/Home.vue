@@ -777,6 +777,20 @@
                     {{ item.description }}
                   </div>
 
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
+                  </div>
+
                   <!--                  <div class="tower-block__title">-->
                   <!--                    Tx hash:-->
                   <!--                  </div>-->
@@ -878,6 +892,20 @@
                     {{ item.description }}
                   </div>
 
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
+                  </div>
+
                   <!--                  <div class="tower-block__title">-->
                   <!--                    Tx hash:-->
                   <!--                  </div>-->
@@ -975,6 +1003,20 @@
 
                   <div class="tower-block__text">
                     {{ block.description }}
+                  </div>
+
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
                   </div>
 
                   <!--                  <div class="tower-block__title">-->
@@ -1075,6 +1117,20 @@
                     {{ block.description }}
                   </div>
 
+
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
+                  </div>
                   <!--                  <div class="tower-block__title">-->
                   <!--                    Tx hash:-->
                   <!--                  </div>-->
@@ -1174,6 +1230,19 @@
                     {{ block.description }}
                   </div>
 
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
+                  </div>
                   <!--                  <div class="tower-block__title">-->
                   <!--                    Tx hash:-->
                   <!--                  </div>-->
@@ -1273,6 +1342,19 @@
                     {{ block.description }}
                   </div>
 
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
+                  </div>
                   <!--                  <div class="tower-block__title">-->
                   <!--                    Tx hash:-->
                   <!--                  </div>-->
@@ -1368,6 +1450,19 @@
                     {{ block.description }}
                   </div>
 
+                  <div class="tower-block__network">
+                    <div class="tower-block__title">
+                      Network:
+                    </div>
+
+                    <div class="tower-block__net">
+                      <div class="tower-block__icon">
+                        <img src="@/assets/img/networks/BSC.png" alt="">
+                      </div>
+
+                      <p>Binance Smart Chain</p>
+                    </div>
+                  </div>
                   <!--                  <div class="tower-block__title">-->
                   <!--                    Tx hash:-->
                   <!--                  </div>-->

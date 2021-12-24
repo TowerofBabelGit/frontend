@@ -2568,6 +2568,34 @@ img {
     }
   }
 
+  &__network {
+    border-top: 1px dashed rgba(0, 0, 0, 0.3);
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+    padding-top: 1px;
+    padding-bottom: 8px;
+    margin: 5px 0;
+  }
+
+  &__net {
+    @include align-center;
+    font-size: 14px;
+    line-height: 18px;
+    color: #503614;
+    margin-top: 3px;
+
+    p {
+      @include max-screen(xs) {
+        max-width: 75%;
+      }
+    }
+  }
+
+  &__icon {
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+  }
+
   .view-on {
     margin-left: 0;
     padding: 0;
