@@ -2004,7 +2004,7 @@ img {
             height: 58px;
           }
           @include max-screen(sm) {
-            height: 35px;
+            height: 54px;
           }
           @include max-screen(xs) {
             height: 30px;
@@ -2204,6 +2204,87 @@ img {
     left: 70%;
   }
 }
+
+.tower {
+  &__network {
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+
+    @include max-screen(lg) {
+      left: 15px;
+      top: 15px;
+    }
+    @include max-screen(lg) {
+      left: 8px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__row--lg {
+    .tower__network {
+      width: 20px;
+      height: 20px;
+      left: 20px;
+      top: 20px;
+
+    @include max-screen(xxl) {
+
+        left: 10px;
+        top: 10px;
+    }
+      @include max-screen(xl) {
+        left: 5px;
+        top: 5px;
+      }
+      @include max-screen(xs) {
+        left: 3px;
+        top: 0px;
+        width: 15px;
+        height: 15px;
+      }
+    }
+  }
+
+  .tower__row--md {
+    .tower__network {
+      width: 20px;
+      height: 20px;
+      left: 10px;
+      top: 10px;
+
+      @include max-screen(xl) {
+        left: 5px;
+        top: 5px;
+      }
+      @include max-screen(xs) {
+        left: 3px;
+        top: -2px;
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
+
+  &__row--sm, {
+    .tower__network {
+      width: 11px;
+      height: 11px;
+      left: 5px;
+      top: 2px;
+
+      @include max-screen(xl) {
+        left: 2px;
+        top: -4px;
+      }
+    }
+  }
+}
+
 
 .flag {
 

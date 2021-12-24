@@ -756,6 +756,9 @@
                      @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
 
                 <div class="tower-block"
@@ -854,6 +857,9 @@
                      @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
 
                 <div class="tower-block"
@@ -951,6 +957,9 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
@@ -1047,6 +1056,9 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
                 <div class="tower-block" :class="{active: block.showHover}"
                      @mouseover="showHover(block)"
@@ -1142,6 +1154,9 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
@@ -1238,6 +1253,9 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
@@ -1330,6 +1348,9 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
+                  <div class="tower__network">
+                    <img src="@/assets/img/networks/ETH.png" alt="">
+                  </div>
                 </div>
 
                 <div class="tower-block" :class="{active: block.showHover}"
