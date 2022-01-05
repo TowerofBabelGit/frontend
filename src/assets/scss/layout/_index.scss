@@ -946,7 +946,7 @@ img {
     margin-left: 5px;
 
     @include max-screen(xs) {
-      font-size: 13px;
+      font-size: 12px;
     }
 
     span {
@@ -1020,9 +1020,9 @@ img {
       margin-bottom: 100px;
     }
     @include max-screen(sm) {
-      width: 95px;
+      width: 80px;
       margin-bottom: 200px;
-      margin-left: 15px;
+      margin-left: 25px;
     }
     @include max-screen(xs) {
       width: 67px;
@@ -1144,6 +1144,10 @@ img {
       @include max-screen(xl) {
         margin-bottom: 25px;
         margin-left: -9px;
+      }
+      @include max-screen(xs) {
+        margin-bottom: 18px;
+        margin-left: -15px;
       }
     }
 
@@ -1378,7 +1382,7 @@ img {
       @include max-screen(sm) {
         right: 10px;
         height: 97px;
-        bottom: -6px;
+        bottom: -5px;
         transform: rotate(-17deg);
       }
       @include max-screen(xs) {
@@ -1553,6 +1557,10 @@ img {
     z-index: -1;
     transform: translate(90%, 50%) rotate(5deg);
 
+    @include max-screen(xxl) {
+      transform: translate(80%, 50%) rotate(5deg);
+    }
+
     @include max-screen(xl) {
       background-size: 100% 100%;
       width: 258px;
@@ -1567,11 +1575,11 @@ img {
     }
     @include max-screen(sm) {
       top: unset;
-      bottom: -215%;
+      bottom: -244%;
       transform: translate(8%, 90%) rotate(5deg);
     }
     @include max-screen(xs) {
-      bottom: -305%;
+      bottom: -320%;
       background-size: 150% 150%;
       width: 158px;
       height: 150px;
@@ -1603,7 +1611,7 @@ img {
 
       @include max-screen(md) {
         height: 65%;
-        top: 55px;
+        top: 40px;
       }
     }
 
@@ -2583,6 +2591,11 @@ img {
     color: #503614;
     margin-top: 3px;
 
+    @include max-screen(xs) {
+      font-size: 12px;
+      line-height: 14px;
+    }
+
     p {
       @include max-screen(xs) {
         max-width: 75%;
@@ -2594,6 +2607,10 @@ img {
     margin-right: 8px;
     width: 20px;
     height: 20px;
+
+    @include max-screen(xs) {
+      margin-right: 5px;
+    }
   }
 
   .view-on {

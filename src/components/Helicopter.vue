@@ -166,4 +166,10 @@ a{
     padding:5px 8px 5px 8px;
   }
 }
+
+@media screen and (max-width: 575px) {
+  .container {
+    transform: translate(-50%,-50%) scale(0.7);
+  }
+}
 </style>
