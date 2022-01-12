@@ -46,18 +46,25 @@
 
 .burger-btn {
   background: url("assets/img/svg/menu.svg") no-repeat;
+  background-size: 23px 24px;
+  background-position: center;
   border: none;
-  width: 18px;
-  height: 16px;
+  width: 36px;
+  height: 35px;
   display: none;
   z-index: 18;
 
   @include max-screen(lg) {
     display: block;
   }
+  @include max-screen(xs) {
+    background-size: 27px 24px;
+  }
 
   &.active {
     background: url("assets/img/svg/close.svg") no-repeat;
+    background-size: 19px 19px;
+    background-position: center;
   }
 }
 

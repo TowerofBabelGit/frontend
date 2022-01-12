@@ -93,7 +93,7 @@ img {
 
   }
   @include max-screen(xs) {
-    height: 60px;
+    height: 66px;
 
   }
 
@@ -131,6 +131,10 @@ img {
     @include max-screen(sm) {
       width: 130px;
       height: 130px;
+    }
+    @include max-screen(xs) {
+      left: -16px;
+      top: -15px;
     }
 
     &:before {
@@ -235,7 +239,7 @@ img {
       width: 170px;
     }
     @include max-screen(xs) {
-      width: 140px;
+   //   width: 140px;
     }
 
   }
@@ -298,11 +302,16 @@ img {
   .burger-btn {
     position: absolute;
     right: 15px;
-    top: 55%;
-    transform: translateY(-100%);
+    top: 50%;
+    transform: translateY(-55%);
 
     @include max-screen(sm) {
       top: 50%;
+    }
+
+    @include max-screen(xs) {
+      right: 8px;
+      transform: translateY(-72%);
     }
 
     &.active {
