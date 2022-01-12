@@ -233,6 +233,24 @@
     background-size: 100% 100%;
   }
 
+  .popup__close {
+    background: url("assets/img/svg/icon-close.svg") no-repeat;
+    width: 30px;
+    height: 30px;
+    background-size: 100%;
+    right: 110px;
+
+    @include max-screen(sm) {
+      right: 10%;
+      width: 23px;
+      height: 23px;
+    }
+    @include max-screen(xs) {
+      right: 13%;
+     top: 105px;
+    }
+  }
+
   .popup__title {
     margin-bottom: 43px;
 
@@ -258,6 +276,15 @@
 
     svg {
       margin-right: 9px;
+    }
+  }
+
+  .social-list {
+    margin-bottom: -35px;
+    padding-top: 30px;
+
+    @include max-screen(xs) {
+      margin-bottom: -28px;
     }
   }
 }

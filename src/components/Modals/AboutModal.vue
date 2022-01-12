@@ -3,6 +3,7 @@
     <div class="popup-bg"></div>
     <div class="popup-slide">
       <div class="popup popup-about">
+        <button @click="closeWindow" class="popup__close"></button>
         <div class="popup__content">
 
           <div class="popup__title">
@@ -82,12 +83,32 @@
               </div>
           </vue-custom-scrollbar>
 
-          <button class="page-btn" @click="closeWindow" type="button" v-focus @keyup.esc="closeWindow" @keyup.enter="closeWindow">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 1L6 6M11 11L6 6M6 6L11 1L1 11" stroke="white" stroke-width="2"/>
-            </svg>
+          <div class="social-list">
+           <div class="social-list__item">
+             <a target="_blank" href="https://discord.gg/ZtDvgyCHyR"></a>
+             <img src="@/assets/img/social/1.svg" alt="">
+           </div>
 
-            Close</button>
+            <div class="social-list__item">
+              <a target="_blank" href="https://www.reddit.com/user/putyourblocktop"></a>
+              <img src="@/assets/img/social/2.svg" alt="">
+            </div>
+
+            <div class="social-list__item">
+              <a target="_blank" href="https://twitter.com/putyourblocktop"></a>
+              <img src="@/assets/img/social/3.svg" alt="">
+            </div>
+
+            <div class="social-list__item">
+              <a target="_blank" href="https://www.facebook.com/putyourblockon.top"></a>
+              <img src="@/assets/img/social/4.svg" alt="">
+            </div>
+
+            <div class="social-list__item">
+              <a target="_blank" href="https://t.me/putyourblockontop"></a>
+              <img src="@/assets/img/social/5.svg" alt="">
+            </div>
+          </div>
         </div>
       </div>
     </div>
