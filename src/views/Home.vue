@@ -1534,7 +1534,6 @@
           </div>
         </div>
       </div>
-      <Helicopter/>
       <div class="balloon-wrap">
 
         <div class="balloon-wrap__img">
@@ -1972,12 +1971,10 @@ import {mapGetters} from "vuex";
 import BuyModal from "../components/Modals/BuyModal";
 import ErrorModal from "../components/Modals/ErrorModal";
 import InfoModal from "../components/Modals/InfoModal";
-import Helicopter from "../components/Helicopter";
 
 export default {
   name: 'Home',
   components: {
-    Helicopter,
     ErrorModal,
     AppHeader,
     AboutModal,
