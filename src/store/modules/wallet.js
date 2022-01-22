@@ -15,11 +15,14 @@ export default {
             walletName: null
         },
         //currentNetworkDec: 56,
-        currentNetworkDec: 97, //test
+        //currentNetworkDec: 97, //test
+        currentNetworkDec: 1666700000, //test
         //currentNetworkHex: '0x38',
-        currentNetworkHex: '0x61', // test
+        //currentNetworkHex: '0x61', // test
+        currentNetworkHex: '0x6357D2E0', // test
         //rpcUrl: 'https://bsc-dataseed.binance.org/',
-        rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/'// test
+        //rpcUrl: 'https://data-seed-prebsc-1-s1.binance.org:8545/'// test
+        rpcUrl: 'https://api.s0.b.hmny.io'// test
     },
     mutations: {
         setProvider(state, payload) {
@@ -69,7 +72,7 @@ export default {
                                 params: [{
                                     chainId: rootState.wallet.currentNetworkHex,
                                     rpcUrls: [rootState.wallet.rpcUrl],
-                                    chainName: 'BNB'
+                                    chainName: 'HARMONY'
                                 }]
                             });
                             await provider.request({
