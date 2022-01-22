@@ -76,15 +76,6 @@ const blockStepPrice = () => {
 
 const lastBlockNumber = () => {
     return new Promise((resolve, reject) => {
-        // import('@/utils/data.json')
-        //     .then(res => {
-        //         setTimeout(() => {
-        //             resolve(res.data.length - 1)
-        //         }, 200)
-        //     })
-        //     .catch(err => {
-        //         reject(err)
-        //     })
         methodsBsc.lastBlockNumber()
             .call({
                 from: store.getters['contract/getContractAddress']

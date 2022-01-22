@@ -303,7 +303,7 @@
             <a @click="isAboutModalVisible = true">About</a>
           </li>
           <li class="header-nav__item">
-            <a href="https://testnet.bscscan.com/address/0x27175F599134147ee93322959c9788200e5b7C0F" target="_blank">Contract</a>
+            <a href="https://explorer.pops.one/address/0x27175F599134147ee93322959c9788200e5b7C0F" target="_blank">Contract</a>
 
           </li>
         </ul>
@@ -339,7 +339,7 @@
           <a @click="isAboutModalVisible = true; isOpenMenu = false">About</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="https://testnet.bscscan.com/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank" @click="isOpenMenu = false">
+          <a href="https://explorer.pops.one/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank" @click="isOpenMenu = false">
             Contract</a>
         </li>
         <li class="mobile-nav__item">
@@ -385,11 +385,11 @@
 
       <button class="select__btn openAcc" type="button" @click="isShowAccInfo = true" v-if="getAccount">
         <div class="account-info__coin">
-          <img src="@/assets/img/bnb.png" alt="">
+          <img src="@/assets/img/networks/HARMONY.png" alt="">
         </div>
 
         <div class="account-info__info">
-          <span>{{ getBalance }} BNB</span>
+          <span>{{ getBalance }} HARMONY</span>
           <span class="account-info__address">{{ getAccount | cutHash }}</span>
         </div>
 
@@ -426,15 +426,15 @@
         </div>
 
         <div class="account-info__title">
-          BNB Balance
+          HARMONY Balance
         </div>
 
         <div class="account-info__text">
-          {{ getBalance }} BNB
+          {{ getBalance }} HARMONY
         </div>
 
-        <a class="view-on" :href="`https://bscscan.com/address/${getAccount}`" target="_blank">
-          View on BscScan
+        <a class="view-on" :href="`https://explorer.pops.one/address/${getAccount}`" target="_blank">
+          View on explorer
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_405_4009)">
               <path
@@ -486,11 +486,11 @@
     <div class="account-info select" v-if="getAccount" :class="{open: isOpenSelect, }">
       <button type="button" class="select__btn" @click="isOpenSelect = !isOpenSelect, isOpenCoinSelect = false">
         <div class="account-info__coin">
-          <img src="@/assets/img/bnb.png" alt="">
+          <img src="@/assets/img/networks/HARMONY.png" alt="">
         </div>
 
         <div class="account-info__info">
-          <span>{{ getBalance }} BNB</span>
+          <span>{{ getBalance }} HARMONY</span>
           <span class="account-info__address">{{ getAccount | cutHash }}</span>
         </div>
 
@@ -529,15 +529,15 @@
         </div>
 
         <div class="account-info__title">
-          BNB Balance
+          HARMONY Balance
         </div>
 
         <div class="account-info__text">
-          {{ getBalance }} BNB
+          {{ getBalance }} HARMONY
         </div>
 
-        <a class="view-on" :href="`https://bscscan.com/address/${getAccount}`" target="_blank">
-          View on BscScan
+        <a class="view-on" :href="`https://explorer.pops.one/address/${getAccount}`" target="_blank">
+          View on explorer
           <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g clip-path="url(#clip0_405_4009)">
               <path
@@ -598,8 +598,8 @@ export default {
     loading: false,
     isOpenCoinSelect: false,
     isShowCoinInfo: false,
-    currentCoin: 'BSC',
-    currentCoinImg: '/img/coin/BNB.png',
+    currentCoin: 'HARMONY',
+    currentCoinImg: require('@/assets/img/networks/HARMONY.png'),
     coinMap: [
       {
         coinImg: '/img/coin/BNB.png',
@@ -619,7 +619,7 @@ export default {
       {
         coinImg: '/img/coin/HARMONY.png',
         coinName: 'HARMONY',
-        isCurrent: false,
+        isCurrent: true,
       },
       {
         coinImg: '/img/coin/FANTOM.png',
