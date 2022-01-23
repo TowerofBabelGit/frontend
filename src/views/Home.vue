@@ -757,7 +757,7 @@
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
 
@@ -784,10 +784,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
 
@@ -823,9 +823,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${item.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${item.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -872,7 +872,7 @@
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
 
@@ -899,10 +899,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
 
@@ -938,9 +938,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${item.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${item.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -986,7 +986,7 @@
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
 
@@ -1012,10 +1012,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>HARMONY</p>
                     </div>
                   </div>
 
@@ -1051,9 +1051,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${block.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -1099,7 +1099,7 @@
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
                 <div class="tower-block" :class="{active: block.showHover}"
@@ -1125,10 +1125,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
                   <!--                  <div class="tower-block__title">-->
@@ -1163,9 +1163,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${block.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -1211,7 +1211,7 @@
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
 
@@ -1237,10 +1237,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
                   <!--                  <div class="tower-block__title">-->
@@ -1275,9 +1275,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${block.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -1323,7 +1323,7 @@
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
 
@@ -1349,10 +1349,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
                   <!--                  <div class="tower-block__title">-->
@@ -1387,9 +1387,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${block.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -1431,7 +1431,7 @@
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
                   <div class="tower__network">
-                    <img src="@/assets/img/networks/ETH.png" alt="">
+                    <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
 
@@ -1457,10 +1457,10 @@
 
                     <div class="tower-block__net">
                       <div class="tower-block__icon">
-                        <img src="@/assets/img/networks/BSC.png" alt="">
+                        <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>Binance Smart Chain</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
                   <!--                  <div class="tower-block__title">-->
@@ -1495,9 +1495,9 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://bscscan.com/address/${block.owner}`"
+                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
                      target="_blank">
-                    View on BscScan
+                    View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_405_4009)">
                         <path
@@ -1615,9 +1615,9 @@
                 </div>
 
                 <a class="view-on"
-                   :href="`https://bscscan.com/address/${item.owner}`"
+                   :href="`https://explorer.testnet.harmony.one/address/${item.owner}`"
                    target="_blank">
-                  View on BscScan
+                  View on Harmony Block Explorer
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_405_4009)">
                       <path
@@ -1721,7 +1721,7 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="https://testnet.bscscan.com/address/0x27175F599134147ee93322959c9788200e5b7C0F" target="_blank" class="bottom-wrap__link"></a>
+        <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
@@ -2038,7 +2038,7 @@ export default {
   watch: {
     isWrongChainId(val) {
       if (val) {
-        this.error = 'Looks like you connected to unsupported network. Change network to Binance Smart Chain.'
+        this.error = 'Looks like you connected to unsupported network. Change network to Harmony Testnet.'
         this.isNetworkBtnVisible = true;
         this.errorModalTitle = 'Wrong network'
       } else {
@@ -2088,7 +2088,7 @@ export default {
         return false;
       }
       if (this.isWrongChainId) {
-        this.error = 'Wrong network (Looks like you connected to unsupported network. Change network to Binance Smart Chain).'
+        this.error = 'Wrong network (Looks like you connected to unsupported network. Change network to Harmony Testnet).'
         return false;
       }
       if (config.mode && config.mode === 'update' && config.owner !== this.getAccount) {

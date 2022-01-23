@@ -303,7 +303,7 @@
             <a @click="isAboutModalVisible = true">About</a>
           </li>
           <li class="header-nav__item">
-            <a href="https://explorer.pops.one/address/0x27175F599134147ee93322959c9788200e5b7C0F" target="_blank">Contract</a>
+            <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank">Contract</a>
 
           </li>
         </ul>
@@ -339,7 +339,7 @@
           <a @click="isAboutModalVisible = true; isOpenMenu = false">About</a>
         </li>
         <li class="mobile-nav__item">
-          <a href="https://explorer.pops.one/address/0x72A8E3949aE18a46c6BCE27dCfd35C83768204Cd" target="_blank" @click="isOpenMenu = false">
+          <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank" @click="isOpenMenu = false">
             Contract</a>
         </li>
         <li class="mobile-nav__item">
@@ -484,7 +484,7 @@
     </div>
 
     <div class="account-info select" v-if="getAccount" :class="{open: isOpenSelect, }">
-      <button type="button" class="select__btn" @click="isOpenSelect = !isOpenSelect, isOpenCoinSelect = false">
+      <button type="button" class="select__btn" @click="isOpenSelect = !isOpenSelect; isOpenCoinSelect = false">
         <div class="account-info__coin">
           <img src="@/assets/img/networks/HARMONY.png" alt="">
         </div>
@@ -602,6 +602,11 @@ export default {
     currentCoinImg: require('@/assets/img/networks/HARMONY.png'),
     coinMap: [
       {
+        coinImg: '/img/coin/HARMONY.png',
+        coinName: 'ONE',
+        isCurrent: true,
+      },
+      {
         coinImg: '/img/coin/BNB.png',
         coinName: 'BSC',
         isCurrent: false,
@@ -617,16 +622,10 @@ export default {
         isCurrent: false,
       },
       {
-        coinImg: '/img/coin/HARMONY.png',
-        coinName: 'HARMONY',
-        isCurrent: true,
-      },
-      {
         coinImg: '/img/coin/FANTOM.png',
         coinName: 'FANTOM',
         isCurrent: false,
       },
-
       {
         coinImg: '/img/coin/AVALANCE.png',
         coinName: 'AVALANCHE',

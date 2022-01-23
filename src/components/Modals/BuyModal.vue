@@ -186,7 +186,7 @@ export default {
         return false;
       }
       if(this.isWrongChainId) {
-        this.$emit('error', 'Connect to bsc test network');
+        this.$emit('error', 'Connect to Harmony test network');
         return false;
       }
       if(!this.description) {
