@@ -340,7 +340,7 @@
         </li>
         <li class="mobile-nav__item">
           <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank" @click="isOpenMenu = false">
-            Contract</a>
+            fct</a>
         </li>
         <li class="mobile-nav__item">
           <router-link :to="`/tower/${getAccount}`" @click="isOpenMenu = false">My tower</router-link>
@@ -389,7 +389,7 @@
         </div>
 
         <div class="account-info__info">
-          <span>{{ getBalance }} HARMONY</span>
+          <span>{{ getBalance }} ONE</span>
           <span class="account-info__address">{{ getAccount | cutHash }}</span>
         </div>
 
@@ -430,7 +430,7 @@
         </div>
 
         <div class="account-info__text">
-          {{ getBalance }} HARMONY
+          {{ getBalance }} ONE
         </div>
 
         <a class="view-on" :href="`https://explorer.pops.one/address/${getAccount}`" target="_blank">
@@ -490,7 +490,7 @@
         </div>
 
         <div class="account-info__info">
-          <span>{{ getBalance }} HARMONY</span>
+          <span>{{ getBalance }} ONE</span>
           <span class="account-info__address">{{ getAccount | cutHash }}</span>
         </div>
 
@@ -533,7 +533,7 @@
         </div>
 
         <div class="account-info__text">
-          {{ getBalance }} HARMONY
+          {{ getBalance }} ONE
         </div>
 
         <a class="view-on" :href="`https://explorer.pops.one/address/${getAccount}`" target="_blank">
@@ -603,7 +603,7 @@ export default {
     coinMap: [
       {
         coinImg: '/img/coin/HARMONY.png',
-        coinName: 'ONE',
+        coinName: 'HARMONY',
         isCurrent: true,
       },
       {

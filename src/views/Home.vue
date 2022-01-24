@@ -823,7 +823,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${item.owner}`"
+                     :href="`https://explorer.pops.one/address/${item.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -938,7 +938,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${item.owner}`"
+                     :href="`https://explorer.pops.one/address/${item.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1051,7 +1051,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
+                     :href="`https://explorer.pops.one/address/${block.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1163,7 +1163,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
+                     :href="`https://explorer.pops.one/address/${block.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1275,7 +1275,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
+                     :href="`https://explorer.pops.one/address/${block.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1387,7 +1387,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
+                     :href="`https://explorer.pops.one/address/${block.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1495,7 +1495,7 @@
                   </div>
 
                   <a class="view-on"
-                     :href="`https://explorer.testnet.harmony.one/address/${block.owner}`"
+                     :href="`https://explorer.pops.one/address/${block.owner}`"
                      target="_blank">
                     View on Harmony Block Explorer
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1615,7 +1615,7 @@
                 </div>
 
                 <a class="view-on"
-                   :href="`https://explorer.testnet.harmony.one/address/${item.owner}`"
+                   :href="`https://explorer.pops.one/address/${item.owner}`"
                    target="_blank">
                   View on Harmony Block Explorer
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
