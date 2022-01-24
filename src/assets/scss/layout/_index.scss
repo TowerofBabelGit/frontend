@@ -333,16 +333,14 @@ img {
   &__info {
     display: flex;
     flex-direction: column;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 150%;
     color: #000000;
     font-family: $base-font;
     align-items: flex-start;
     white-space: nowrap;
 
-    @include max-screen(xl) {
-      font-size: 12px;
-    }
+   
   }
 
   .select__btn {
