@@ -340,7 +340,7 @@
         </li>
         <li class="mobile-nav__item">
           <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank" @click="isOpenMenu = false">
-            fct</a>
+            Contract</a>
         </li>
         <li class="mobile-nav__item">
           <router-link :to="`/tower/${getAccount}`" @click="isOpenMenu = false">My tower</router-link>
