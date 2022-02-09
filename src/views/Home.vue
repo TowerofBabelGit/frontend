@@ -1546,7 +1546,7 @@
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
                  @mouseenter="showHover(item)"
                  @mouseleave="item.showHover = false"
-                 :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0}">
+                 :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0 && item.imageUrl}">
               <img :src="item.imageUrl" alt="" v-show="item.imageUrl">
               <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" >
               <div class="tower-block" v-if="item.showHover">
@@ -1721,7 +1721,7 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank" class="bottom-wrap__link"></a>
+        <a href="https://putyourblockon.top/docs/whitepaper/" target="_blank" class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
@@ -1747,8 +1747,8 @@
         </svg>
 
         <div class="bottom-wrap__text">
-          <span>Smart</span>
-          contract
+          <span>White</span>
+          paper
         </div>
       </div>
       <div class="bottom-wrap" v-show="!isHighlight">
@@ -1901,8 +1901,8 @@
 
 
         <div class="bottom-wrap__text">
-          <span>Chat</span>
-
+          <span>Telegram</span>
+          chat
         </div>
       </div>
 
@@ -2581,8 +2581,9 @@ export default {
               this.movePoint = true;
 
         }
-         /* if (blockTopY > window.outerHeight) {
-           blockList[i].style.bottom = '0%';
+        /*  if (blockTopY >  window.outerHeight - blockTopY  ) {
+           blockList[i].style.bottom = 'unset';
+           blockList[i].style.top = '0';
           }*/
       }
 
