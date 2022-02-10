@@ -756,7 +756,7 @@
                      @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="item.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -872,7 +872,7 @@
                      @mouseover="showHover(item)"
                      @mouseleave="item.showHover = false">
                   <img :src="item.cover" alt="" class="tower__col-cover">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="item.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -987,7 +987,7 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="block.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -1101,7 +1101,7 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="block.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -1214,7 +1214,7 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="block.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -1327,7 +1327,7 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="" class="tower__col-cover">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="block.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -1436,7 +1436,7 @@
                      @mouseover="showHover(block)"
                      @mouseleave="block.showHover = false">
                   <img :src="block.cover" alt="">
-                  <div class="tower__network">
+                  <div class="tower__network" v-if="item.owner">
                     <img src="@/assets/img/networks/HARMONY.png" alt="">
                   </div>
                 </div>
@@ -2008,6 +2008,7 @@ export default {
   },
   data() {
     return {
+      myBlockQt: 0,
       error: null,
       showScrollBottomButton: true,
       isNetworkBtnVisible: false,
@@ -2189,6 +2190,14 @@ export default {
         this.blockInBalloon();
       }
     },
+    removeLoading() {
+      this.towerBlocksExtraLarge.forEach(i => i.imageUrl = null);
+      this.towerBlocksMiddleLarge.forEach(i => i.imageUrl = null);
+      this.towerBlocksLg.forEach(i => i.imageUrl = null);
+      this.towerBlocksMd.forEach(i => i.imageUrl = null);
+      this.towerBlocksSm.forEach(i => i.imageUrl = null);
+      this.towerBlocksXs.forEach(i => i.imageUrl = null);
+    },
     fillArrays() {
       this.towerBlocksExtraLarge = [];
       this.towerBlocksMiddleLarge = [];
@@ -2290,6 +2299,11 @@ export default {
             let block = await contract.blockOfNumber(i);
             if (this.owner && block.owner !== this.owner) {
               i--;
+              if(i === 0) {
+                this.loadMore = true;
+                this.removeLoading();
+                return
+              }
               continue;
             }
             i--;
