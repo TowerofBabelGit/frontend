@@ -1541,6 +1541,7 @@
           </div>
         </div>
       </div>
+
       <div class="balloon-wrap">
 
         <div class="balloon-wrap__img">
@@ -1551,11 +1552,15 @@
             <div class="line"></div>
             <div class="line-2"></div>
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
-                 @mouseenter="showHover(item)"
-                 @mouseleave="item.showHover = false"
+
                  :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0 && item.imageUrl}">
+              <div class="balloon-wrap__hover" @mouseenter="showHover(item)"
+                   @mouseleave="item.showHover = false"></div>
               <img :src="item.imageUrl" alt="" v-show="item.imageUrl">
               <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover">
+              <div class="tower__network">
+                <img src="@/assets/img/networks/HARMONY.png" alt="">
+              </div>
               <div class="tower-block" v-if="item.showHover">
 
 
@@ -1616,6 +1621,19 @@
 
                 <!--                  </button>-->
 
+                <div class="tower-block__network">
+                  <div class="tower-block__title">
+                    Network:
+                  </div>
+
+                  <div class="tower-block__net">
+                    <div class="tower-block__icon">
+                      <img src="@/assets/img/networks/HARMONY.png" alt="">
+                    </div>
+
+                    <p>Harmony Testnet</p>
+                  </div>
+                </div>
                 <div class="tower-block__title" v-if="item.owner !== '0x0000000000000000000000000000000000000000'">
                   Owner address:
                 </div>

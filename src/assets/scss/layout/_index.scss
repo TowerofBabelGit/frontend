@@ -22,6 +22,7 @@ body {
   font-family: $base-font;
   font-size: $base-font-size;
   color: #000000;
+
 }
 
 a {
@@ -32,12 +33,18 @@ img {
   width: 100%;
 }
 
+#app {
+  max-width: 3000px;
+  margin: auto;
+}
+
 .main-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   overflow-x: hidden;
+
 }
 
 .container {
@@ -62,12 +69,12 @@ img {
 /* header */
 
 .header {
-  background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") no-repeat;
+  background: url("assets/img/header-bg.png") no-repeat, url("assets/img/svg/header-bg-bg.svg") repeat-x;
   @include align-center;
   position: relative;
   background-position: top;
-  background-size: 100%;
-  height: 126px;
+  background-size: 100% 91%, 101% 76%;
+  height: 115px;
 
   @include max-screen(xxxl) {
     background-size: 100%;
@@ -258,7 +265,7 @@ img {
       width: 160px;
       font-size: 16px;
     }
-    @include max-screen(lg) {
+    @media (max-width: 1315px) {
       display: none;
     }
   }
@@ -467,8 +474,9 @@ img {
   @include max-screen(xl) {
     width: 24.5%;
   }
-  @include max-screen(lg) {
+  @media (max-width: 1315px) {
     display: none;
+
   }
 
   &__list {
@@ -557,7 +565,17 @@ img {
     .header-nav__list {
  //     width: 415px;
       justify-content: flex-start;
-      padding-left: 130px;
+      padding-left: 35%;
+      
+      @media (max-width: 2200px) {
+        padding-left: 27%;
+      }
+      @media (max-width: 2078px) {
+        padding-left: 18%;
+      }
+      @media (max-width: 2005px) {
+        padding-left: 8%;
+      }
 
       @include max-screen(xxxl) {
         padding-left: 87px;
@@ -572,6 +590,9 @@ img {
       @media (max-width: 1550px) {
         padding-left: 15%;
         justify-content: flex-start;
+      }
+      @media (max-width: 1483px) {
+        padding-left: 9%;
       }
       @media (max-width: 1450px) {
         padding-left: 7%;
@@ -629,7 +650,7 @@ img {
   flex-direction: column;
   justify-content: space-between;
 
-  @include max-screen(lg) {
+  @media (max-width: 1315px) {
     display: flex;
   }
   @include max-screen(md) {
@@ -745,16 +766,19 @@ img {
   right: 270px;
   top: 50%;
   width: fit-content;
-  margin-right: 20px;
+  margin-right: 7px;
   transform: translateY(-50%);
 
+  @include max-screen(xxxl) {
+    margin-right: 20px;
+  }
   @include max-screen(xxl) {
     right: 258px;
   }
   @include max-screen(xl) {
     right: 220px;
   }
-  @include max-screen(lg) {
+  @media (max-width: 1315px) {
     display: none;
   }
 
@@ -774,7 +798,7 @@ img {
     }
 
     span {
-      @include max-screen(xxl) {
+      @include max-screen(xxxl) {
         display: none;
       }
     }
@@ -1423,6 +1447,17 @@ img {
     bottom: 0;
   }
 
+  &__hover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
   &__block {
     position: relative;
     width: 49.5%;
@@ -1449,6 +1484,34 @@ img {
     //  }
     //
     //}
+
+    .tower__network {
+      width: 18px;
+      height: 18px;
+      left: 8px;
+      top: 5px;
+
+      @include max-screen(xl) {
+        width: 14px;
+        height: 14px;
+        left: 3px;
+        top: 1px;
+      }
+      @include max-screen(md) {
+        width: 11px;
+        height: 11px;
+        left: 3px;
+        top: -2px;
+      }
+      @include max-screen(xs) {
+        width: 9px;
+        height: 8px;
+        left: 1px;
+        top: -5px;
+      }
+    }
+
+
 
     &:hover {
       .tower-block {
@@ -1552,6 +1615,12 @@ img {
       }
       @include max-screen(sm) {
         border-radius: 3px;
+      }
+    }
+
+    .tower-block {
+      &__text {
+        word-break: break-word;
       }
     }
   }

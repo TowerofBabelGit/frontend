@@ -54,7 +54,7 @@
   display: none;
   z-index: 18;
 
-  @include max-screen(lg) {
+  @media (max-width: 1315px) {
     display: block;
   }
   @include max-screen(xs) {
