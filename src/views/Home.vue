@@ -678,10 +678,10 @@
 
         <div class="tower-wrap__flags">
           <div class="flag flag-red" ref="flag">
-<!--            <div class="flag-element" v-for="i in flagLength" :key="i"
-                 :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
+            <!--            <div class="flag-element" v-for="i in flagLength" :key="i"
+                             :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
 
-            </div>-->
+                        </div>-->
 
             <span class="flag__text">
               Soon...
@@ -697,12 +697,12 @@
             </div>
           </div>
           <div class="flag flag-yellow" ref="flag">
-<!--            <div class="flag-element" v-for="i in flagLength" :key="i"
-                 :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
-            </div>-->
+            <!--            <div class="flag-element" v-for="i in flagLength" :key="i"
+                             :style="{'background-position': -i + 'px', 'animation-delay': i * 5 + 'ms'}">
+                        </div>-->
 
             <span class="flag__text">
-             {{lastBlockId }}
+             {{ lastBlockId }}
             </span>
 
             <div class="flag__icon" @mouseover="showYellowTooltip = true" @mouseleave="showYellowTooltip = false">
@@ -737,7 +737,7 @@
             <img src="@/assets/img/tower-top.png" alt="">
           </div>
           <!--      <img src="@/assets/img/tower.png" alt="" class="tower">-->
-          <div class="tower" ref="tower" >
+          <div class="tower" ref="tower">
             <transition-group tag="div" class="tower__row tower__row--xl" name="list" appear
                               @before-appear="transitionBeforeEnter"
                               @appear="transitionEnter"
@@ -844,11 +844,12 @@
                   <a :href="item.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="item.owner === getAccount"
                           @click="openBuyModal('update', item.number, item.owner)"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
             </transition-group>
@@ -959,11 +960,12 @@
                   <a :href="item.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="item.owner === getAccount"
                           @click="openBuyModal('update', item.number, item.owner)"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1015,7 +1017,7 @@
                         <img src="@/assets/img/networks/HARMONY.png" alt="">
                       </div>
 
-                      <p>HARMONY</p>
+                      <p>Harmony Testnet</p>
                     </div>
                   </div>
 
@@ -1072,11 +1074,12 @@
                   <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
 
@@ -1184,11 +1187,12 @@
                   <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1296,11 +1300,12 @@
                   <a :href="block.webSite" target="_blank" class="page-btn">View website</a>
                   <button type="button" class="page-btn page-btn--buy" v-if="block.owner === getAccount"
                           @click="openBuyModal('update', block.number, block.owner)"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1409,11 +1414,12 @@
                   <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
                           v-if="block.owner === getAccount"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
             </transition-group>
@@ -1517,11 +1523,12 @@
                   <button type="button" class="page-btn page-btn--buy"
                           @click="openBuyModal('update', block.number, block.owner)"
                           v-if="block.owner === getAccount"
-                  >Edit block</button>
+                  >Edit block
+                  </button>
 
-<!--                  <div class="tower-block__point" :class="{change: movePoint}">
-                    <span></span>
-                  </div>-->
+                  <!--                  <div class="tower-block__point" :class="{change: movePoint}">
+                                      <span></span>
+                                    </div>-->
                 </div>
               </div>
             </div>
@@ -1548,11 +1555,11 @@
                  @mouseleave="item.showHover = false"
                  :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0}">
               <img :src="item.imageUrl" alt="" v-show="item.imageUrl">
-              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover" >
+              <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover">
               <div class="tower-block" v-if="item.showHover">
 
 
-                <div v-show="defrostTimes[index] !== 0">
+                <div v-show="defrostTimes[index] !== 0 && item.owner !== '0x0000000000000000000000000000000000000000'">
                   <vac :end-time="getFrostTime(defrostTimes[index], index)">
                     <template v-slot:process="{ timeObj }">
                       <div class="timer">
@@ -1571,15 +1578,18 @@
                     This block is frozen
                   </div>
                 </div>
-                <div class="tower-block__img">
+                <div class="tower-block__img" v-if="item.owner !== '0x0000000000000000000000000000000000000000'">
                   <img v-lazy="item.imageUrl" alt="">
                 </div>
+                <div class="tower-block__text" v-if="item.owner === '0x0000000000000000000000000000000000000000'">
+                  You can buy this block
+                </div>
 
-                <div class="tower-block__title">
+                <div class="tower-block__title" v-if="item.owner !== '0x0000000000000000000000000000000000000000'">
                   Title:
                 </div>
 
-                <div class="tower-block__text">
+                <div class="tower-block__text" v-if="item.owner !== '0x0000000000000000000000000000000000000000'">
                   {{ item.description }}
                 </div>
 
@@ -1606,15 +1616,15 @@
 
                 <!--                  </button>-->
 
-                <div class="tower-block__title">
+                <div class="tower-block__title" v-if="item.owner !== '0x0000000000000000000000000000000000000000'">
                   Owner address:
                 </div>
 
-                <div class="tower-block__text">
+                <div class="tower-block__text" v-if="item.owner !== '0x0000000000000000000000000000000000000000'">
                   {{ item.owner | cutHash }}
                 </div>
 
-                <a class="view-on"
+                <a class="view-on" v-if="item.owner !== '0x0000000000000000000000000000000000000000'"
                    :href="`https://explorer.pops.one/address/${item.owner}`"
                    target="_blank">
                   View on Harmony Block Explorer
@@ -1633,21 +1643,28 @@
 
                 </a>
 
-                <a :href="item.webSite" target="_blank" class="page-btn">View website</a>
+                <a :href="item.webSite" target="_blank" class="page-btn"
+                   v-if="item.owner !== '0x0000000000000000000000000000000000000000'">View website</a>
                 <button class="page-btn page-btn--buy"
-                        v-show="defrostTimes[index] !== 0"
+                        v-show="defrostTimes[index] === 0"
                         @click="openBuyModal(balloonBlocks[index].owner !== getAccount ? 'balloon' : 'updateBalloon', item.number, item.owner)">
-                    <template v-if="balloonBlocks[index].owner !== getAccount">
-                      Buy this block
-                    </template>
+                  <template v-if="balloonBlocks[index].owner !== getAccount">
+                    Buy this block
+                  </template>
                   <template v-else>
                     Update this block
                   </template>
                 </button>
 
-<!--                <div class="tower-block__point" :class="{change: movePoint}">
-                  <span></span>
-                </div>-->
+                <button class="page-btn page-btn--buy"
+                        v-show="defrostTimes[index] !== 0 && balloonBlocks[index].owner === getAccount"
+                        @click="openBuyModal('updateBalloon', item.number, item.owner)">
+                    Update this block
+                </button>
+
+                <!--                <div class="tower-block__point" :class="{change: movePoint}">
+                                  <span></span>
+                                </div>-->
               </div>
             </div>
           </div>
@@ -1667,22 +1684,23 @@
     </div>
     <div class="home-page__bottom">
 
-<!--      <button class="scroll-down"
-              v-if="showScrollBottomButton"
-              @click="scrollToEnd">
-        <div class="scroll-down__top">
-          <div class="scroll-down__icon">
-            <span class="scroll_arrows one"></span>
-            <span class="scroll_arrows two"></span>
-            <span class="scroll_arrows three"></span>
-          </div>
-        </div>
-        <div class="scroll-down__text">
-          Scroll down
-        </div>
-      </button>-->
+      <!--      <button class="scroll-down"
+                    v-if="showScrollBottomButton"
+                    @click="scrollToEnd">
+              <div class="scroll-down__top">
+                <div class="scroll-down__icon">
+                  <span class="scroll_arrows one"></span>
+                  <span class="scroll_arrows two"></span>
+                  <span class="scroll_arrows three"></span>
+                </div>
+              </div>
+              <div class="scroll-down__text">
+                Scroll down
+              </div>
+            </button>-->
 
-      <button class="view-more" type="button" @click="loadBlocks" v-if="!loadMore" :disabled="sectionPortion !== 160 && page !== 1">
+      <button class="view-more" type="button" @click="loadBlocks" v-if="!loadMore"
+              :disabled="sectionPortion !== 160 && page !== 1">
         <div v-if="!(sectionPortion !== 160 && page !== 1)">
           View more
           <span>blocks</span>
@@ -1693,10 +1711,10 @@
           </div>
         </div>
         <div class="spin-wrap" v-show="sectionPortion !== 160 && page !== 1">
-        <div class="spinner spinner"></div>
-        <div class="spinner spinner"></div>
-        <div class="spinner spinner"></div>
-        <div class="spinner spinner"></div>
+          <div class="spinner spinner"></div>
+          <div class="spinner spinner"></div>
+          <div class="spinner spinner"></div>
+          <div class="spinner spinner"></div>
         </div>
       </button>
 
@@ -1721,7 +1739,8 @@
         </div>
       </div>
       <div class="bottom-wrap">
-        <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank" class="bottom-wrap__link"></a>
+        <a href="https://explorer.pops.one/address/0x7deebc4ff5b7593cda15af1b78fb63aa33bd5897" target="_blank"
+           class="bottom-wrap__link"></a>
         <!--        <img src="@/assets/img/svg/icon-contract.svg" alt="">-->
         <svg width="43" height="56" viewBox="0 0 43 56" fill="none" xmlns="http://www.w3.org/2000/svg">
           <g opacity="0.8">
@@ -2048,13 +2067,11 @@ export default {
     }
   },
   methods: {
-   /* flagAnimation() {
-     this.flagLength = this.$ref.flag.clientWidth;
-    },*/
+    /* flagAnimation() {
+      this.flagLength = this.$ref.flag.clientWidth;
+     },*/
     showHover(block) {
-      if(block.owner && block.owner !== '0x0000000000000000000000000000000000000000') {
-        block.showHover = true
-      }
+      block.showHover = true
     },
     getFrostTime(time, index) {
       let date = new Date();
@@ -2144,14 +2161,22 @@ export default {
     async getDefrostTime() {
       try {
         let time = await contract.getDefrostTime(this.defrostTimes.length + 1);
-        this.defrostTimes.push(time);
+        console.log(time);
+        this.defrostTimes.push(+time);
       } catch (e) {
-        this.defrostTimes.push(0);
+        console.log(e);
       } finally {
         if (this.defrostTimes.length < 4) {
           await this.getDefrostTime();
         }
       }
+      // catch (e) {
+      //   this.defrostTimes.push(0);
+      // } finally {
+      //   if (this.defrostTimes.length < 4) {
+      //     await this.getDefrostTime();
+      //   }
+      // }
     },
     async blockInBalloon() {
       try {
@@ -2212,7 +2237,7 @@ export default {
       }
       let part = new Array(16).fill().map(() => Object.assign({}, el));
       let rows = Math.ceil((this.lastBlockId - this.blocksLoaded) / 16);
-      if(rows > 10) {
+      if (rows > 10) {
         rows = 10;
       } else {
         this.loadMore = true;
@@ -2224,8 +2249,8 @@ export default {
         rowsIndexes.push(this.rows.length - 1);
       }
 
-      if(this.loadMore) {
-        for(let i = (this.lastBlockId - this.blocksLoaded) % 16; i < 16; i++) {
+      if (this.loadMore) {
+        for (let i = (this.lastBlockId - this.blocksLoaded) % 16; i < 16; i++) {
           this.rows[this.rows.length - 1].foundation[i].imageUrl = null;
         }
       }
@@ -2237,7 +2262,7 @@ export default {
       this.lastBlockId = parseInt(this.lastBlockId)
     },
     async loadBlocks(refresh) {
-      if(refresh === 'refresh') {
+      if (refresh === 'refresh') {
 
         await this.calcBlocks()
         this.page = 0;
@@ -2356,7 +2381,7 @@ export default {
       let index = 0;
       switch (row) {
         case 0:
-          if(lastBlockId <= 0) {
+          if (lastBlockId <= 0) {
             this.towerBlocksExtraLarge.forEach(i => i.imageUrl = null);
             this.towerBlocksMiddleLarge.forEach(i => i.imageUrl = null);
             this.towerBlocksLg.forEach(i => i.imageUrl = null);
@@ -2380,7 +2405,7 @@ export default {
           this.towerBlocksExtraLarge[0].webSite = block.webSite;
           break;
         case 1:
-          if(lastBlockId <= 1) {
+          if (lastBlockId <= 1) {
             this.towerBlocksMiddleLarge.forEach(i => i.imageUrl = null);
             this.towerBlocksLg.forEach(i => i.imageUrl = null);
             this.towerBlocksMd.forEach(i => i.imageUrl = null);
@@ -2406,7 +2431,7 @@ export default {
           }
           break;
         case 2:
-          if(lastBlockId <= 3) {
+          if (lastBlockId <= 3) {
             this.towerBlocksLg.forEach(i => i.imageUrl = null);
             this.towerBlocksMd.forEach(i => i.imageUrl = null);
             this.towerBlocksSm.forEach(i => i.imageUrl = null);
@@ -2431,7 +2456,7 @@ export default {
           }
           break;
         case 3:
-          if(lastBlockId <= 7) {
+          if (lastBlockId <= 7) {
             this.towerBlocksMd.forEach(i => i.imageUrl = null);
             this.towerBlocksSm.forEach(i => i.imageUrl = null);
             this.towerBlocksXs.forEach(i => i.imageUrl = null);
@@ -2455,7 +2480,7 @@ export default {
           }
           break;
         case 4:
-          if(lastBlockId <= 15) {
+          if (lastBlockId <= 15) {
             this.towerBlocksSm.forEach(i => i.imageUrl = null);
             this.towerBlocksXs.forEach(i => i.imageUrl = null);
             this.loadMore = true;
@@ -2478,7 +2503,7 @@ export default {
           }
           break;
         case 5:
-          if(lastBlockId <= 31) {
+          if (lastBlockId <= 31) {
             this.towerBlocksXs.forEach(i => i.imageUrl = null);
             this.loadMore = true;
             return
@@ -2531,10 +2556,10 @@ export default {
           this.getDefrostTime(),
           this.blockInBalloon(),
         ])
-          .then(() => {
-            this.loadBlocks()
-            this.loading = false;
-          })
+            .then(() => {
+              this.loadBlocks()
+              this.loading = false;
+            })
       }, 0);
     }
   },
@@ -2557,12 +2582,11 @@ export default {
       const blockList = document.body.querySelectorAll('.tower-block');
 
 
-
       for (let i = 0; i < blockList.length; i++) {
         let blockRect = blockList[i].getBoundingClientRect();
 
         let blockRightX = blockRect.x + blockRect.width;
-   //     let blockTopY = blockRect.y + blockRect.height;
+        //     let blockTopY = blockRect.y + blockRect.height;
 
         /*     let x = e.clientX - blockRect.left;
              let y = e.clientY - blockRect.top;
@@ -2570,7 +2594,7 @@ export default {
            blockList[i].style.left = x + 'px';
            blockList[i].style.top = y + 'px';*/
         if (blockRect.x < 0) {
-       //   blockList[i].classList.remove('change');
+          //   blockList[i].classList.remove('change');
           this.movePoint = false
           blockList[i].style.left = '50%';
           blockList[i].style.right = 'unset';
@@ -2578,12 +2602,12 @@ export default {
           blockList[i].classList.add('change');
           blockList[i].style.left = 'unset';
           blockList[i].style.right = '50%';
-              this.movePoint = true;
+          this.movePoint = true;
 
         }
-         /* if (blockTopY > window.outerHeight) {
-           blockList[i].style.bottom = '0%';
-          }*/
+        /* if (blockTopY > window.outerHeight) {
+          blockList[i].style.bottom = '0%';
+         }*/
       }
 
     })

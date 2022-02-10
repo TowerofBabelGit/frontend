@@ -342,6 +342,7 @@ export default {
         })
     },
     checkAvailableBlocks() {
+      console.log(this.defrostTimes)
       this.defrostTimes.map((i, index) => {
         if(i === 0 && !this.isUpdateBalloon) {
           this.blockNums.push(index + 1);

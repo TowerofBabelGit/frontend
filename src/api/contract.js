@@ -114,7 +114,7 @@ const blockOfNumber = id => {
 
 const getDefrostTime = blockNumber => {
     return new Promise((resolve, reject) => {
-        methodsBsc.getDefrostTime(blockNumber)
+        methodsBsc.timeFrozenBlock(blockNumber)
             .call({
                 from: store.getters['contract/getContractAddress']
             }, (err, res) => {
