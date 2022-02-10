@@ -1423,6 +1423,17 @@ img {
     bottom: 0;
   }
 
+  &__hover {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
   &__block {
     position: relative;
     width: 49.5%;
@@ -1449,6 +1460,34 @@ img {
     //  }
     //
     //}
+
+    .tower__network {
+      width: 18px;
+      height: 18px;
+      left: 8px;
+      top: 5px;
+
+      @include max-screen(xl) {
+        width: 14px;
+        height: 14px;
+        left: 3px;
+        top: 1px;
+      }
+      @include max-screen(md) {
+        width: 11px;
+        height: 11px;
+        left: 3px;
+        top: -2px;
+      }
+      @include max-screen(xs) {
+        width: 9px;
+        height: 8px;
+        left: 1px;
+        top: -5px;
+      }
+    }
+
+
 
     &:hover {
       .tower-block {
@@ -1552,6 +1591,12 @@ img {
       }
       @include max-screen(sm) {
         border-radius: 3px;
+      }
+    }
+
+    .tower-block {
+      &__text {
+        word-break: break-word;
       }
     }
   }
