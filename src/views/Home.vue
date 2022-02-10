@@ -1554,7 +1554,7 @@
             <div class="balloon-wrap__block" v-for="(item, index) in balloonBlocks" :key="index"
 
                  :class="{empty: !item.imageUrl, frozen: defrostTimes[index] !== 0 && item.imageUrl}">
-              <div class="balloon-wrap__hover" @mouseenter="showHover(item)"
+              <div class="balloon-wrap__hover" @mouseenter="showHover(item, true)"
                    @mouseleave="item.showHover = false"></div>
               <img :src="item.imageUrl" alt="" v-show="item.imageUrl">
               <img src="@/assets/img/cover-2.png" alt="" class="balloon-wrap__cover">
@@ -2088,7 +2088,10 @@ export default {
     /* flagAnimation() {
       this.flagLength = this.$ref.flag.clientWidth;
      },*/
-    showHover(block) {
+    showHover(block, isBalloon = false) {
+      if(!block.owner && !isBalloon) {
+        return
+      }
       block.showHover = true
     },
     getFrostTime(time, index) {
