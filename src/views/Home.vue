@@ -2012,12 +2012,7 @@ export default {
       }, 0)
     },
     generateCover() {
-      if(this.theme === 'light') {
         return `/img/cover-${Math.floor(Math.random() * (10 - 2 + 1) + 2)}.png`
-      } else {
-         return `/img/dark-theme/cover-${Math.floor(Math.random() * (7 - 2 + 1) + 2)}.png`
-      }
-     
     },
     setBuyLoading(status) {
       this.loading = status;
@@ -2497,7 +2492,7 @@ export default {
            blockList[i].style.left = x + 'px';
            blockList[i].style.top = y + 'px';*/
         if (blockRect.x < 0) {
-          //   blockList[i].classList.remove('change');
+             blockList[i].classList.remove('change');
           this.movePoint = false
           blockList[i].style.left = '50%';
           blockList[i].style.right = 'unset';
@@ -2514,7 +2509,7 @@ export default {
           }*/
       }
 
-    })
+    });
 
     this.switchTheme(localStorage.getItem('app-theme') || 'light');
    
