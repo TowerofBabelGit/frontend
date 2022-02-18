@@ -1,0 +1,358 @@
+@import "../lib/mixins";
+@import "../lib/var";
+
+body {
+  &.dark-theme {
+
+    color: #fff;
+
+    .light {
+      display: none;
+    }
+    
+    .dark {
+      display: block;
+    }
+
+    .header {
+      background: url("assets/img/header-bg-dark.png") no-repeat;
+      background-position: top;
+      background-size: 100% 100%;
+      height: 140px;
+
+      @include max-screen(xxxl) {
+        background-size: 100%;
+      }
+      @include max-screen(xxl) {
+        background-size: 100% 93%;
+        height: 115px;
+      }
+      @include max-screen(xl) {
+        height: 92px;
+        background-size: 100% 98%;
+      }
+      @include max-screen(md) {
+        height: 72px;
+      }
+      @include max-screen(sm) {
+        background: none;
+        height: 75px;
+      }
+      @include max-screen(xs) {
+        height: 66px;
+
+      }
+
+
+      &:before {
+        @include max-screen(sm) {
+          background: url("assets/img/header-bg-mobile-dark.png") no-repeat;
+          background-size: 100% 200%;
+        
+        }
+      }
+
+    &__logo {
+      margin-top: -30px;
+      width: 275px;
+
+      @include max-screen(xxl) {
+        margin: 0 40px;
+        width: 200px;
+        margin-top: -19px;
+      }
+      @include max-screen(xl) {
+        width: 160px;
+        margin: 0 30px;
+        margin-top: -15px;
+      }
+      @include max-screen(lg) {
+        //     margin-right: 0;
+      }
+      @include max-screen(md) {
+        height: 90px;
+      }
+      @include max-screen(sm) {
+        width: 170px;
+      }
+      @include max-screen(xs) {
+           width: 140px;
+      }
+    }
+
+    .page-btn--header {
+      top: 63%;
+
+      @include max-screen(xxl) {
+        top: 60%;
+      }
+      @include max-screen(xl) {
+       font-size: 16px;
+      }
+    }
+
+      &__img-dark {
+        display: block;
+
+        position: absolute;
+        width: 420px;
+        height: 420px;
+        left: 0;
+        top: 0;
+        z-index: 17;
+
+        @include max-screen(xxl) {
+          width: 350px;
+          height: 350px;
+        }
+        @include max-screen(xl) {
+          width: 250px;
+          height: 250px;
+        }
+        @include max-screen(sm) {
+          width: 180px;
+          height: 180px;
+        }
+        @include max-screen(xs) {
+          left: -12px;
+          top: -10px;
+          width: 150px;
+          height: 150px;
+      
+        }
+      }
+
+      &__img {
+        display: none;
+      }
+
+      &__img-text {
+        bottom: unset;
+        right: unset;
+        left: 20%;
+        top: 18%;
+      }
+
+      .burger-btn {
+        transform: translateY(-18%);
+        background: url("assets/img/svg/burger-btn-dark.svg") no-repeat;
+  background-size: 33px 33px;
+  background-position: center;
+
+  @include max-screen(md) {
+    transform: translateY(-27%);
+
+    background-size: 26px 39px;
+  }
+
+  @include max-screen(sm) {
+    transform: translateY(-80%);
+    background-size: 33px 33px;
+  }
+
+  @include max-screen(xs) {
+    background-size: 27px 24px;
+  }
+
+  &.active {
+    background: url("assets/img/svg/close-dark.svg") no-repeat;
+    background-size: 19px 19px;
+    background-position: center;
+  }
+      }
+
+    }
+
+    .coin-select, .account-info {
+      top: 63%;
+
+      @include max-screen(xxl) {
+        top: 60%;
+      }
+    }
+
+    .header-wrap {
+      padding-top: 30px;
+
+      @include max-screen(xxl) {
+        padding-top: 19px;
+      }
+      @include max-screen(xl) {
+        padding-top: 15px;
+      }
+    }
+
+    .home-page {
+      background: url("assets/img/background-bottom-dark.png") no-repeat, url("assets/img/background-dark.png") no-repeat;
+      background-position: bottom, top;
+      background-size: contain, cover;
+
+      &:after {
+        display: none;
+      }
+
+      &__bottom {
+        background: url("assets/img/bottom-bg-dark.png") no-repeat;
+        background-size: 100% 100%;
+
+        @include max-screen(xs) {
+          margin-top: -80px;
+          margin-bottom: -20px;
+        }
+      }
+    }
+
+    .select {
+      &__btn {
+        @include max-screen(xl) {
+       //   height: 36px;
+        }
+      }
+    }
+
+    .header-nav {
+      &__item {
+        a {
+          color: #FFFFFF;
+
+          text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.4);
+        }
+      }
+    }
+
+    .coin-select .select__btn {
+      background: url("assets/img/coin-btn-dark.png") no-repeat;
+      background-size: 100% 100%;
+      background-position: 0 2px;
+    }
+
+    .select__drop {
+      background: #4F5570;
+      box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.06);
+    }
+
+    .select__btn {
+      background: url("assets/img/account-btn-dark.png") no-repeat;
+       background-size: 100% 100%;
+       border-radius: 30px;
+    }
+
+    .coin-select {
+      &__name {
+        color: #FFFFFF;
+      }
+    }
+
+    .tower-top {
+      display: none;
+    }
+
+    .tower-top-dark {
+      display: block;
+    }
+
+    .tower-wrap {
+      &__img {
+        background: url("assets/img/tower-blocks-bg-dark.png") no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+      }
+
+      &__guys {
+       
+      }
+    }
+
+    .bottom-wrap {
+      &__text {
+        color: #FFFFFF;
+
+text-shadow: 0px 1px 4px rgba(255, 255, 255, 0.65);
+
+      }
+    }
+
+    .tower-bottom {
+      bottom: -17px;
+      z-index: 1;
+
+      @include max-screen(sm) {
+        bottom: 0;
+      }
+      @include max-screen(xs) {
+        bottom: 2px;
+      }
+    }
+
+    .account-info {
+      &__info {
+        color: #fff;
+      }
+
+      &__input {
+        input {
+          background: #142D52;
+        }
+      }
+
+      &__address {
+        color: #A8B5C7;
+      }
+    }
+
+    .page-btn--border {
+      color: #f7565b;
+      border-color: #d04f5648;
+      background: linear-gradient(250.68deg, #D04F56 6.6%, #AB3034 96.33%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .view-on {
+      color: #fff;
+
+      svg {
+        path {
+          fill: #fff
+        }
+      }
+    }
+
+    .buy-wrap::after {
+      display: none;
+    }
+
+    .mobile-nav {
+      background: #081C3A;
+
+      &__item {
+
+      
+        border-bottom: 1px solid #f4f4f415;
+
+        * {
+          color: #fff;
+        }
+      }
+
+      &__account {
+        background: #031023;
+box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.06);
+      }
+
+    
+  }
+
+  .crane-wrap .buy-wrap {
+   @include max-screen(xs) {
+    transform: translate(-10%, 76%) rotate(-42deg);
+   }
+}
+
+.tower__col-cover {
+     opacity: 0.7;
+}
+
+}
+
+}

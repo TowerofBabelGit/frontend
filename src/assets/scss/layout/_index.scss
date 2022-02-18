@@ -202,6 +202,10 @@ img {
     }
   }
 
+  &__img-dark {
+    display: none;
+  }
+
   &__img-text {
     position: absolute;
     left: 0;
@@ -284,8 +288,11 @@ img {
     }
 
 
+    @media (max-width: 1315px) {
+      display: none;
+    }
     @include max-screen(lg) {
-    display: none;
+   
     }
   }
 
@@ -788,7 +795,7 @@ img {
     background: url("assets/img/coin-btn.png") no-repeat;
     background-size: 100% 100%;
 
-    @include max-screen(xxl) {
+    @include max-screen(xxxl) {
       min-width: 70px;
       padding: 5px;
       padding-right: 15px;
@@ -913,9 +920,9 @@ img {
       height: 100px;
     }
     @include max-screen(xs) {
-
+      margin-bottom: -12px;
       width: 100%;
-      justify-content: center;
+      justify-content: space-between;
       padding-bottom: 20px;
     }
   }
@@ -1780,7 +1787,8 @@ img {
     height: 53px;
   }
   @include max-screen(xs) {
-    width: 30%;
+    width: 22%;
+
   }
 
   &__link {
@@ -1796,7 +1804,7 @@ img {
 
   }
 
-  svg {
+  img {
     height: 40px;
     width: 40px;
     @include max-screen(md) {
@@ -1805,19 +1813,46 @@ img {
     @include max-screen(sm) {
       width: 27px;
     }
+    @include max-screen(xs) {
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  img.bottom-wrap__toggle {
+    width: 30px;
+    height: 37px;
+
+    @include max-screen(md) {
+      width: 33px;
+      height: 23px;
+    }
+    @include max-screen(sm) {
+      width: 27px;
+    }
+    @include max-screen(xs) {
+      width: 26px;
+      height: 19px;
+    }
   }
 
   &__text {
     font-size: 12px;
     line-height: 1.1;
     text-shadow: 0px 4px 4px rgba(255, 255, 255, 0.55);
+    color: #503614;
+    transition: $transition;
 
 
     @include max-screen(sm) {
       font-size: 10px;
     }
     @include max-screen(xs) {
+      font-size: 9px;
+    }
 
+    &:hover {
+      opacity: 0.8;
     }
 
     span {
@@ -1825,13 +1860,10 @@ img {
       font-size: 20px;
 
       @include max-screen(sm) {
-
-      }
-      @include max-screen(sm) {
         font-size: 12px;
       }
       @include max-screen(xs) {
-
+        font-size: 11px;
       }
     }
   }
@@ -1867,7 +1899,7 @@ img {
 
   &__guys {
     margin-top: 350px;
-    margin-bottom: -20px;
+    margin-bottom: -34px;
     @include align-center;
     justify-content: space-between;
     z-index: 0;
@@ -1880,20 +1912,20 @@ img {
       width: 90%;
       margin-right: auto;
       margin-left: auto;
-      margin-bottom: -5px;
+      margin-bottom: -13px;
       margin-top: 265px;
     }
 
     img {
-      @include max-screen(lg) {
-        width: 70px;
-      }
-      @include max-screen(md) {
-        width: 65px;
-      }
-      @include max-screen(xs) {
-        width: 40px;
-      }
+     
+
+     width: 149px;
+    height: 102px;
+
+    @include max-screen(xs) {
+      width: 90px;
+      height: 55px;
+    }
     }
 
 
@@ -1902,70 +1934,13 @@ img {
     }
 
     &--left {
-      img {
-        margin-right: -45px;
-        z-index: 0;
-
-        @include max-screen(xs) {
-          margin-right: -25px;
-        }
-
-        &:first-child {
-          transform: rotate(-32deg);
-          margin-left: 5px;
-
-          @include max-screen(xs)  {
-            margin-left: 0;
-          }
-        }
-
-        &:nth-child(3) {
-          transform: rotate(18deg);
-        }
-
-        &:last-child {
-          transform: rotate(23.16deg);
-          margin-left: 6px;
-        }
+      @include max-screen(xs) {
+        margin-left: -21px;
       }
     }
 
     &--right {
-      margin-right: -20px;
-      z-index: 0;
-      @include max-screen(xs) {
-        margin-right: -25px;
-      }
-
-      img {
-
-        margin-left: -45px;
-
-        @include max-screen(xs) {
-          margin-left: -60px;
-        }
-        &:first-child {
-          transform: matrix(-0.92, 0.39, 0.39, 0.92, 0, 0);
-          margin-right: 10px;
-
-          @include max-screen(xs) {
-            margin-right: -7px
-          }
-        }
-
-        &:nth-child(2) {
-          transform: matrix(-0.97, 0.26, 0.26, 0.97, 0, 0);
-        }
-
-        &:nth-child(3) {
-          transform: matrix(-1, 0, 0, 1, 0, 0);
-        }
-
-        &:last-child {
-          transform: matrix(-0.91, -0.42, -0.42, 0.91, 0, 0);
-
-        }
-      }
+      margin-right: -35px;
     }
   }
 
@@ -2547,7 +2522,7 @@ img {
   }
 }
 
-.tower-top {
+.tower-top, .tower-top-dark {
   position: absolute;
   top: -13px;
   margin: auto;
@@ -2569,6 +2544,10 @@ img {
   }
 }
 
+.tower-top-dark {
+  display: none;
+}
+
 .tower-bottom {
   position: absolute;
   bottom: 0;
@@ -2583,7 +2562,7 @@ img {
 
   .desktop {
     @include max-screen(sm) {
-      display: none;
+      display: none !important;
     }
   }
 
@@ -2983,4 +2962,13 @@ img {
 
   animation-delay: .3s;
   animation-direction: alternate;
+}
+
+
+.light {
+  display: block;
+}
+
+.dark {
+  display: none;
 }
