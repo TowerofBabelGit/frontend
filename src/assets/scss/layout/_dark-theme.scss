@@ -353,6 +353,29 @@ box-shadow: 0px 4px 54px rgba(0, 0, 0, 0.06);
      opacity: 0.7;
 }
 
+.flag__tooltip {
+    color: #031023;
+    background: #fff;
+
+    &:before {
+      border-color: transparent #fff transparent transparent;
+
+      @include max-screen(xs) {
+        border-color: transparent transparent #fff transparent;
+      }
+    }
+  }
+
+  .tower-block .view-on {
+    color: #000;
+
+    svg {
+      path {
+        fill: #000;
+      }
+    }
+  }
+
 }
 
 }
