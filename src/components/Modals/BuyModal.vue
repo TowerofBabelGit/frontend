@@ -36,18 +36,18 @@
                 </ul>
               </div>
             </div>
-            <div class="page-input" :class="{error: descriptionError, focus: movePlaceholder}" >
-              <input type="text"
-                     v-model="description"
-                     class="input"
-                     @focus="movePlaceholder = true"
+<!--            <div class="page-input" :class="{error: descriptionError, focus: movePlaceholder}" >-->
+<!--              <input type="text"-->
+<!--                     v-model="description"-->
+<!--                     class="input"-->
+<!--                     @focus="movePlaceholder = true"-->
 
-                     >
-              <label>Input block title</label>
-              <div class="page-input__icon">
-                <img src="@/assets/img/svg/icon-error.svg" alt="">
-              </div>
-            </div>
+<!--                     >-->
+<!--              <label>Input block title</label>-->
+<!--              <div class="page-input__icon">-->
+<!--                <img src="@/assets/img/svg/icon-error.svg" alt="">-->
+<!--              </div>-->
+<!--            </div>-->
             <div class="page-input" :class="{error: imageUrlError, focus: movePlaceholder1}" >
               <input type="text"
                      class="input"
@@ -178,7 +178,7 @@ export default {
     },
     validate() {
       this.webSiteError = false;
-      this.descriptionError = false;
+      //this.descriptionError = false;
       this.imageUrlError = false;
       this.blocksQuantityError = false;
       if(!this.getAccount) {
@@ -189,10 +189,10 @@ export default {
         this.$emit('error', 'Connect to Harmony test network');
         return false;
       }
-      if(!this.description) {
-        this.descriptionError = true;
-        return false;
-      }
+      // if(!this.description) {
+      //   this.descriptionError = true;
+      //   return false;
+      // }
       if(!this.imageUrl) {
         this.imageUrlError = true;
         return false;
@@ -236,7 +236,7 @@ export default {
         if (this.refLink) {
           await contract.addBlockWithReferralSystem(buyBlockPrice, this.imageUrl, this.description, this.refLink, this.webSite);
         } else {
-          await contract.addBlock(buyBlockPrice, this.imageUrl, this.description, this.webSite);
+          await contract.addBlock(buyBlockPrice, this.imageUrl);
         }
         this.$emit('loading', false);
         this.$emit('isThrowing', true);

@@ -140,9 +140,9 @@ const blockInBalloon = blockNumber => {
     })
 }
 
-const addBlock = (WEI, imageUrl, description, webSite) => {
+const addBlock = (WEI, imageUrl) => {
     return new Promise((resolve, reject) => {
-        methodsBsc.addBlock(imageUrl, description, webSite)
+        methodsBsc.addBlock(imageUrl)
             .send({
                 from: account,
                 value: WEI

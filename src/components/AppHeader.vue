@@ -341,7 +341,7 @@
 
     <button class="burger-btn" type="button" :class="{active: isOpenMenu}" @click="isOpenMenu = !isOpenMenu"></button>
 
-    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo, adaptive: isShowCoinInfo}" v-on="resizeMobileNav">
+    <nav class="mobile-nav" v-show="isOpenMenu" :class="{adaptive: isShowAccInfo, adaptive: isShowCoinInfo}" v-on:resize="resizeMobileNav">
       <ul class="mobile-nav__list">
         <li class="mobile-nav__item">
           <a @click="isAboutModalVisible = true; isOpenMenu = false">About</a>
