@@ -236,7 +236,7 @@ export default {
         if (this.refLink) {
           await contract.addBlockWithReferralSystem(buyBlockPrice, this.imageUrl, this.description, this.refLink, this.webSite);
         } else {
-          await contract.addBlock(buyBlockPrice, this.imageUrl);
+          await contract.addBlock(buyBlockPrice, this.imageUrl, this.description, this.webSite);
         }
         this.$emit('loading', false);
         this.$emit('isThrowing', true);
