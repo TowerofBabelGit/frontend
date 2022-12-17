@@ -36,18 +36,18 @@
                 </ul>
               </div>
             </div>
-<!--            <div class="page-input" :class="{error: descriptionError, focus: movePlaceholder}" >-->
-<!--              <input type="text"-->
-<!--                     v-model="description"-->
-<!--                     class="input"-->
-<!--                     @focus="movePlaceholder = true"-->
+            <div class="page-input" :class="{error: descriptionError, focus: movePlaceholder}" >
+              <input type="text"
+                     v-model="description"
+                     class="input"
+                     @focus="movePlaceholder = true"
 
-<!--                     >-->
-<!--              <label>Input block title</label>-->
-<!--              <div class="page-input__icon">-->
-<!--                <img src="@/assets/img/svg/icon-error.svg" alt="">-->
-<!--              </div>-->
-<!--            </div>-->
+                     >
+              <label>Input block title</label>
+              <div class="page-input__icon">
+                <img src="@/assets/img/svg/icon-error.svg" alt="">
+              </div>
+            </div>
             <div class="page-input" :class="{error: imageUrlError, focus: movePlaceholder1}" >
               <input type="text"
                      class="input"
