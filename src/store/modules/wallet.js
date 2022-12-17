@@ -24,7 +24,7 @@ export default {
         //rpcUrl: 'https://data-seed-prebsc-2-s3.binance.org:8545',// test
         rpcUrl: 'https://api.s0.b.hmny.io'// test harmony,
         //chainName: 'Binance smart chain test'
-        chainName: 'Harmony test net'
+        //chainName: 'Harmony test net'
     },
     mutations: {
         setProvider(state, payload) {
