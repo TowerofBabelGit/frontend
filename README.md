@@ -1,4 +1,4 @@
-# towerofbablefe
+# tower-of-babel
 
 ## Project setup
 ```

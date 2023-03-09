@@ -1865,7 +1865,7 @@ import ErrorModal from "../components/Modals/ErrorModal";
 import InfoModal from "../components/Modals/InfoModal";
 
 export default {
-  name: 'Home',
+  name: 'HomeView',
   components: {
     ErrorModal,
     AppHeader,

@@ -20,7 +20,7 @@
 <script>
 import LottieAnimation from "lottie-vuejs/src/LottieAnimation.vue";
 export default {
-  name: "Preloader",
+  name: "AppPreloader",
   components: {
     LottieAnimation
   },
